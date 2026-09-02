@@ -1,11 +1,35 @@
 {
   "version": 1,
   "skills": {
+    "dropshipping-integration": {
+      "source": "finsilabs/awesome-ecommerce-skills",
+      "sourceType": "github",
+      "skillPath": "skills/fulfillment-shipping/dropshipping-integration/SKILL.md",
+      "computedHash": "ab0584e5086e46885940ac33a414639a9870a788be896a9d4423c8d78bdede1e"
+    },
+    "ecommerce-advisor": {
+      "source": "borghei/claude-skills",
+      "sourceType": "github",
+      "skillPath": "vertical-advisors/ecommerce-advisor/SKILL.md",
+      "computedHash": "18717fc90b39a68d53d010ad82ecfc3da53725e9d4aaaed76be14c879f7b8dae"
+    },
     "find-skills": {
       "source": "vercel-labs/skills",
       "sourceType": "github",
       "skillPath": "skills/find-skills/SKILL.md",
       "computedHash": "913b9d37d0d54047dd65222bb8c67b2bf04e3cb87dcad1729068d7a8b2c8c396"
+    },
+    "shopify-app-dev": {
+      "source": "microck/ordinary-claude-skills",
+      "sourceType": "github",
+      "skillPath": "skills_all/shopify-app-dev/SKILL.md",
+      "computedHash": "ee798236abed6eb200b5939b21cc8cae286a0264211d3143f6239cc2fdbc8ae0"
+    },
+    "shopify-app-development": {
+      "source": "finsilabs/awesome-ecommerce-skills",
+      "sourceType": "github",
+      "skillPath": "skills/platform-shopify/shopify-app-development/SKILL.md",
+      "computedHash": "d754af2f6bad15d77ec2c1b2f566c562df77a6fd7070b379dbc5b75eb9b59a40"
     },
     "shopify-liquid-themes": {
       "source": "benjaminsehl/liquid-skills",
@@ -18,6 +42,18 @@
       "sourceType": "github",
       "skillPath": "skills/shopify-use-shopify-cli/SKILL.md",
       "computedHash": "79276c11d06b3c39055e8e30a02717b67c5501facef8fa570a8c086233bfe7cf"
+    },
+    "shopify-webhooks": {
+      "source": "finsilabs/awesome-ecommerce-skills",
+      "sourceType": "github",
+      "skillPath": "skills/platform-shopify/shopify-webhooks/SKILL.md",
+      "computedHash": "079b866f216eeb1433e22b40d1fb7b5ef4e02d154442bcfe95cf573b9a4f2650"
+    },
+    "theme-development": {
+      "source": "dragnoir/shopify-agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/theme-development/SKILL.md",
+      "computedHash": "fb0a4857f135bff4f1982c4ca1d4b4eefa40e9080596bfee7905eb1374fd6d49"
     }
   }
 }

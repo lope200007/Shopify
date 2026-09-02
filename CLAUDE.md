@@ -117,11 +117,43 @@ Instalados con `npx skills add`, viven en `.agents/skills/` y se enlazan desde
 | `shopify-use-shopify-cli` | `shopify/shopify-ai-toolkit` (oficial de Shopify) | Uso del Shopify CLI |
 | `shopify-liquid-themes` | `benjaminsehl/liquid-skills` | Referencia amplia de Liquid: tags, filtros, objetos |
 | `find-skills` | `vercel-labs/skills` | Descubrir e instalar más skills |
+| `shopify-webhooks` | `finsilabs/awesome-ecommerce-skills` | Webhooks, idempotencia, colas |
+| `shopify-app-development` | `finsilabs/awesome-ecommerce-skills` | Polaris, App Bridge, sesiones |
+| `dropshipping-integration` | `finsilabs/awesome-ecommerce-skills` | Proveedores, sync de stock, routing de pedidos |
+| `shopify-app-dev` | `microck/ordinary-claude-skills` | Flujo de CLI y plantillas de app |
+| `theme-development` | `dragnoir/shopify-agent-skills` | Temas, Skeleton, comandos de CLI |
+| `ecommerce-advisor` | `borghei/claude-skills` | Trae un calculador de economía unitaria en Python |
 
 `shopify-liquid-themes` **corrobora de forma independiente** las reglas de
 `converting-landings-to-liquid` (`shopify_attributes` en el elemento externo del
-bloque, `presets` obligatorios). Ninguno contradice `shopify-development`: no
-tocan autenticación.
+bloque, `presets` obligatorios). Ninguno toca autenticación, así que ninguno
+contradice `shopify-development`.
+
+### Ante conflicto, mandan nuestros skills
+
+Los de terceros llevan datos caducados. Comprobado: `shopify-webhooks` dice que
+Shopify reintenta **19 veces en 48 horas**; la documentación oficial (verificada
+en septiembre de 2026) dice **8 veces en 4 horas**. Varios recomiendan versiones
+de API de 2025.
+
+Regla: donde un skill de terceros contradiga a `shopify-development` o a
+`converting-landings-to-liquid`, **manda el nuestro** — sus datos están
+verificados contra shopify.dev con fecha. Ante la duda, vuelve a comprobar en
+la documentación oficial antes de escribir código.
+
+### Skills evaluados y descartados
+
+No están instalados, y no por capricho:
+
+| Skill | Motivo |
+|---|---|
+| `kgelster/awesome-ecom-skills@shopify-json-ld` | Enseña el flujo de custom app **eliminado en enero de 2026** (copiar el token `shpat_` desde Develop apps). Reintroduciría justo el error que corregimos. |
+| `nexscope-ai@dropshipping-product-research` | 63 líneas: descripción, enlace con tracking y una lista de "capacidades". Sin contenido real, pese a sus 1,3K instalaciones. |
+| `nexscope-ai@shopify-dropshipping` | Igual, 56 líneas, marcado "Beta". |
+| `linkfox-ai@linkfox-dld-product-search` | SaaS comercial: login por SMS con tu número, venta de planes por WeChat/Alipay y envío de tus búsquedas a `tool-gateway.linkfox.com`. No es malicioso, pero no es gratis ni privado. |
+
+Lección: **el número de instalaciones no mide calidad.** Los dos de dropshipping
+más instalados eran folletos publicitarios.
 
 ### Telemetría del skill oficial de Shopify
 
