@@ -117,6 +117,22 @@ haz el trabajo.
 No aplica a preguntas triviales ni a continuaciones de algo ya en marcha: si el
 área ya está cubierta por un skill instalado, úsalo y sigue.
 
+**También ante cada error o bloqueo que impida avanzar.** Antes de improvisar
+una solución, buscar si alguien ya resolvió eso: `npx skills find "<el error>"`.
+Con dos límites que evitan que esto se vuelva una pérdida de tiempo:
+
+- **Buscar una vez, no en bucle.** Si la primera búsqueda no da nada aplicable,
+  resolverlo nosotros y seguir. Anotar el resultado negativo abajo para no
+  repetir la búsqueda.
+- **Un skill no arregla un bug del proyecto.** Si el fallo está en nuestro
+  código, se depura; no hay skill que lo tape.
+
+Búsquedas hechas sin resultado útil, no repetir:
+
+| Barrera | Buscado | Resultado |
+|---|---|---|
+| Agotar créditos de una API de pago | `api cost optimization caching`, `rate limit retry backoff` | Nada aplicable: los de "cost" son de tokens de LLM y los de "rate limit" van de implementar límites en tu propia API. Resuelto con `spending-credits-last` y `scripts/linkfox.ts`. |
+
 ```bash
 npx skills find "<tema>"          # 1. buscar
 ```
@@ -233,6 +249,26 @@ teníamos automatizada.
   no quitarlo de ahí o los volcados acabarán en el repo.
 - Hay un endpoint de feedback aparte (`skill-api.linkfox.com`). Solo se llama
   si se le invoca; no manda nada por su cuenta.
+
+**Usar SIEMPRE el envoltorio, nunca el script de linkfox directamente:**
+
+```bash
+npm run linkfox -- search '{"keyWord":"yoga mat","cycle":"30","pageSize":20}'
+npm run linkfox -- report     # gastado y ahorrado
+npm run linkfox -- list       # que preguntas ya están compradas
+```
+
+La caché propia de linkfox caduca a las **24 horas** y vuelve a cobrar por la
+misma pregunta. El envoltorio lee el archivo sin límite de antigüedad, así que
+una pregunta repetida es gratis para siempre.
+
+Eso depende de que `cacheKey()` en `scripts/linkfox.ts` reproduzca byte a byte
+`json.dumps(params, ensure_ascii=False, sort_keys=True)` de Python — separadores
+`", "` y `": "` incluidos. `npm run selftest` lo verifica contra valores
+calculados con Python real, con chino y acentos. **Si se toca ese serializador
+y los tests fallan, se paga dos veces en silencio.**
+
+La estrategia completa está en el skill `spending-credits-last`.
 
 `shopify-liquid-themes` **corrobora de forma independiente** las reglas de
 `converting-landings-to-liquid` (`shopify_attributes` en el elemento externo del

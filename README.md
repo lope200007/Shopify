@@ -163,6 +163,9 @@ Fly.io tienen free tier suficiente.
 | `npm run selftest` | Prueba la lógica crítica sin tienda ni red |
 | `npm run validate:skills` | Valida el formato de los skills de `.claude/skills/` |
 | `npm run validate:section -- f.liquid` | Valida una sección de Shopify antes de subirla |
+| `npm run linkfox -- search '{...}'` | Busca proveedores reusando lo ya comprado (0 créditos si se repite) |
+| `npm run linkfox -- report` | Créditos gastados y ahorrados |
+| `npm run linkfox -- list` | Búsquedas ya compradas, reutilizables gratis |
 | `npm run agent:demo` | Prueba el agente con un pedido de ejemplo |
 | `npm run test:connection` | Verifica credenciales de Shopify |
 | `npm run orders:list [n]` | Lista los últimos `n` pedidos |

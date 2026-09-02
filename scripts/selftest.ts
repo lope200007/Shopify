@@ -18,6 +18,7 @@ import { config } from '../src/config';
 import { isValidWebhook } from '../src/shopify/verify';
 import { getAccessToken, resetTokenCache } from '../src/shopify/auth';
 import { getRecentOrders } from '../src/shopify/client';
+import { cacheKey } from './linkfox';
 
 let passed = 0;
 let failed = 0;
@@ -103,6 +104,41 @@ async function main(): Promise<void> {
 
   await test('pedir un numero invalido de pedidos da error', async () => {
     await assert.rejects(() => getRecentOrders(0), /entero positivo/);
+  });
+
+  // El ahorro de creditos depende de que nuestra clave de cache coincida BYTE
+  // A BYTE con la que calcula el script de linkfox en Python. Si divergen, no
+  // encuentra los archivos ya comprados y se paga dos veces en silencio.
+  // Referencias generadas con:
+  //   sha256(json.dumps(p, ensure_ascii=False, sort_keys=True))[:16]
+  const hashFixtures: Array<[Record<string, unknown>, string]> = [
+    [{ keyWord: 'yoga mat', cycle: '30', pageSize: 20 }, '6822df815abdbfa0'],
+    [
+      {
+        keyWord: '瑜伽垫',
+        cycle: '30',
+        sortField: 'saleCount30d',
+        sortType: 'desc',
+        pageSize: 20,
+      },
+      '731c3064ee4ca815',
+    ],
+    [{ pageSize: 1, keyWord: 'a' }, 'a8d8fd02af8960c1'],
+    [{ keyWord: 'acento: ñ á é', cycle: '7' }, 'c9e4d81e2b46bcfe'],
+  ];
+
+  for (const [params, expected] of hashFixtures) {
+    const label = JSON.stringify(params).slice(0, 44);
+    await test(`clave de cache coincide con Python: ${label}`, () => {
+      assert.strictEqual(cacheKey(params), expected);
+    });
+  }
+
+  await test('el orden de las claves no altera la clave de cache', () => {
+    assert.strictEqual(
+      cacheKey({ keyWord: 'a', pageSize: 1 }),
+      cacheKey({ pageSize: 1, keyWord: 'a' })
+    );
   });
 
   console.log(`\n${passed} correctos, ${failed} fallidos\n`);
