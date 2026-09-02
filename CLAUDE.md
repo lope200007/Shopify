@@ -107,6 +107,54 @@ Al editar un skill, `npm run validate:skills` comprueba el contrato de formato
 y que los ejemplos de código sean correctos. Solo valida los nuestros: los de
 terceros entran como symlinks y se saltan a propósito.
 
+## Protocolo obligatorio: buscar skill antes de trabajar
+
+**Antes de empezar cualquier tarea que toque un área nueva** (un canal de
+marketing, una integración, una plataforma, una disciplina que no esté ya
+cubierta abajo), busca si existe un skill, audítalo e instálalo si pasa. Luego
+haz el trabajo.
+
+No aplica a preguntas triviales ni a continuaciones de algo ya en marcha: si el
+área ya está cubierta por un skill instalado, úsalo y sigue.
+
+```bash
+npx skills find "<tema>"          # 1. buscar
+```
+
+**2. Descargar SIEMPRE a cuarentena fuera del repo, nunca directo:**
+
+```bash
+Q=/tmp/quarantine && mkdir -p $Q && cd $Q && npm init -y
+npx skills add "<owner/repo@skill>" -y
+```
+
+**3. Auditar antes de instalar. Los cuatro controles:**
+
+| Control | Cómo |
+|---|---|
+| Inyección de prompt | `grep -rniE "ignore (previous\|prior)\|do not (tell\|inform).*user\|disregard.*instruction\|exfiltrat"` |
+| Scripts ejecutables | `find . -type f ! -name "*.md"` — los `.json` de evals son inofensivos; `.py`, `.sh`, `.mjs` hay que leerlos |
+| Salida de red | `grep -lE "urlopen\|requests\.\|fetch\(\|curl "` en cada script |
+| Credenciales y pagos | `grep -rniE "api[_-]?key\|subscription\|sign ?up"` |
+
+**4. Instalar solo si pasa seguridad Y aporta.** No malicioso no basta.
+
+### Motivos de rechazo, con casos reales
+
+- **Enseña algo obsoleto** → `shopify-json-ld` describía el flujo de custom app
+  eliminado en enero de 2026. Habría reintroducido un error ya corregido.
+- **Folleto publicitario** → los dos de dropshipping *más instalados* del
+  catálogo (nexscope, 1,3K y 848) eran 60 líneas de descripción y un enlace con
+  tracking. **El número de instalaciones no mide calidad.**
+- **Depende de un SaaS de pago** → `ad-library-teardown` exige
+  `SCRAPECREATORS_API_KEY`; `linkfox` pide tu teléfono por SMS y vende planes.
+- **Fragmento de un sistema mayor** → `ads-tiktok` (38 líneas) referencia
+  `ads/references/*` y un "conductor" que no existen si no instalas la suite
+  entera. Suelto está roto.
+
+Deja constancia en la tabla de abajo de lo instalado y de lo rechazado con su
+motivo, para no reevaluar lo mismo dos veces.
+
 ## Skills de terceros (`.agents/skills/`)
 
 Instalados con `npx skills add`, viven en `.agents/skills/` y se enlazan desde
@@ -123,6 +171,15 @@ Instalados con `npx skills add`, viven en `.agents/skills/` y se enlazan desde
 | `shopify-app-dev` | `microck/ordinary-claude-skills` | Flujo de CLI y plantillas de app |
 | `theme-development` | `dragnoir/shopify-agent-skills` | Temas, Skeleton, comandos de CLI |
 | `ecommerce-advisor` | `borghei/claude-skills` | Trae un calculador de economía unitaria en Python |
+| `copywriting` | `coreyhaines31/marketingskills` | 961 líneas, 191K instalaciones. El más sólido de los de copy. |
+| `copywriting-hooks` | `samber/cc-skills` | 994 líneas centradas en ganchos |
+| `email-marketing` | `claude-office-skills/skills` | Secuencias, segmentación, métricas |
+| `email-marketing-automation` | `finsilabs` | Flujos de ciclo de vida, integración Klaviyo |
+| `cart-abandonment-recovery` | `finsilabs` | Recuperación de carrito multicanal |
+| `analytics-integration` | `finsilabs` | Meta Pixel, Conversions API, deduplicación, data layer |
+| `seo-ecommerce` | `agricidaniel/claude-seo` | SEO de ficha de producto y schema. DataForSEO es opcional: funciona sin él. |
+| `meta-ads-strategy` | `adkit/ads-skills` | 1.464 líneas de estructura de campaña y creatividades. **Lleva promoción de adkit.so con enlaces de tracking**: el contenido sirve, los enlaces se ignoran. |
+| `product-photography` | `skills-101/superpowers` | Fotografía de producto |
 
 `shopify-liquid-themes` **corrobora de forma independiente** las reglas de
 `converting-landings-to-liquid` (`shopify_attributes` en el elemento externo del
@@ -151,6 +208,8 @@ No están instalados, y no por capricho:
 | `nexscope-ai@dropshipping-product-research` | 63 líneas: descripción, enlace con tracking y una lista de "capacidades". Sin contenido real, pese a sus 1,3K instalaciones. |
 | `nexscope-ai@shopify-dropshipping` | Igual, 56 líneas, marcado "Beta". |
 | `linkfox-ai@linkfox-dld-product-search` | SaaS comercial: login por SMS con tu número, venta de planes por WeChat/Alipay y envío de tus búsquedas a `tool-gateway.linkfox.com`. No es malicioso, pero no es gratis ni privado. |
+| `scrapecreators@ad-library-teardown` | Exige `SCRAPECREATORS_API_KEY` de pago. La Meta Ad Library es pública y gratis: `researching-product-market` ya la usa directamente. |
+| `agricidaniel/claude-ads@ads-tiktok` | 38 líneas que referencian `ads/references/*` y un "conductor" inexistentes. Es una pieza de una suite mayor; suelta no funciona. Reevaluar solo si se instala `claude-ads` entera. |
 
 Lección: **el número de instalaciones no mide calidad.** Los dos de dropshipping
 más instalados eran folletos publicitarios.

@@ -1,6 +1,30 @@
 {
   "version": 1,
   "skills": {
+    "analytics-integration": {
+      "source": "finsilabs/awesome-ecommerce-skills",
+      "sourceType": "github",
+      "skillPath": "skills/integrations-apis/analytics-integration/SKILL.md",
+      "computedHash": "5219b4b9ded1434a21f7eaf1f4bea5e6a977a0bc8bdc965cb716886899c79e19"
+    },
+    "cart-abandonment-recovery": {
+      "source": "finsilabs/awesome-ecommerce-skills",
+      "sourceType": "github",
+      "skillPath": "skills/marketing-growth/cart-abandonment-recovery/SKILL.md",
+      "computedHash": "476ac57d4f50eb251d6b2234a239db1efe5cd3ef3c1305a5058a797993d0ce2f"
+    },
+    "copywriting": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "skillPath": "skills/copywriting/SKILL.md",
+      "computedHash": "779f05c8be67da475e6a7af78de3e0400b0038e371ce898dd6ff9d3331aab7db"
+    },
+    "copywriting-hooks": {
+      "source": "samber/cc-skills",
+      "sourceType": "github",
+      "skillPath": "skills/copywriting-hooks/SKILL.md",
+      "computedHash": "82bba535ad6100933358a6bb145478833f9bfab2a452b2960277cf23610553da"
+    },
     "dropshipping-integration": {
       "source": "finsilabs/awesome-ecommerce-skills",
       "sourceType": "github",
@@ -13,11 +37,41 @@
       "skillPath": "vertical-advisors/ecommerce-advisor/SKILL.md",
       "computedHash": "18717fc90b39a68d53d010ad82ecfc3da53725e9d4aaaed76be14c879f7b8dae"
     },
+    "email-marketing": {
+      "source": "claude-office-skills/skills",
+      "sourceType": "github",
+      "skillPath": "email-marketing/SKILL.md",
+      "computedHash": "4af2dfe3c79e1f67c8694aad7f6675f06585ad4394e9a4b694d141b3d3fab17a"
+    },
+    "email-marketing-automation": {
+      "source": "finsilabs/awesome-ecommerce-skills",
+      "sourceType": "github",
+      "skillPath": "skills/marketing-growth/email-marketing-automation/SKILL.md",
+      "computedHash": "4ffd60d67f53f02a085bb7c3105a5d907e96394d44a5080c9309c7257f3bbc98"
+    },
     "find-skills": {
       "source": "vercel-labs/skills",
       "sourceType": "github",
       "skillPath": "skills/find-skills/SKILL.md",
       "computedHash": "913b9d37d0d54047dd65222bb8c67b2bf04e3cb87dcad1729068d7a8b2c8c396"
+    },
+    "meta-ads-strategy": {
+      "source": "adkit/ads-skills",
+      "sourceType": "github",
+      "skillPath": "skills/meta-ads-strategy/SKILL.md",
+      "computedHash": "d62cfdcbbf27e6abd5775a636d81fb9a28e5180f22f32f81d8ad47db8652d711"
+    },
+    "product-photography": {
+      "source": "skills-101/superpowers",
+      "sourceType": "github",
+      "skillPath": "guides/photo/product-photography/SKILL.md",
+      "computedHash": "7553fa76097f15bebbeaa01e9db720c0437e0732412a6e739f6d16df21370700"
+    },
+    "seo-ecommerce": {
+      "source": "agricidaniel/claude-seo",
+      "sourceType": "github",
+      "skillPath": "skills/seo-ecommerce/SKILL.md",
+      "computedHash": "55c230f680c2af63e060ff36a2ea907f2accfd3962af0dd51caad527c16b997b"
     },
     "shopify-app-dev": {
       "source": "microck/ordinary-claude-skills",
