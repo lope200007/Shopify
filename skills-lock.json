@@ -241,6 +241,12 @@
       "skillPath": "skills/interview-me/SKILL.md",
       "computedHash": "efded91ac7f7626239b338ce8622afeb557151b86532b632f3c9eb5b2ff9048f"
     },
+    "linkfox-dld-product-search": {
+      "source": "linkfox-ai/linkfox-skills",
+      "sourceType": "github",
+      "skillPath": "skills/linkfox-dld-product-search/SKILL.md",
+      "computedHash": "aded783c046c7ec7733c75ddf653caf89a3c3be3c214239c4a9a28d8d7432878"
+    },
     "loop-me": {
       "source": "mattpocock/skills",
       "sourceType": "github",

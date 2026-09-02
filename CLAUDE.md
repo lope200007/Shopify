@@ -181,6 +181,7 @@ Instalados con `npx skills add`, viven en `.agents/skills/` y se enlazan desde
 | `meta-ads-strategy` | `adkit/ads-skills` | 1.464 líneas de estructura de campaña y creatividades. **Lleva promoción de adkit.so con enlaces de tracking**: el contenido sirve, los enlaces se ignoran. |
 | `product-photography` | `skills-101/superpowers` | Fotografía de producto |
 | `humanizer` | `blader/humanizer` | Reescribe texto que suena a IA. Útil para descripciones de producto y anuncios. |
+| `linkfox-dld-product-search` | `linkfox-ai/linkfox-skills` | Búsqueda de proveedores en 1688. **De pago.** Ver aviso abajo. |
 | **pack de Matt Pocock** (37) | `mattpocock/skills` | Ingeniería: specs, tickets, TDD, review, entrevistas |
 | **pack de Addy Osmani** (25) | `addyosmani/agent-skills` | Ciclo `/spec → /plan → /build → /test → /review → /ship` |
 
@@ -203,6 +204,35 @@ se le invoca a mano, y pregunta antes de escribir nada.
 `git-guardrails-claude-code` trae un hook que **bloquea `git push`**,
 `reset --hard`, `clean -fd` y `checkout .`. Instalar el skill no activa el hook;
 si algún día se activa, los push de este proyecto dejarán de funcionar.
+
+### linkfox: es de pago y necesita configuración
+
+Instalado a petición expresa del usuario, tras auditarlo. **No es malicioso**,
+pero no es gratis ni funciona sin cuenta.
+
+**Qué aporta:** datos de venta reales del lado del proveedor en 1688 — precio
+mayorista (`price`), pedidos y unidades vendidas a 7 y 30 días
+(`salesOrderCount`, `salesQuantity`), ordenables por volumen. Es la señal de
+"esto se vende de verdad" que `researching-product-market` pide y que no
+teníamos automatizada.
+
+**Lo que hay que saber antes de usarlo:**
+
+- **9 créditos por búsqueda.** Un `402` significa saldo agotado.
+- **Necesita `LINKFOX_AGENT_API_KEY` en el entorno.** Dos vías para obtenerla:
+  sacarla uno mismo en https://agent.linkfox.com/, **o** dejar que
+  `scripts/onboarding.py` registre un teléfono por SMS. **Preferir la primera:
+  no hace falta darle el número al script.**
+- Los planes se pagan por WeChat o Alipay desde `onboarding.py`. No comprar
+  nada sin que el usuario lo pida explícitamente.
+- **Qué sale hacia fuera:** solo la consulta (`keyWord`, `cycle`, `sortField`,
+  `sortType`, `pageSize`) más la clave en la cabecera. Nada del usuario ni del
+  repo. La clave se lee del entorno y **no se escribe nunca en disco**.
+- **Qué escribe en local:** vuelca cada respuesta en
+  `<proyecto>/linkfox/<fecha>/<sesión>/data/*.json`. Ya está en `.gitignore`;
+  no quitarlo de ahí o los volcados acabarán en el repo.
+- Hay un endpoint de feedback aparte (`skill-api.linkfox.com`). Solo se llama
+  si se le invoca; no manda nada por su cuenta.
 
 `shopify-liquid-themes` **corrobora de forma independiente** las reglas de
 `converting-landings-to-liquid` (`shopify_attributes` en el elemento externo del
