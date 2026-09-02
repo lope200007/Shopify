@@ -1,0 +1,16 @@
+{
+  "_comment": "IDEA 1 corregida - Pack regalo POD: manta + bandana + lamina. Mayor AOV, mismo CAC aproximado.",
+  "channel": "Shopify POD pack - Espana",
+  "average_order_value": 94.90,
+  "units_per_order": 3,
+  "cogs_per_unit": 14.30,
+  "shipping_charged_to_customer": 0.00,
+  "shipping_actual_cost": 8.40,
+  "fulfillment_pick_pack_per_order": 0.00,
+  "payment_processing_pct": 1.5,
+  "payment_processing_fixed": 0.25,
+  "return_rate_pct": 3.0,
+  "return_cost_per_returned_order": 43.00,
+  "marketing_spend_per_acquired_customer": 34.00,
+  "repeat_orders_in_first_year": 0.20
+}

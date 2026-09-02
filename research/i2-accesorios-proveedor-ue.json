@@ -1,0 +1,16 @@
+{
+  "_comment": "IDEA 2 - Pack accesorios mascota con proveedor UE (cumple GPSR). COGS mas alto que China.",
+  "channel": "Shopify - proveedor UE",
+  "average_order_value": 54.90,
+  "units_per_order": 3,
+  "cogs_per_unit": 6.20,
+  "shipping_charged_to_customer": 0.00,
+  "shipping_actual_cost": 5.90,
+  "fulfillment_pick_pack_per_order": 1.50,
+  "payment_processing_pct": 1.5,
+  "payment_processing_fixed": 0.25,
+  "return_rate_pct": 10.0,
+  "return_cost_per_returned_order": 12.00,
+  "marketing_spend_per_acquired_customer": 22.00,
+  "repeat_orders_in_first_year": 0.25
+}

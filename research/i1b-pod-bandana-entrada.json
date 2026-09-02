@@ -1,0 +1,16 @@
+{
+  "_comment": "IDEA 1 variante - Bandana personalizada como producto de entrada barato. SUPUESTOS.",
+  "channel": "Shopify POD - Espana",
+  "average_order_value": 27.90,
+  "units_per_order": 1,
+  "cogs_per_unit": 11.50,
+  "shipping_charged_to_customer": 0.00,
+  "shipping_actual_cost": 4.50,
+  "fulfillment_pick_pack_per_order": 0.00,
+  "payment_processing_pct": 1.5,
+  "payment_processing_fixed": 0.25,
+  "return_rate_pct": 3.0,
+  "return_cost_per_returned_order": 11.50,
+  "marketing_spend_per_acquired_customer": 16.00,
+  "repeat_orders_in_first_year": 0.20
+}
