@@ -9,6 +9,8 @@
     "start": "node dist/server.js",
     "typecheck": "tsc --noEmit",
     "selftest": "ts-node --project tsconfig.json scripts/selftest.ts",
+    "validate:skills": "ts-node --project tsconfig.json scripts/validate-skills.ts",
+    "validate:section": "ts-node --project tsconfig.json scripts/validate-section.ts",
     "test:connection": "ts-node --project tsconfig.json scripts/test-connection.ts",
     "orders:list": "ts-node --project tsconfig.json scripts/list-orders.ts",
     "agent:demo": "ts-node --project tsconfig.json scripts/demo-agent.ts"

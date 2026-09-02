@@ -84,13 +84,27 @@ authorization code grant (template `Shopify/shopify-app-template-remix`).
   publica una nueva cada trimestre y da soporte ~12 meses. Al actualizar,
   revisar el changelog de la Admin API por breaking changes.
 
-## Skill del proyecto
+## Skills del proyecto
 
-`.claude/skills/shopify-development/SKILL.md` contiene los hechos de la
-plataforma Shopify verificados contra shopify.dev (septiembre 2026):
-autenticación post-2026, versionado de API, límites de coste de GraphQL y
-reglas de webhooks. **Léelo antes de tocar `src/shopify/`.** Existe porque la
-mayoría de la documentación de terceros describe flujos que Shopify eliminó.
+Viven en `.claude/skills/`. Los hechos de plataforma están verificados contra
+shopify.dev y Meta (septiembre 2026), porque la documentación de terceros
+describe flujos que ya no existen.
+
+| Skill | Cuándo |
+|---|---|
+| `shopify-development` | Autenticación, Admin GraphQL, webhooks, límites de coste. **Léelo antes de tocar `src/shopify/`.** |
+| `designing-converting-landings` | Landing de producto para tráfico de pago (CRO) |
+| `converting-landings-to-liquid` | Pasar ese HTML a secciones `.liquid` del tema |
+| `generating-sales-angles` | Ángulos de venta, avatar, copy para testear |
+| `researching-product-market` | Validar un producto: economía unitaria, demanda, competencia |
+| `writing-ad-creative` | Guiones de vídeo, copy de anuncios, secuencias de WhatsApp |
+
+Los tres últimos codifican límites legales reales (claims sanitarios, reseñas
+falsas, urgencia falsa, opt-in de WhatsApp). No son estilo: saltárselos cierra
+tiendas y cuentas publicitarias.
+
+Al editar un skill, `npm run validate:skills` comprueba el contrato de formato
+y que los ejemplos de código sean correctos.
 
 ## Verificación antes de dar algo por bueno
 

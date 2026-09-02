@@ -1,6 +1,6 @@
 ---
 name: shopify-development
-description: Build and operate Shopify apps and store automations with the Admin GraphQL API, webhooks, and Dev Dashboard authentication. Use when working on any Shopify task — getting an access token, querying orders/products/customers, receiving and verifying webhooks, handling rate limits, or picking an app type. Encodes post-2026 platform changes that most online tutorials get wrong.
+description: Use when working on any Shopify integration — authenticating or getting an access token, calling the Admin GraphQL API, querying orders, products or customers, receiving or verifying webhooks, hitting throttle or cost limits, choosing an API version, or deciding what type of Shopify app to build.
 ---
 
 # Shopify Development

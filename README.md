@@ -161,6 +161,8 @@ Fly.io tienen free tier suficiente.
 | `npm start` | Arranca lo compilado (producción) |
 | `npm run typecheck` | Comprueba tipos sin compilar |
 | `npm run selftest` | Prueba la lógica crítica sin tienda ni red |
+| `npm run validate:skills` | Valida el formato de los skills de `.claude/skills/` |
+| `npm run validate:section -- f.liquid` | Valida una sección de Shopify antes de subirla |
 | `npm run agent:demo` | Prueba el agente con un pedido de ejemplo |
 | `npm run test:connection` | Verifica credenciales de Shopify |
 | `npm run orders:list [n]` | Lista los últimos `n` pedidos |
