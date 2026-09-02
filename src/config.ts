@@ -32,8 +32,19 @@ export const config = {
   get shop(): string {
     return normalizeShop(required('SHOPIFY_SHOP'));
   },
-  get adminToken(): string {
-    return required('SHOPIFY_ADMIN_TOKEN');
+  get clientId(): string {
+    return required('SHOPIFY_CLIENT_ID');
+  },
+  get clientSecret(): string {
+    return required('SHOPIFY_CLIENT_SECRET');
+  },
+  /**
+   * Token fijo de una custom app legacy (anterior a 2026). Opcional:
+   * si existe, se usa tal cual y no se pide token por client credentials.
+   */
+  get legacyAdminToken(): string | null {
+    const value = process.env.SHOPIFY_ADMIN_TOKEN;
+    return value && value.trim() !== '' ? value.trim() : null;
   },
   get webhookSecret(): string {
     return required('SHOPIFY_WEBHOOK_SECRET');

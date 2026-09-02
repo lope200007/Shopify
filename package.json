@@ -8,6 +8,7 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "typecheck": "tsc --noEmit",
+    "selftest": "ts-node --project tsconfig.json scripts/selftest.ts",
     "test:connection": "ts-node --project tsconfig.json scripts/test-connection.ts",
     "orders:list": "ts-node --project tsconfig.json scripts/list-orders.ts",
     "agent:demo": "ts-node --project tsconfig.json scripts/demo-agent.ts"

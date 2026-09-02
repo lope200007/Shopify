@@ -28,14 +28,30 @@ scripts/
   demo-agent.ts          — prueba el agente sin tienda (solo GROQ_API_KEY)
 ```
 
-## Enfoque elegido: custom app, no app pública
+## Autenticación: client credentials grant
 
-Se usa una **custom app** creada en el admin de la tienda, con un token
-`shpat_...` fijo. **No** hay flujo OAuth, ni sesiones, ni App Store, ni revisión.
+Se usa una app del **Dev Dashboard** autenticada con **client credentials
+grant**. No hay redirect OAuth, ni sesiones, ni App Store, ni revisión.
 
-Esto es deliberado: el proyecto automatiza *una* tienda propia. Si algún día
-hubiera que distribuir la app a terceros, entonces sí habría que migrar al
-template oficial (`Shopify/shopify-app-template-remix`) con OAuth completo.
+**Contexto que hay que saber antes de tocar `auth.ts`:** desde el 1 de enero
+de 2026 Shopify no permite crear las custom apps antiguas del admin (token
+`shpat_` fijo, copiado a mano una sola vez). Casi toda la documentación de
+terceros anterior a 2026 describe ese flujo muerto. El flujo vivo es:
+
+```
+POST https://{shop}.myshopify.com/admin/oauth/access_token
+Content-Type: application/x-www-form-urlencoded
+grant_type=client_credentials&client_id=...&client_secret=...
+
+→ { "access_token": "...", "scope": "...", "expires_in": 86399 }
+```
+
+Requisito: la app y la tienda deben estar en la **misma organización** del Dev
+Dashboard. El grant no pide scopes: `scope` en la respuesta es solo un
+*readback* de lo configurado en la versión de la app.
+
+Si algún día hubiera que distribuir la app a terceros, habría que migrar al
+authorization code grant (template `Shopify/shopify-app-template-remix`).
 
 ## Invariantes críticos
 
@@ -43,9 +59,19 @@ template oficial (`Shopify/shopify-app-template-remix`) con OAuth completo.
   HMAC se calcula sobre los bytes exactos. Si algún día se añade
   `app.use(express.json())` global, hay que dejar la ruta del webhook fuera o
   la verificación fallará siempre.
-- **Responder 200 antes de procesar**: Shopify reintenta el webhook si no
-  recibe 200 en 5 segundos. La llamada al LLM va después del `res.send()`,
-  en `handleOrder()`.
+- **Responder 200 antes de procesar**: Shopify impone un timeout de 5 segundos
+  y reintenta 8 veces a lo largo de 4 horas. Tras fallar todos los reintentos,
+  elimina automáticamente la suscripción al webhook. La llamada al LLM va
+  después del `res.send()`, en `handleOrder()`.
+- **El token caduca a las 24 h**: nunca guardar un access token en el `.env` ni
+  tratarlo como constante. `getAccessToken()` lo cachea y lo renueva 5 min
+  antes de expirar. La única excepción es `SHOPIFY_ADMIN_TOKEN`, para apps
+  legacy anteriores a 2026.
+- **Coste de queries GraphQL**: modelo de leaky bucket, ninguna query puede
+  superar **1.000 puntos**. Las conexiones cuestan según su `first`, los
+  objetos 1 punto, las mutations 10. Por eso `getRecentOrders()` está topado a
+  40 pedidos: cada uno arrastra `lineItems(first: 20)`. Si añades más campos
+  anidados, recalcula el tope.
 - **Cliente Groq perezoso**: nunca instanciar a nivel de módulo. `dotenv` debe
   cargar primero y la clave validarse (`getGroq()` en `executor.ts`).
 - **`SHOPIFY_WEBHOOK_SECRET` tiene dos orígenes distintos** según cómo se creó
@@ -58,10 +84,19 @@ template oficial (`Shopify/shopify-app-template-remix`) con OAuth completo.
   publica una nueva cada trimestre y da soporte ~12 meses. Al actualizar,
   revisar el changelog de la Admin API por breaking changes.
 
+## Skill del proyecto
+
+`.claude/skills/shopify-development/SKILL.md` contiene los hechos de la
+plataforma Shopify verificados contra shopify.dev (septiembre 2026):
+autenticación post-2026, versionado de API, límites de coste de GraphQL y
+reglas de webhooks. **Léelo antes de tocar `src/shopify/`.** Existe porque la
+mayoría de la documentación de terceros describe flujos que Shopify eliminó.
+
 ## Verificación antes de dar algo por bueno
 
 ```bash
 npm run typecheck     # debe salir limpio
+npm run selftest      # 11 comprobaciones, sin red ni credenciales reales
 npm run agent:demo    # prueba el agente end-to-end (necesita GROQ_API_KEY)
 ```
 

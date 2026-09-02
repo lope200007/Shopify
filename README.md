@@ -43,21 +43,32 @@ POST /webhooks/orders-create
 
 Apunta el dominio que te queda: `algo.myshopify.com`
 
-### 2. Crear la custom app y sacar el token
+### 2. Crear la app en el Dev Dashboard
 
-Dentro del **admin de esa tienda**:
+> **Importante si has leído tutoriales viejos.** Casi todas las guías que
+> encontrarás por internet te dicen: *Settings → Apps → Develop apps → copia el
+> token `shpat_...`*. **Ese camino ya no existe**: desde el 1 de enero de 2026
+> Shopify no permite crear nuevas custom apps de ese tipo. Si sigues un tutorial
+> de 2024 o 2025 te vas a atascar en este paso. Esto es lo actual.
 
-1. **Settings → Apps and sales channels → Develop apps**
-2. **Allow custom app development** (te lo pide la primera vez) → **Create an app**
-3. Nómbrala p. ej. `AI Agent`
-4. **Configuration → Admin API integration → Configure**, marca estos scopes:
+1. Entra en el **Dev Dashboard** desde tu cuenta de Partners
+   (o desde el admin: **Settings → Apps → Develop apps → Build apps in Dev Dashboard**)
+2. **Create app** → ponle nombre, p. ej. `AI Agent`
+3. En la configuración de la versión, sección **Access**, añade los scopes:
    - `read_orders`
    - `read_products`
    - `read_customers`
-5. **Save** → **Install app**
-6. **API credentials** → copia el **Admin API access token** (empieza por `shpat_`)
+4. Elige una **Webhooks API version** (usa la misma que pongas en `.env`)
+5. **Release** para publicar la versión
+6. Sección **Installs** → **Install app** → elige tu dev store
+7. Copia el **Client ID** y el **Client Secret**
 
-> Ese token se muestra **una sola vez**. Cópialo ya.
+**Requisito:** la app y la tienda deben estar en la **misma organización** del
+Dev Dashboard, o el token no se emitirá.
+
+El token de acceso **no se copia a mano y no se guarda en el `.env`**: el código
+lo pide solo con esas dos credenciales, lo cachea y lo renueva antes de que
+caduque (dura 24 h).
 
 ### 3. Configurar el proyecto
 
@@ -73,9 +84,15 @@ Rellena el `.env`:
 | Variable | De dónde sale |
 |---|---|
 | `SHOPIFY_SHOP` | El dominio de tu tienda (`algo.myshopify.com`) |
-| `SHOPIFY_ADMIN_TOKEN` | El `shpat_...` del paso 2 |
+| `SHOPIFY_CLIENT_ID` | Client ID del paso 2 |
+| `SHOPIFY_CLIENT_SECRET` | Client Secret del paso 2 |
+| `SHOPIFY_API_VERSION` | `2026-07` (ver nota abajo) |
 | `SHOPIFY_WEBHOOK_SECRET` | Paso 5 (déjalo en blanco por ahora) |
 | `GROQ_API_KEY` | Gratis en [console.groq.com](https://console.groq.com) |
+
+> **Versión de la API:** Shopify publica una nueva cada trimestre (enero, abril,
+> julio, octubre) y da soporte a cada una durante 12 meses. `2026-07` es la
+> estable a día de hoy; el **1 de octubre de 2026** sale `2026-10`.
 
 ### 4. Probar que todo responde
 
@@ -143,6 +160,7 @@ Fly.io tienen free tier suficiente.
 | `npm run build` | Compila TypeScript a `dist/` |
 | `npm start` | Arranca lo compilado (producción) |
 | `npm run typecheck` | Comprueba tipos sin compilar |
+| `npm run selftest` | Prueba la lógica crítica sin tienda ni red |
 | `npm run agent:demo` | Prueba el agente con un pedido de ejemplo |
 | `npm run test:connection` | Verifica credenciales de Shopify |
 | `npm run orders:list [n]` | Lista los últimos `n` pedidos |

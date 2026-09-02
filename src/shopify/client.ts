@@ -1,4 +1,5 @@
 import { config } from '../config';
+import { getAccessToken } from './auth';
 
 export interface GraphQLResponse<T> {
   data?: T;
@@ -17,12 +18,13 @@ export async function adminGraphQL<T>(
   variables: Record<string, unknown> = {}
 ): Promise<T> {
   const url = `https://${config.shop}/admin/api/${config.apiVersion}/graphql.json`;
+  const token = await getAccessToken();
 
   const res = await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-Shopify-Access-Token': config.adminToken,
+      'X-Shopify-Access-Token': token,
     },
     body: JSON.stringify({ query, variables }),
   });
@@ -87,8 +89,34 @@ export interface OrdersResponse {
   orders: { nodes: OrderNode[] };
 }
 
-/** Ultimos pedidos de la tienda, mas recientes primero. */
-export function getRecentOrders(first = 10): Promise<OrdersResponse> {
+/**
+ * Maximo de pedidos por consulta.
+ *
+ * Shopify cobra las queries por coste: una conexion cuesta segun su argumento
+ * `first`, y NINGUNA query puede pasar de 1.000 puntos. Aqui cada pedido
+ * arrastra ademas lineItems(first: 20), asi que el coste ronda 21 puntos por
+ * pedido. 40 pedidos ~ 840 puntos: suficiente margen bajo el limite.
+ */
+const MAX_ORDERS_PER_QUERY = 40;
+
+/**
+ * Ultimos pedidos de la tienda, mas recientes primero.
+ *
+ * `async` a proposito: asi los errores de validacion salen como promesa
+ * rechazada y no como excepcion sincrona, que reventaria a un llamador que
+ * solo use .catch().
+ */
+export async function getRecentOrders(first = 10): Promise<OrdersResponse> {
+  if (!Number.isInteger(first) || first < 1) {
+    throw new Error('El numero de pedidos debe ser un entero positivo.');
+  }
+  if (first > MAX_ORDERS_PER_QUERY) {
+    throw new Error(
+      `Maximo ${MAX_ORDERS_PER_QUERY} pedidos por consulta (limite de coste de Shopify). ` +
+        'Para mas, pagina con cursores.'
+    );
+  }
+
   return adminGraphQL<OrdersResponse>(
     `
     query RecentOrders($first: Int!) {
