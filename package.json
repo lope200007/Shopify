@@ -1,0 +1,29 @@
+{
+  "name": "shopify-ai-agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Automatizacion de tienda Shopify con agentes de IA (Node/TypeScript)",
+  "scripts": {
+    "dev": "ts-node --project tsconfig.json src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit",
+    "test:connection": "ts-node --project tsconfig.json scripts/test-connection.ts",
+    "orders:list": "ts-node --project tsconfig.json scripts/list-orders.ts",
+    "agent:demo": "ts-node --project tsconfig.json scripts/demo-agent.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "groq-sdk": "^0.9.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.9.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
