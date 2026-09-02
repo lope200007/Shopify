@@ -43,6 +43,37 @@ an estimate as a measurement.
 **Ads that have run a long time are the most reliable signal.** Nobody keeps
 paying for ads that lose money. Meta's Ad Library is public and free.
 
+Since 2026 the Ad Library exposes an **impressions filter (≥100k) on every ad**,
+not just political ones. Stack four signals: ≥100k impressions, running ≥14 days
+unpaused, 5+ creative variants from one advertiser, and a landing page with a
+real offer. That combination is the strongest free evidence available.
+
+## The repeat-purchase trap
+
+Unit-economics calculators ship with repeat rates borrowed from real brands —
+1.4 repeat orders in year one is a common template default. **For single-product
+dropshipping to cold paid traffic, repeat purchase is near zero.** Use 0.0–0.2,
+then sanity-check the "orders per customer" the tool reports back: if it says
+2.1, the model is describing a brand you do not have.
+
+This one input decides everything. With the template default, three candidates
+that actually lose money all read as "healthy DTC economics."
+
+**Judge dropshipping on the first order alone:** contribution margin minus CAC.
+If that number is not clearly positive, the product is dead no matter how good
+the lifetime story sounds.
+
+## The offer is the lever, not the product
+
+When first-order margin is thin, swapping product rarely fixes it — changing the
+offer does. Raising AOV with a bundle or accessory spreads a nearly fixed CAC
+over more revenue.
+
+Worked example from this project: the same dog bowl at €32.90 single leaves
+€4.00 per order after CAC. As a 2-pack at €49.90, with CAC rising only €18→€20,
+it leaves **€12.03** — three times the margin, same product, same supplier.
+Test the offer before abandoning a candidate.
+
 ## Where to look, legally
 
 - **Meta Ad Library** — public, searchable, shows how long ads have run

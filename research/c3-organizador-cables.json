@@ -1,0 +1,16 @@
+{
+  "_comment": "CANDIDATO 3 - Organizador magnetico de cables. Precio bajo a proposito, para ver si la aritmetica lo mata.",
+  "channel": "Shopify DTC - Espana",
+  "average_order_value": 19.90,
+  "units_per_order": 1,
+  "cogs_per_unit": 2.10,
+  "shipping_charged_to_customer": 2.95,
+  "shipping_actual_cost": 3.40,
+  "fulfillment_pick_pack_per_order": 0.00,
+  "payment_processing_pct": 1.5,
+  "payment_processing_fixed": 0.25,
+  "return_rate_pct": 7.0,
+  "return_cost_per_returned_order": 5.00,
+  "marketing_spend_per_acquired_customer": 16.00,
+  "repeat_orders_in_first_year": 0.10
+}

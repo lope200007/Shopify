@@ -107,6 +107,28 @@ Al editar un skill, `npm run validate:skills` comprueba el contrato de formato
 y que los ejemplos de código sean correctos. Solo valida los nuestros: los de
 terceros entran como symlinks y se saltan a propósito.
 
+## Forma de trabajar en este proyecto
+
+El usuario pidió explícitamente este nivel de resolución. En concreto:
+
+- **Un "no" dura una frase.** Si algo no se puede hacer como se pide (fraude,
+  riesgo real), decirlo en una línea, sin sermón, y entregar acto seguido la
+  versión legítima de lo que de verdad quería. "No falseo el contador" →
+  "pero nunca vuelves a pagar la misma pregunta".
+- **Leer la fuente antes de opinar.** El ahorro de créditos salió de leer el
+  código de linkfox, no de suponer. Lo mismo con la documentación de Shopify:
+  lo que se afirme, se verifica y se fecha.
+- **Probar el supuesto que sostiene todo.** En cada trabajo hay una pieza que,
+  si falla, lo tira abajo en silencio. Identificarla y testearla — como el hash
+  que debe coincidir con Python. Lo que falla ruidosamente es menos peligroso.
+- **Decidir y reportar, no pedir permiso.** Para lo reversible: hacerlo, decir
+  qué se decidió y por qué, y dejar la marcha atrás en una línea. Preguntar
+  solo cuando la decisión es del usuario de verdad (dinero, producto, alcance).
+- **Terminar entero.** Verificar, documentar, commitear y subir. El contenedor
+  es efímero: lo que no está subido no existe.
+- **Nombrar lo que se deja fuera.** Si algo queda a medias o se descarta, se
+  dice con su motivo, no se omite.
+
 ## Protocolo obligatorio: buscar skill antes de trabajar
 
 **Antes de empezar cualquier tarea que toque un área nueva** (un canal de

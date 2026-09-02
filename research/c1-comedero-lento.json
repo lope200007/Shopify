@@ -1,0 +1,16 @@
+{
+  "_comment": "CANDIDATO 1 - Comedero lento interactivo para perros. TODO SON SUPUESTOS, no mediciones.",
+  "channel": "Shopify DTC - Espana",
+  "average_order_value": 32.90,
+  "units_per_order": 1,
+  "cogs_per_unit": 4.80,
+  "shipping_charged_to_customer": 0.00,
+  "shipping_actual_cost": 4.20,
+  "fulfillment_pick_pack_per_order": 0.00,
+  "payment_processing_pct": 1.5,
+  "payment_processing_fixed": 0.25,
+  "return_rate_pct": 9.0,
+  "return_cost_per_returned_order": 8.00,
+  "marketing_spend_per_acquired_customer": 18.00,
+  "repeat_orders_in_first_year": 0.15
+}
