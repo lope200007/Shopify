@@ -180,6 +180,29 @@ Instalados con `npx skills add`, viven en `.agents/skills/` y se enlazan desde
 | `seo-ecommerce` | `agricidaniel/claude-seo` | SEO de ficha de producto y schema. DataForSEO es opcional: funciona sin él. |
 | `meta-ads-strategy` | `adkit/ads-skills` | 1.464 líneas de estructura de campaña y creatividades. **Lleva promoción de adkit.so con enlaces de tracking**: el contenido sirve, los enlaces se ignoran. |
 | `product-photography` | `skills-101/superpowers` | Fotografía de producto |
+| `humanizer` | `blader/humanizer` | Reescribe texto que suena a IA. Útil para descripciones de producto y anuncios. |
+| **pack de Matt Pocock** (37) | `mattpocock/skills` | Ingeniería: specs, tickets, TDD, review, entrevistas |
+| **pack de Addy Osmani** (25) | `addyosmani/agent-skills` | Ciclo `/spec → /plan → /build → /test → /review → /ship` |
+
+### Aviso: los packs de Matt y Addy se pisan
+
+Están los dos instalados a petición del usuario, pero **cubren el mismo terreno**.
+Solapamientos comprobados:
+
+`code-review` ↔ `code-review-and-quality` · `tdd` ↔ `test-driven-development` ·
+`to-spec` ↔ `spec-driven-development` · `implement` ↔ `incremental-implementation` ·
+`research` ↔ `source-driven-development`
+
+Con 87 skills el ruido de selección es real. Si conviene podar, quitar un pack
+entero (`rm -rf .agents/skills/<nombre>` y su symlink), no piezas sueltas: ambos
+asumen sus propias skills hermanas.
+
+`setup-matt-pocock-skills` lleva `disable-model-invocation: true`: solo corre si
+se le invoca a mano, y pregunta antes de escribir nada.
+
+`git-guardrails-claude-code` trae un hook que **bloquea `git push`**,
+`reset --hard`, `clean -fd` y `checkout .`. Instalar el skill no activa el hook;
+si algún día se activa, los push de este proyecto dejarán de funcionar.
 
 `shopify-liquid-themes` **corrobora de forma independiente** las reglas de
 `converting-landings-to-liquid` (`shopify_attributes` en el elemento externo del
