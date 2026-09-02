@@ -57,9 +57,12 @@ function main(): void {
     process.exit(1);
   }
 
+  // Solo directorios reales. Los skills instalados con `npx skills add` entran
+  // como enlaces simbolicos a .agents/skills/ y se saltan a proposito: son de
+  // terceros, no siguen nuestras convenciones y no nos toca corregirlos.
   const dirs = fs
     .readdirSync(SKILLS_DIR, { withFileTypes: true })
-    .filter((d) => d.isDirectory())
+    .filter((d) => d.isDirectory() && !d.isSymbolicLink())
     .map((d) => d.name);
 
   console.log(`\nValidando ${dirs.length} skills\n`);

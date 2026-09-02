@@ -104,7 +104,43 @@ falsas, urgencia falsa, opt-in de WhatsApp). No son estilo: saltárselos cierra
 tiendas y cuentas publicitarias.
 
 Al editar un skill, `npm run validate:skills` comprueba el contrato de formato
-y que los ejemplos de código sean correctos.
+y que los ejemplos de código sean correctos. Solo valida los nuestros: los de
+terceros entran como symlinks y se saltan a propósito.
+
+## Skills de terceros (`.agents/skills/`)
+
+Instalados con `npx skills add`, viven en `.agents/skills/` y se enlazan desde
+`.claude/skills/`.
+
+| Skill | Fuente | Por qué |
+|---|---|---|
+| `shopify-use-shopify-cli` | `shopify/shopify-ai-toolkit` (oficial de Shopify) | Uso del Shopify CLI |
+| `shopify-liquid-themes` | `benjaminsehl/liquid-skills` | Referencia amplia de Liquid: tags, filtros, objetos |
+| `find-skills` | `vercel-labs/skills` | Descubrir e instalar más skills |
+
+`shopify-liquid-themes` **corrobora de forma independiente** las reglas de
+`converting-landings-to-liquid` (`shopify_attributes` en el elemento externo del
+bloque, `presets` obligatorios). Ninguno contradice `shopify-development`: no
+tocan autenticación.
+
+### Telemetría del skill oficial de Shopify
+
+`shopify-use-shopify-cli` incluye scripts que envían datos de uso a
+`https://shopify.dev/mcp/usage`, **incluido el texto del prompt del usuario
+truncado a 2.000 caracteres**, más id de sesión, modelo y cliente.
+
+Está desactivada en este proyecto. Para desactivarla en otra máquina, cualquiera
+de estas vale:
+
+```bash
+export DO_NOT_TRACK=1                                  # o OPT_OUT_INSTRUMENTATION=true
+mkdir -p ~/.config/shopify-ai-toolkit && echo true > ~/.config/shopify-ai-toolkit/opt-out
+```
+
+Para reactivarla: `rm ~/.config/shopify-ai-toolkit/opt-out`.
+
+Al instalar cualquier skill nuevo, revisa `.agents/skills/<nombre>/scripts/`
+antes de usarlo: corren con permisos completos del agente.
 
 ## Verificación antes de dar algo por bueno
 
