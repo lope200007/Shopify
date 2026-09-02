@@ -129,6 +129,66 @@ El usuario pidió explícitamente este nivel de resolución. En concreto:
 - **Nombrar lo que se deja fuera.** Si algo queda a medias o se descarta, se
   dice con su motivo, no se omite.
 
+## Seguridad de la cuenta de Shopify
+
+El usuario pidió expresamente que nada comprometa la integridad de su cuenta.
+Esto no es una promesa, son reglas con defensas automáticas detrás.
+
+### Credenciales
+
+- **Nunca pedir que peguen una clave en el chat.** Queda en la transcripción
+  para siempre. Se configura como variable de entorno en su máquina y punto.
+- Las credenciales viven **solo en el entorno**. Nunca en código, ni en logs,
+  ni en mensajes de commit, ni en un archivo del repo.
+- `.env` está en `.gitignore` y el hook lo bloquea. No forzar nunca `git add -f`
+  sobre él.
+- **Si una clave se expone, no basta con borrarla**: hay que rotarla en
+  Shopify. Un secreto que tocó el historial de git está comprometido para
+  siempre — hay forks, cachés y clones.
+
+### Permisos mínimos
+
+Pedir solo los scopes que la tarea en curso necesita, y empezar por lectura:
+
+| Trabajo | Scopes |
+|---|---|
+| Leer catálogo y pedidos | `read_products`, `read_orders` |
+| Publicar fichas de producto | `+ write_products` |
+| Tema y secciones Liquid | `read_themes`, `write_themes` |
+
+**Nunca pedir** acceso a datos de pago, `read_all_orders` (histórico completo),
+ni scopes de cliente que no haga falta. Si una tarea parece necesitar un
+permiso amplio, decirlo y proponer la alternativa estrecha.
+
+### Datos personales
+
+- **El nombre del cliente no viaja al LLM.** `buildUserPrompt()` manda el
+  marcador `{{CLIENTE}}` y la sustitución se hace en local. `npm run selftest`
+  lo verifica; si alguien lo rompe, el test falla en vez de filtrar en silencio.
+- No volcar pedidos ni clientes enteros en logs. Referenciar por número de
+  pedido, no por persona.
+- Antes de mandar cualquier dato de tienda a un tercero (LLM, API, servicio),
+  preguntarse si el dato personal es imprescindible. Casi nunca lo es.
+
+### Defensa automática
+
+```bash
+git config core.hooksPath .githooks   # activar el hook (una vez por clon)
+npm run check:secrets                 # revisar lo que está en el índice
+npm run check:secrets -- --all        # revisar todo el árbol
+```
+
+El hook aborta el commit si detecta tokens de Shopify (`shpat_`, `shpss_`,
+`shpca_`, `shppa_`), claves de Groq, GitHub o AWS, claves privadas, o un
+archivo `.env`. Probado: bloquea un token real y no da falso positivo con los
+valores de ejemplo de `.env.example`.
+
+### Este contenedor es efímero
+
+Nada configurado aquí sobrevive al final de la sesión. Es una propiedad de
+seguridad, no un inconveniente: no hay credenciales acumulándose en una
+máquina remota. Lo que debe persistir, se commitea; lo que es secreto, no.
+
 ## Protocolo obligatorio: buscar skill antes de trabajar
 
 **Antes de empezar cualquier tarea que toque un área nueva** (un canal de

@@ -161,6 +161,7 @@ Fly.io tienen free tier suficiente.
 | `npm start` | Arranca lo compilado (producción) |
 | `npm run typecheck` | Comprueba tipos sin compilar |
 | `npm run selftest` | Prueba la lógica crítica sin tienda ni red |
+| `npm run check:secrets` | Impide que un secreto llegue al repo (hook pre-commit) |
 | `npm run validate:skills` | Valida el formato de los skills de `.claude/skills/` |
 | `npm run validate:section -- f.liquid` | Valida una sección de Shopify antes de subirla |
 | `npm run linkfox -- search '{...}'` | Busca proveedores reusando lo ya comprado (0 créditos si se repite) |

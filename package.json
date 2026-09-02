@@ -9,6 +9,7 @@
     "start": "node dist/server.js",
     "typecheck": "tsc --noEmit",
     "selftest": "ts-node --project tsconfig.json scripts/selftest.ts",
+    "check:secrets": "ts-node --project tsconfig.json scripts/check-secrets.ts",
     "validate:skills": "ts-node --project tsconfig.json scripts/validate-skills.ts",
     "validate:section": "ts-node --project tsconfig.json scripts/validate-section.ts",
     "linkfox": "ts-node --project tsconfig.json scripts/linkfox.ts",

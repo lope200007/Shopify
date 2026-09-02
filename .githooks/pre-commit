@@ -1,0 +1,4 @@
+#!/bin/sh
+# Impide commitear secretos. Se activa con:
+#   git config core.hooksPath .githooks
+exec npx ts-node --project tsconfig.json scripts/check-secrets.ts

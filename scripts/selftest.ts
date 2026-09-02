@@ -19,6 +19,7 @@ import { isValidWebhook } from '../src/shopify/verify';
 import { getAccessToken, resetTokenCache } from '../src/shopify/auth';
 import { getRecentOrders } from '../src/shopify/client';
 import { cacheKey } from './linkfox';
+import { buildUserPrompt, OrderPayload } from '../src/agents/order-agent';
 
 let passed = 0;
 let failed = 0;
@@ -139,6 +140,32 @@ async function main(): Promise<void> {
       cacheKey({ keyWord: 'a', pageSize: 1 }),
       cacheKey({ pageSize: 1, keyWord: 'a' })
     );
+  });
+
+  // Minimizacion de datos personales: el nombre del cliente no puede viajar
+  // al LLM. Si alguien lo vuelve a meter en el prompt, esto falla.
+  const pedidoConPII: OrderPayload = {
+    name: '#1042',
+    currency: 'EUR',
+    total_price: '59.90',
+    customer: { first_name: 'Elisenda', last_name: 'Vilaseca' },
+    line_items: [{ title: 'Manta personalizada', quantity: 1 }],
+  };
+
+  await test('el prompt al LLM no lleva el nombre del cliente', () => {
+    const prompt = buildUserPrompt(pedidoConPII);
+    assert.ok(!prompt.includes('Elisenda'), 'el nombre se filtro al prompt');
+    assert.ok(!prompt.includes('Vilaseca'), 'el apellido se filtro al prompt');
+  });
+
+  await test('el prompt usa el marcador en lugar del nombre', () => {
+    assert.ok(buildUserPrompt(pedidoConPII).includes('{{CLIENTE}}'));
+  });
+
+  await test('el prompt si lleva los datos no personales del pedido', () => {
+    const prompt = buildUserPrompt(pedidoConPII);
+    assert.ok(prompt.includes('Manta personalizada'));
+    assert.ok(prompt.includes('59.90'));
   });
 
   console.log(`\n${passed} correctos, ${failed} fallidos\n`);
