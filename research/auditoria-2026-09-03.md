@@ -106,3 +106,56 @@ Verificado tras aplicar: **ningun producto activo queda a 0 kg.**
    publicados, asi que no hacen dano; conviene borrarlos.
 5. **Reglas de devolucion** (Ajustes > Politicas): no se leen por API.
    Comprobar que la ventana sea de 14 dias o mas.
+
+---
+
+# Cierre — todo publicado
+
+## Packs: fotos completadas
+
+Los 3 packs existentes mostraban **una sola pieza del conjunto**. Se les
+han anadido las fotos de los componentes que faltaban, tomadas del CDN
+de la propia tienda (Shopify las copia, no las enlaza, asi que no se
+rompen).
+
+## Tres packs nuevos, publicados y en venta
+
+| Pack | PVP | Suelto | Ahorro | Coste | Margen | Stock |
+|---|---|---|---|---|---|---|
+| Regalo para el: cartera Ubrique + jabones | 26,90 | 31,80 | 4,90 | 12,75 | 53% | 20 |
+| Set de viaje: bolso grande + rinonera | 114,90 | 134,80 | 19,90 | 55,00 | 52% | 4 |
+| Duo de piel: bolso mediano + cartuchera | 122,90 | 142,80 | 19,90 | 57,75 | 53% | 6 |
+
+**El stock de cada pack se ha limitado a la pieza mas escasa.** Del bolso
+de viaje solo hay 5 unidades, asi que ese pack sale con 4, no con las 24
+de la rinonera. Vender lo que no se puede servir es peor que no vender.
+
+### Crear no es publicar (otra vez)
+
+Los tres se crearon con status ACTIVE y aun asi salieron con
+`resourcePublications: []`: invisibles en la tienda. Hizo falta
+`publishablePublish` explicito sobre Tienda online y Shop. Confirmado
+despues: los tres publicados en 2 canales.
+
+## Verificacion final
+
+**30 productos activos.** Comprobados uno a uno contra la API:
+
+- Publicados en los canales de venta: **30 de 30**
+- Con fotografias (entre 2 y 12): **30 de 30**
+- Con precio: **30 de 30**
+- Con peso de envio distinto de cero: **30 de 30**
+- Con stock: **30 de 30**
+
+## Lo unico que sigue en borrador
+
+Los 5 productos de dropshipping (organizador de bolso, colgador, kit de
+cuidado del cuero, bandolera antirrobo, organizadores de maleta). Tienen
+titulo, texto, SEO, precio y peso; **les falta la fotografia**, y esa
+tiene que venir del proveedor que va a servir el pedido, no de otro
+sitio: ensenar una foto y enviar otro producto es una devolucion segura.
+
+Se importan desde Syncee o DSers, que ya estan instaladas.
+
+Mas los 2 borradores basura (Archival Ecru Hoodie, Pijama mono), que
+siguen sin publicar a proposito.
