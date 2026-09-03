@@ -79,3 +79,51 @@ Ahora lleva las tres paginas nuevas, Contacto y las cinco politicas.
 El tema publicado no se puede editar por API, asi que se trabaja sobre
 una copia, **"Helio - reconstruccion mascotas"**, que el titular publica
 cuando este revisada.
+
+---
+
+# La portada era una demo del pijama entera
+
+No era solo la seccion de producto destacado. Al bajar el
+`templates/index.json` completo aparecio el alcance real: **de las seis
+secciones de la portada, tres estaban construidas alrededor del
+`pijama-mono-de-monstruo`**, un borrador sin publicar con margen cero.
+
+| Seccion | Que conten1a |
+|---|---|
+| `featured-product-information` | Producto destacado = el pijama (borrador) |
+| `section_aweKy6` (imagen + texto) | Imagen enlazada al pijama, titulo "pijama con caracter", texto sobre "algodon organico" y "rutina nocturna", boton "Ver detalles" al pijama |
+| `carousel_Bqp4tA` | Tres tarjetas del pijama: "tejido natural", "ajuste relajado... confort nocturno", "cuidado sencillo... lavado a maquina" |
+
+Mas los dos textos de relleno de la plantilla ("Prestige ofrece prendas
+que trascienden lo comun...").
+
+## Portada reconstruida
+
+Se trabajo sobre la copia **"Helio - reconstruccion mascotas"** porque el
+tema publicado no admite escritura por API.
+
+Quedan tres secciones:
+
+1. **Cabecera** — "Todo para tu perro, elegido de uno en uno." Explica el
+   criterio (no subimos catalogos enteros) y el plazo real (Europa, dias
+   no semanas). Boton a la coleccion.
+2. **Confianza** — 14 dias de desistimiento, 3 anos de garantia, envio
+   gratis desde 55 EUR, y que contesta una persona. Boton a Preguntas
+   frecuentes.
+3. **Lista de productos** — ampliada de 3 a 8 productos en 4 columnas,
+   con encabezado "Lo que tenemos ahora".
+
+Verificado tras subir: `templates/index.json` pasa de 9.730 a 8.116
+bytes, cero coincidencias de "pijama", "monstruo", "nocturna", "algodon
+organico" ni "trascienden", y el unico enlace apunta a
+`shopify://collections/all`, que existe.
+
+**El tema copia esta SIN PUBLICAR.** Para que estos cambios se vean hay
+que publicarlo desde Tienda online > Temas. Se deja asi a proposito: lo
+revisa el titular antes de que sustituya al que esta vivo.
+
+Nota menor: quedo un `snippets/prueba-acceso.liquid` vacio de la prueba
+de escritura. No lo renderiza nada. Borrarlo por API esta bloqueado por
+politica de seguridad (con razon: bloquea todo borrado de archivos de
+tema); se quita desde el admin si molesta.
