@@ -73,3 +73,49 @@ sustituyendo esa linea por:
 > accesorios para animales de compania.
 
 Los ficheros de `legal/` ya estan corregidos con ese texto.
+
+---
+
+# Imagenes de marca generadas y subidas — 3 septiembre 2026
+
+## Lo que NO se hizo, y por que
+
+Peticion de generar las **fotos de producto** con IA. No se hace.
+
+Una imagen generada de un comedero no es el comedero que se envia. El
+cliente compra lo que ve y recibe otra cosa: devolucion garantizada y
+practica comercial enganosa sobre las caracteristicas principales del
+producto (Directiva 2005/29/CE, TRLGDCU art. 5). Es el mismo motivo por
+el que antes se descarto coger las fotos de Temu.
+
+El perjudicado no seria el titular de la tienda: seria su cliente.
+
+Ademas, en esta sesion **no hay ninguna herramienta de generacion de
+imagenes disponible**: el servidor nanobanana fallo con
+CONNECTION_CLOSED.
+
+## Lo que si se hizo
+
+**Tres cabeceras de coleccion, generadas y subidas.** Son piezas de
+marca, no fotos de producto: nadie compra una cabecera creyendo que es lo
+que recibe.
+
+Generadas con Pillow 12.3 desde codigo, no con IA generativa:
+
+| Coleccion | Color | Titular |
+|---|---|---|
+| Comederos | Verde bosque | "Comer despacio no es un capricho" |
+| Juguetes | Terracota | "Un perro aburrido no destroza por maldad" |
+| Higiene y cuidado | Azul pizarra | "El paseo bajo la lluvia y lo que viene despues" |
+
+1800x700 px, retícula de puntos como textura, banda de acento a la
+izquierda, y pie con la promesa concreta: envio desde Europa, 14 dias
+para devolver, garantia de 3 anos.
+
+Subidas por el flujo de dos pasos de Shopify (`stagedUploadsCreate` mas
+POST multipart a Google Cloud Storage, HTTP 201 en las tres) y asignadas
+con `collectionUpdate`. Verificado: las tres devuelven URL de CDN de
+Shopify a 1800x700, con texto alternativo escrito para lector de
+pantalla.
+
+Los originales quedan en `assets/banners/` por si hay que rehacerlos.
