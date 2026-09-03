@@ -483,3 +483,52 @@ producto** tiene relleno: `Archival Ecru Hoodie` con 119.988 unidades.
 Además **todas las variantes tienen `inventoryPolicy: DENY` y `tracked: true`**,
 así que Shopify corta la venta al llegar a cero. El riesgo está acotado a ese
 producto, no es del catálogo entero.
+
+### Trabajo hecho en Prestige (3 sep 2026)
+
+**Colecciones creadas.** Antes: 1 colección con 1 producto, 25 sin clasificar.
+Ahora 5 categorías mutuamente excluyentes que cubren los 26, más una de marca:
+
+| Colección | Productos | Tipo |
+|---|---|---|
+| Bolsos | 9 | manual |
+| Bandoleras | 5 | manual |
+| Riñoneras y carteras | 4 | manual |
+| Complementos | 5 | manual |
+| Ropa | 3 | manual |
+| Hecho a mano | 11 | **automática** por `vendor` |
+
+Verificado: 0 productos huérfanos.
+
+Decisiones, guiadas por los skills `information-architecture` y
+`merchandising-rules`:
+
+- **Orden `MANUAL`, no `BEST_SELLING`.** Con 0 pedidos, ordenar por ventas no
+  ordena nada. Manual permite fijar los productos estrella arriba.
+- **Categorías mutuamente excluyentes.** El primer boceto tenía "Hecho a mano"
+  como categoría transversal, solapando con Bolsos y Riñoneras — el fallo que
+  `information-architecture` llama *categories that overlap*. Va como colección
+  **de marca**, que es otra cosa y sí puede solapar.
+- **"Carteras" sola tenía 1 producto.** Fusionada con Riñoneras: marroquinería
+  pequeña, categoría coherente y de tamaño razonable.
+- **`appliedDisjunctively: false`** en la automática (todas las condiciones).
+  `merchandising-rules` avisa de que usar *any* en vez de *all* es la causa más
+  común de productos colados donde no tocan.
+- **Etiquetas en lenguaje de cliente**, no interno: "Bandoleras", no
+  `CROSSBODY`.
+
+**Menú principal reestructurado**: Inicio · Tienda ▾ (las 5 categorías) ·
+Hecho a mano · Contacto. "Hecho a mano" va en primer nivel porque la artesanía
+de piel española, con marroquinería de Ubrique, es el diferenciador real de
+esta tienda frente a revender bolsos de firma.
+
+### Pendiente en Prestige
+
+1. **Pegar las políticas de `legal/`** — el conector no puede (usuario, 5 min)
+2. **Aviso legal**: faltan nombre fiscal, NIF y domicilio del socio
+3. **`Archival Ecru Hoodie`**: 119.988 unidades de relleno
+4. **Colección "Página de inicio"**: 1 producto y orden `BEST_SELLING` con 0
+   ventas. Está ligada al tema, por eso no se tocó
+5. **Normalizar `productType`** (cuatro `n/a`, uno vacío, nombres mezclados).
+   Al limpiarlo, las 5 categorías podrían pasar de manuales a automáticas y se
+   auto-clasificarían los productos nuevos
