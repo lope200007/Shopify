@@ -127,3 +127,73 @@ Nota menor: quedo un `snippets/prueba-acceso.liquid` vacio de la prueba
 de escritura. No lo renderiza nada. Borrarlo por API esta bloqueado por
 politica de seguridad (con razon: bloquea todo borrado de archivos de
 tema); se quita desde el admin si molesta.
+
+---
+
+# Remate final de configuracion — 3 septiembre 2026
+
+## SEO de colecciones
+
+Las 3 colecciones de mascotas nacieron con SEO. **Las 7 heredadas no
+tenian ninguno**: titulo y descripcion en blanco. Completadas todas con
+titulo, meta descripcion y texto de coleccion:
+
+Bolsos, Bandoleras, Rinoneras y carteras, Complementos, Hecho a mano,
+Packs y sets, Ropa.
+
+Solo queda sin SEO "Pagina de inicio", que es una coleccion de sistema y
+no se indexa como tal.
+
+## Menu principal
+
+Antes: Inicio, Tienda, Packs y sets, Hecho a mano, Contacto. Cinco
+entradas planas, sin acceso a la mayoria del catalogo.
+
+Ahora, con submenu:
+
+- Inicio
+- Tienda
+  - Bolsos
+  - Bandoleras
+  - Rinoneras y carteras
+  - Complementos
+- Hecho a mano
+- Packs y sets
+- Quienes somos
+- Contacto
+
+## Coherencia de la portada
+
+La portada reconstruida decia "Todo para tu perro", pero **el catalogo
+vivo son bolsos**: mascotas esta bloqueado por las fotos. Publicar el
+tema asi habria dejado un titular que no corresponde con lo que se
+vende.
+
+Reescrita con texto **cierto hoy**: "Piel hecha a mano en Espana, y
+complementos elegidos de uno en uno". Asi el tema se puede publicar ya.
+El titular de mascotas entra cuando esos productos esten vivos.
+
+## Por que NO se han archivado los bolsos todavia
+
+Estaba previsto archivarlos al montar el catalogo de mascotas. **No se
+hace, y el motivo importa**: los cinco productos de mascotas siguen en
+borrador porque les faltan las fotos.
+
+Archivar los 30 bolsos ahora dejaria la tienda con **cero productos
+publicados**. Una tienda vacia es peor que una descolocada.
+
+El archivado se hace en cuanto los productos de mascotas esten
+publicados con foto.
+
+## Estado verificado
+
+| Elemento | Estado |
+|---|---|
+| Politicas legales | 5 publicadas, enlazadas en el pie |
+| Paginas | 4 publicadas (Contacto, Quienes somos, FAQ, Envios) |
+| Colecciones | 10 con SEO completo, publicadas |
+| Menu principal | 6 entradas + 4 subentradas |
+| Menu de pie | 9 entradas |
+| Productos activos | 30, todos con foto, precio, peso y stock |
+| Productos en borrador | 10 (5 mascotas, 3 complementos, 2 basura) |
+| Tema reconstruido | Listo, SIN PUBLICAR |
