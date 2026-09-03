@@ -1,0 +1,16 @@
+{
+  "_comment": "MISMO PACK con envio gratis: si se baja el umbral de 55 a 49, el pack entra y el cliente no paga porte.",
+  "channel": "Shopify DTC - Espana",
+  "average_order_value": 49.90,
+  "units_per_order": 1,
+  "cogs_per_unit": 13.10,
+  "shipping_charged_to_customer": 0.00,
+  "shipping_actual_cost": 5.60,
+  "fulfillment_pick_pack_per_order": 0.00,
+  "payment_processing_pct": 1.5,
+  "payment_processing_fixed": 0.25,
+  "return_rate_pct": 9.0,
+  "return_cost_per_returned_order": 9.00,
+  "marketing_spend_per_acquired_customer": 20.00,
+  "repeat_orders_in_first_year": 0.15
+}
