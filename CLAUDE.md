@@ -532,3 +532,61 @@ esta tienda frente a revender bolsos de firma.
 5. **Normalizar `productType`** (cuatro `n/a`, uno vacío, nombres mezclados).
    Al limpiarlo, las 5 categorías podrían pasar de manuales a automáticas y se
    auto-clasificarían los productos nuevos
+
+### ERROR COMETIDO Y CORREGIDO: crear no es publicar
+
+**Las 6 colecciones creadas el 3 sep se dieron por terminadas sin estarlo.**
+Se verificó que contenían los productos correctos, pero no que fueran
+**visibles**. `resourcePublications` estaba vacío: el menú apuntaba a páginas
+que ningún cliente podía ver. Se reportó como hecho.
+
+Lo mismo pasó con los 3 packs recién creados: `status: ACTIVE` y
+`productSet` sin errores, pero invisibles.
+
+**Regla para este proyecto:** en Shopify, crear un producto o colección **no
+lo publica**. Hay que llamar a `publishablePublish` con las publicaciones
+destino, y verificar después:
+
+```graphql
+resourcePublications(first: 3) { edges { node { isPublished publication { name } } } }
+```
+
+Si sale `edges: []`, no se ve. `status: ACTIVE` no basta y engaña.
+
+IDs de publicación de esta tienda:
+- Tienda online: `gid://shopify/Publication/365626753372`
+- Shop: `gid://shopify/Publication/365626786140`
+- Point of Sale: `gid://shopify/Publication/365626818908`
+
+Ubicación de inventario: `gid://shopify/Location/120876466524` ("Sucursal de la tienda")
+
+### Packs creados (3 sep 2026)
+
+Productos nuevos reales, respaldados por stock que ya existe. La palanca que
+el análisis de mercado identificó: subir el AOV reparte el CAC.
+
+| Pack | Contiene | Suelto | Pack | Ahorro |
+|---|---|---|---|---|
+| Pack Nicole Lee | Bolso Tatiana + camiseta brillos | 106,18 € | **89,90 €** | 16,28 € |
+| Set playa | Toalla + vaso térmico Bluetooth | 89,14 € | **74,90 €** | 14,24 € |
+| Set piel hecha a mano | Bolso cuerno + riñonera + cartera | 77,11 € | **64,90 €** | 12,21 € |
+
+`compareAtPrice` es la **suma real** de los precios sueltos, no un ancla
+inventada. Eso importa: un precio tachado que nunca se cobró es publicidad
+engañosa.
+
+**Limitación operativa que hay que resolver:** son packs manuales. Shopify
+**no descuenta el stock de los componentes** al vender uno. Al recibir un
+pedido de pack hay que ajustar a mano el inventario de las piezas, o instalar
+la app Shopify Bundles. Con 0 pedidos aún no duele, pero con volumen sí.
+
+**Pendiente:** las fotos de los packs son la imagen de una de sus piezas. Hace
+falta una foto real del conjunto para que convierta.
+
+### Duda abierta sobre la cartera de Ubrique
+
+Se le escribió un copy premium apoyado en Ubrique (dos siglos de marroquinería
+para firmas europeas). **Su precio es 12,72 €**, implausible para piel
+artesanal española de verdad. O el precio está mal, o el "ubrique" del título
+original era flojo. Pendiente de confirmar con el usuario antes de mantener ese
+argumento: una afirmación de origen falsa es justo lo que los skills prohíben.
