@@ -1,52 +1,112 @@
-# Sacar la clave de API de CJ (2 minutos)
+# Camino A — conectar a Claude con CJ por API
 
-## Por que la necesito
+Tiempo: unos 5 minutos. Se hace una vez.
 
-La app de CJ ya esta instalada en Shopify y autorizada. Pero la app solo
-funciona a mano, desde el navegador: yo no puedo entrar en ella.
+---
 
-La web de CJ me bloquea el acceso automatico (me redirige a una pagina de
-verificacion anti-robots). Su **API oficial si me responde**. Lo he
-comprobado: contesta correctamente, solo pide una credencial.
+## Paso 1 — Entra en tu cuenta de CJ
 
-Con esa credencial obtengo, sin que tu tengas que copiar nada a mano:
+https://cjdropshipping.com — la misma cuenta con la que autorizaste la app
+en Shopify.
 
-- El **coste real** de cada articulo (ahora mismo trabajo con estimaciones mias).
-- **Todas las fotos** del proveedor, para subirlas tal cual.
-- **De que almacen sale**: si es Europa son 5-8 dias, si es China son 20-30.
-  Esto decide si podemos mantener la promesa de entrega que ya esta publicada.
-- El **porte real** hasta Espana.
+## Paso 2 — Busca la pantalla de API
 
-## Como se saca
+Arriba a la derecha, sobre tu nombre o tu avatar, entra en **My CJ**.
+En el menu de la izquierda busca **Authorization** y dentro **API**.
 
-1. Entra en https://cjdropshipping.com con tu cuenta.
-2. Arriba a la derecha, en tu nombre: **My CJ**.
-3. En el menu de la izquierda: **Authorization** → **API**.
-   (En algunas versiones aparece como *Account Settings* → *API*.)
-4. Boton **Generate** / **Create API Key**.
-5. Copia la clave que sale.
+Si no lo ves con ese nombre exacto, esta en uno de estos sitios (CJ cambia
+la interfaz cada pocos meses):
 
-## Como me la pasas
+- My CJ → **Authorization** → **API**
+- My CJ → **Account Settings** → **API**
+- Menu de tu avatar → **API**
 
-**No la pegues en el chat.** Guardala tu mismo en el archivo `.env` del
-proyecto, que ya esta excluido del repositorio y nunca se sube a GitHub:
+Atajo si te pierdes: escribe **"API"** en el buscador del panel de CJ.
 
+## Paso 3 — Genera la clave
+
+Boton **Generate** o **Create API Key**.
+
+Sale una cadena larga de letras y numeros. **Copiala entera.**
+
+Ojo con esto: la clave de API **no es** la contrasena con la que entras en
+la web de CJ. Son dos cosas distintas. Si me pasas la contrasena no
+funciona, y ademas no quiero tenerla.
+
+## Paso 4 — Hacermela llegar
+
+Aqui hay que elegir, y te explico el porque de cada opcion.
+
+Yo trabajo en un ordenador temporal en la nube. Tu no tienes acceso a sus
+archivos, asi que no puedes dejarme la clave en un fichero.
+
+### Opcion 1 — Variable de entorno (la limpia)
+
+La clave no pasa por la conversacion en ningun momento.
+
+1. Ve a **https://claude.ai/code**
+2. Abre los ajustes del **entorno** que usas para este proyecto.
+3. En **Variables de entorno**, anade estas dos:
+
+   ```
+   CJ_EMAIL      = el correo de tu cuenta de CJ
+   CJ_API_KEY    = la clave que acabas de generar
+   ```
+
+4. Guarda y **abre una sesion nueva** (las variables se cargan al arrancar,
+   no a mitad de camino).
+5. En la sesion nueva me dices "ya esta" y compruebo.
+
+### Opcion 2 — Me la pegas aqui (la rapida)
+
+Funciona al momento, sin reiniciar nada. El precio es que la clave queda
+escrita en el historial de esta conversacion.
+
+Si eliges esta, ten claro que:
+
+- Es una clave **solo de CJ**. No toca Shopify, ni cobros, ni datos de
+  clientes. Lo peor que permite es consultar el catalogo y crear pedidos
+  en tu propia cuenta de CJ.
+- **Se revoca en 10 segundos** desde la misma pantalla del Paso 2. En
+  cuanto yo termine de traer los costes, las fotos y los almacenes, me
+  dices y te aviso para que la anules.
+
+Yo recomiendo la Opcion 1. Pero si quieres avanzar hoy, la 2 con revocacion
+al terminar es un riesgo pequeno y controlado.
+
+---
+
+## Paso 5 — Yo compruebo
+
+Ejecuto:
+
+```bash
+node scripts/cj/probar-conexion.js
 ```
-CJ_EMAIL=el-correo-de-tu-cuenta-de-cj
-CJ_API_KEY=la-clave-que-acabas-de-generar
-```
 
-Y me dices "ya esta". Yo la leo desde ahi, no la imprimo en ningun sitio
-y no la escribo en ningun archivo que se suba.
+Ese script **no imprime la clave**. Solo dice si conecta, hasta cuando
+vale el token y si el catalogo responde.
 
-## Que es y que no es
+## Que hago en cuanto conecte
 
-- Es una clave **solo de CJ**. No toca Shopify, ni cobros, ni clientes.
-- Solo permite consultar el catalogo y crear pedidos en **tu** cuenta de CJ.
-- Se puede **revocar desde la misma pantalla** cuando quieras, sin afectar
-  a nada mas.
-- Caduca sola: el token de sesion dura 15 dias y se renueva solo.
+Sin que tengas que tocar nada mas:
 
-Si prefieres no darmela, la alternativa es que me pases a mano, por cada
-producto: las fotos, el coste y el almacen. Funciona igual, pero son 10
-minutos tuyos por producto en vez de 5 segundos mios.
+1. Busco en el catalogo de CJ los articulos de los tres packs que salen
+   rentables (lluvia, cachorro, paseo a oscuras).
+2. Saco de cada uno el **coste real** — y ahi se confirma o se cae el
+   calculo, porque ahora mismo son estimaciones mias.
+3. Saco **de que almacen sale**. Es lo que decide si podemos mantener el
+   plazo de entrega que ya esta publicado en la politica de envios: Europa
+   son 5-8 dias, China 20-30.
+4. Me traigo **las fotos del proveedor** y las subo. Se acaba el riesgo de
+   que la foto no sea lo que se envia.
+5. Creo los productos y los packs en la tienda, con sus fichas escritas.
+
+## Si algo no sale
+
+- **No aparece el menu de API.** Algunas cuentas nuevas lo tienen oculto
+  hasta verificar el correo. Verificalo y vuelve a mirar.
+- **CJ rechaza las credenciales.** Casi siempre es haber copiado la
+  contrasena en vez de la clave de API. Vuelve al Paso 3.
+- **Genero una clave nueva y la vieja deja de valer.** Es normal, CJ solo
+  mantiene una activa. Pasame la nueva.
