@@ -614,3 +614,35 @@ vender**. Es el siguiente trabajo pendiente de mayor impacto.
 
 **Repo:** todo commiteado y subido. typecheck limpio, 19/19 tests,
 52/52 comprobaciones de skills, 388 archivos sin secretos.
+
+## Regla de precios (3 septiembre 2026)
+
+Los precios de importacion venian todos a **x1,59 sobre coste** (37% de
+margen bruto). Con envio, comisiones y un 20% de devoluciones quedaban
+~13 EUR por pedido, por debajo del coste de captar un cliente con
+publicidad (25-50 EUR): **cada venta pagada perdia dinero.**
+
+Aplicado **x2,5** a las 44 variantes activas, redondeado a terminacion
+,90. Margen bruto 60%. Copia de los precios anteriores en
+`research/precios-antes-2026-09-03.md` para poder revertir.
+
+**Todo producto nuevo se sube a x2,5 sobre coste como minimo.** Un pack
+nunca baja del 50% de margen: se calcula sobre la suma de los precios
+nuevos, no sobre los antiguos.
+
+**Nunca poner precios tachados falsos.** El Real Decreto 2/2023 obliga a
+que el precio anterior anunciado sea el mas bajo real de los ultimos 30
+dias. Los campos compareAtPrice llegaron a 0,00 desde la importacion:
+son dato basura, no un descuento.
+
+## Regla de fichas de producto
+
+Las descripciones importadas traen texto del proveedor. Antes de
+publicar hay que comprobar dos cosas:
+
+1. **Enlaces del proveedor.** Siete fichas incluian
+   `faire.com/direct/hechoamano` invitando al cliente a comprar fuera.
+   Buscar siempre enlaces y frases tipo "haz el pedido aqui".
+2. **Que el titulo describa el producto real.** "Bolso con ruedas
+   monograma" no tenia ruedas: era una mala traduccion del proveedor.
+   Describir mal un producto es devolucion garantizada y riesgo legal.
