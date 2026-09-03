@@ -80,3 +80,69 @@ publicar.
 2. **Verificar el precio del comedero** contra anuncios reales.
 3. **Archivar los 30 bolsos** cuando este el catalogo de mascotas vivo.
 4. **Rehacer el menu principal**, que todavia apunta a bolsos.
+
+---
+
+# Fotos del proveedor: descargadas, corregidas y subidas
+
+## De donde salen
+
+Fichas reales de proveedores de AliExpress, obtenidas leyendo las paginas
+de busqueda. **Corresponden a productos que se pueden pedir**, que es lo
+que hace que la foto no mienta. No son imagenes generadas.
+
+## Que se corrigio, y por que
+
+El material de AliExpress viene con el aire de collage que se nota a la
+legua. Correcciones aplicadas con Pillow:
+
+1. **Recorte de los collages.** Las fichas mezclan el producto con
+   perros, gatos y tiras de variantes. Se recorto para dejar el producto
+   como protagonista.
+2. **Descartadas las imagenes con rotulos en ingles.** Habia dos con
+   texto sobreimpreso ("Adjustable-opening treat ball", "Pet Bath Towel /
+   Strong water absorption"). Eso es lo que delata el origen.
+3. **Recorte automatico del margen blanco** y reencuadre para que el
+   producto ocupe el 88% del cuadro, como marca la guia de fotografia.
+4. **Normalizadas** a 1400x1400 JPEG de calidad 92, fondo blanco.
+5. **Texto alternativo** escrito en espanol para cada una: SEO y lector
+   de pantalla.
+
+## Dos textos corregidos para que digan lo que ensena la foto
+
+**La toalla no era una toalla.** La ficha decia "toalla de microfibra con
+bolsillos para las manos". De las tres candidatas, solo una tenia
+bolsillos de verdad, y es una **manopla**. Renombrado el producto a
+"Manopla de secado de microfibra para perros" y reescrito el texto.
+
+Las otras dos eran toallas planas: usarlas habria dejado el texto
+mintiendo sobre una caracteristica principal.
+
+**La alfombrilla gano una medida real.** La foto del proveedor trae
+30 x 48 cm impreso. Anadido a la ficha.
+
+## Estado final verificado
+
+| Producto | PVP | Fotos | Publicado |
+|---|---|---|---|
+| Pack: 2 comederos + alfombrilla | 49,90 | 2 | si |
+| Comedero lento interactivo | 29,90 | 2 | si |
+| Juguete dispensador | 24,90 | 1 | si |
+| Manopla de secado | 22,90 | 1 | si |
+| Alfombrilla antiderrame | 16,90 | 2 | si |
+
+Los cinco ACTIVE y publicados en Tienda online y Shop, todos con imagen
+de 1400x1400 en el CDN de Shopify y con texto alternativo.
+
+Colecciones: Comederos 3, Juguetes 1, Higiene y cuidado 1.
+
+## Aviso que sigue abierto sobre el precio
+
+Los precios de origen vistos en las fichas del proveedor van de **0,99 a
+7,44 dolares**. El comedero concreto elegido esta en **3,79**.
+
+Eso confirma que el coste asumido (4,80 EUR) era generoso, pero refuerza
+la duda del PVP: es un articulo de commodity muy barato, y **29,90 EUR
+sigue siendo alto** frente a los 10-20 EUR de Amazon.es. Es el supuesto
+del que cuelga todo el modelo y hay que contrastarlo antes de gastar en
+publicidad.
