@@ -10,3 +10,5 @@ coverage/
 # Volcados de busquedas del skill linkfox-dld-product-search.
 # Escribe en <proyecto>/linkfox/<fecha>/<sesion>/ y puede crecer mucho.
 linkfox/
+
+.cj-token.json
