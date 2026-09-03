@@ -1,0 +1,16 @@
+{
+  "_comment": "PACK 4 - Cachorro recien llegado: comedero lento + bola dispensadora + alfombrilla de lamer + manopla. Envio gratis (supera el umbral de 55). Costes ESTIMADOS.",
+  "channel": "Shopify DTC - Espana",
+  "average_order_value": 59.90,
+  "units_per_order": 4,
+  "cogs_per_unit": 4.60,
+  "shipping_charged_to_customer": 0.00,
+  "shipping_actual_cost": 6.50,
+  "fulfillment_pick_pack_per_order": 0.00,
+  "payment_processing_pct": 1.9,
+  "payment_processing_fixed": 0.25,
+  "return_rate_pct": 8.0,
+  "return_cost_per_returned_order": 18.40,
+  "marketing_spend_per_acquired_customer": 25.00,
+  "repeat_orders_in_first_year": 0.20
+}
