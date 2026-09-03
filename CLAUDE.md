@@ -590,3 +590,27 @@ para firmas europeas). **Su precio es 12,72 €**, implausible para piel
 artesanal española de verdad. O el precio está mal, o el "ubrique" del título
 original era flojo. Pendiente de confirmar con el usuario antes de mantener ese
 argumento: una afirmación de origen falsa es justo lo que los skills prohíben.
+
+### Estado verificado (3 sep 2026, fin de jornada)
+
+**Catálogo:** 29 productos — 27 activos, 2 en borrador (hoodie con stock falso
+y pijama, fuera de nicho).
+
+**Los 27 activos:**
+- Título en formato legible (se quitaron las MAYÚSCULAS y los códigos de proveedor)
+- **Título y meta descripción de SEO rellenos** — antes había 0
+- **Publicados** en Tienda online y Shop, verificado con `isPublished`
+
+**Colecciones:** 8, todas publicadas. 5 categorías sin solapes que cubren el
+catálogo, más `Hecho a mano` (automática por vendor) y `Packs y sets`.
+
+**Menú:** Inicio · Tienda ▾ (5 categorías) · Packs y sets · Hecho a mano · Contacto
+
+**Descripciones reescritas a fondo:** solo 3 de 27 (cartera de Ubrique,
+bandolera Akiko, bolso de cierre de bola). Las otras 24 conservan la ficha
+técnica del proveedor, con su HTML sucio (`data-mce-fragment`, estilos sueltos).
+Tienen SEO y título limpio, pero **el cuerpo sigue describiendo en vez de
+vender**. Es el siguiente trabajo pendiente de mayor impacto.
+
+**Repo:** todo commiteado y subido. typecheck limpio, 19/19 tests,
+52/52 comprobaciones de skills, 388 archivos sin secretos.
