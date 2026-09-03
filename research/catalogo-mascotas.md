@@ -146,3 +146,53 @@ la duda del PVP: es un articulo de commodity muy barato, y **29,90 EUR
 sigue siendo alto** frente a los 10-20 EUR de Amazon.es. Es el supuesto
 del que cuelga todo el modelo y hay que contrastarlo antes de gastar en
 publicidad.
+
+---
+
+# Segunda pasada de fotos: elegidas por claridad, no por limpieza
+
+Aviso del usuario: las fotos no dejaban claro **que era** el producto.
+Tenia razon en dos de los cinco.
+
+## Que fallaba
+
+| Producto | Foto anterior | Problema |
+|---|---|---|
+| Alfombrilla | Monton de esterillas apiladas | No se entiende que va debajo del comedero |
+| Juguete | Cinco piezas de caucho sueltas | No se ve que suelte comida |
+
+Las otras tres (comedero x2, manopla) si comunicaban y se quedan.
+
+## Fotos nuevas
+
+Buscadas con un criterio distinto: **producto en uso**, no producto
+aislado.
+
+- **Alfombrilla, principal**: la alfombrilla en el suelo con el comedero
+  y el bebedero encima, el pienso caido y las gotas de agua retenidas
+  sobre ella. Explica el producto sin una palabra.
+- **Alfombrilla, segunda**: en el suelo de madera de una cocina real, con
+  los dos cuencos. Da la escala.
+- **Juguete**: bola transparente con el pienso visible dentro y cayendo
+  por la abertura. Se entiende al instante.
+
+Descartadas cuatro candidatas por llevar rotulos en ingles sobreimpresos
+("Get your dog moving!", "Adjustable-opening treat ball") o marca de agua
+de otro vendedor ("LumiChicBoutiqu...").
+
+## Dos textos reescritos, porque la foto manda
+
+Las fotos nuevas son de **productos distintos** a las anteriores. Cambiar
+la imagen sin cambiar el texto habria dejado la ficha mintiendo:
+
+1. **Alfombrilla**: quitada la medida "30 x 48 cm", que era de la
+   esterilla rectangular anterior. La nueva es de silicona con forma
+   ondulada. Reescrito el texto sobre lo que hace, no sobre sus cotas.
+2. **Juguete**: renombrado de "Juguete dispensador de premios" a **"Bola
+   dispensadora de premios"**. Fuera "caucho resistente a la mordida" y
+   "bota de forma irregular"; el producto real es una bola transparente
+   con **apertura regulable**, que ademas es mejor argumento de venta:
+   se empieza facil y se va cerrando segun el perro aprende.
+
+Las cuatro imagenes viejas se borraron de las fichas, incluida la copia
+que arrastraba el pack.
