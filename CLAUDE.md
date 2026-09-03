@@ -444,3 +444,42 @@ Firma válida → 200. Firma inválida o ausente → 401.
 - Admin GraphQL API: https://shopify.dev/docs/api/admin-graphql
 - Webhooks: https://shopify.dev/docs/apps/build/webhooks
 - Custom apps: https://help.shopify.com/en/manual/apps/app-types/custom-apps
+
+## Tienda Prestige (del socio) — estado y límites
+
+`prestige-12657.myshopify.com`, plan Advanced, España, EUR, IVA incluido.
+Es de un socio autónomo, **no está a nombre del usuario**. Todo lo que toque su
+facturación lo decide él. El usuario tiene acceso legítimo vía OAuth.
+
+### Lo que el conector NO permite
+
+Tiene `read_legal_policies` pero **no `write_legal_policies`**: las políticas
+legales no se pueden publicar por API, hay que pegarlas a mano. Los textos
+están en `legal/` con instrucciones.
+
+Sí tiene: `write_products`, `write_inventory`, `write_content`, `write_themes`,
+`write_online_store_navigation`, `write_discounts`, `write_shipping`,
+`write_customers`, `write_publications`, `write_translations`.
+
+### Estado real del catálogo (verificado, 26 productos)
+
+- **Núcleo coherente**: ~20 de 26 son bolsos y complementos de mujer.
+  Proveedores: `Hecho a mano` (artesanía de piel, incluida Ubrique) y
+  `Nicole Lee` / `Nikky By Nicole Lee`.
+- **Sueltos**: un pijama, una sudadera de MaisonGrozavu, jabones, una toalla y
+  dos vasos térmicos.
+- **El problema real no es incoherencia, es taxonomía**: `productType` está
+  inconsistente — cuatro productos con `n/a`, uno vacío, y nombres mezclados
+  (`HANDBAG`, `CROSSBODY`, `Bolso con correa - Mujer`, `Bolsa de asa- Mujer`
+  con errata).
+- **1 sola colección** ("Página de inicio") con 1 producto. Los otros 25 no
+  están en ninguna: no hay navegación posible.
+
+### Inventario: menos grave de lo que parecía
+
+Los stocks son reales y variados (4, 5, 8, 12, 22, 44, 60, 132…). **Solo un
+producto** tiene relleno: `Archival Ecru Hoodie` con 119.988 unidades.
+
+Además **todas las variantes tienen `inventoryPolicy: DENY` y `tracked: true`**,
+así que Shopify corta la venta al llegar a cero. El riesgo está acotado a ese
+producto, no es del catálogo entero.
