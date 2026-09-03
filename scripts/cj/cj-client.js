@@ -5,8 +5,11 @@
  * Nunca se escriben en disco fuera de .env, nunca se imprimen, nunca se
  * suben al repositorio. .env esta en .gitignore.
  *
- *   CJ_EMAIL=tu-correo-de-cj
  *   CJ_API_KEY=la-clave-generada-en-CJ-→-My-CJ-→-Authorization-→-API
+ *
+ * Formato de la clave: CJ<numero de usuario>@api@<32 caracteres hex>.
+ * Con ese formato se usa el "modo apiKey" y NO hace falta el correo.
+ * CJ_EMAIL solo se usa como respaldo para cuentas antiguas.
  *
  * El token de acceso dura 15 dias; se cachea en .cj-token.json (gitignored).
  */
@@ -25,7 +28,16 @@ function cargarEnv() {
   }
 }
 
+// CJ limita a 1 peticion por segundo. Serializamos y espaciamos.
+let ultima = 0;
+async function esperarTurno() {
+  const hueco = 1100 - (Date.now() - ultima);
+  if (hueco > 0) await new Promise((r) => setTimeout(r, hueco));
+  ultima = Date.now();
+}
+
 async function pedir(ruta, { metodo = 'GET', token, cuerpo, query } = {}) {
+  await esperarTurno();
   let url = BASE + ruta;
   if (query) url += '?' + new URLSearchParams(query).toString();
   const cabeceras = { 'Content-Type': 'application/json' };
@@ -46,15 +58,19 @@ async function getToken() {
     const c = JSON.parse(fs.readFileSync(TOKEN_FILE, 'utf8'));
     if (c.expira && Date.parse(c.expira) > Date.now() + 3600e3) return c.accessToken;
   }
-  const email = process.env.CJ_EMAIL;
   const apiKey = process.env.CJ_API_KEY;
-  if (!email || !apiKey) {
-    throw new Error('Faltan CJ_EMAIL y/o CJ_API_KEY en .env');
+  if (!apiKey) throw new Error('Falta CJ_API_KEY en .env');
+
+  // Modo apiKey (el actual). Si la clave no tiene ese formato, se prueba el
+  // modo antiguo de correo + clave, que sigue vivo en cuentas viejas.
+  const esModoApiKey = /^CJ\d+@api@[0-9a-f]{32}$/.test(apiKey);
+  const cuerpo = esModoApiKey
+    ? { apiKey }
+    : { email: process.env.CJ_EMAIL, password: apiKey };
+  if (!esModoApiKey && !process.env.CJ_EMAIL) {
+    throw new Error('La clave no tiene formato de apiKey, asi que hace falta CJ_EMAIL en .env');
   }
-  const d = await pedir('/authentication/getAccessToken', {
-    metodo: 'POST',
-    cuerpo: { email, password: apiKey },
-  });
+  const d = await pedir('/authentication/getAccessToken', { metodo: 'POST', cuerpo });
   fs.writeFileSync(
     TOKEN_FILE,
     JSON.stringify({ accessToken: d.accessToken, expira: d.accessTokenExpiryDate }, null, 2),
