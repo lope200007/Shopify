@@ -1,0 +1,114 @@
+{
+ "pid": "1457908873179566080",
+ "productName": "[\"宠物安全带两用汽车挂绳\",\"宠物安全带\",\"挂绳\"]",
+ "productNameSet": [
+  "宠物安全带两用汽车挂绳",
+  "宠物安全带",
+  "挂绳"
+ ],
+ "productNameEn": "Pet Safety Belt Dual-purpose Car Lanyard",
+ "productSku": "CJGX1346911",
+ "bigImage": "https://cf.cjdropshipping.com/ed683b79-b4c1-462d-92d4-d725f2688eef.jpg",
+ "productImage": "[\"https://cf.cjdropshipping.com/ed683b79-b4c1-462d-92d4-d725f2688eef.jpg\",\"https://cf.cjdropshipping.com/717361bd-eade-4929-8849-cf1d40e38ff8.jpg\",\"https://cf.cjdropshipping.com/ad330838-9865-40e5-9e57-1cdc7e50e1ee.jpg\",\"https://cf.cjdropshipping.com/ccdd6dfc-cf7a-4b0f-80bd-8d85b95c85b6.jpg\",\"https://cf.cjdropshipping.com/1ce9a21f-3349-49e2-a5cf-a23967bfd62d.jpg\"]",
+ "productImageSet": [
+  "https://cf.cjdropshipping.com/ed683b79-b4c1-462d-92d4-d725f2688eef.jpg",
+  "https://cf.cjdropshipping.com/717361bd-eade-4929-8849-cf1d40e38ff8.jpg",
+  "https://cf.cjdropshipping.com/ad330838-9865-40e5-9e57-1cdc7e50e1ee.jpg",
+  "https://cf.cjdropshipping.com/1ce9a21f-3349-49e2-a5cf-a23967bfd62d.jpg",
+  "https://cf.cjdropshipping.com/ccdd6dfc-cf7a-4b0f-80bd-8d85b95c85b6.jpg"
+ ],
+ "productWeight": "200.00",
+ "productUnit": null,
+ "productType": "ORDINARY_PRODUCT",
+ "categoryId": "2410110343091603200",
+ "categoryName": "Pet Supplies > Pet Outdoor Supplies > Pet Seat Belts",
+ "entryCode": "4201000090",
+ "entryName": "尼龙牵引绳",
+ "entryNameEn": "Nylon traction rope",
+ "materialName": "[\"布料\"]",
+ "materialNameSet": [
+  "布料"
+ ],
+ "materialNameEn": "[\"Cloth\"]",
+ "materialNameEnSet": [
+  "Cloth"
+ ],
+ "materialKey": "[\"FABRIC\"]",
+ "materialKeySet": [
+  "FABRIC"
+ ],
+ "packingWeight": "220.00",
+ "packingName": "[\"塑料袋\"]",
+ "packingNameSet": [
+  "塑料袋"
+ ],
+ "packingNameEn": "[\"Plastic bags\"]",
+ "packingNameEnSet": [
+  "Plastic bags"
+ ],
+ "packingKey": "[\"PLASTIC_BAG\"]",
+ "packingKeySet": [
+  "PLASTIC_BAG"
+ ],
+ "productKey": "[\"颜色\"]",
+ "productKeySet": [
+  "颜色"
+ ],
+ "productKeyEn": "Color",
+ "productKeyEnSet": [
+  "Color"
+ ],
+ "productPro": "[\"普货\"]",
+ "productProSet": [
+  "普货"
+ ],
+ "productProEn": "[\"COMMON\"]",
+ "productProEnSet": [
+  "COMMON"
+ ],
+ "sellPrice": "1.34",
+ "sourceFrom": 1,
+ "description": "<p><b>Product information:</b><br/></p><p>Material: Nylon<br/>Product Category: Traction Belt<br/>Color: Orange</p><p><br/><b>Packing list:</b></p><p>Traction Belt*1</p><p><img src=\"https://cf.cjdropshipping.com/45903efe-ef55-4e71-b432-e4ee385dce20.jpg\" style=\"max-width:100%;\"/><img src=\"https://cf.cjdropshipping.com/54048c69-2207-4220-bb53-c73c643ec4cd.jpg\" style=\"max-width: 100%;\"/><img src=\"https://cf.cjdropshipping.com/ffae2c61-8ce8-45a3-a24b-f80e202768b2.jpg\" style=\"max-width: 100%;\"/><img src=\"https://cf.cjdropshipping.com/c62e6a69-4656-495c-81ec-d751e7a88a15.jpg\" style=\"max-width: 100%;\"/><img src=\"https://cf.cjdropshipping.com/da9b69a3-d75f-4926-8efd-777045128f64.jpg\" style=\"max-width: 100%;\"/><br/></p>",
+ "variants": [
+  {
+   "vid": "1457908873263452160",
+   "pid": "1457908873179566080",
+   "variantName": null,
+   "variantNameEn": "Pet Safety Belt Dual-purpose Car Lanyard Orange",
+   "variantImage": "https://cf.cjdropshipping.com/ccdd6dfc-cf7a-4b0f-80bd-8d85b95c85b6.jpg",
+   "variantSku": "CJGX134691101AZ",
+   "barcode": "1598449903225",
+   "barcode2": null,
+   "variantUnit": "个",
+   "variantProperty": "[]",
+   "variantKey": "Orange",
+   "variantLength": 200,
+   "variantWidth": 100,
+   "variantHeight": 40,
+   "variantVolume": 800000,
+   "variantWeight": 220,
+   "variantSellPrice": 1.34,
+   "createTime": 1636427536000,
+   "variantStandard": "long=200,width=100,height=40",
+   "variantSugSellPrice": 6.36,
+   "combineNum": null,
+   "inventoryNum": null,
+   "combineVariants": null,
+   "inventories": null
+  }
+ ],
+ "addMarkStatus": 0,
+ "createrTime": "2021-11-09T03:12:16+08:00",
+ "productVideo": null,
+ "status": "3",
+ "suggestSellPrice": "6.36",
+ "listedNum": 491,
+ "supplierName": null,
+ "supplierId": null,
+ "customizationVersion": null,
+ "customizationJson1": null,
+ "customizationJson2": null,
+ "customizationJson3": null,
+ "customizationJson4": null,
+ "isTestProduct": false
+}
