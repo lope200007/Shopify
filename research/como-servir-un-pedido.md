@@ -70,3 +70,62 @@ y debe rotarse antes de usarlo para pagar nada.
 
 Orden correcto: rotar el token → recargar saldo → servir dos o tres pedidos a
 mano para ver dónde falla → entonces automatizar.
+
+---
+
+# Automatizado (4 sept 2026)
+
+Ya no hace falta hacerlo a mano. `npm run servir` recorre los pedidos pagados y
+sin servir, los crea en CJ, los paga con el saldo y devuelve el seguimiento a
+Shopify.
+
+```bash
+npm run servir                        # simulacion: enseña el payload exacto, no toca nada
+npm run servir -- --sandbox --ejecutar  # pedido de prueba real en CJ, sin cobro
+npm run servir -- --ejecutar            # de verdad: crea, paga y marca servido
+```
+
+Para un cron cada quince minutos:
+
+```
+*/15 * * * * cd /ruta/shopify && npm run servir -- --ejecutar >> servir.log 2>&1
+```
+
+## Lo que resuelve solo
+
+- **Traduce el SKU al vid de CJ.** Si un SKU no esta en `mapa.js`, aborta el
+  pedido entero en vez de servirlo a medias.
+- **Expande los packs.** `PACK-BANO-LLUVIA` se convierte en los tres articulos
+  reales (albornoz M, toalla mediana, manopla), que es lo que promete la ficha.
+- **Elige el transporte mas barato** con `freightCalculate` en vivo, para el pais
+  del cliente. Si CJ no tiene ruta a ese pais, lo dice y no crea nada.
+- **Valida antes de enviar** los nueve campos que CJ exige. CJ rechaza con
+  "Param error" sin decir cual falta; el script falla antes y con nombre.
+- **No duplica.** `.cj-pedidos.json` registra que pedido ya se mando y con que id
+  de CJ. Se guarda **antes** de pagar, no despues: si el proceso muere entre
+  crear y pagar, al reintentar se paga el pedido existente en vez de crear otro.
+  Sin eso, dos ejecuciones seguidas cobrarian dos veces.
+- **Avisa al cliente.** Al marcar servido con `notifyCustomer`, Shopify manda el
+  correo con el seguimiento.
+
+## Decisiones que conviene conocer
+
+**IOSS = 3 (el de CJ).** Es quien paga el IVA de importacion en la UE. Con el de
+CJ, al cliente no le reclaman nada en la entrega. Cuando la tienda tenga su
+propio numero IOSS, cambiar `IOSS_TIPO` a 2 y rellenar `IOSS_NUMERO` en
+`scripts/cj/servir.ts`.
+
+**payType = 2**, cobro contra el saldo del monedero. Con saldo 0 la creacion
+funciona y el pago falla; el pedido queda creado en CJ y se paga al reintentar.
+El script lo dice en vez de fallar en silencio.
+
+## Lo que falta para poder ejecutarlo
+
+1. **Credenciales de Shopify** en `.env` (`SHOPIFY_SHOP` + `SHOPIFY_CLIENT_ID` y
+   `SHOPIFY_CLIENT_SECRET`, con permisos `read_orders` y `write_fulfillments`)
+2. **Saldo en el monedero de CJ**
+3. Probado hasta donde se puede sin esas dos cosas: mapeo, expansion del pack,
+   portes reales y validacion del payload. **La creacion del pedido en CJ no se
+   ha llegado a ejecutar**, ni siquiera en sandbox: hacerlo requiere aprobacion
+   para escribir en un servicio externo. La primera vez, lanzarlo con
+   `--sandbox --ejecutar` y revisar el resultado antes de quitar `--sandbox`.

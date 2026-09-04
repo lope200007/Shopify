@@ -15,7 +15,9 @@
     "linkfox": "ts-node --project tsconfig.json scripts/linkfox.ts",
     "test:connection": "ts-node --project tsconfig.json scripts/test-connection.ts",
     "orders:list": "ts-node --project tsconfig.json scripts/list-orders.ts",
-    "agent:demo": "ts-node --project tsconfig.json scripts/demo-agent.ts"
+    "agent:demo": "ts-node --project tsconfig.json scripts/demo-agent.ts",
+    "servir": "ts-node --project tsconfig.json scripts/cj/servir.ts",
+    "cj:mapa": "node scripts/cj/mapa.js"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

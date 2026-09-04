@@ -12,3 +12,6 @@ coverage/
 linkfox/
 
 .cj-token.json
+
+# Libro de pedidos servidos en CJ: lleva direcciones de clientes.
+.cj-pedidos.json
