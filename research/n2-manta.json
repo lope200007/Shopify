@@ -1,0 +1,16 @@
+{
+  "_comment": "NUEVO 2 - Manta impermeable sofa 2 plazas. Coste y porte REALES de CJ.",
+  "channel": "Shopify DTC - Espana",
+  "average_order_value": 24.90,
+  "units_per_order": 1,
+  "cogs_per_unit": 4.85,
+  "shipping_charged_to_customer": 4.95,
+  "shipping_actual_cost": 7.51,
+  "fulfillment_pick_pack_per_order": 0.00,
+  "payment_processing_pct": 1.9,
+  "payment_processing_fixed": 0.25,
+  "return_rate_pct": 8.0,
+  "return_cost_per_returned_order": 12.00,
+  "marketing_spend_per_acquired_customer": 18.00,
+  "repeat_orders_in_first_year": 0.10
+}
