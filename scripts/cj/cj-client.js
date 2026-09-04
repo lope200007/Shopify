@@ -63,7 +63,7 @@ async function getToken() {
 
   // Modo apiKey (el actual). Si la clave no tiene ese formato, se prueba el
   // modo antiguo de correo + clave, que sigue vivo en cuentas viejas.
-  const esModoApiKey = /^CJ\d+@api@[0-9a-f]{32}$/.test(apiKey);
+  const esModoApiKey = /^CJ\d+@api@[0-9a-zA-Z]{16,128}$/.test(apiKey);
   const cuerpo = esModoApiKey
     ? { apiKey }
     : { email: process.env.CJ_EMAIL, password: apiKey };
