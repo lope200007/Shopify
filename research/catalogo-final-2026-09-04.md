@@ -73,3 +73,56 @@ mano en la app de CJ o se automatiza con la API, que ya esta conectada
 (`shopping/orderList`).
 
 **Revocar el token de CJ** cuando se termine: ha pasado por el chat.
+
+---
+
+# Ampliacion: cuatro productos mas (misma sesion)
+
+Barridas 14 categorias mas del catalogo de CJ y ordenado todo por numero de
+tiendas que ya venden cada articulo. Descartados los de gato (la tienda es
+de perro) y los que superaban 15 USD de coste o 600 g.
+
+| Producto | PVP | Coste | Peso | Tiendas que lo venden | Mercado ES |
+|---|---|---|---|---|---|
+| **Lima de unas electrica** | 19,90 | 2,05 | 120 g | **760** | 17,90 - 49,95 |
+| Boton grabable | 12,90 | 1,48 | 98 g | 150 | 10 - 20 |
+| Peluche con chirriador | 14,90 | 3,99 | 145 g | 106 | 8 - 15 |
+| Funda de collar para AirTag | 9,90 | 0,92 | 10 g | 105 | 8 - 15 |
+
+## La lima de unas es el mejor producto de la tienda
+
+760 tiendas del catalogo de CJ la venden ya. Es el numero mas alto que he
+visto en toda la categoria de mascotas, por delante de la manopla (365) y
+de la bola (202).
+
+Y las cuentas lo acompanan: **cuesta 2,05 EUR, pesa 120 g** (porte a Espana
+unos 4 EUR) y en Espana se vende entre 17,90 y 49,95. A 19,90 el margen de
+contribucion ronda el 72%, el mejor de todo el catalogo.
+
+Resuelve ademas un miedo real: cortar las unas a un perro y darle en la
+vena. Una lima desgasta en vez de cortar, asi que es imposible pasarse de
+golpe. Es el producto con mejor combinacion de demanda, margen y problema
+concreto de toda la seleccion.
+
+## Un aviso honesto en cada ficha
+
+Las cuatro llevan su pega escrita:
+
+- La lima: **las pilas no vienen** (2 AA), y en unas negras no se ve la vena.
+- El boton: **requiere constancia tuya** durante semanas o el perro no lo
+  asocia; no es un juguete que funcione solo. Pilas no incluidas.
+- El peluche: **es un peluche**. Un destructor de verdad lo abre igual, con
+  costura reforzada o sin ella. Si es tu caso, comprale la bola.
+- La funda de AirTag: **el AirTag no viene incluido**, y un AirTag no es un
+  GPS — en el monte, sin iPhones alrededor, puede no dar senal.
+
+Eso es lo que evita devoluciones y resenas malas: decir la pega antes de
+cobrar, no despues.
+
+## Catalogo al cierre: 15 productos
+
+Comederos 3, Juguetes 5, Higiene y cuidado 6, Casa/coche/paseo 3, Packs 1.
+La coleccion "Casa y coche" pasa a llamarse **"Casa, coche y paseo"** para
+que la funda de AirTag no quedara huerfana.
+
+Los 15 tienen foto de proveedor, SKU real de CJ y coste real cargado.
