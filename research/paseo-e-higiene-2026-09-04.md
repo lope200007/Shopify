@@ -75,3 +75,50 @@ Cada producto lleva escrito su propio inconveniente antes del botón de comprar:
 `/collections/lluvia-y-barro` — regla `TAG = lluvia`, 6 productos, segunda
 entrada del menú principal. Aprovecha etiquetas que ya existían y llega con el
 otoño.
+
+---
+
+# Segunda tanda: uñas, patas y coche (4 sept 2026)
+
+Categorías escaneadas: duchas y baño, cortaúñas, juguetes de entrenamiento,
+juguetes de persecución, alfombras de coche, esterillas, empapadores.
+
+| Producto | PVP | Coste + portes | Margen tras IVA | listedNum |
+|---|---|---|---|---|
+| Cubreasientos tipo hamaca | 34,90 | 16,07 € | **12,77 €** | 763 |
+| Lima eléctrica de uñas | 29,90 | 11,82 € | **12,89 €** | 1.394 |
+| Cortapelo de patas con LED | 24,90 | 8,42 € | **12,16 €** | 1.933 |
+| Alfombrilla de lamer | 15,90 | 7,88–8,19 € | 5,26 € | 1.095 |
+
+Los tres primeros cubren el CAC (~12,3 €) en el primer pedido. La alfombrilla
+es artículo de subida de ticket.
+
+## Decisiones que costaron ventas a propósito
+
+**El cortaúñas manual con LED** (CJGY1675701, 4.668 tiendas) se descarta pese a
+la demanda. A 14,90 dejaría 6,02 € y competiría con nuestra propia lima
+eléctrica de 29,90, que deja 12,89 €. Meter una alternativa barata al lado de
+un ancla es canibalizar el margen: el cliente elige el de 14,90 y el pedido
+rinde la mitad. Un catálogo no mejora por tener más opciones del mismo
+problema.
+
+**El cubreasientos Oxford impermeable** (CJGY2114653, 664 tiendas) se descarta
+por peso. 1.520 g son 19,40 USD de portes: 17,8 € de coste solo en transporte,
+que obligaría a un PVP de 49,90 para un margen peor que el del modelo de
+1.020 g a 34,90. En dropshipping el peso manda sobre el precio de compra.
+
+La consecuencia es que el cubreasientos que sí vendemos **no es impermeable**
+—el fabricante declara tejido, sin capa—. La ficha lo dice con esas palabras y
+recomienda poner una toalla encima, que además es un producto nuestro. No lleva
+la etiqueta `lluvia`: la colección Lluvia y barro se queda honesta.
+
+**El "cortaúñas eléctrico" CJGY1675701 tampoco lo es.** Su descripción dice
+tijera manual con luz LED para ver el vaso sanguíneo, no lima de motor. Segundo
+título falso de CJ en dos tandas: conviene leer siempre la descripción antes
+que el nombre.
+
+## Alfombrillas refrescantes: aplazadas
+
+Dos de los artículos con más demanda de la categoría esterillas son alfombrillas
+de gel refrescante (2.035 y 1.736 tiendas). Producto correcto, momento
+equivocado: entramos en octubre. Revisar en abril.
