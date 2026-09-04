@@ -33,7 +33,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Vendemos pocas cosas y cada una resuelve un problema que tienes de verdad. Enviamos desde Europa, tienes 14 días para devolver y al otro lado contesta una persona.</p>",
+            "text": "<p>Vendemos pocas cosas y cada una resuelve un problema que tienes de verdad. El plazo de entrega real lo ves antes de pagar, tienes 14 d&iacute;as para devolver y al otro lado contesta una persona.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "left",

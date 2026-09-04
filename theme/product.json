@@ -329,7 +329,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<h4>Llega en días</h4>",
+                    "text": "<h4>Plazo claro antes de pagar</h4>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -354,7 +354,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Preparamos el pedido en 1 a 3 días laborables. El plazo exacto lo ves antes de pagar, no después. Envío gratis a partir de 55 €.</p>",
+                    "text": "<p>El plazo de entrega concreto aparece en el proceso de pago, antes de que confirmes nada. Env&iacute;o gratis a partir de 55 &euro;.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
