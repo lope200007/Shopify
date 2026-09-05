@@ -118,3 +118,53 @@ un producto estrella que justifique el coste del modelo.
 Quedan dos ficheros de prueba en el tema **en borrador**:
 `assets/prueba-permiso.txt` y `assets/prueba-url.json`. Son inertes, pero
 conviene borrarlos desde el admin: `themeFilesDelete` está bloqueado en el conector.
+
+---
+
+# Tipografía serif y el bloque gris (5 sept 2026)
+
+## El bloque gris de la camiseta
+
+Era el área de multimedia de `featured-product`. Ese bloque **no coge la imagen
+del producto solo**: tiene un `image_picker` propio y, vacío, Shopify pinta su
+marcador (la camiseta doblada). Se subió a Archivos la foto del labrador con el
+albornoz y se asignó como `shopify://shop_images/...`. Es una foto distinta de la
+de la galería a propósito, para no repetir imagen.
+
+De paso, dos rechazos útiles de Shopify: los bloques internos de
+`_featured-product` (título, precio, galería) **no se pueden declarar** en la
+plantilla, los gestiona el tema. Solo `media` es configurable.
+
+## Tipografía
+
+Del prompt de dirección de arte, lo que sí aplica a esta tienda:
+
+- **Titulares en serif** (Playfair Display) sobre cuerpo en sans (Inter). Da la
+  autoridad que pedía el encargo sin tocar la paleta.
+- H1 de 56 a 48, H2 de 40 a 36, H3 de 28 a 26: la serif pesa más ópticamente que
+  la Inter y a 56 px se comía la pantalla.
+- Interletrado de titulares a `heading-normal`: el `heading-tight` estaba pensado
+  para una sans geométrica y en serif apelmazaba.
+- Las etiquetas de oferta pasan de la fuente de titular a la de acento: una
+  serif en mayúsculas dentro de una píldora pequeña se lee mal.
+
+## Lo del encargo que NO se aplica, y por qué
+
+El prompt pide una identidad de **marca de lujo**. Esta tienda vende accesorios
+para perro de 10 a 40 € comprados en CJ. Hay tres puntos que serían un error:
+
+- **"Colecciones de Autor", manifiesto de marca, apariciones en prensa.** No
+  existen. Inventarlas es exactamente la prueba social falsa que
+  `designing-converting-landings` señala como motivo de cierre de tiendas y
+  bloqueo de cuentas publicitarias.
+- **Paleta fría de blanco alabastro, negro ónix y grises.** La actual (crema,
+  verde profundo, terracota) es cálida y encaja con producto para animales. El
+  gris frío de lujo silencioso funciona en joyería y moda; en una tienda de
+  perros lee a clínica.
+- **Headless o CMS empresarial.** Para 25 referencias, cero ventas y un plan
+  Advanced que ya cuesta 352 €/mes de más, es la decisión técnica equivocada.
+  Shopify con el tema actual escala hasta miles de pedidos sin tocar nada.
+
+El resto del encargo ya estaba hecho: descripciones de producto con storytelling
+y detalle técnico, checkout de un paso (Shopify lo es de serie) y sellos de
+seguridad reales.
