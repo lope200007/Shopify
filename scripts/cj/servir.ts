@@ -3,16 +3,23 @@
  *
  *   npm run servir              # simulacion: no toca nada, solo enseña que haria
  *   npm run servir -- --sandbox --ejecutar   # pedido de prueba real en CJ, sin cobro
- *   npm run servir -- --ejecutar             # DE VERDAD: crea, paga y marca servido
+ *   npm run servir -- --ejecutar             # DE VERDAD: crea el pedido y da el enlace de pago
+ *   npm run servir -- --ejecutar --saldo     # igual, pero cobrando del monedero de CJ
  *
  * QUE HACE, POR ORDEN:
  *   1. Lee de Shopify los pedidos pagados y sin servir
  *   2. Traduce cada SKU al vid interno de CJ (scripts/cj/mapa.js)
  *   3. Elige el transporte mas barato con freightCalculate
- *   4. Crea el pedido en CJ con payType=2 (cobro contra saldo)
- *   5. Paga con el saldo del monedero
+ *   4. Crea el pedido en CJ
+ *   5. Segun el modo de pago:
+ *        'enlace' (por defecto) -> imprime el enlace de pago de CJ y espera
+ *                                  a que lo pagues tu con tarjeta
+ *        'saldo'  (--saldo)     -> lo cobra del monedero sin intervencion
  *   6. Cuando CJ da el numero de seguimiento, marca el pedido servido en
  *      Shopify y el cliente recibe el correo
+ *
+ * VOLVER A EJECUTARLO ES SEGURO: si el pedido ya existe en CJ no se vuelve a
+ * crear, solo se recuerda el enlace pendiente o se recoge el seguimiento.
  *
  * POR QUE HAY UN LIBRO DE REGISTRO:
  * Sin el, dos ejecuciones seguidas crearian el pedido dos veces en CJ y se
@@ -42,6 +49,51 @@ const PAIS_ORIGEN = 'CN';
 const IOSS_TIPO = 3;
 const IOSS_NUMERO = '';
 
+/**
+ * COMO SE PAGA CADA PEDIDO A CJ
+ *
+ *   'enlace' (payType 1) -> CJ devuelve un enlace de pago al crear el pedido.
+ *                           Lo pagas tu con tarjeta. No hace falta saldo.
+ *   'saldo'  (payType 2) -> se descuenta del monedero de CJ. Sin intervencion,
+ *                           pero exige tener dinero cargado por adelantado.
+ *
+ * Arrancamos en 'enlace' porque el monedero de CJ tiene minimos de recarga
+ * altos y el dinero que entra ahi cuesta sacarlo. Con pocos pedidos al dia
+ * pagar uno a uno cuesta un minuto y no inmoviliza nada.
+ *
+ * Cuando el volumen haga que ese minuto moleste: recargar el monedero y
+ * ejecutar con --saldo (o cambiar este valor por defecto).
+ */
+type ModoPago = 'enlace' | 'saldo';
+const MODO_POR_DEFECTO: ModoPago = 'enlace';
+
+/**
+ * CJ no documenta con que nombre devuelve el enlace de pago, asi que se
+ * buscan varios y, si no aparece ninguno, se rastrea cualquier valor del
+ * objeto que parezca una URL. Si aun asi no hay nada, se enseña la respuesta
+ * entera: mejor eso que dejar al operador sin saber donde pagar.
+ */
+const CLAVES_ENLACE = ['payUrl', 'payLink', 'paymentUrl', 'paymentLink', 'url', 'link'];
+
+function buscarEnlacePago(respuesta: unknown): string | null {
+  if (respuesta === null || typeof respuesta !== 'object') return null;
+  const obj = respuesta as Record<string, unknown>;
+
+  for (const clave of CLAVES_ENLACE) {
+    const v = obj[clave];
+    if (typeof v === 'string' && v.startsWith('http')) return v;
+  }
+  // Rastreo en profundidad por si viene anidado.
+  for (const v of Object.values(obj)) {
+    if (typeof v === 'string' && v.startsWith('http')) return v;
+    if (v && typeof v === 'object') {
+      const hallado = buscarEnlacePago(v);
+      if (hallado) return hallado;
+    }
+  }
+  return null;
+}
+
 interface Registro {
   pedidoShopify: string;
   cjOrderId: string;
@@ -49,6 +101,9 @@ interface Registro {
   pagado: boolean;
   servidoEnShopify: boolean;
   sandbox: boolean;
+  modoPago: ModoPago;
+  /** Solo en modo 'enlace': donde pagar este pedido. */
+  enlacePago?: string;
 }
 
 function leerLibro(): Record<string, Registro> {
@@ -136,7 +191,13 @@ function validar(cuerpo: Record<string, any>): void {
   if (cuerpo.orderNumber.length > 50) throw new Error('orderNumber pasa de 50 caracteres.');
 }
 
-function payload(pedido: PedidoPorServir, productos: any[], transporte: string, sandbox: boolean) {
+function payload(
+  pedido: PedidoPorServir,
+  productos: any[],
+  transporte: string,
+  sandbox: boolean,
+  modo: ModoPago
+) {
   const e = pedido.envio!;
   return {
     orderNumber: pedido.name, // el mismo numero que ve el cliente: #1001
@@ -152,7 +213,7 @@ function payload(pedido: PedidoPorServir, productos: any[], transporte: string, 
     email: pedido.email ?? '',
     logisticName: transporte,
     fromCountryCode: PAIS_ORIGEN,
-    payType: 2, // cobro contra saldo del monedero
+    payType: modo === 'saldo' ? 2 : 1, // 2 = monedero, 1 = enlace de pago
     iossType: IOSS_TIPO,
     iossNumber: IOSS_NUMERO,
     platform: 'shopify',
@@ -165,6 +226,11 @@ async function main(): Promise<void> {
   const args = process.argv.slice(2);
   const ejecutar = args.includes('--ejecutar');
   const sandbox = args.includes('--sandbox');
+  const modo: ModoPago = args.includes('--saldo')
+    ? 'saldo'
+    : args.includes('--enlace')
+      ? 'enlace'
+      : MODO_POR_DEFECTO;
 
   const libro = leerLibro();
   const pedidos = await pedidosPorServir(20);
@@ -179,8 +245,12 @@ async function main(): Promise<void> {
       (ejecutar ? (sandbox ? '  MODO SANDBOX (sin cobro real).' : '  MODO REAL.') : '  Simulacion: no se toca nada.')
   );
 
-  const saldo = await cj.pedir('/shopping/pay/getBalance');
-  console.log(`Saldo en CJ: ${saldo.amount} (retenido ${saldo.freezeAmount})\n`);
+  if (modo === 'saldo') {
+    const saldo = await cj.pedir('/shopping/pay/getBalance');
+    console.log(`Modo saldo. Monedero CJ: ${saldo.amount} (retenido ${saldo.freezeAmount})\n`);
+  } else {
+    console.log('Modo enlace de pago: CJ devuelve un enlace por pedido y lo pagas tu.\n');
+  }
 
   for (const pedido of pedidos) {
     console.log(`--- ${pedido.name}  (${pedido.createdAt.slice(0, 10)})`);
@@ -222,7 +292,7 @@ async function main(): Promise<void> {
     console.log(`    ${pedido.envio.ciudad} (${pedido.envio.codigoPais})`);
     console.log(`    ${transporte.nombre}: ${transporte.precio} USD, ${transporte.plazo} dias`);
 
-    const cuerpo = payload(pedido, productos, transporte.nombre, sandbox);
+    const cuerpo = payload(pedido, productos, transporte.nombre, sandbox, modo);
     try {
       validar(cuerpo);
     } catch (err) {
@@ -249,6 +319,8 @@ async function main(): Promise<void> {
       if (!cjOrderId) throw new Error(`CJ no devolvio orderId: ${JSON.stringify(creado).slice(0, 200)}`);
       console.log(`    creado en CJ: ${cjOrderId}`);
 
+      const enlacePago = modo === 'enlace' ? buscarEnlacePago(creado) : undefined;
+
       libro[pedido.name] = {
         pedidoShopify: pedido.name,
         cjOrderId,
@@ -256,11 +328,32 @@ async function main(): Promise<void> {
         pagado: false,
         servidoEnShopify: false,
         sandbox,
+        modoPago: modo,
+        ...(enlacePago ? { enlacePago } : {}),
       };
       guardarLibro(libro); // se guarda ANTES de pagar: si algo peta, no se duplica
+
+      if (modo === 'enlace') {
+        if (enlacePago) {
+          console.log(`\n    >>> PAGA AQUI:  ${enlacePago}\n`);
+        } else {
+          // No adivinamos: si no encontramos el enlace, enseñamos lo que dijo CJ
+          // para que se pueda pagar a mano desde el panel.
+          console.log('    CJ no devolvio ningun enlace reconocible. Respuesta completa:');
+          console.log(
+            JSON.stringify(creado, null, 1)
+              .split('\n')
+              .map((l) => '    ' + l)
+              .join('\n')
+          );
+          console.log(`    Puedes pagarlo a mano buscando el pedido ${cjOrderId} en CJ.`);
+        }
+      }
+    } else if (modo === 'enlace' && yaHecho?.enlacePago && !yaHecho.pagado) {
+      console.log(`    Pendiente de pago:  ${yaHecho.enlacePago}`);
     }
 
-    if (!libro[pedido.name].pagado) {
+    if (modo === 'saldo' && !libro[pedido.name].pagado) {
       try {
         await cj.pedir('/shopping/pay/payBalance', null, { orderId: cjOrderId });
         libro[pedido.name].pagado = true;
@@ -277,8 +370,18 @@ async function main(): Promise<void> {
     const seguimiento = detalle.trackNumber || detalle.trackingNumber;
 
     if (!seguimiento) {
-      console.log('    Aun sin numero de seguimiento. Vuelve a ejecutar mas tarde.');
+      console.log(
+        modo === 'enlace' && !libro[pedido.name].pagado
+          ? '    Aun sin seguimiento: CJ no lo da hasta que el pedido esta pagado.'
+          : '    Aun sin numero de seguimiento. Vuelve a ejecutar mas tarde.'
+      );
       continue;
+    }
+
+    // Si hay seguimiento es que CJ ya cobro, aunque el pago fuera por enlace.
+    if (!libro[pedido.name].pagado) {
+      libro[pedido.name].pagado = true;
+      guardarLibro(libro);
     }
 
     await marcarServido(pedido.fulfillmentOrderId, {

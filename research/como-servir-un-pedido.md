@@ -129,3 +129,34 @@ El script lo dice en vez de fallar en silencio.
    ha llegado a ejecutar**, ni siquiera en sandbox: hacerlo requiere aprobacion
    para escribir en un servicio externo. La primera vez, lanzarlo con
    `--sandbox --ejecutar` y revisar el resultado antes de quitar `--sandbox`.
+
+
+## Como se paga cada pedido (actualizado 2026-09-05)
+
+Por defecto el script **no usa el monedero de CJ**. Crea el pedido con
+`payType: 1` y CJ devuelve un **enlace de pago** que el script imprime:
+
+    >>> PAGA AQUI:  https://...
+
+Se paga con tarjeta en ese enlace. En cuanto CJ cobra, la siguiente
+ejecucion recoge el numero de seguimiento y marca el pedido servido en
+Shopify, que avisa al cliente.
+
+**Por que asi y no con saldo.** El monedero de CJ tiene minimos de recarga
+altos (el tramo de transferencia empieza en 5.000 USD) y el dinero que
+entra ahi cuesta sacarlo. Con pocos pedidos al dia, pagar uno a uno cuesta
+un minuto y no inmoviliza nada.
+
+**Cuando pasar a saldo.** Cuando ese minuto por pedido moleste: recargar el
+monedero y ejecutar `npm run servir -- --ejecutar --saldo`, o cambiar
+`MODO_POR_DEFECTO` en el script.
+
+**Volver a ejecutarlo es seguro.** Si el pedido ya existe en CJ no se crea
+otra vez: el libro `.cj-pedidos.json` lo impide. Si esta pendiente de pago,
+vuelve a imprimir el enlace.
+
+**Si CJ no devuelve enlace.** No esta documentado con que nombre lo manda,
+asi que el script prueba varias claves y despues rastrea cualquier URL de
+la respuesta. Si aun asi no encuentra ninguna, imprime la respuesta entera
+de CJ y el id del pedido para poder pagarlo a mano desde el panel. No se
+inventa una URL.
