@@ -131,7 +131,7 @@ El script lo dice en vez de fallar en silencio.
    `--sandbox --ejecutar` y revisar el resultado antes de quitar `--sandbox`.
 
 
-## Como se paga cada pedido (actualizado 2026-09-05)
+## Como se paga cada pedido (obsoleto, ver abajo)
 
 Por defecto el script **no usa el monedero de CJ**. Crea el pedido con
 `payType: 1` y CJ devuelve un **enlace de pago** que el script imprime:
@@ -160,3 +160,53 @@ asi que el script prueba varias claves y despues rastrea cualquier URL de
 la respuesta. Si aun asi no encuentra ninguna, imprime la respuesta entera
 de CJ y el id del pedido para poder pagarlo a mano desde el panel. No se
 inventa una URL.
+
+
+## Pago automatico (2026-09-05, definitivo)
+
+El modo por defecto es **`auto`** y funciona asi, pedido a pedido:
+
+1. Mira el saldo del monedero de CJ
+2. Estima lo que cuesta el pedido: mercancia + porte real, mas un 25% de
+   colchon porque CJ puede ajustar el importe al cobrar
+3. **Si el saldo llega** -> crea el pedido con `payType 2` y lo paga solo.
+   Nadie toca nada.
+4. **Si no llega** -> crea el pedido con `payType 1` e imprime el enlace de
+   pago para pagarlo con tarjeta
+
+La decision se toma **antes** de crear el pedido a proposito: `payType` se
+fija al crearlo y ya no se puede cambiar.
+
+Cuando un articulo no tiene precio conocido (los declarados a mano en
+`mapa.js`), se supone que cuesta 25 USD. Es deliberadamente alto: preferimos
+mandar de mas a enlace de pago que quedarnos sin saldo a mitad de un cobro y
+dejar el pedido creado y sin pagar.
+
+### Por que el enlace no se puede pagar solo
+
+Es una pasarela que pide tarjeta, y la PSD2 obliga a autenticacion reforzada
+en cada pago: el banco pediria confirmacion en el movil igualmente.
+Automatizarlo exigiria guardar la tarjeta y teclearla con un robot, seria
+fragil y probablemente iria contra los terminos de CJ.
+
+**El saldo prepagado es el unico camino a un cobro sin intervencion.** Por
+eso el modo `auto` existe: mientras haya saldo va solo, y cuando se acaba
+degrada a enlace en vez de atascarse.
+
+### Para que sea automatico de verdad hace falta ejecutarlo solo
+
+El script es idempotente (el libro `.cj-pedidos.json` impide crear dos veces
+el mismo pedido), asi que se puede lanzar cada pocos minutos sin riesgo:
+
+    */15 * * * * cd /ruta/a/shopify && npm run servir -- --ejecutar >> servir.log 2>&1
+
+Hace falta una maquina encendida. Si no la hay, ejecutarlo a mano una o dos
+veces al dia tambien vale mientras el volumen sea bajo.
+
+### Cuanto recargar
+
+Avisa cuando el saldo baja de 60 USD. Con un coste medio de ~15 USD por
+pedido, recargar 165-220 USD cubre los primeros 12-14 pedidos.
+
+**Importante:** el tramo de 5.000 USD que aparece al recargar es el de
+transferencia bancaria. Con tarjeta o PayPal los minimos son mucho menores.

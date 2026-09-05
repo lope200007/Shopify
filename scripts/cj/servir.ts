@@ -1,10 +1,11 @@
 /**
  * Sirve automaticamente en CJ los pedidos pagados y pendientes de Shopify.
  *
- *   npm run servir              # simulacion: no toca nada, solo enseña que haria
+ *   npm run servir                           # simulacion: no toca nada
  *   npm run servir -- --sandbox --ejecutar   # pedido de prueba real en CJ, sin cobro
- *   npm run servir -- --ejecutar             # DE VERDAD: crea el pedido y da el enlace de pago
- *   npm run servir -- --ejecutar --saldo     # igual, pero cobrando del monedero de CJ
+ *   npm run servir -- --ejecutar             # DE VERDAD, en modo automatico
+ *   npm run servir -- --ejecutar --saldo     # fuerza cobro del monedero
+ *   npm run servir -- --ejecutar --enlace    # fuerza enlace de pago
  *
  * QUE HACE, POR ORDEN:
  *   1. Lee de Shopify los pedidos pagados y sin servir
@@ -12,9 +13,10 @@
  *   3. Elige el transporte mas barato con freightCalculate
  *   4. Crea el pedido en CJ
  *   5. Segun el modo de pago:
- *        'enlace' (por defecto) -> imprime el enlace de pago de CJ y espera
- *                                  a que lo pagues tu con tarjeta
- *        'saldo'  (--saldo)     -> lo cobra del monedero sin intervencion
+ *        'auto' (por defecto) -> si el saldo del monedero llega, lo cobra
+ *                                solo; si no, saca enlace de pago
+ *        'saldo'  (--saldo)   -> siempre contra el monedero
+ *        'enlace' (--enlace)  -> siempre enlace de pago
  *   6. Cuando CJ da el numero de seguimiento, marca el pedido servido en
  *      Shopify y el cliente recibe el correo
  *
@@ -64,8 +66,70 @@ const IOSS_NUMERO = '';
  * Cuando el volumen haga que ese minuto moleste: recargar el monedero y
  * ejecutar con --saldo (o cambiar este valor por defecto).
  */
-type ModoPago = 'enlace' | 'saldo';
-const MODO_POR_DEFECTO: ModoPago = 'enlace';
+type ModoPago = 'enlace' | 'saldo' | 'auto';
+const MODO_POR_DEFECTO: ModoPago = 'auto';
+
+/**
+ * MODO 'auto': lo mejor de los dos.
+ *
+ * Antes de crear cada pedido se mira el saldo del monedero. Si llega para
+ * pagarlo, se crea con payType 2 y se cobra solo, sin que nadie toque nada.
+ * Si no llega, se crea con payType 1 y se imprime el enlace de pago.
+ *
+ * La decision se toma ANTES de crear el pedido a proposito: payType se fija
+ * al crearlo y despues no se puede cambiar. Crear primero y ver luego como
+ * pagarlo dejaria pedidos en un limbo.
+ *
+ * Por que no se puede automatizar el pago por enlace: es una pasarela que
+ * pide tarjeta, y la PSD2 obliga a autenticacion reforzada en cada pago.
+ * El saldo prepagado es el unico mecanismo que permite cobrar sin confirmar
+ * uno por uno.
+ */
+
+/**
+ * Margen de seguridad sobre el coste estimado, en tanto por uno.
+ *
+ * El coste real lo fija CJ al cobrar y puede subir un poco (recargos de
+ * combustible, ajuste de peso). Si nos quedamos justos, payBalance falla y
+ * el pedido se queda creado y sin pagar, que es el peor sitio donde dejarlo.
+ */
+const COLCHON = 0.25;
+
+/** Cuando no sabemos el precio de un articulo, cuanto suponemos que cuesta. */
+const COSTE_DESCONOCIDO_USD = 25;
+
+/** Avisa cuando el saldo baja de esto, para recargar antes de quedarse seco. */
+const SALDO_MINIMO_USD = 60;
+
+interface Estimacion {
+  total: number;
+  /** false si algun articulo no tenia precio conocido y se ha supuesto. */
+  exacto: boolean;
+}
+
+/**
+ * Cuanto va a costar este pedido en CJ, mercancia mas porte.
+ *
+ * Los articulos que vienen del volcado de CJ traen precio. Los que se
+ * declararon a mano en mapa.js no, y para esos se supone un coste alto:
+ * mas vale mandar a pagar por enlace de mas que quedarse sin saldo a medias.
+ */
+function estimarCoste(
+  articulos: Array<{ vid: string; quantity: number; precio?: number }>,
+  porte: number
+): Estimacion {
+  let total = porte;
+  let exacto = true;
+  for (const a of articulos) {
+    if (typeof a.precio === 'number' && !Number.isNaN(a.precio)) {
+      total += a.precio * a.quantity;
+    } else {
+      total += COSTE_DESCONOCIDO_USD * a.quantity;
+      exacto = false;
+    }
+  }
+  return { total: total * (1 + COLCHON), exacto };
+}
 
 /**
  * CJ no documenta con que nombre devuelve el enlace de pago, asi que se
@@ -119,8 +183,10 @@ function guardarLibro(libro: Record<string, Registro>): void {
 }
 
 /** Traduce las lineas del pedido a productos de CJ. Lanza si algo no mapea. */
-function lineasACj(pedido: PedidoPorServir): Array<{ vid: string; quantity: number; storeLineItemId: string }> {
-  const salida: Array<{ vid: string; quantity: number; storeLineItemId: string }> = [];
+function lineasACj(
+  pedido: PedidoPorServir
+): Array<{ vid: string; quantity: number; storeLineItemId: string; precio?: number }> {
+  const salida: Array<{ vid: string; quantity: number; storeLineItemId: string; precio?: number }> = [];
 
   for (const linea of pedido.lineas) {
     if (!linea.sku) throw new Error(`"${linea.title}" no tiene SKU; no se puede servir.`);
@@ -132,7 +198,14 @@ function lineasACj(pedido: PedidoPorServir): Array<{ vid: string; quantity: numb
     const partes = r.pack ? r.pack : r;
     for (const p of partes) {
       if (!p.vid) throw new Error(`El SKU ${linea.sku} resuelve a un componente sin vid.`);
-      salida.push({ vid: p.vid, quantity: linea.quantity, storeLineItemId: linea.id });
+      // El precio solo viene en los articulos volcados de CJ; los declarados
+      // a mano en mapa.js no lo tienen y quedan como undefined a proposito.
+      salida.push({
+        vid: p.vid,
+        quantity: linea.quantity,
+        storeLineItemId: linea.id,
+        ...(typeof p.precio === 'number' ? { precio: p.precio } : {}),
+      });
     }
   }
 
@@ -232,6 +305,13 @@ async function main(): Promise<void> {
       ? 'enlace'
       : MODO_POR_DEFECTO;
 
+  /**
+   * Saldo que nos queda por gastar en esta pasada. Se descuenta a mano segun
+   * vamos pagando pedidos: preguntarle el saldo a CJ despues de cada pago
+   * gastaria una peticion por pedido y CJ solo admite una por segundo.
+   */
+  let saldoDisponible = 0;
+
   const libro = leerLibro();
   const pedidos = await pedidosPorServir(20);
 
@@ -245,11 +325,22 @@ async function main(): Promise<void> {
       (ejecutar ? (sandbox ? '  MODO SANDBOX (sin cobro real).' : '  MODO REAL.') : '  Simulacion: no se toca nada.')
   );
 
-  if (modo === 'saldo') {
-    const saldo = await cj.pedir('/shopping/pay/getBalance');
-    console.log(`Modo saldo. Monedero CJ: ${saldo.amount} (retenido ${saldo.freezeAmount})\n`);
+  if (modo === 'enlace') {
+    console.log('Modo enlace: CJ devuelve un enlace por pedido y lo pagas tu.\n');
   } else {
-    console.log('Modo enlace de pago: CJ devuelve un enlace por pedido y lo pagas tu.\n');
+    const saldo = await cj.pedir('/shopping/pay/getBalance');
+    saldoDisponible = Number(saldo.amount) || 0;
+    const etiqueta = modo === 'auto' ? 'Modo automatico' : 'Modo saldo';
+    console.log(`${etiqueta}. Monedero CJ: ${saldoDisponible} USD (retenido ${saldo.freezeAmount})`);
+    if (saldoDisponible < SALDO_MINIMO_USD) {
+      console.log(
+        `AVISO: el saldo esta por debajo de ${SALDO_MINIMO_USD} USD. ` +
+          (modo === 'auto'
+            ? 'Los pedidos que no quepan saldran por enlace de pago.'
+            : 'Recarga o los pedidos no se podran pagar.')
+      );
+    }
+    console.log('');
   }
 
   for (const pedido of pedidos) {
@@ -292,7 +383,19 @@ async function main(): Promise<void> {
     console.log(`    ${pedido.envio.ciudad} (${pedido.envio.codigoPais})`);
     console.log(`    ${transporte.nombre}: ${transporte.precio} USD, ${transporte.plazo} dias`);
 
-    const cuerpo = payload(pedido, productos, transporte.nombre, sandbox, modo);
+    // El modo efectivo de ESTE pedido. En 'auto' depende de si el saldo llega.
+    let modoPedido: ModoPago = modo === 'auto' ? 'enlace' : modo;
+    if (modo === 'auto') {
+      const est = estimarCoste(productos, transporte.precio);
+      const cabe = saldoDisponible >= est.total;
+      modoPedido = cabe ? 'saldo' : 'enlace';
+      console.log(
+        `    coste estimado ${est.total.toFixed(2)} USD${est.exacto ? '' : ' (aproximado)'}` +
+          `, saldo ${saldoDisponible.toFixed(2)} -> ${cabe ? 'se paga solo' : 'enlace de pago'}`
+      );
+    }
+
+    const cuerpo = payload(pedido, productos, transporte.nombre, sandbox, modoPedido);
     try {
       validar(cuerpo);
     } catch (err) {
@@ -319,7 +422,7 @@ async function main(): Promise<void> {
       if (!cjOrderId) throw new Error(`CJ no devolvio orderId: ${JSON.stringify(creado).slice(0, 200)}`);
       console.log(`    creado en CJ: ${cjOrderId}`);
 
-      const enlacePago = modo === 'enlace' ? buscarEnlacePago(creado) : undefined;
+      const enlacePago = modoPedido === 'enlace' ? buscarEnlacePago(creado) : undefined;
 
       libro[pedido.name] = {
         pedidoShopify: pedido.name,
@@ -328,12 +431,12 @@ async function main(): Promise<void> {
         pagado: false,
         servidoEnShopify: false,
         sandbox,
-        modoPago: modo,
+        modoPago: modoPedido,
         ...(enlacePago ? { enlacePago } : {}),
       };
       guardarLibro(libro); // se guarda ANTES de pagar: si algo peta, no se duplica
 
-      if (modo === 'enlace') {
+      if (modoPedido === 'enlace') {
         if (enlacePago) {
           console.log(`\n    >>> PAGA AQUI:  ${enlacePago}\n`);
         } else {
@@ -349,15 +452,18 @@ async function main(): Promise<void> {
           console.log(`    Puedes pagarlo a mano buscando el pedido ${cjOrderId} en CJ.`);
         }
       }
-    } else if (modo === 'enlace' && yaHecho?.enlacePago && !yaHecho.pagado) {
+    } else if (yaHecho?.enlacePago && !yaHecho.pagado) {
       console.log(`    Pendiente de pago:  ${yaHecho.enlacePago}`);
     }
 
-    if (modo === 'saldo' && !libro[pedido.name].pagado) {
+    if (libro[pedido.name].modoPago === 'saldo' && !libro[pedido.name].pagado) {
       try {
         await cj.pedir('/shopping/pay/payBalance', null, { orderId: cjOrderId });
         libro[pedido.name].pagado = true;
         guardarLibro(libro);
+        // Se descuenta lo estimado, no lo real: CJ no devuelve el importe
+        // cobrado aqui. Con el colchon del 25% quedamos del lado seguro.
+        saldoDisponible -= estimarCoste(productos, transporte.precio).total;
         console.log('    pagado con el saldo');
       } catch (err) {
         console.log(`    NO SE PUDO PAGAR: ${err instanceof Error ? err.message : err}`);
@@ -371,7 +477,7 @@ async function main(): Promise<void> {
 
     if (!seguimiento) {
       console.log(
-        modo === 'enlace' && !libro[pedido.name].pagado
+        libro[pedido.name].modoPago === 'enlace' && !libro[pedido.name].pagado
           ? '    Aun sin seguimiento: CJ no lo da hasta que el pedido esta pagado.'
           : '    Aun sin numero de seguimiento. Vuelve a ejecutar mas tarde.'
       );
