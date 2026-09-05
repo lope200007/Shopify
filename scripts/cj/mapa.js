@@ -49,14 +49,26 @@ const manual = {
   'CJWJ01315-50-NAR': '5F97E480-EB45-4F02-A5E5-21A53034426D',
 };
 
-// El pack son tres articulos distintos en un solo envio.
-const packs = { 'PACK-BANO-LLUVIA': ['CJPT224333910JQ', 'CJYD280148202BY', 'CJGY137221901AZ'] };
+// Un pack son varios articulos distintos que salen en un solo envio. Agrupar
+// abarata el porte, y de ahi que el pack tenga mejor margen que sus piezas.
+const packs = {
+  'PACK-BANO-LLUVIA': ['CJPT224333910JQ', 'CJYD280148202BY', 'CJGY137221901AZ'],
+  'PACK-ASEO-CASA': ['CJGY200835-VER', 'CJMY206336-BLA', 'CJYD233200-1U'],
+  'PACK-COMER-DESPACIO': ['CJMY191848-3C', 'CJFT303204901AZ', 'CJYD196025-ROJ'],
+  'PACK-CACHORRO': ['CJGY00115-74-AZU', 'CJGY00196-NEG', 'CJWJ01315-25-VER'],
+};
+
+/** Una pieza suelta, venga del volcado de CJ o declarada a mano. */
+function pieza(sku) {
+  if (indice[sku]) return indice[sku];
+  if (manual[sku]) return { vid: manual[sku], cjSku: sku };
+  return { sku, error: 'sin mapeo' };
+}
 
 function resolver(sku) {
-  if (packs[sku]) return { pack: packs[sku].map((s) => indice[s] || { sku: s, error: 'sin mapeo' }) };
-  if (indice[sku]) return [indice[sku]];
-  if (manual[sku]) return [{ vid: manual[sku], cjSku: sku }];
-  return null;
+  if (packs[sku]) return { pack: packs[sku].map(pieza) };
+  const p = pieza(sku);
+  return p.error ? null : [p];
 }
 
 module.exports = { resolver, indice, manual, packs };
