@@ -1,0 +1,13 @@
+Pegar en: Ajustes -> Envíos y entregas -> Perfil general -> zona España
+-> tarifa "Estándar" -> Descripción
+
+    Entrega estimada: 10 a 20 días naturales
+
+Hacerlo en las DOS tarifas de la zona España (la de 6,99 € y la de 0 €).
+
+Por qué: el checkout no muestra hoy ningún plazo (description = null en la
+API), pero la portada dice "El plazo de entrega real lo ves antes de pagar".
+Hasta que se rellene, esa frase de la portada es falsa.
+
+No se puede hacer por API: la tarifa usa el sistema nuevo de condiciones
+de rango y deliveryProfileUpdate lo rechaza con "usa la API actualizada".

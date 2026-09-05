@@ -1,0 +1,12 @@
+Pegar en: Canal de ventas -> Tienda online -> Preferencias
+(no hay API para esto, hay que hacerlo a mano)
+
+TÍTULO DE LA PÁGINA (55 caracteres):
+Accesorios para perros que resuelven algo | Prestige
+
+META DESCRIPCIÓN (151 caracteres):
+Comederos lentos, higiene, lluvia y coche. Cada ficha dice para qué perro sirve y para cuál no. Envío gratis desde 55 €, 14 días para devolver.
+
+Por qué: ahora mismo el título y la descripción de la portada son
+literalmente la palabra "Prestige". Es la etiqueta más valiosa de la web
+y no dice ni que se venden accesorios ni que son para perros.
