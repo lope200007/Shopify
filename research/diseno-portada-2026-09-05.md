@@ -47,43 +47,74 @@ El fichero es la portada actual **exacta** (verificado por hash contra el tema)
 más esas dos secciones. Los esquemas de `featured-product` y `media-with-content`
 se leyeron del propio tema, no se supusieron.
 
-## Por qué no está aplicado
+## Aplicado y verificado
 
-El conector no puede transportar el fichero:
+Está **subido y funcionando en el tema en borrador** `Mascotas - plazos corregidos`,
+comprobado con capturas reales de la previsualización a 390 px y 1440 px.
 
-- **Por URL**: `themeFilesUpsert` con `body.type: URL` responde sin errores pero
-  **no aplica nada** (comprobado dos veces, checksum del tema sin cambiar), tanto
-  con la URL firmada de staging como con la del CDN de Shopify.
-- **Por texto**: los 18 KB del fichero **se truncan** en la llamada.
-- Reducirlo a 10,8 KB exigiría quitar ajustes suponiendo cuáles son los valores
-  por defecto del tema. Eso es adivinar, y en este proyecto adivinar esquemas ha
-  salido caro.
+Fichero final: `theme/index.portada-nueva.json` (7.369 bytes, idéntico byte a byte
+al que Shopify aceptó).
 
-## Cómo aplicarlo
+### Cómo se consiguió subirlo
 
-**Opción A — Shopify CLI** (sin límite de tamaño, es la vía natural):
+Los dos primeros intentos fallaron y merece la pena dejarlo escrito:
 
-```bash
-shopify theme push --theme 203947442524 --only templates/index.json
-```
+- **Por URL** (`body.type: URL`): responde sin errores pero **no aplica nada**.
+  Probado con la URL firmada de staging y con la del CDN de Shopify; el checksum
+  del tema no cambiaba. Falla en silencio.
+- **Por texto con el fichero completo** (18 KB): la llamada **se trunca**. También
+  se truncó a 11 KB. El JSON dentro de JSON se infla demasiado.
+- **Lo que sí funciona**: reescribir la plantilla apoyándose en los valores por
+  defecto del tema. 7,4 KB entran sin problema.
 
-desde la carpeta del tema, con `theme/index.nuevo.json` renombrado a
-`templates/index.json`.
+### Lo que costó ese atajo, y cómo se arregló
 
-**Opción B — editor de temas**, dos minutos:
+Aligerar rompió cosas, y solo se vio **mirando las capturas**:
 
-1. Tienda online → Temas → *Mascotas - plazos corregidos* → Personalizar
-2. **Añadir sección** → *Producto destacado* → arrastrar justo debajo del hero →
-   elegir *Pack baño y lluvia*
-3. **Añadir sección** → *Cita destacada* al final → titular
-   "Empieza por el paseo de esta tarde", texto y botón "Ver todo lo que vendemos"
-   apuntando a `/collections/all`
-4. Guardar y **Publicar** (esto publica también la corrección de
-   "Enviamos desde Europa", que sigue pendiente)
+1. La rejilla de productos **desapareció entera**. Los bloques estáticos
+   `_product-card` y `_collection-card` no son opcionales: sin ellos no renderiza.
+2. Las tarjetas de categoría salían con el texto cortado y superpuesto.
+3. Shopify rechazó un intento con un error útil: los bloques estáticos deben
+   llevar **los identificadores exactos del preset**, no unos inventados.
+
+Es la misma lección de todo el proyecto: leer el esquema, y comprobar en vez de
+suponer. La diferencia es que aquí el bucle capturar → mirar → corregir lo
+resolvió en tres iteraciones.
+
+### De paso, dos defectos arreglados
+
+- **El título duplicado de las tarjetas de categoría** (lo señalé en la revisión
+  de diseño): la imagen de cada colección ya lleva el nombre escrito, así que se
+  quitó el bloque `collection-title`.
+- **Lluvia y barro** salía como tarjeta rota porque la colección no tiene imagen.
+  Fuera de la portada; sigue en el menú.
+
+### Lo que queda cosmético
+
+Entre el hero y el producto destacado queda un bloque gris vacío: es el área de
+medios de `featured-product`, que no tiene bloque definido. Definirlo exige los
+identificadores exactos del preset y un intento falló; se puede ajustar desde el
+editor de temas en un minuto.
+
+## Para publicarlo
+
+Tienda online → Temas → **Mascotas - plazos corregidos** → **Publicar**.
+
+Eso publica de una vez la portada nueva **y** la corrección del
+"Enviamos desde Europa", que sigue viva en la portada actual.
+
+## Sobre el 3D
+
+La skill `web-3d-graphics` dice que para un producto suelto lo correcto es
+`<model-viewer>`, que es exactamente lo que Shopify usa de forma nativa con sus
+medios 3D y realidad aumentada. **No aplica aquí todavía**: CJ solo entrega
+fotos, no hay modelos GLB, y encargarlos para artículos de 20 € con 10 € de
+margen no se paga. Montar Three.js en la portada además rompería la regla de
+`designing-converting-landings`: *speed is conversion*. El 3D entra cuando haya
+un producto estrella que justifique el coste del modelo.
 
 ## Pendiente de limpiar
 
 Quedan dos ficheros de prueba en el tema **en borrador**:
-`assets/prueba-permiso.txt` y `assets/prueba-url.json`. Son inertes y no los
-referencia nada, pero conviene borrarlos desde el admin: `themeFilesDelete` está
-bloqueado por seguridad en el conector.
+`assets/prueba-permiso.txt` y `assets/prueba-url.json`. Son inertes, pero
+conviene borrarlos desde el admin: `themeFilesDelete` está bloqueado en el conector.
