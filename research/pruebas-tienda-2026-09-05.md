@@ -122,3 +122,47 @@ Las zonas sobran o falta el mercado. Decidir una de las dos:
 - **La direccion fiscal es "Calle Me Falta un Tornillo 3"**, Arroyo de la
   Encomienda. Va en las facturas y en la verificacion de Shopify
   Payments: conviene confirmar que es la direccion registrada real.
+
+## Repaso del 5 de septiembre por la tarde
+
+### Resuelto por el usuario
+- **Tema publicado.** "Mascotas - plazos corregidos" es ya el principal. La
+  portada no dice "Enviamos desde Europa": comprobado en el HTML en vivo.
+
+### Resuelto ahora
+- **`/collections/frontpage` ya no se indexa.** Era una coleccion vacia
+  (0 productos) que estaba en el sitemap: contenido flaco a ojos de Google.
+  Puesto el metafield `seo.hidden = 1`. Verificado: la pagina sirve
+  `<meta name="robots" content="noindex,nofollow">` y el sitemap ha pasado
+  de 7 colecciones a 6.
+
+### Intentado y descartado: el SEO de la portada
+
+La documentacion de Shopify dice que el titulo y la meta descripcion se
+guardan en los metafields `global.title_tag` y `global.description_tag` del
+recurso. Se probo poniendolos en el recurso Shop.
+
+**Se guardaron pero no surten efecto.** Se leyeron de vuelta correctamente y
+la portada siguio sirviendo `<title>Prestige</title>` sin meta descripcion
+tras varias recargas con la cache invalidada.
+
+El tema (`snippets/meta-tags.liquid`) hace:
+
+    <title>{{ page_title }} ...</title>
+    {% if page_description %}<meta name="description" ...>{% endif %}
+
+Es decir, depende de `page_title` y `page_description`, que en la plantilla
+de portada los rellena el ajuste de **Tienda online -> Preferencias**, no el
+metafield del Shop. Ese ajuste no esta expuesto en la Admin API.
+
+Los metafields se han borrado despues para no dejar estado inerte que
+confunda a quien lea esto luego.
+
+**Conclusion: el SEO de la portada solo se puede poner a mano.** Texto listo
+en `research/textos/seo-portada.txt`.
+
+### Sigue pendiente y sigue sin poderse por API
+- Politica de envio (falta el permiso `write_legal_policies`)
+- Plazo de entrega en el checkout (la tarifa usa condiciones de rango y
+  `deliveryProfileUpdate` la rechaza)
+- Formato de moneda (no hay mutacion para `moneyFormat`)
