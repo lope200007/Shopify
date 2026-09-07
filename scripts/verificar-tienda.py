@@ -1,21 +1,19 @@
-import re, subprocess, time, sys, html as H
+import re, subprocess, time, sys, json, html as H
 BASE="https://patitascalidas.com"
 TIENDA="Patitascalidas"   # nombre que el tema anade al final de cada titulo
-PRODUCTOS="""pack-bano-y-lluvia alfombrilla-de-lamer-con-ventosas manopla-de-bano-y-secado
-albornoz-de-secado-para-perro toalla-de-secado-rapido-para-perro manta-impermeable-para-sofa-y-cama
-funda-de-asiento-coche-para-perro comedero-lento-y-alfombrilla-de-lamer boton-grabable-para-perros
-funda-collar-airtag-perro peluche-con-chirriador-para-perro chubasquero-para-perro
-chaleco-antiestres-para-perro cinturon-seguridad-coche-perro bozal-de-nailon-para-perro
-conjunto-arnes-correa-reflectante botella-paseo-3-en-1 cepillo-autolimpiable-pulverizador
-guante-quitapelo-silicona dispensador-gravedad-pienso-agua lima-electrica-unas-perro
-cortapelo-patas-perro cubremaletero-perro-coche comedero-puzzle-tres-capas
-tentetieso-dispensador-premios parque-plegable-perro barrera-seguridad-perro
-escalera-plegable-perro dinosaurio-peluche-perro
-pack-aseo-en-casa-lima-de-unas-cortapelo-y-guante
-pack-comer-despacio-comedero-puzzle-alfombrilla-y-tentetieso
-pack-cachorro-recien-llegado-parque-barrera-y-peluche
-limpiapatas-electrico-perro lanzapelotas-muelle-dispensador
-cama-sofa-perro-funda-desmontable""".split()
+# La lista de productos se saca de la propia tienda: asi los borradores
+# desaparecen solos y los productos nuevos entran sin tocar este archivo.
+def _productos_publicados():
+    p = subprocess.run(["curl","-s",BASE+"/products.json?limit=250"],
+                       capture_output=True, text=True)
+    try:
+        d = json.loads(p.stdout)["products"]
+    except Exception:
+        print("No he podido leer products.json; reviso solo portada y colecciones.")
+        return []
+    return [x["handle"] for x in d]
+
+PRODUCTOS=_productos_publicados()
 CON_BLOQUE={"lima-electrica-unas-perro","cortapelo-patas-perro","guante-quitapelo-silicona",
  "comedero-puzzle-tres-capas","alfombrilla-de-lamer-con-ventosas","tentetieso-dispensador-premios",
  "parque-plegable-perro","barrera-seguridad-perro","dinosaurio-peluche-perro",

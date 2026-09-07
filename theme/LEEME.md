@@ -48,3 +48,33 @@ botón «Ver producto →» sin destino.
 Las escrituras sobre el tema publicado están bloqueadas por seguridad. Se
 duplicó el tema activo, se escribió el arreglo en la copia y se comprobó en
 vista previa antes de tocar nada de la tienda en vivo.
+
+## `snippets/meta-tags.liquid`
+
+Tres arreglos:
+
+1. **`og:image` de reserva.** El tema solo emitía `og:image` si la página tenía
+   imagen propia. Los productos y las colecciones la tienen; la portada y las
+   páginas sueltas, no. Resultado: al pegar el enlace de la tienda en WhatsApp
+   o en redes salía un recuadro vacío. Ahora, cuando no hay imagen propia, se
+   usa `patitascalidas-compartir.jpg` (1200 × 630), que ya estaba en Archivos.
+
+   `file_url` devuelve la ruta **sin protocolo** (`//dominio/...`), y los
+   rastreadores de Facebook y WhatsApp la necesitan absoluta, así que se le
+   antepone `https:` cuando hace falta.
+
+2. **`twitter:image`**, que no existía. La tarjeta declaraba
+   `summary_large_image` sin dar ninguna imagen.
+
+3. **El espacio sobrante del nombre.** El nombre de la tienda está guardado
+   como `"Patitascalidas "`, con un espacio al final. Se limpia con `strip` en
+   `og:site_name` y en el `<title>`.
+
+   **Esto no lo arregla del todo.** El espacio sigue saliendo en el
+   `merchantName` de Apple Pay y en el `Organization.name` de los datos
+   estructurados, y los dos los genera Shopify, no el tema. El arreglo de
+   verdad es quitar el espacio en **Configuración → Datos de la tienda**.
+   Parchear solo el tema sería taparlo.
+
+Además `og:image` pasa de `http:` a `https:`, que es lo que corresponde en un
+dominio que solo sirve por HTTPS.
