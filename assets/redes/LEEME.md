@@ -31,8 +31,14 @@ de un producto que vendemos, y las fuentes y colores reales del tema:
 Playfair Display, Inter, crema `#FBF7F1` y tinta `#23261F`.
 
 ### 1. `portada-compartir-1-marca.jpg` — recomendada
-El nombre **Patitascalidas**, la frase de la portada y el
-envio gratis sobre el crema de la tienda, con la foto a la derecha. Se lee entera a 400 px y dice quien
+Foto generada con nano banana, esta vez limpia: un perro en un salon con luz
+de tarde y la mitad izquierda despejada, sin texto, sin productos y sin
+marcas. Encima se ha puesto **Patitascalidas** en Playfair Display, la frase
+de la portada en Inter y el envio gratis.
+
+Contraste medido del texto sobre la pared: **9,9:1** (WCAG pide 4,5).
+Comprobado que se lee entera a 400 px, que es el tamano al que sale en la
+vista previa de WhatsApp. Se lee entera a 400 px y dice quien
 eres antes de que abran el enlace.
 
 ### 2. `portada-compartir-2-solo-foto.jpg`
