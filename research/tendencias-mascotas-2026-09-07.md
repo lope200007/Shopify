@@ -119,3 +119,41 @@ descarga articular.
    merece coleccion propia.
 3. **Buscar una rampa ligera**. La demanda esta (3.600/mes); lo que falla
    es ese producto concreto, de 3,5 kg.
+
+## Coleccion propia para las camas
+
+Hecho despues de la investigacion, porque la investigacion lo justifica.
+
+La cama entro en "Casa, coche y paseo", que ya eran 16 productos y mezclaba
+camas con cinturones de coche. Con **13.200 busquedas al mes**, "camas" no
+puede vivir dentro de un cajon de sastre: necesita una pagina propia a la
+que Google pueda mandar esa busqueda.
+
+Se ha creado **Camas y descanso** (`/collections/camas-y-descanso`), por
+etiqueta `descanso`, con cuatro productos que comparten un mismo trabajo:
+donde pasa el perro las doce o catorce horas que duerme.
+
+- Cama sofa con funda desmontable
+- Manta impermeable (cuando el sitio elegido es tu sofa)
+- Escalera plegable (el perro que ya no salta)
+- Parque plegable (el cachorro que aun no puede quedarse suelto)
+
+Ordenada por mas vendido, con su imagen para compartir, y anadida al menu
+principal entre "Higiene y cuidado" y "Casa y coche".
+
+No se ha hecho el reparto completo de "Casa, coche y paseo" en tres
+colecciones: eso deja el menu en once entradas y en movil se hace largo. Es
+una decision de navegacion que conviene tomar mirando la tienda, no a ciegas.
+
+## Verificacion final
+
+Se deja el script en `scripts/verificar-tienda.py`. Descarga cada pagina
+publica y comprueba HTTP 200, titulo por debajo de 60 caracteres ya
+decodificado, meta descripcion bajo 155, `og:image`, el bloque "Tambien en
+pack" en las 12 fichas que lo llevan, y 4 imagenes minimo en los packs.
+
+```
+35 productos + 7 colecciones + portada
+FALLOS: 0
+PENDIENTE DE TI: 1  -> portada sin og:image (ajuste del tema)
+```
