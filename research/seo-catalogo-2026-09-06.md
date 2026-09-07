@@ -66,7 +66,7 @@ despues: los 32 productos activos tienen titulo y meta, ninguna vacia.
 **Regla para la proxima vez: `seo` se manda siempre completo, con titulo y
 descripcion, aunque solo cambie uno de los dos.**
 
-## Dos comprobaciones mias que dieron falso positivo
+## Tres comprobaciones mias que dieron falso positivo
 
 Vale la pena dejarlo escrito para no volver a asustarse:
 
@@ -76,7 +76,19 @@ Vale la pena dejarlo escrito para no volver a asustarse:
 2. `grep 'cdn.shopify.com/s/files'` daba cero imagenes. La tienda sirve las
    imagenes desde **`/cdn/shop/files/`**, no desde ese dominio. Habia 12.
 
-Ninguna de las dos era un fallo de la tienda.
+3. Mi script media el `<title>` **sobre el HTML en bruto**, donde el guion
+   se escribe `&ndash;`: 7 caracteres que se ven como 1. Contaba 6 de mas en
+   cada titulo. Corregido decodificando las entidades antes de medir.
+
+Ninguna de las tres era un fallo de la tienda.
+
+## Otro comportamiento de Shopify que conviene conocer
+
+Cuatro productos devolvian `seo.title: null` despues de guardarlos sin dar
+ningun error. No es un fallo: **Shopify no guarda el titulo SEO cuando es
+identico al nombre del producto**, porque el titulo por defecto de la pagina
+ya es ese. La pagina sale exactamente igual. Comprobado en la web: los
+cuatro renderizan el titulo correcto.
 
 ## Lo que queda, y por que no lo puedo hacer yo
 
@@ -95,7 +107,7 @@ publicado estan bloqueadas por politica. Lo tienes que poner tu:
 Recomendada: 1200 x 630 px. Vale la del pack de aseo o la del perro con
 chubasquero, que ya estan subidas.
 
-### El tema anade " - Prestige" a todos los titulos
+### RESUELTO: el tema anade " - Prestige" a todos los titulos
 
 `snippets/meta-tags.liquid` hace:
 
@@ -103,13 +115,13 @@ chubasquero, que ya estan subidas.
 {{ page_title }}{%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
 ```
 
-Asi que el titulo real en Google son **11 caracteres mas** que lo que se
-escribe en el campo SEO. El presupuesto util es de unos **49**, no 60.
+Asi que el titulo real en Google son **11 caracteres mas** que lo escrito en
+el campo SEO. El presupuesto util es de **49**, no 60.
 
-No se ha reescrito todo el catalogo por esto: Google recorta la
-presentacion pero lee el titulo entero, y a menudo quita el sufijo el
-solo. Se han arreglado los cinco que se pasaban de largo de verdad. Queda
-anotado por si algun dia se toca el tema.
+Con ese limite no eran 5 los titulos largos: eran **24**. Se han reescrito
+los 24 (21 productos y 3 colecciones) mas dos que se quedaron a 61 en la
+comprobacion final. **Los 32 productos y las 6 colecciones estan ahora por
+debajo de 60 caracteres tal como los ve Google.**
 
 ### Imagenes por debajo de 800 px
 
@@ -117,3 +129,16 @@ Unas cuantas fotos de proveedor vienen a 480x480, 394x286, 355x327. Google
 Shopping prefiere 800 o mas. **No se han reescalado**: ampliar una imagen
 pequena la empeora, no la mejora. Se arregla cambiando la foto de origen,
 no con software.
+
+## Verificacion final (39 paginas, una por una)
+
+Script `verif2.py`: descarga cada pagina publica y comprueba HTTP 200,
+`<title>` presente y por debajo de 60 caracteres **ya decodificado**, meta
+descripcion presente y bajo 155, `og:image` presente, el bloque "Tambien en
+pack" en las 12 fichas que lo llevan, y 4 imagenes minimo en los packs.
+
+```
+32 productos + 6 colecciones + portada
+FALLOS: 0
+PENDIENTE DE TI: 1  -> portada sin og:image (ajuste del tema)
+```
