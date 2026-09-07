@@ -52,3 +52,72 @@ Despues conviene comprobarlo en
 `https://developers.facebook.com/tools/debug/` pegando la direccion de la
 tienda y pulsando "Scrape Again", que es lo que fuerza a WhatsApp y Facebook
 a olvidar la version antigua.
+
+---
+
+# Si prefieres generar la foto con nano banana
+
+## Aviso primero
+
+**No le pidas que escriba el texto en la imagen.** Los modelos de imagen
+siguen deformando las palabras, y en espanol con tildes ("Envio",
+"Accesorios") falla casi siempre. Pidele **solo la foto, con la mitad
+izquierda vacia**, y el texto se pone encima despues con las fuentes reales
+del tema.
+
+**Y no le pidas un producto concreto.** Generaria una alfombrilla o una cama
+inventadas, distintas de las que vendemos. Para una imagen de tienda vale un
+perro a secas; para un producto, la foto del proveedor.
+
+## Ajustes
+
+| Parametro | Valor |
+|---|---|
+| `aspect_ratio` | `16:9` (es lo mas cercano; luego se recorta a 1200 x 630) |
+| `model_tier` | `pro` |
+| `resolution` | `2k` o `4k` |
+| `n` | `4`, para elegir |
+
+## Prompt (en ingles, que es donde mejor responde)
+
+```
+Photorealistic lifestyle photograph of a happy medium-sized dog lying
+comfortably on a light oak floor in a bright, modern Spanish apartment.
+Warm late-afternoon autumn light coming through a large window on the right.
+Calm neutral interior in cream, beige and off-white tones, a plain pale wall
+and a hint of a linen sofa softly blurred in the background. The dog sits in
+the right third of the frame, looking towards the camera, relaxed and alert,
+healthy coat, natural expression. The entire left half of the image is clean
+uncluttered empty space, plain wall and floor, softly lit, deliberately left
+free for text to be added later. Shot on a 50mm lens at f/2.0, shallow depth
+of field, soft natural bokeh, fine detail, natural colours, no colour cast.
+Editorial pet-brand photography, warm, calm and premium.
+```
+
+## Negative prompt
+
+```
+text, letters, words, logo, watermark, signature, caption, distorted anatomy,
+extra legs, extra paws, deformed face, malformed eyes, cluttered background,
+harsh flash, oversaturated, HDR, cartoon, illustration, 3d render, cgi,
+people, human hands, collage, border, frame
+```
+
+## Variante de otono, si la prefieres en la calle
+
+Cambia la primera frase por:
+
+```
+Photorealistic lifestyle photograph of a happy medium-sized dog standing on a
+wet cobbled street in a Spanish town after the rain, soft overcast light,
+warm autumn tones, blurred old facades in the background.
+```
+
+Manteniendo el resto igual: mitad izquierda vacia, 50mm f/2.0, sin texto.
+
+## Despues
+
+1. Recortar a **1200 x 630** (el 16:9 sale 1200 x 675: sobran 45 px)
+2. Guardar en JPG por debajo de 300 KB
+3. Subirla en Tienda online > Temas > Personalizar > Configuracion del tema >
+   Redes sociales > Imagen para compartir
