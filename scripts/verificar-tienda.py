@@ -1,5 +1,5 @@
 import re, subprocess, time, sys, html as H
-BASE="https://prestige-12657.myshopify.com"
+BASE="https://patitascalidas.com"
 PRODUCTOS="""pack-bano-y-lluvia alfombrilla-de-lamer-con-ventosas manopla-de-bano-y-secado
 albornoz-de-secado-para-perro toalla-de-secado-rapido-para-perro manta-impermeable-para-sofa-y-cama
 funda-de-asiento-coche-para-perro comedero-lento-y-alfombrilla-de-lamer boton-grabable-para-perros
