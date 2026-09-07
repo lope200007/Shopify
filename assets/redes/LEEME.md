@@ -31,8 +31,8 @@ de un producto que vendemos, y las fuentes y colores reales del tema:
 Playfair Display, Inter, crema `#FBF7F1` y tinta `#23261F`.
 
 ### 1. `portada-compartir-1-marca.jpg` — recomendada
-Nombre de la tienda, la frase de la portada y el envio gratis sobre el crema
-de la tienda, con la foto a la derecha. Se lee entera a 400 px y dice quien
+El nombre **Patitas Calidas** en dos lineas, la frase de la portada y el
+envio gratis sobre el crema de la tienda, con la foto a la derecha. Se lee entera a 400 px y dice quien
 eres antes de que abran el enlace.
 
 ### 2. `portada-compartir-2-solo-foto.jpg`
