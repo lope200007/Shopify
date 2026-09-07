@@ -46,13 +46,36 @@ Solo la foto, sin texto. Tambien es buena opcion: WhatsApp y Facebook ya
 ensenan el titulo y la descripcion **al lado** de la imagen, asi que el texto
 dentro puede sobrar. Elige esta si la prefieres mas limpia.
 
-## Donde se sube
+## Donde se sube (CORREGIDO)
 
-No se puede poner por API: es un ajuste del tema y las escrituras sobre el
-tema publicado estan bloqueadas.
+**No esta en el editor de temas.** Se dijo eso al principio y era falso.
 
-> Tienda online > Temas > Personalizar > Configuracion del tema >
-> Redes sociales > Imagen para compartir
+Se comprobo leyendo `snippets/meta-tags.liquid` del tema publicado, que hace:
+
+```liquid
+{%- if page_image -%}
+  <meta property="og:image" content="http:{{ page_image | image_url }}">
+```
+
+`page_image` es un objeto global de Shopify, **no un ajuste del tema**. Se
+reviso tambien `config/settings_schema.json` del tema Horizon 4.1.4 y **no
+existe ningun ajuste de imagen para compartir**: solo logo, logo inverso y
+favicon.
+
+En la portada, `page_image` sale de la preferencia de la tienda. El sitio
+correcto es:
+
+> **Tienda online > Preferencias > Imagen para compartir en redes sociales**
+
+Es la misma pantalla donde estan el titulo y la descripcion de la portada.
+Mucho mas facil que el editor de temas.
+
+Tampoco se puede poner por API: no existe mutacion para las preferencias de
+la tienda online (comprobado sobre las 441 mutaciones del esquema).
+
+**La imagen ya esta subida a los archivos de la tienda**
+(`patitascalidas-compartir.jpg`), asi que en esa pantalla se puede elegir de
+la biblioteca sin tener que pasarla al movil.
 
 Despues conviene comprobarlo en
 `https://developers.facebook.com/tools/debug/` pegando la direccion de la
