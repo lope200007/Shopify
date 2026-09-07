@@ -31,20 +31,20 @@
 -%}
 
 <div class="pcj">
-  <div class="wrap">
+  <div class="pcj-wrap">
 
     {%- comment -%} ---------- Cabecera ---------- {%- endcomment -%}
-    <section class="hero">
-      <div class="hero-texto">
-        <p class="antetitulo">{{ section.settings.antetitulo | escape }}</p>
+    <section class="pcj-seccion pcj-hero">
+      <div class="pcj-hero-texto">
+        <p class="pcj-antetitulo">{{ section.settings.antetitulo | escape }}</p>
         <h1>{{ section.settings.titular | escape }}</h1>
-        <p class="lead">{{ section.settings.entradilla | escape }}</p>
-        <div class="hero-acciones">
-          <a class="btn btn-primario" href="{{ routes.all_products_collection_url }}">{{ section.settings.boton_uno | escape }}</a>
-          <a class="btn btn-secundario" href="#categorias">{{ section.settings.boton_dos | escape }}</a>
+        <p class="pcj-lead">{{ section.settings.entradilla | escape }}</p>
+        <div class="pcj-hero-acciones">
+          <a class="pcj-btn pcj-btn-primario" href="{{ routes.all_products_collection_url }}">{{ section.settings.boton_uno | escape }}</a>
+          <a class="pcj-btn pcj-btn-secundario" href="#categorias">{{ section.settings.boton_dos | escape }}</a>
         </div>
       </div>
-      <div class="hero-foto">
+      <div class="pcj-hero-foto">
         {%- if hero_foto -%}
           <img
             src="{{ hero_foto | image_url: width: 1200 }}"
@@ -68,7 +68,7 @@
       {%- if bloque.type == 'confianza' -%}{%- assign hay_confianza = true -%}{%- endif -%}
     {%- endfor -%}
     {%- if hay_confianza -%}
-      <ul class="confianza">
+      <ul class="pcj-confianza">
         {%- for bloque in section.blocks -%}
           {%- if bloque.type == 'confianza' -%}
             <li {{ bloque.shopify_attributes }}>
@@ -81,15 +81,15 @@
     {%- endif -%}
 
     {%- comment -%} ---------- Categorias ---------- {%- endcomment -%}
-    <section id="categorias" aria-labelledby="titulo-categorias">
-      <div class="cabecera">
+    <section class="pcj-seccion" id="categorias" aria-labelledby="titulo-categorias">
+      <div class="pcj-cabecera">
         <div>
-          <p class="antetitulo">{{ section.settings.antetitulo_categorias | escape }}</p>
+          <p class="pcj-antetitulo">{{ section.settings.antetitulo_categorias | escape }}</p>
           <h2 id="titulo-categorias">{{ section.settings.titulo_categorias | escape }}</h2>
         </div>
         <p>{{ section.settings.texto_categorias | escape }}</p>
       </div>
-      <div class="categorias">
+      <div class="pcj-categorias">
         {%- for bloque in section.blocks -%}
           {%- if bloque.type == 'categoria' -%}
             {%- liquid
@@ -100,7 +100,7 @@
               endif
             -%}
             {%- if col != blank -%}
-              <a class="categoria" href="{{ col.url }}" {{ bloque.shopify_attributes }}>
+              <a class="pcj-categoria" href="{{ col.url }}" {{ bloque.shopify_attributes }}>
                 {%- if foto -%}
                   <img
                     src="{{ foto | image_url: width: 700 }}"
@@ -108,10 +108,10 @@
                     sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw"
                     alt="" width="700" height="875" loading="lazy" decoding="async">
                 {%- endif -%}
-                <span class="categoria-texto">
+                <span class="pcj-categoria-texto">
                   <small>{{ bloque.settings.antetitulo | escape }}</small>
                   <h3>{{ bloque.settings.titulo | default: col.title | escape }}</h3>
-                  <span class="etiqueta">Ver los {{ col.products_count }} productos</span>
+                  <span class="pcj-etiqueta">Ver los {{ col.products_count }} productos</span>
                 </span>
               </a>
             {%- endif -%}
@@ -121,19 +121,19 @@
     </section>
 
     {%- comment -%} ---------- Escaparate ---------- {%- endcomment -%}
-    <section aria-labelledby="titulo-escaparate">
-      <div class="cabecera">
+    <section class="pcj-seccion" aria-labelledby="titulo-escaparate">
+      <div class="pcj-cabecera">
         <div>
-          <p class="antetitulo">{{ section.settings.antetitulo_escaparate | escape }}</p>
+          <p class="pcj-antetitulo">{{ section.settings.antetitulo_escaparate | escape }}</p>
           <h2 id="titulo-escaparate">{{ section.settings.titulo_escaparate | escape }}</h2>
         </div>
         <p>{{ section.settings.texto_escaparate | escape }}</p>
       </div>
-      <ul class="productos">
+      <ul class="pcj-productos">
         {%- for producto in escaparate.products limit: n_escaparate -%}
           <li>
-            <a class="producto" href="{{ producto.url }}">
-              <span class="producto-foto">
+            <a class="pcj-producto" href="{{ producto.url }}">
+              <span class="pcj-producto-foto">
                 {%- if producto.featured_image -%}
                   <img
                     src="{{ producto.featured_image | image_url: width: 600 }}"
@@ -143,37 +143,37 @@
                     width="600" height="600" loading="lazy" decoding="async">
                 {%- endif -%}
               </span>
-              <span class="producto-cuerpo">
-                <span class="producto-nombre">{{ producto.title | escape }}</span>
-                <span class="precio">
-                  {%- if producto.price_varies -%}<span class="desde">Desde</span> {% endif -%}
+              <span class="pcj-producto-cuerpo">
+                <span class="pcj-producto-nombre">{{ producto.title | escape }}</span>
+                <span class="pcj-precio">
+                  {%- if producto.price_varies -%}<span class="pcj-desde">Desde</span> {% endif -%}
                   {{ producto.price | money }}
                 </span>
-                <span class="producto-enlace">Ver producto &rarr;</span>
+                <span class="pcj-producto-enlace">Ver producto &rarr;</span>
               </span>
             </a>
           </li>
         {%- else -%}
-          <li><p class="vacio">Todavia no hay productos publicados en esta coleccion.</p></li>
+          <li><p class="pcj-vacio">Todavia no hay productos publicados en esta coleccion.</p></li>
         {%- endfor -%}
       </ul>
     </section>
 
     {%- comment -%} ---------- Packs ---------- {%- endcomment -%}
     {%- if packs != blank and packs.products_count > 0 -%}
-      <section aria-labelledby="titulo-packs">
-        <div class="cabecera">
+      <section class="pcj-seccion" aria-labelledby="titulo-packs">
+        <div class="pcj-cabecera">
           <div>
-            <p class="antetitulo">{{ section.settings.antetitulo_packs | escape }}</p>
+            <p class="pcj-antetitulo">{{ section.settings.antetitulo_packs | escape }}</p>
             <h2 id="titulo-packs">{{ section.settings.titulo_packs | escape }}</h2>
           </div>
           <p>{{ section.settings.texto_packs | escape }}</p>
         </div>
-        <ul class="packs">
+        <ul class="pcj-packs">
           {%- for producto in packs.products limit: n_packs -%}
             <li>
-              <a class="pack" href="{{ producto.url }}">
-                <span class="pack-foto">
+              <a class="pcj-pack" href="{{ producto.url }}">
+                <span class="pcj-pack-foto">
                   {%- if producto.featured_image -%}
                     <img
                       src="{{ producto.featured_image | image_url: width: 600 }}"
@@ -183,13 +183,13 @@
                       width="600" height="600" loading="lazy" decoding="async">
                   {%- endif -%}
                 </span>
-                <span class="pack-cuerpo">
+                <span class="pcj-pack-cuerpo">
                   {%- if producto.compare_at_price > producto.price -%}
-                    <span class="ahorro">Ahorras {{ producto.compare_at_price | minus: producto.price | money }}</span>
+                    <span class="pcj-ahorro">Ahorras {{ producto.compare_at_price | minus: producto.price | money }}</span>
                   {%- endif -%}
-                  <span class="producto-nombre">{{ producto.title | escape }}</span>
-                  <span class="precio">{{ producto.price | money }}</span>
-                  <span class="producto-enlace">Ver el pack &rarr;</span>
+                  <span class="pcj-producto-nombre">{{ producto.title | escape }}</span>
+                  <span class="pcj-precio">{{ producto.price | money }}</span>
+                  <span class="pcj-producto-enlace">Ver el pack &rarr;</span>
                 </span>
               </a>
             </li>
@@ -204,10 +204,10 @@
       {%- if bloque.type == 'ventaja' -%}{%- assign hay_ventajas = true -%}{%- endif -%}
     {%- endfor -%}
     {%- if hay_ventajas -%}
-      <section class="franja" aria-labelledby="titulo-porque">
+      <section class="pcj-seccion pcj-franja" aria-labelledby="titulo-porque">
         <h2 id="titulo-porque">{{ section.settings.titulo_porque | escape }}</h2>
-        <p class="lead" style="color:#e8e0d0">{{ section.settings.texto_porque | escape }}</p>
-        <ul class="franja-lista">
+        <p class="pcj-lead" style="color:#e8e0d0">{{ section.settings.texto_porque | escape }}</p>
+        <ul class="pcj-franja-lista">
           {%- for bloque in section.blocks -%}
             {%- if bloque.type == 'ventaja' -%}
               <li {{ bloque.shopify_attributes }}>
@@ -221,12 +221,12 @@
     {%- endif -%}
 
     {%- comment -%} ---------- Cierre ---------- {%- endcomment -%}
-    <section class="cierre">
+    <section class="pcj-seccion pcj-cierre">
       <div>
         <h2>{{ section.settings.titulo_cierre | escape }}</h2>
         <p>{{ section.settings.texto_cierre | escape }}</p>
       </div>
-      <a class="btn btn-primario" href="{{ routes.all_products_collection_url }}">{{ section.settings.boton_cierre | escape }}</a>
+      <a class="pcj-btn pcj-btn-primario" href="{{ routes.all_products_collection_url }}">{{ section.settings.boton_cierre | escape }}</a>
     </section>
 
   </div>
