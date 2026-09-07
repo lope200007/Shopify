@@ -121,3 +121,50 @@ Manteniendo el resto igual: mitad izquierda vacia, 50mm f/2.0, sin texto.
 2. Guardar en JPG por debajo de 300 KB
 3. Subirla en Tienda online > Temas > Personalizar > Configuracion del tema >
    Redes sociales > Imagen para compartir
+
+---
+
+# Sobre la imagen generada con nano banana
+
+Se genero una y **no se puede usar tal cual**. Paso justo lo que avisaba el
+apartado anterior, y algo mas.
+
+## Lo que traia
+
+**Texto inventado**, en la bolsa de premios:
+`HUELLAS FELICES`, `NATORAL CHICKEN` (por "natural") y
+`100% NATURAL SHACAS PAAA PEDOS`, que no significa nada.
+
+**Nombres de otras marcas**:
+- `PETLY` bordado en la cama
+- `HUELLAS FELICES` en la bolsa de comida
+- `WASH & GO` en el bote de champu
+- `LUNA` en el arnes y en el cuenco
+
+**Seis productos que no vendemos**: bolsa de premios, champu, dos cepillos,
+cuerda de juego, peluche de zorro y cuencos personalizados.
+
+Publicar eso en la portada significa ensenar productos que no tienes y
+marcas que no son tuyas. Ademas de confundir, si alguna de esas marcas
+existe de verdad es un problema.
+
+## Lo que si se ha aprovechado
+
+Habia una zona limpia: el perro mirando a camara con el salon detras, sin
+una sola palabra y en tonos crema que pegan con la tienda. Recortada a
+1200 x 630 queda en `portada-compartir-3-generada.jpg`.
+
+Contrapartida: el recorte medía 762 px de ancho y ha habido que ampliarlo
+**1,57 veces**, asi que sale mas blanda que una foto real (nitidez medida:
+21 frente a 32 de la foto del proveedor). A tamano de vista previa no se
+nota, pero no da para mas.
+
+## Para la proxima
+
+El prompt del apartado anterior ya lo dice, y ahora hay prueba de por que:
+**sin texto y sin productos concretos**. Un perro y una habitacion, nada mas.
+El nombre se pone despues, con las fuentes de la tienda.
+
+Y una regla que conviene fijar: una imagen generada vale como **imagen de
+marca** (portada, redes). **No vale para una ficha de producto**: ahi la foto
+tiene que ser del producto real que recibe el cliente.
