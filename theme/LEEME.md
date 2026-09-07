@@ -1,80 +1,112 @@
-# Archivos del tema
+# Tema de Patitascalidas
 
-Copia de los archivos del tema que hemos tocado, para tener el historial que
-Shopify no guarda.
+Aquí está el código de lo que es **nuestro** dentro del tema: la portada, sus
+estilos y las etiquetas meta. Todo lo demás —carrito, filtros, selector de
+variantes, buscador— es de Horizon y no se toca: funciona.
 
-## `sections/patitas-home.liquid`
+## Por qué no se reescribió el tema entero
 
-Es la portada entera del tema **Patitascalidas — Premium CJ 2026**.
+Reconstruir un tema de Shopify desde cero significa rehacer el carrito, el
+selector de variantes, los filtros de colección y la búsqueda predictiva. Eso
+sería un retroceso, no una mejora. Lo que estaba mal era nuestra portada, y eso
+es lo que se ha reconstruido.
 
-### El fallo
+## Los archivos
 
-La sección «Lo que puedes comprar hoy» pintaba **una sola ficha vacía**: sin
-imagen, sin título, sin precio y con el enlace en blanco. La línea culpable era:
+| Archivo | Qué es |
+| --- | --- |
+| `sections/patitas-home.liquid` | La portada entera, con su esquema configurable |
+| `assets/patitas-cj.css` | Sus estilos |
+| `templates/index.json` | Qué bloques y textos lleva la portada |
+| `snippets/meta-tags.liquid` | Etiquetas meta, Open Graph y tarjetas sociales |
+
+## Los cinco errores que se arreglaron, y por qué pasaban
+
+### 1. `slice` sobre una colección pinta una ficha vacía
 
 ```liquid
 {% assign featured = collections.all.products | slice: 0, 8 %}
 ```
 
-`collections.all.products` no es una lista normal, es un objeto paginado. El
-filtro `slice` sobre él no devuelve productos: devuelve un elemento vacío. Por
-eso el bucle daba exactamente una vuelta y pintaba una ficha en blanco, con el
-botón «Ver producto →» sin destino.
+`collections.all.products` no es una lista: es un objeto paginado. Al aplicarle
+`slice`, Liquid lo convierte a texto y se queda con los ocho primeros
+caracteres. El bucle daba entonces **una vuelta con una cadena**, no con un
+producto, y pintaba una ficha sin imagen, sin título, sin precio y con el enlace
+en blanco.
 
-### El arreglo
+Se recorta siempre con `limit:` en el propio `for`.
 
-```liquid
-{%- for product in escaparate.products limit: cuantos -%}
+### 2. Los nombres de clase chocaban con el tema
+
+Horizon define **19 reglas para `.hero`, 279 para `.product`, 15 para `.price`
+y 7 para `.btn`**. Entre ellas:
+
+```css
+.hero{position:relative;min-height:calc(var(--hero-min-height) - var(--hero-height-offset))}
 ```
 
-`limit:` sobre el propio bucle es la forma que Shopify soporta para esto.
+El CSS anterior usaba esos mismos nombres, así que el tema se colaba dentro de
+nuestra portada. Ahora **todas** las clases llevan prefijo `pcj-`.
 
-### Lo que se ha añadido de paso
+### 3. `aspect-ratio` peleado con `stretch`
 
-- Un bloque `{% schema %}`, que antes no existía. Ahora la sección se puede
-  configurar desde **Temas → Personalizar**: qué colección se muestra, cuántos
-  productos (de 3 a 12) y los tres textos de cabecera.
-- «Desde» delante del precio cuando el producto tiene varias variantes con
-  precios distintos, para no anunciar el precio de la talla pequeña como si
-  fuera el de todas.
-- `loading="lazy"` y `width`/`height` en las imágenes del escaparate.
-- Un `{% else %}` que avisa si la colección elegida está vacía, en vez de
-  dejar un hueco mudo.
-- Un botón «Ver los N productos» al pie del escaparate cuando hay más de los
-  que caben.
+La foto de la cabecera es un elemento de rejilla estirado. Al darle además
+`aspect-ratio`, el navegador resolvía la altura de la fila con la proporción de
+la foto (538,86 px = 663,20 × 13/16) en vez de con el contenido del texto
+(634 px). La columna de texto se salía, `overflow:hidden` la recortaba y la
+barra de confianza tapaba el segundo botón.
 
-### Cómo se aplicó
+En escritorio la foto usa `min-height` y estira. En una sola columna, donde no
+hay conflicto, se mantiene la proporción.
 
-Las escrituras sobre el tema publicado están bloqueadas por seguridad. Se
-duplicó el tema activo, se escribió el arreglo en la copia y se comprobó en
-vista previa antes de tocar nada de la tienda en vivo.
+### 4. Sin imagen al compartir el enlace
 
-## `snippets/meta-tags.liquid`
+El tema solo emitía `og:image` si la página tenía imagen propia. Los productos y
+las colecciones la tienen; la portada y las páginas sueltas, no. Ahora hay una
+imagen de reserva, y con protocolo absoluto, que es lo que piden los
+rastreadores de WhatsApp y Facebook.
 
-Tres arreglos:
+### 5. Contrastes que no llegaban
 
-1. **`og:image` de reserva.** El tema solo emitía `og:image` si la página tenía
-   imagen propia. Los productos y las colecciones la tienen; la portada y las
-   páginas sueltas, no. Resultado: al pegar el enlace de la tienda en WhatsApp
-   o en redes salía un recuadro vacío. Ahora, cuando no hay imagen propia, se
-   usa `patitascalidas-compartir.jpg` (1200 × 630), que ya estaba en Archivos.
+El naranja de los botones daba **4,24:1** con texto blanco, por debajo del 4,5
+que exige la norma. Se oscureció hasta 5,49:1. El verde de marca subió a
+9,40:1 sobre crema. El anillo de foco es de doble aro para que se vea igual
+sobre fondo crema que sobre el verde.
 
-   `file_url` devuelve la ruta **sin protocolo** (`//dominio/...`), y los
-   rastreadores de Facebook y WhatsApp la necesitan absoluta, así que se le
-   antepone `https:` cuando hace falta.
+## Cómo actualizar un archivo en un tema
 
-2. **`twitter:image`**, que no existía. La tarjeta declaraba
-   `summary_large_image` sin dar ninguna imagen.
+Se puede escribir por URL, que evita transcribir a mano:
 
-3. **El espacio sobrante del nombre.** El nombre de la tienda está guardado
-   como `"Patitascalidas "`, con un espacio al final. Se limpia con `strip` en
-   `og:site_name` y en el `<title>`.
+```graphql
+themeFilesUpsert(themeId: ..., files: [{
+  filename: "assets/patitas-cj.css",
+  body: { type: URL, value: "https://raw.githubusercontent.com/.../patitas-cj.css" }
+}])
+```
 
-   **Esto no lo arregla del todo.** El espacio sigue saliendo en el
-   `merchantName` de Apple Pay y en el `Organization.name` de los datos
-   estructurados, y los dos los genera Shopify, no el tema. El arreglo de
-   verdad es quitar el espacio en **Configuración → Datos de la tienda**.
-   Parchear solo el tema sería taparlo.
+**Aviso:** Shopify cachea por URL. Si vuelves a subir el mismo archivo con la
+misma URL, se queda con la versión vieja **sin dar ningún error**. Hay que usar
+la URL del commit concreto (con su SHA), que es única. Y comprobar siempre el
+`checksumMd5` después.
 
-Además `og:image` pasa de `http:` a `https:`, que es lo que corresponde en un
-dominio que solo sirve por HTTPS.
+`templates/*.json` no se acepta por URL: ese va como `TEXT`.
+
+## Lo que se comprobó antes de entregarlo
+
+- 15 páginas del tema en vista previa: portada, colecciones, fichas, páginas,
+  políticas, carrito, buscador y 404. **Cero errores de Liquid.**
+- Maquetación medida en tres anchuras (1440, 820 y 390 px): sin recortes, sin
+  solapes y **sin desbordamiento horizontal**.
+- Accesibilidad de la portada: 19 imágenes, **ninguna sin texto alternativo**;
+  21 enlaces, **ninguno sin destino ni sin nombre**; cero identificadores
+  repetidos; jerarquía de encabezados correcta; 18 de 19 imágenes con carga
+  diferida y `srcset`.
+- Paleta verificada contra WCAG 2.2 AA, par por par.
+
+## Lo que sigue en tu tejado
+
+- **El espacio del nombre de la tienda.** Está guardado como `"Patitascalidas "`.
+  El tema lo limpia con `strip`, pero Apple Pay y los datos estructurados lo
+  cogen de Configuración, no del tema.
+- **El formato de moneda.** Sale `€16,90`; en España se escribe `16,90 €`.
+  Es un ajuste de tienda, no de tema.
