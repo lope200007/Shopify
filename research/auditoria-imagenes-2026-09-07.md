@@ -126,3 +126,74 @@ Lo anoto porque me equivoqué al sospecharlo y conviene que quede escrito:
 La tercera foto del limpiapatas eléctrico era `82974b7b` («Pet automatic Foot
 bath massager», en inglés, con fotos de almohadillas antes y después). La imagen
 que yo había elegido era `cf516c2a`. Sustituida y recolocada en su posición.
+
+---
+
+# Portada: dejada lista (7 de septiembre, tarde)
+
+## Lo que se ve en la portada
+
+La portada del tema **Patitascalidas — Premium CJ 2026** enseña once imágenes:
+tres tarjetas de categoría y ocho fichas de producto (las ocho primeras por
+orden alfabético de `collections.all`). Todas revisadas una a una.
+
+### Las que estaban mal, y ya no
+
+| Producto | Lo que salía | Lo que sale ahora |
+| --- | --- | --- |
+| Botella de paseo | El cartel **«3IN1 DOG WATER CUP»** en inglés | La botella en índigo, limpia |
+| Cepillo autolimpiable | Un collage con el cepillo repetido dos veces y un frasco suelto | El cepillo blanco, de frente y de lado |
+| Barrera | Un perro claro de espaldas, foto de mala calidad | Un golden retriever detrás de la barrera negra |
+
+Los tres productos tienen además juego nuevo completo, solo con los colores que
+vendemos de verdad: la botella en índigo, verde oscuro, gris y blanco; el
+cepillo en blanco, verde y rosa; la barrera solo en negro, que es la única que
+servimos (antes había dos fotos de la versión beige).
+
+## Un error de ficha que apareció por el camino
+
+La barrera se llamaba **«Barrera de seguridad enrollable»** y la descripción
+decía que *«la malla se recoge dentro del tubo como una cortina»* y que *«se
+fija a presión contra el marco»*.
+
+Las dos cosas son falsas. El albarán del proveedor dice literalmente:
+
+> Package Content: 1 x fabric woven, 2 x stretchable poles, 4 x sticky hooks
+
+Es una malla que **se cuelga de cuatro ganchos adhesivos** con dos varillas
+extensibles. Ni se enrolla ni se fija a presión.
+
+Corregido el título, la descripción y el SEO. Se añade además el aviso de dónde
+pegan bien los ganchos y dónde no (sobre gotelé o papel pintado aguantan mal y
+al despegarlos pueden llevarse un trozo), porque eso es lo que provoca una
+devolución.
+
+## Lo que sigue sin poder tocar
+
+El **escaparate de la portada** («Lo que puedes comprar hoy») sigue pintando una
+ficha vacía en el tema publicado. El arreglo está probado pero las escrituras
+sobre el tema en vivo están bloqueadas por política del conector, y el proyecto
+no tiene credenciales propias de Shopify. Es un cambio de una línea:
+
+```liquid
+{% assign featured=collections.all.products | slice: 0, 8 %}{% for product in featured %}
+```
+
+pasa a ser
+
+```liquid
+{% for product in collections.all.products limit: 8 %}
+```
+
+En cuanto se aplique, el escaparate se llena con esos ocho productos, que ya
+están todos con foto limpia.
+
+## Aviso: sigue habiendo algo reescribiendo productos
+
+Al ir a sustituir las fotos de la botella, sus identificadores de imagen ya no
+existían: **algo las había reemplazado a las 17:04 y a las 17:25**, después de
+mi lectura. Una de las nuevas venía titulada «producto real», el mismo tono del
+texto genérico que sustituyó a diez descripciones por la tarde.
+
+Hay siete apps con permiso de escritura sobre productos. Mientras estén, este
+trabajo se puede deshacer solo.
