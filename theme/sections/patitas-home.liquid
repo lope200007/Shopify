@@ -1,0 +1,47 @@
+{{ 'patitas-cj.css' | asset_url | stylesheet_tag }}
+<div class="pcj"><div class="wrap">
+<section class="hero">
+<div class="hero-copy"><div class="eyebrow">Patitascalidas · Accesorios para perros</div><h1>Productos que hacen más fácil la vida con tu perro.</h1><p class="lead">Comida, juego, paseo, higiene y descanso: descubre productos prácticos que de verdad vas a usar.</p><div class="actions"><a class="btn btn-primary" href="{{ routes.all_products_collection_url }}">Comprar productos</a><a class="btn btn-secondary" href="#categorias">Ver categorías</a></div></div>
+<div class="hero-media"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3EtCobjAqO7V8DaoIga1IRCCxTW/hf_20260907_162200_3bf3cf0f-4d49-4609-9b1a-32fe4ae3c817.png" alt="Producto para perro de Patitascalidas"></div>
+</section>
+<div class="trust"><div class="trust-item">🚚 Envío gratis desde 55 €</div><div class="trust-item">↩️ 14 días para devoluciones</div><div class="trust-item">🇪🇸 Atención en español</div><div class="trust-item">🛒 Compra segura</div></div>
+<section id="categorias"><div class="section-head"><div><div class="eyebrow">Empieza por lo que necesitas</div><h2>Compra por categoría</h2></div><p>Entra directamente al catálogo que buscas.</p></div><div class="cats">
+<a class="cat" href="{{ collections['comederos'].url }}">{% assign p=collections['comederos'].products.first %}{% if p.featured_image %}<img src="{{ p.featured_image | image_url: width: 1000 }}" alt="{{ p.title | escape }}">{% endif %}<div class="cat-content"><small>Comer mejor</small><h3>Comederos y bebederos</h3><span class="cat-cta">Entrar al catálogo →</span></div></a>
+<a class="cat" href="{{ collections['juguetes'].url }}">{% assign toy=collections['juguetes'].products | where: 'title', 'Tentetieso dispensador de premios' | first %}{% if toy == blank %}{% assign toy=collections['juguetes'].products | where: 'title', 'Botón grabable para hablar con tu perro' | first %}{% endif %}{% if toy.featured_image %}<img src="{{ toy.featured_image | image_url: width: 1000 }}" alt="{{ toy.title | escape }}">{% endif %}<div class="cat-content"><small>Jugar juntos</small><h3>Juguetes</h3><span class="cat-cta">Entrar al catálogo →</span></div></a>
+<a class="cat" href="{{ collections['higiene-y-cuidado'].url }}">{% assign care=collections['higiene-y-cuidado'].products.first %}{% if care.featured_image %}<img src="{{ care.featured_image | image_url: width: 1000 }}" alt="{{ care.title | escape }}">{% endif %}<div class="cat-content"><small>Cuidarlo cada día</small><h3>Higiene y cuidado</h3><span class="cat-cta">Entrar al catálogo →</span></div></a>
+</div></section>
+{%- liquid
+  assign escaparate = section.settings.coleccion
+  if escaparate == blank or escaparate.products_count == 0
+    assign escaparate = collections.all
+  endif
+  assign cuantos = section.settings.cuantos | default: 8
+-%}
+<section id="destacados"><div class="section-head"><div><div class="eyebrow">{{ section.settings.antetitulo }}</div><h2>{{ section.settings.titulo }}</h2></div><p>{{ section.settings.entradilla }}</p></div><div class="products">
+{%- for product in escaparate.products limit: cuantos -%}
+<a class="product" href="{{ product.url }}"><div class="product-media">{% if product.featured_image %}<img src="{{ product.featured_image | image_url: width: 700 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" loading="lazy" width="700" height="700">{% endif %}</div><div class="product-body"><div class="product-title">{{ product.title }}</div><div class="price">{% if product.price_varies %}Desde {% endif %}{{ product.price | money }}</div><span class="product-link">Ver producto →</span></div></a>
+{%- else -%}
+<p>Todavía no hay productos publicados en esta colección.</p>
+{%- endfor -%}
+</div>
+{%- if escaparate.products_count > cuantos -%}
+<div class="products-mas"><a class="btn btn-secondary" href="{{ escaparate.url | default: routes.all_products_collection_url }}">Ver los {{ escaparate.products_count }} productos</a></div>
+{%- endif -%}
+</section>
+<section class="final"><div><h2>Encuentra algo que tu perro vaya a disfrutar.</h2><p>Explora todo el catálogo de Patitascalidas.</p></div><a class="btn" href="{{ routes.all_products_collection_url }}">Ver todos los productos</a></section>
+</div></div>
+
+{% schema %}
+{
+  "name": "Portada Patitascalidas",
+  "settings": [
+    { "type": "header", "content": "Escaparate de productos" },
+    { "type": "collection", "id": "coleccion", "label": "Colección que se muestra", "info": "Si la dejas vacía se muestran todos los productos." },
+    { "type": "range", "id": "cuantos", "label": "Cuántos productos", "min": 3, "max": 12, "step": 1, "default": 8 },
+    { "type": "text", "id": "antetitulo", "label": "Antetítulo", "default": "Productos reales del catálogo" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Lo que puedes comprar hoy" },
+    { "type": "text", "id": "entradilla", "label": "Entradilla", "default": "Elegidos de lo que tenemos publicado ahora mismo." }
+  ],
+  "presets": [{ "name": "Portada Patitascalidas" }]
+}
+{% endschema %}
