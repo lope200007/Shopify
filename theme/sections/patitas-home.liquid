@@ -1,46 +1,305 @@
+{% comment %}
+  Portada de Patitascalidas.
+
+  Notas para quien la toque despues:
+  - Nunca usar `slice` sobre `collections.X.products`. Es un objeto paginado, no
+    una lista: `slice` lo convierte en texto y el bucle pinta una ficha vacia.
+    Se recorta siempre con `limit:` en el propio `for`.
+  - Todo lo configurable esta en el esquema del final, para no tener que tocar
+    codigo desde el movil.
+{% endcomment %}
+
 {{ 'patitas-cj.css' | asset_url | stylesheet_tag }}
-<div class="pcj"><div class="wrap">
-<section class="hero">
-<div class="hero-copy"><div class="eyebrow">Patitascalidas · Accesorios para perros</div><h1>Productos que hacen más fácil la vida con tu perro.</h1><p class="lead">Comida, juego, paseo, higiene y descanso: descubre productos prácticos que de verdad vas a usar.</p><div class="actions"><a class="btn btn-primary" href="{{ routes.all_products_collection_url }}">Comprar productos</a><a class="btn btn-secondary" href="#categorias">Ver categorías</a></div></div>
-<div class="hero-media"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3EtCobjAqO7V8DaoIga1IRCCxTW/hf_20260907_162200_3bf3cf0f-4d49-4609-9b1a-32fe4ae3c817.png" alt="Producto para perro de Patitascalidas"></div>
-</section>
-<div class="trust"><div class="trust-item">🚚 Envío gratis desde 55 €</div><div class="trust-item">↩️ 14 días para devoluciones</div><div class="trust-item">🇪🇸 Atención en español</div><div class="trust-item">🛒 Compra segura</div></div>
-<section id="categorias"><div class="section-head"><div><div class="eyebrow">Empieza por lo que necesitas</div><h2>Compra por categoría</h2></div><p>Entra directamente al catálogo que buscas.</p></div><div class="cats">
-<a class="cat" href="{{ collections['comederos'].url }}">{% assign p=collections['comederos'].products.first %}{% if p.featured_image %}<img src="{{ p.featured_image | image_url: width: 1000 }}" alt="{{ p.title | escape }}">{% endif %}<div class="cat-content"><small>Comer mejor</small><h3>Comederos y bebederos</h3><span class="cat-cta">Entrar al catálogo →</span></div></a>
-<a class="cat" href="{{ collections['juguetes'].url }}">{% assign toy=collections['juguetes'].products | where: 'title', 'Tentetieso dispensador de premios' | first %}{% if toy == blank %}{% assign toy=collections['juguetes'].products | where: 'title', 'Botón grabable para hablar con tu perro' | first %}{% endif %}{% if toy.featured_image %}<img src="{{ toy.featured_image | image_url: width: 1000 }}" alt="{{ toy.title | escape }}">{% endif %}<div class="cat-content"><small>Jugar juntos</small><h3>Juguetes</h3><span class="cat-cta">Entrar al catálogo →</span></div></a>
-<a class="cat" href="{{ collections['higiene-y-cuidado'].url }}">{% assign care=collections['higiene-y-cuidado'].products.first %}{% if care.featured_image %}<img src="{{ care.featured_image | image_url: width: 1000 }}" alt="{{ care.title | escape }}">{% endif %}<div class="cat-content"><small>Cuidarlo cada día</small><h3>Higiene y cuidado</h3><span class="cat-cta">Entrar al catálogo →</span></div></a>
-</div></section>
+
 {%- liquid
-  assign escaparate = section.settings.coleccion
+  assign nombre_tienda = shop.name | strip
+
+  assign escaparate = section.settings.coleccion_escaparate
   if escaparate == blank or escaparate.products_count == 0
     assign escaparate = collections.all
   endif
-  assign cuantos = section.settings.cuantos | default: 8
+  assign n_escaparate = section.settings.numero_escaparate | default: 8
+
+  assign packs = section.settings.coleccion_packs
+  assign n_packs = section.settings.numero_packs | default: 4
+
+  assign hero_foto = section.settings.imagen_hero
+  assign hero_reserva = 'hero-patitascalidas.jpg' | file_url
+  unless hero_reserva contains '://'
+    assign hero_reserva = hero_reserva | prepend: 'https:'
+  endunless
 -%}
-<section id="destacados"><div class="section-head"><div><div class="eyebrow">{{ section.settings.antetitulo }}</div><h2>{{ section.settings.titulo }}</h2></div><p>{{ section.settings.entradilla }}</p></div><div class="products">
-{%- for product in escaparate.products limit: cuantos -%}
-<a class="product" href="{{ product.url }}"><div class="product-media">{% if product.featured_image %}<img src="{{ product.featured_image | image_url: width: 700 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" loading="lazy" width="700" height="700">{% endif %}</div><div class="product-body"><div class="product-title">{{ product.title }}</div><div class="price">{% if product.price_varies %}Desde {% endif %}{{ product.price | money }}</div><span class="product-link">Ver producto →</span></div></a>
-{%- else -%}
-<p>Todavía no hay productos publicados en esta colección.</p>
-{%- endfor -%}
+
+<div class="pcj">
+  <div class="wrap">
+
+    {%- comment -%} ---------- Cabecera ---------- {%- endcomment -%}
+    <section class="hero">
+      <div class="hero-texto">
+        <p class="antetitulo">{{ section.settings.antetitulo | escape }}</p>
+        <h1>{{ section.settings.titular | escape }}</h1>
+        <p class="lead">{{ section.settings.entradilla | escape }}</p>
+        <div class="hero-acciones">
+          <a class="btn btn-primario" href="{{ routes.all_products_collection_url }}">{{ section.settings.boton_uno | escape }}</a>
+          <a class="btn btn-secundario" href="#categorias">{{ section.settings.boton_dos | escape }}</a>
+        </div>
+      </div>
+      <div class="hero-foto">
+        {%- if hero_foto -%}
+          <img
+            src="{{ hero_foto | image_url: width: 1200 }}"
+            srcset="{{ hero_foto | image_url: width: 600 }} 600w, {{ hero_foto | image_url: width: 1000 }} 1000w, {{ hero_foto | image_url: width: 1600 }} 1600w"
+            sizes="(max-width: 1000px) 100vw, 52vw"
+            alt="{{ hero_foto.alt | default: section.settings.texto_alternativo_hero | escape }}"
+            width="{{ hero_foto.width }}" height="{{ hero_foto.height }}"
+            loading="eager" fetchpriority="high" decoding="async">
+        {%- else -%}
+          <img src="{{ hero_reserva }}"
+            alt="{{ section.settings.texto_alternativo_hero | escape }}"
+            width="1600" height="1342"
+            loading="eager" fetchpriority="high" decoding="async">
+        {%- endif -%}
+      </div>
+    </section>
+
+    {%- comment -%} ---------- Barra de confianza ---------- {%- endcomment -%}
+    {%- assign hay_confianza = false -%}
+    {%- for bloque in section.blocks -%}
+      {%- if bloque.type == 'confianza' -%}{%- assign hay_confianza = true -%}{%- endif -%}
+    {%- endfor -%}
+    {%- if hay_confianza -%}
+      <ul class="confianza">
+        {%- for bloque in section.blocks -%}
+          {%- if bloque.type == 'confianza' -%}
+            <li {{ bloque.shopify_attributes }}>
+              <b>{{ bloque.settings.titulo | escape }}</b>
+              <span>{{ bloque.settings.detalle | escape }}</span>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- comment -%} ---------- Categorias ---------- {%- endcomment -%}
+    <section id="categorias" aria-labelledby="titulo-categorias">
+      <div class="cabecera">
+        <div>
+          <p class="antetitulo">{{ section.settings.antetitulo_categorias | escape }}</p>
+          <h2 id="titulo-categorias">{{ section.settings.titulo_categorias | escape }}</h2>
+        </div>
+        <p>{{ section.settings.texto_categorias | escape }}</p>
+      </div>
+      <div class="categorias">
+        {%- for bloque in section.blocks -%}
+          {%- if bloque.type == 'categoria' -%}
+            {%- liquid
+              assign col = bloque.settings.coleccion
+              assign foto = col.image
+              if foto == blank
+                assign foto = col.products.first.featured_image
+              endif
+            -%}
+            {%- if col != blank -%}
+              <a class="categoria" href="{{ col.url }}" {{ bloque.shopify_attributes }}>
+                {%- if foto -%}
+                  <img
+                    src="{{ foto | image_url: width: 700 }}"
+                    srcset="{{ foto | image_url: width: 400 }} 400w, {{ foto | image_url: width: 700 }} 700w, {{ foto | image_url: width: 1000 }} 1000w"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw"
+                    alt="" width="700" height="875" loading="lazy" decoding="async">
+                {%- endif -%}
+                <span class="categoria-texto">
+                  <small>{{ bloque.settings.antetitulo | escape }}</small>
+                  <h3>{{ bloque.settings.titulo | default: col.title | escape }}</h3>
+                  <span class="etiqueta">Ver los {{ col.products_count }} productos</span>
+                </span>
+              </a>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </section>
+
+    {%- comment -%} ---------- Escaparate ---------- {%- endcomment -%}
+    <section aria-labelledby="titulo-escaparate">
+      <div class="cabecera">
+        <div>
+          <p class="antetitulo">{{ section.settings.antetitulo_escaparate | escape }}</p>
+          <h2 id="titulo-escaparate">{{ section.settings.titulo_escaparate | escape }}</h2>
+        </div>
+        <p>{{ section.settings.texto_escaparate | escape }}</p>
+      </div>
+      <ul class="productos">
+        {%- for producto in escaparate.products limit: n_escaparate -%}
+          <li>
+            <a class="producto" href="{{ producto.url }}">
+              <span class="producto-foto">
+                {%- if producto.featured_image -%}
+                  <img
+                    src="{{ producto.featured_image | image_url: width: 600 }}"
+                    srcset="{{ producto.featured_image | image_url: width: 300 }} 300w, {{ producto.featured_image | image_url: width: 600 }} 600w, {{ producto.featured_image | image_url: width: 900 }} 900w"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1000px) 33vw, 25vw"
+                    alt="{{ producto.featured_image.alt | default: producto.title | escape }}"
+                    width="600" height="600" loading="lazy" decoding="async">
+                {%- endif -%}
+              </span>
+              <span class="producto-cuerpo">
+                <span class="producto-nombre">{{ producto.title | escape }}</span>
+                <span class="precio">
+                  {%- if producto.price_varies -%}<span class="desde">Desde</span> {% endif -%}
+                  {{ producto.price | money }}
+                </span>
+                <span class="producto-enlace">Ver producto &rarr;</span>
+              </span>
+            </a>
+          </li>
+        {%- else -%}
+          <li><p class="vacio">Todavia no hay productos publicados en esta coleccion.</p></li>
+        {%- endfor -%}
+      </ul>
+    </section>
+
+    {%- comment -%} ---------- Packs ---------- {%- endcomment -%}
+    {%- if packs != blank and packs.products_count > 0 -%}
+      <section aria-labelledby="titulo-packs">
+        <div class="cabecera">
+          <div>
+            <p class="antetitulo">{{ section.settings.antetitulo_packs | escape }}</p>
+            <h2 id="titulo-packs">{{ section.settings.titulo_packs | escape }}</h2>
+          </div>
+          <p>{{ section.settings.texto_packs | escape }}</p>
+        </div>
+        <ul class="packs">
+          {%- for producto in packs.products limit: n_packs -%}
+            <li>
+              <a class="pack" href="{{ producto.url }}">
+                <span class="pack-foto">
+                  {%- if producto.featured_image -%}
+                    <img
+                      src="{{ producto.featured_image | image_url: width: 600 }}"
+                      srcset="{{ producto.featured_image | image_url: width: 300 }} 300w, {{ producto.featured_image | image_url: width: 600 }} 600w"
+                      sizes="(max-width: 640px) 50vw, 25vw"
+                      alt="{{ producto.featured_image.alt | default: producto.title | escape }}"
+                      width="600" height="600" loading="lazy" decoding="async">
+                  {%- endif -%}
+                </span>
+                <span class="pack-cuerpo">
+                  {%- if producto.compare_at_price > producto.price -%}
+                    <span class="ahorro">Ahorras {{ producto.compare_at_price | minus: producto.price | money }}</span>
+                  {%- endif -%}
+                  <span class="producto-nombre">{{ producto.title | escape }}</span>
+                  <span class="precio">{{ producto.price | money }}</span>
+                  <span class="producto-enlace">Ver el pack &rarr;</span>
+                </span>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </section>
+    {%- endif -%}
+
+    {%- comment -%} ---------- Por que aqui ---------- {%- endcomment -%}
+    {%- assign hay_ventajas = false -%}
+    {%- for bloque in section.blocks -%}
+      {%- if bloque.type == 'ventaja' -%}{%- assign hay_ventajas = true -%}{%- endif -%}
+    {%- endfor -%}
+    {%- if hay_ventajas -%}
+      <section class="franja" aria-labelledby="titulo-porque">
+        <h2 id="titulo-porque">{{ section.settings.titulo_porque | escape }}</h2>
+        <p class="lead" style="color:#e8e0d0">{{ section.settings.texto_porque | escape }}</p>
+        <ul class="franja-lista">
+          {%- for bloque in section.blocks -%}
+            {%- if bloque.type == 'ventaja' -%}
+              <li {{ bloque.shopify_attributes }}>
+                <h3>{{ bloque.settings.titulo | escape }}</h3>
+                <p>{{ bloque.settings.texto | escape }}</p>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </section>
+    {%- endif -%}
+
+    {%- comment -%} ---------- Cierre ---------- {%- endcomment -%}
+    <section class="cierre">
+      <div>
+        <h2>{{ section.settings.titulo_cierre | escape }}</h2>
+        <p>{{ section.settings.texto_cierre | escape }}</p>
+      </div>
+      <a class="btn btn-primario" href="{{ routes.all_products_collection_url }}">{{ section.settings.boton_cierre | escape }}</a>
+    </section>
+
+  </div>
 </div>
-{%- if escaparate.products_count > cuantos -%}
-<div class="products-mas"><a class="btn btn-secondary" href="{{ escaparate.url | default: routes.all_products_collection_url }}">Ver los {{ escaparate.products_count }} productos</a></div>
-{%- endif -%}
-</section>
-<section class="final"><div><h2>Encuentra algo que tu perro vaya a disfrutar.</h2><p>Explora todo el catálogo de Patitascalidas.</p></div><a class="btn" href="{{ routes.all_products_collection_url }}">Ver todos los productos</a></section>
-</div></div>
 
 {% schema %}
 {
   "name": "Portada Patitascalidas",
+  "tag": "section",
   "settings": [
+    { "type": "header", "content": "Cabecera" },
+    { "type": "text", "id": "antetitulo", "label": "Antetitulo", "default": "Patitascalidas · Accesorios para perros" },
+    { "type": "text", "id": "titular", "label": "Titular", "default": "Productos que hacen mas facil la vida con tu perro." },
+    { "type": "textarea", "id": "entradilla", "label": "Entradilla", "default": "Comida, juego, paseo, higiene y descanso. Cada ficha te dice para que perro sirve y para cual no." },
+    { "type": "text", "id": "boton_uno", "label": "Boton principal", "default": "Ver todo el catalogo" },
+    { "type": "text", "id": "boton_dos", "label": "Boton secundario", "default": "Comprar por categoria" },
+    { "type": "image_picker", "id": "imagen_hero", "label": "Imagen de la cabecera", "info": "Si la dejas vacia se usa la imagen de marca." },
+    { "type": "text", "id": "texto_alternativo_hero", "label": "Texto alternativo de la imagen", "default": "Golden retriever sentado en un parque junto a la botella de paseo 3 en 1" },
+
+    { "type": "header", "content": "Categorias" },
+    { "type": "text", "id": "antetitulo_categorias", "label": "Antetitulo", "default": "Empieza por lo que necesitas" },
+    { "type": "text", "id": "titulo_categorias", "label": "Titulo", "default": "Compra por categoria" },
+    { "type": "text", "id": "texto_categorias", "label": "Texto", "default": "Entra directamente al catalogo que buscas." },
+
     { "type": "header", "content": "Escaparate de productos" },
-    { "type": "collection", "id": "coleccion", "label": "Colección que se muestra", "info": "Si la dejas vacía se muestran todos los productos." },
-    { "type": "range", "id": "cuantos", "label": "Cuántos productos", "min": 3, "max": 12, "step": 1, "default": 8 },
-    { "type": "text", "id": "antetitulo", "label": "Antetítulo", "default": "Productos reales del catálogo" },
-    { "type": "text", "id": "titulo", "label": "Título", "default": "Lo que puedes comprar hoy" },
-    { "type": "text", "id": "entradilla", "label": "Entradilla", "default": "Elegidos de lo que tenemos publicado ahora mismo." }
+    { "type": "collection", "id": "coleccion_escaparate", "label": "Coleccion", "info": "Si la dejas vacia se muestran todos los productos." },
+    { "type": "range", "id": "numero_escaparate", "label": "Cuantos productos", "min": 4, "max": 12, "step": 4, "default": 8 },
+    { "type": "text", "id": "antetitulo_escaparate", "label": "Antetitulo", "default": "Del catalogo, hoy mismo" },
+    { "type": "text", "id": "titulo_escaparate", "label": "Titulo", "default": "Lo que puedes comprar hoy" },
+    { "type": "text", "id": "texto_escaparate", "label": "Texto", "default": "Todo lo que ves aqui esta publicado y se puede comprar ahora." },
+
+    { "type": "header", "content": "Packs" },
+    { "type": "collection", "id": "coleccion_packs", "label": "Coleccion de packs", "info": "Si la dejas vacia, esta seccion no se muestra." },
+    { "type": "range", "id": "numero_packs", "label": "Cuantos packs", "min": 2, "max": 8, "step": 1, "default": 4 },
+    { "type": "text", "id": "antetitulo_packs", "label": "Antetitulo", "default": "Sale mas barato junto" },
+    { "type": "text", "id": "titulo_packs", "label": "Titulo", "default": "Packs con ahorro de verdad" },
+    { "type": "text", "id": "texto_packs", "label": "Texto", "default": "El ahorro que ves es la diferencia real con comprar las piezas por separado." },
+
+    { "type": "header", "content": "Por que aqui" },
+    { "type": "text", "id": "titulo_porque", "label": "Titulo", "default": "Por que comprar aqui" },
+    { "type": "textarea", "id": "texto_porque", "label": "Texto", "default": "Somos una tienda pequena. Lo unico que podemos ofrecer mejor que nadie es contarte la verdad antes de que pagues." },
+
+    { "type": "header", "content": "Cierre" },
+    { "type": "text", "id": "titulo_cierre", "label": "Titulo", "default": "Encuentra algo que tu perro vaya a disfrutar." },
+    { "type": "text", "id": "texto_cierre", "label": "Texto", "default": "Treinta y cuatro productos, todos elegidos de uno en uno." },
+    { "type": "text", "id": "boton_cierre", "label": "Boton", "default": "Ver todos los productos" }
+  ],
+  "blocks": [
+    {
+      "type": "confianza",
+      "name": "Dato de confianza",
+      "settings": [
+        { "type": "text", "id": "titulo", "label": "Titulo", "default": "Envio gratis desde 55 EUR" },
+        { "type": "text", "id": "detalle", "label": "Detalle", "default": "Por debajo, 6,99 EUR" }
+      ]
+    },
+    {
+      "type": "categoria",
+      "name": "Categoria",
+      "settings": [
+        { "type": "collection", "id": "coleccion", "label": "Coleccion" },
+        { "type": "text", "id": "antetitulo", "label": "Antetitulo", "default": "Empieza por aqui" },
+        { "type": "text", "id": "titulo", "label": "Titulo", "info": "Si lo dejas vacio se usa el nombre de la coleccion." }
+      ]
+    },
+    {
+      "type": "ventaja",
+      "name": "Motivo",
+      "settings": [
+        { "type": "text", "id": "titulo", "label": "Titulo", "default": "Te decimos lo que no hace" },
+        { "type": "textarea", "id": "texto", "label": "Texto", "default": "Cada ficha explica para que perro no sirve el producto." }
+      ]
+    }
   ],
   "presets": [{ "name": "Portada Patitascalidas" }]
 }

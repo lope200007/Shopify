@@ -1,0 +1,52 @@
+{
+  "sections": {
+    "main": {
+      "type": "patitas-home",
+      "blocks": {
+        "conf1": { "type": "confianza", "settings": { "titulo": "Envío gratis desde 55 €", "detalle": "Por debajo, 6,99 €" } },
+        "conf2": { "type": "confianza", "settings": { "titulo": "Llega en 1 o 2 semanas", "detalle": "Sale del almacén en 1 a 3 días laborables" } },
+        "conf3": { "type": "confianza", "settings": { "titulo": "14 días para devolver", "detalle": "Sin dar explicaciones" } },
+        "conf4": { "type": "confianza", "settings": { "titulo": "Te contesta una persona", "detalle": "En español y casi siempre el mismo día" } },
+
+        "cat1": { "type": "categoria", "settings": { "coleccion": "comederos", "antetitulo": "Comer mejor", "titulo": "Comederos y bebederos" } },
+        "cat2": { "type": "categoria", "settings": { "coleccion": "juguetes", "antetitulo": "Jugar juntos", "titulo": "Juguetes" } },
+        "cat3": { "type": "categoria", "settings": { "coleccion": "higiene-y-cuidado", "antetitulo": "Cuidarlo cada día", "titulo": "Higiene y cuidado" } },
+        "cat4": { "type": "categoria", "settings": { "coleccion": "lluvia-y-barro", "antetitulo": "Volver limpio a casa", "titulo": "Lluvia y barro" } },
+        "cat5": { "type": "categoria", "settings": { "coleccion": "camas-y-descanso", "antetitulo": "Que duerma bien", "titulo": "Camas y descanso" } },
+        "cat6": { "type": "categoria", "settings": { "coleccion": "casa-y-coche", "antetitulo": "Salir sin estropear nada", "titulo": "Casa, coche y paseo" } },
+
+        "vent1": { "type": "ventaja", "settings": { "titulo": "Te decimos lo que no hace", "texto": "Cada ficha explica para qué perro no sirve el producto. Preferimos perder la venta a que nos lo devuelvas." } },
+        "vent2": { "type": "ventaja", "settings": { "titulo": "El plazo, antes de pagar", "texto": "Los envíos salen de China y tardan una o dos semanas. Lo ponemos delante, no en la letra pequeña." } },
+        "vent3": { "type": "ventaja", "settings": { "titulo": "Los packs ahorran de verdad", "texto": "El ahorro que ves es la resta exacta entre el pack y comprar las piezas sueltas." } }
+      },
+      "block_order": ["conf1","conf2","conf3","conf4","cat1","cat2","cat3","cat4","cat5","cat6","vent1","vent2","vent3"],
+      "settings": {
+        "antetitulo": "Patitascalidas · Accesorios para perros",
+        "titular": "Productos que hacen más fácil la vida con tu perro.",
+        "entradilla": "Comida, juego, paseo, higiene y descanso. Cada ficha te dice para qué perro sirve y para cuál no.",
+        "boton_uno": "Ver todo el catálogo",
+        "boton_dos": "Comprar por categoría",
+        "texto_alternativo_hero": "Golden retriever sentado en un parque junto a la botella de paseo 3 en 1, con pienso arriba y agua abajo",
+        "antetitulo_categorias": "Empieza por lo que necesitas",
+        "titulo_categorias": "Compra por categoría",
+        "texto_categorias": "Entra directamente al catálogo que buscas.",
+        "coleccion_escaparate": "",
+        "numero_escaparate": 8,
+        "antetitulo_escaparate": "Del catálogo, hoy mismo",
+        "titulo_escaparate": "Lo que puedes comprar hoy",
+        "texto_escaparate": "Todo lo que ves aquí está publicado y se puede comprar ahora.",
+        "coleccion_packs": "packs",
+        "numero_packs": 4,
+        "antetitulo_packs": "Sale más barato junto",
+        "titulo_packs": "Packs con ahorro de verdad",
+        "texto_packs": "El ahorro que ves es la diferencia real con comprar las piezas por separado.",
+        "titulo_porque": "Por qué comprar aquí",
+        "texto_porque": "Somos una tienda pequeña. Lo único que podemos hacer mejor que nadie es contarte la verdad antes de que pagues.",
+        "titulo_cierre": "Encuentra algo que tu perro vaya a disfrutar.",
+        "texto_cierre": "Todo el catálogo, elegido de uno en uno.",
+        "boton_cierre": "Ver todos los productos"
+      }
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,190 @@
+/* Portada de Patitascalidas.
+   Paleta verificada contra WCAG 2.2 AA: todos los pares de texto pasan 4,5:1.
+   La tipografia se hereda del tema para que la portada no desentone con las
+   fichas de producto ni con el carrito. */
+
+.pcj{
+  --crema:#fbf7f1;
+  --blanco:#fff;
+  --tinta:#23261f;
+  --suave:#575c50;     /* 6,45:1 sobre crema */
+  --verde:#1f4a37;     /* 9,40:1 sobre crema, blanco encima 10,03:1 */
+  --terracota:#a94f1e; /* blanco encima 5,49:1 */
+  --borde:#e0d5c2;
+  --arena:#f2ebdf;
+  --radio:22px;
+  --sombra:0 10px 30px rgba(35,38,31,.08);
+  background:var(--crema);
+  color:var(--tinta);
+}
+.pcj *{box-sizing:border-box}
+.pcj a{text-decoration:none;color:inherit}
+.pcj img{display:block;max-width:100%}
+.pcj .wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+.pcj section{margin:0 0 72px}
+
+/* Foco visible: doble aro, para que se vea igual sobre crema que sobre verde */
+.pcj a:focus-visible,.pcj button:focus-visible{
+  outline:3px solid var(--crema);
+  outline-offset:0;
+  box-shadow:0 0 0 6px var(--tinta);
+  border-radius:12px;
+}
+
+/* Titulos */
+.pcj h1,.pcj h2,.pcj h3{margin:0;letter-spacing:-.03em;line-height:1.05}
+.pcj h1{font-size:clamp(34px,5vw,62px);line-height:1;letter-spacing:-.04em}
+.pcj h2{font-size:clamp(27px,3.4vw,40px)}
+.pcj h3{font-size:clamp(20px,2vw,27px)}
+.pcj .antetitulo{
+  font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--verde);margin:0 0 14px;
+}
+.pcj .lead{font-size:clamp(16px,1.6vw,19px);line-height:1.55;color:var(--suave);margin:0 0 28px;max-width:56ch}
+.pcj .cabecera{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:26px;flex-wrap:wrap}
+.pcj .cabecera p{margin:0;color:var(--suave);max-width:44ch}
+
+/* Botones: 48 px de alto, muy por encima del minimo de 24 que pide la norma */
+.pcj .btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:48px;padding:13px 24px;border-radius:999px;
+  font-weight:800;font-size:15px;border:2px solid transparent;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.pcj .btn-primario{background:var(--terracota);color:var(--blanco)}
+.pcj .btn-secundario{background:var(--blanco);color:var(--verde);border-color:var(--verde)}
+.pcj .btn-claro{background:var(--blanco);color:var(--verde)}
+@media(hover:hover){
+  .pcj .btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(35,38,31,.16)}
+}
+
+/* Hero */
+.pcj .hero{
+  display:grid;grid-template-columns:1fr 1.05fr;align-items:stretch;
+  border-radius:28px;overflow:hidden;background:var(--arena);
+  margin:20px 0 0;box-shadow:var(--sombra);
+}
+.pcj .hero-texto{padding:clamp(30px,4vw,66px);display:flex;flex-direction:column;justify-content:center}
+.pcj .hero-acciones{display:flex;gap:12px;flex-wrap:wrap}
+.pcj .hero-foto{position:relative;aspect-ratio:16/13;background:var(--arena)}
+.pcj .hero-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* Barra de confianza */
+.pcj .confianza{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+  margin:-28px 0 72px;position:relative;z-index:1;
+  list-style:none;padding:0;
+}
+.pcj .confianza li{
+  background:var(--blanco);border:1px solid var(--borde);border-radius:16px;
+  padding:16px 14px;text-align:center;box-shadow:0 8px 22px rgba(35,38,31,.05);
+}
+.pcj .confianza b{display:block;font-size:14px;margin-bottom:3px}
+.pcj .confianza span{font-size:13px;color:var(--suave);line-height:1.35}
+
+/* Categorias */
+.pcj .categorias{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pcj .categoria{
+  position:relative;border-radius:var(--radio);overflow:hidden;
+  display:flex;align-items:flex-end;aspect-ratio:4/5;background:var(--arena);
+  box-shadow:var(--sombra);transition:transform .2s ease,box-shadow .2s ease;
+}
+@media(hover:hover){
+  .pcj .categoria:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(35,38,31,.16)}
+}
+.pcj .categoria img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pcj .categoria::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.78) 100%);
+}
+.pcj .categoria-texto{position:relative;z-index:1;padding:24px;color:var(--blanco);width:100%}
+.pcj .categoria-texto small{font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:12px}
+.pcj .categoria-texto h3{margin:6px 0 14px;color:var(--blanco)}
+.pcj .etiqueta{
+  display:inline-flex;align-items:center;min-height:36px;
+  background:var(--blanco);color:var(--tinta);border-radius:999px;
+  padding:8px 16px;font-weight:800;font-size:14px;
+}
+
+/* Rejilla de productos */
+.pcj .productos{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;list-style:none;padding:0;margin:0}
+.pcj .producto{
+  background:var(--blanco);border:1px solid var(--borde);border-radius:var(--radio);
+  overflow:hidden;height:100%;display:flex;flex-direction:column;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+@media(hover:hover){
+  .pcj .producto:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(35,38,31,.12)}
+}
+.pcj .producto-foto{aspect-ratio:1/1;background:var(--arena);position:relative}
+.pcj .producto-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pcj .producto-cuerpo{padding:15px;display:flex;flex-direction:column;gap:7px;flex:1}
+.pcj .producto-nombre{font-weight:700;line-height:1.32;font-size:15px}
+.pcj .precio{font-weight:900;font-size:18px;margin-top:auto}
+.pcj .precio .desde{font-weight:600;font-size:13px;color:var(--suave)}
+.pcj .producto-enlace{color:var(--verde);font-weight:800;font-size:14px}
+.pcj .vacio{color:var(--suave);margin:0}
+
+/* Packs */
+.pcj .packs{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;list-style:none;padding:0;margin:0}
+.pcj .pack{
+  background:var(--blanco);border:1px solid var(--borde);border-radius:var(--radio);
+  overflow:hidden;display:flex;flex-direction:column;
+}
+.pcj .pack-foto{aspect-ratio:1/1;background:var(--arena);position:relative}
+.pcj .pack-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pcj .pack-cuerpo{padding:15px;display:flex;flex-direction:column;gap:6px;flex:1}
+.pcj .ahorro{
+  align-self:flex-start;background:var(--verde);color:var(--blanco);
+  border-radius:999px;padding:5px 11px;font-size:12px;font-weight:800;
+}
+
+/* Bloque de texto sobre fondo verde */
+.pcj .franja{background:var(--verde);color:var(--blanco);border-radius:26px;padding:clamp(28px,4vw,52px)}
+.pcj .franja h2{color:var(--blanco)}
+.pcj .franja p{color:#e8e0d0;line-height:1.6}
+.pcj .franja-lista{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:26px;list-style:none;padding:0}
+.pcj .franja-lista h3{color:var(--blanco);font-size:19px;margin-bottom:7px}
+.pcj .franja-lista p{margin:0;font-size:15px}
+
+/* Cierre */
+.pcj .cierre{
+  background:var(--blanco);border:1px solid var(--borde);border-radius:26px;
+  padding:clamp(28px,4vw,48px);display:flex;align-items:center;
+  justify-content:space-between;gap:24px;flex-wrap:wrap;
+}
+.pcj .cierre p{margin:8px 0 0;color:var(--suave)}
+
+/* Tablet */
+@media(max-width:1000px){
+  .pcj .hero{grid-template-columns:1fr}
+  .pcj .hero-foto{aspect-ratio:16/10}
+  .pcj .confianza{grid-template-columns:repeat(2,1fr);margin-top:16px}
+  .pcj .categorias{grid-template-columns:repeat(2,1fr)}
+  .pcj .productos,.pcj .packs{grid-template-columns:repeat(3,1fr)}
+  .pcj .franja-lista{grid-template-columns:1fr;gap:18px}
+}
+
+/* Movil */
+@media(max-width:640px){
+  .pcj .wrap{padding:0 16px}
+  .pcj section{margin-bottom:52px}
+  .pcj .hero{border-radius:20px;margin-top:12px}
+  .pcj .hero-foto{aspect-ratio:4/3}
+  .pcj .categorias{grid-template-columns:1fr}
+  .pcj .categoria{aspect-ratio:3/2}
+  .pcj .productos,.pcj .packs{grid-template-columns:repeat(2,1fr);gap:12px}
+  .pcj .producto-cuerpo,.pcj .pack-cuerpo{padding:12px}
+  .pcj .producto-nombre{font-size:14px}
+  .pcj .btn{width:100%}
+  .pcj .cierre{display:block}
+  .pcj .cierre .btn{margin-top:20px}
+}
+
+/* Quien pide menos movimiento, menos movimiento tiene */
+@media(prefers-reduced-motion:reduce){
+  .pcj *,.pcj *::before,.pcj *::after{
+    transition-duration:.01ms!important;animation-duration:.01ms!important;
+  }
+  .pcj .btn:hover,.pcj .categoria:hover,.pcj .producto:hover{transform:none}
+}
