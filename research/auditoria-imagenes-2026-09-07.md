@@ -197,3 +197,31 @@ texto genérico que sustituyó a diez descripciones por la tarde.
 
 Hay siete apps con permiso de escritura sobre productos. Mientras estén, este
 trabajo se puede deshacer solo.
+
+## El cartel de texto del limpiapatas
+
+La foto principal del limpiapatas era `patitas-limpiapatas-hero.svg`, un archivo
+de **731 bytes** subido hoy a las 17:03 junto con el resto de reemplazos.
+
+Dentro tenía esto:
+
+```xml
+<rect width="1200" height="1200" fill="#f7f3ee"/>
+<image href="https://cdn.shopify.com/.../7f2f0f12-....jpg" x="100" y="230" .../>
+<text ...>Adiós al barro dentro de casa</text>
+<text ...>PATITASCALIDAS · Soluciones para vivir mejor con tu perro</text>
+```
+
+La foto del producto estaba puesta como **referencia externa** (`<image href>`
+apuntando a otra URL). Los navegadores no cargan recursos externos dentro de un
+SVG servido como imagen, así que el producto **nunca se veía**: el cliente solo
+veía el fondo crema y las dos líneas de texto.
+
+Curiosamente, la foto que ese cartel intentaba enseñar era la del limpiapatas
+**rosa**, que era justo el color que se había quedado sin ninguna imagen.
+
+Arreglado: fuera el cartel, dentro la foto rosa de verdad. El producto queda con
+cuatro fotos reales y sus tres colores cubiertos —gris, azul y rosa—, con la
+primera enseñando el vaso y el cepillo extraíble.
+
+Barrido del resto del catálogo: **ningún otro producto tiene imágenes .svg**.
