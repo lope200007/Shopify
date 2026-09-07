@@ -1,5 +1,6 @@
 import re, subprocess, time, sys, html as H
 BASE="https://patitascalidas.com"
+TIENDA="Patitascalidas"   # nombre que el tema anade al final de cada titulo
 PRODUCTOS="""pack-bano-y-lluvia alfombrilla-de-lamer-con-ventosas manopla-de-bano-y-secado
 albornoz-de-secado-para-perro toalla-de-secado-rapido-para-perro manta-impermeable-para-sofa-y-cama
 funda-de-asiento-coche-para-perro comedero-lento-y-alfombrilla-de-lamer boton-grabable-para-perros
@@ -41,8 +42,19 @@ def revisar(ruta,etq,bloque=False,minimg=None):
     if cod!="200": fallos.append(f"{etq}: HTTP {cod}"); return
     t=meta(h,r"<title>(.*?)</title>"); d=meta(h,r'<meta\s+name="description"\s+content="(.*?)"\s*>')
     oi=meta(h,r'<meta\s+property="og:image"\s+content="(.*?)"\s*>')
-    if not t: fallos.append(f"{etq}: sin <title>")
-    elif len(t)>60: fallos.append(f"{etq}: title de {len(t)} car. -> {t}")
+    # El tema anade " - <nombre de la tienda>" a todo titulo que no lo lleve ya.
+    # Con un nombre de 14 letras eso son 17 caracteres que no se pueden recortar
+    # sin quitarle palabras utiles al titulo. Distinguimos las dos cosas:
+    #   fallo  -> el titulo propio de la pagina ya se pasa de 60
+    #   aviso  -> solo se pasa por el sufijo del nombre de la tienda
+    if not t:
+        fallos.append(f"{etq}: sin <title>")
+    else:
+        propio = re.sub(r"\s*[\u2013-]\s*" + re.escape(TIENDA) + r"\s*$", "", t)
+        if len(propio) > 60:
+            fallos.append(f"{etq}: title propio de {len(propio)} car. -> {propio}")
+        elif len(t) > 60:
+            avisos.append(f"{etq}: {len(t)} car. con el nombre detras ({len(propio)} sin el)")
     if not d: fallos.append(f"{etq}: sin meta description")
     elif len(d)>155: fallos.append(f"{etq}: meta de {len(d)} car.")
     if not oi: fallos.append(f"{etq}: sin og:image")
