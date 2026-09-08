@@ -1,5 +1,44 @@
 # Shopify AI Agent — Guía para Claude Code
 
+> ## ⇢ EMPIEZA AQUÍ — estado a 8 de septiembre de 2026
+>
+> **El proyecto vivo no es el agente de webhooks: es la tienda
+> [patitascalidas.com](https://patitascalidas.com)** (accesorios para perros, España
+> peninsular y Baleares, dropshipping con CJ). Las secciones de más abajo que
+> hablan de «Tienda Prestige», de 26 o 42 productos o del tema sin publicar son
+> **históricas y ya no describen la realidad**. Esto sí:
+>
+> | | |
+> | --- | --- |
+> | Catálogo | **37 productos**, 126 variantes, todas comprables |
+> | Tema en vivo | `204113641820` «Patitascalidas 2026 — portada nueva» |
+> | Sin publicar | `204140708188`, con el plazo de entrega corregido — **lo tiene que publicar el usuario** |
+> | Pedidos | **0**. Y es lo esperable: ver el diagnóstico de tráfico |
+> | Proveedor | CJ, vía `CJ_MCP_TOKEN` en `.env` y `scripts/cj/cj.js` (**no** `cj-client.js`) |
+> | Envío real | 5 a 11 días a España, medido. La cifra vieja de «20-30 días» era falsa |
+>
+> **Lee esto antes de tocar nada:**
+>
+> | Documento | Qué contesta |
+> | --- | --- |
+> | `research/por-que-no-vende-2026-09-08.md` | Por qué 0 ventas no es un fallo: las «300 visitas» son 35 |
+> | `research/margenes-2026-09-08.json` + `scripts/cj/margenes.js` | Cuánto gana cada producto de verdad |
+> | `research/cj-catalogo-2026-09-08.md` | Qué tiene CJ y en cuántos días llega |
+> | `research/seo-contenido-2026-09-08.md` | Volúmenes de búsqueda reales y el plan del blog |
+> | `research/auditoria-imagenes-2026-09-07.md` | Qué fotos están mal y cuáles quedan |
+>
+> **Trampas que ya costaron tiempo:**
+>
+> - `productUpdate` con un `seo` parcial **borra** el otro campo. Manda siempre `title` y `description` juntos.
+> - `themeFilesUpsert` por URL **no escribe** `templates/*.json` y no da error. Mándalo como TEXT.
+> - Para `assets/`, la URL debe llevar **SHA de commit**: Shopify cachea por URL y se queda con la versión vieja en silencio.
+> - El conector **bloquea** `themePublish`, `themeDelete` y escribir en el tema en vivo. La vía es duplicar, editar el duplicado y que el usuario publique.
+> - `products.json` devuelve **429** si lo llamas seguido. Espacia o usa la Admin API.
+> - **Mi propio trabajo contamina las analíticas.** Antes de diagnosticar conversión, separa el tráfico con `GROUP BY referrer_source, session_country`.
+>
+> Lo que le toca al usuario está en la memoria persistente, entidad
+> *Pending User Actions*.
+
 ## Qué es este proyecto
 
 Automatización de una tienda Shopify con agentes de IA. Node.js + TypeScript + Express.
