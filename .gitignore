@@ -18,3 +18,7 @@ linkfox/
 
 # Grafo de conocimiento de graphify: se regenera con `graphify . --code-only`.
 graphify-out/
+
+# Cachés de Python
+__pycache__/
+*.pyc

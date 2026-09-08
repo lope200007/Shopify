@@ -30,16 +30,44 @@ casa, no perro usando algo que parece lo nuestro pero no lo es.
 
 ## Dirección de arte
 
-Para que no salga la estampa genérica de IA que se reconoce a un kilómetro:
+Primera versión, la que falló. Los prompts pedían *35mm film, subtle grain,
+muted tones, late golden afternoon, deep calm, quiet, stillness, grey daylight*.
+El modelo obedeció al pie de la letra y devolvió exactamente eso: brillo medio
+de 87 a 124 sobre 255, saturación de 15 a 41, y en «camas y descanso» el verde
+por encima del rojo (G 116 / R 110), o sea dominante verde medible. Perros
+dormidos, encogidos y uno mojado con cara de pena. Bonito de mirar y malo de
+vender: parecía una exposición melancólica, no una tienda.
 
-- **Luz natural de tarde**, cálida, entrando por una ventana. Nada de estudio.
-- **Casa española de verdad**: suelo de gres o parquet, persiana, terraza
-  pequeña. No la cocina americana de revista estadounidense.
-- **Perros mestizos** y razas que se ven aquí. No siempre un golden retriever.
+**La lección:** un banner de tienda no es fotografía de autor. Pedir «calma» a
+un modelo de imagen devuelve tristeza. Hay que pedir alegría de forma explícita.
+
+Segunda versión, la que funciona:
+
+- **Luz de mediodía abundante**, no de tarde. Brillo medio objetivo: 150-200.
+- **Color vivo y saturado**, balance de blancos neutro. Nada de «muted».
+- **Fotografía digital nítida y limpia**. Prohibido: *35mm film, grain, vintage*.
+- **El perro está despierto y contento**: orejas arriba, boca abierta, cola
+  levantada, mirando a cámara o en movimiento. Nunca durmiendo ni encogido.
+- **Casa española de verdad**: gres, parquet, persiana, terraza. Y cuando se
+  pueda, calle: fachada azul o de colores, cielo despejado.
+- **Perros mestizos**, los que se ven aquí.
 - **Paleta de la marca**: crema `#fbf7f1`, verde `#1f4a37`, terracota
   `#a94f1e`, tinta `#23261f`.
 - **Sin texto dentro de la imagen.** Los modelos lo escriben mal y en inglés.
 - **Sin producto reconocible.**
+
+Negativos que hay que escribir siempre, porque el modelo tira solo hacia el
+lado triste: `no film grain, no vintage look, no muted tones, no green colour
+cast, no dark shadows`.
+
+## El remate en local es gratis
+
+`scripts/fotos/alegrar.py` hace lo que sobra pagar: equilibrio de blancos
+tomado del 30 % más claro de la imagen (el gris de referencia está en la pared
+y la luz, no en el suelo de terracota), subida de luz por gamma —que mantiene
+el 255 en 255 y por tanto no quema la ventana— y viveza. Las tres banners que
+ya funcionaban de composición (comederos, juguetes, gatos) se arreglaron así,
+sin gastar un solo crédito: brillo 112→138, 123→144 y 122→144.
 
 ## Lo que cuesta
 
@@ -68,21 +96,27 @@ Modelo `recraft_v4_1`, `model_type: standard`, `resolution: 2k`.
 
 ### Banners de colección — 4:3
 
-| Colección | Prompt |
-| --- | --- |
-| Comederos y bebederos | *A mixed-breed dog waiting patiently on a tiled kitchen floor in a Spanish home, warm morning light, empty floor in the foreground, cream and terracotta tones, 35mm film, no bowls or products visible, no text* |
-| Juguetes | *A young mixed-breed dog mid-play on a living room rug, motion blur in the tail, warm afternoon light through a balcony door, sage green sofa, 35mm film, no toys visible, no text* |
-| Higiene y cuidado | *A small long-haired dog sitting calmly on a bathroom floor after a bath, damp fur, soft window light, white tiles and cream towels out of focus, 35mm film, no products visible, no text* |
-| Lluvia y barro | *A wet mixed-breed dog standing at the door of a Spanish flat after a rainy walk, wet paw prints on the tiles, grey daylight, muted tones, 35mm film, no clothing or products, no text* |
-| Camas y descanso | *An older dog asleep curled on a rug in a quiet living room, late golden light, cream and sage tones, deep calm, 35mm film, no bed or products visible, no text* |
-| Casa, coche y paseo | *A dog looking out of a car's open boot in a Spanish street, late afternoon sun, warm dust in the air, blurred façades behind, 35mm film, no covers or products visible, no text* |
-| También para gatos | *A cat and a dog resting on the same sunlit floor of a Spanish flat, calm coexistence, warm light, cream tones, 35mm film, no products visible, no text* |
+Cuatro se regeneraron con la dirección de arte nueva (32 créditos). Las otras
+tres se salvaron con `alegrar.py`, gratis, porque la composición ya era buena.
 
-## Después de generar
+| Colección | Prompt | Origen |
+| --- | --- | --- |
+| Higiene y cuidado | *A happy small long-haired dog standing alert on a bright white bathroom floor, ears up, looking at camera cheerfully, brilliant clean daylight flooding through a large window, crisp white tiles, fresh folded cream towels, high-key airy lighting, vivid saturated colours, neutral white balance, clean modern commercial photography, fresh and joyful, sharp digital capture, no film grain, no vintage look, no green colour cast, no products visible, no text* | Regenerada |
+| Lluvia y barro | *A cheerful mixed-breed dog with muddy paws standing alert in the bright entrance hall of a Spanish flat, ears up and tail raised, brilliant clear sunlight after the rain streaming through a wide open door, light terracotta floor tiles, white walls, vivid saturated colours, neutral white balance, clean crisp commercial photography, lively and energetic, sharp digital capture, no film grain, no vintage look, no grey muted tones, no clothing or products, no text* | Regenerada |
+| Camas y descanso | *A relaxed happy dog stretching awake on a cream woven rug in a bright airy Spanish living room, eyes open and alert, abundant midday sunlight pouring through a large balcony window, white walls, light oak floor, warm cream and terracotta accents, vivid clean colours, neutral white balance, high-key bright commercial interior photography, sharp digital capture, no film grain, no vintage look, no green colour cast, no dog bed or products visible, no text* | Regenerada |
+| Casa, coche y paseo | *An excited dog with ears up and mouth open happily looking out of the open boot of a car on a sunny Spanish street, brilliant midday sunshine, clear blue sky, vivid saturated colours, neutral white balance, clean crisp commercial photography, cheerful and energetic, bright sunlit façades blurred behind, sharp digital capture, no film grain, no vintage look, no dark shadows, no covers or products visible, no text* | Regenerada |
+| Comederos y bebederos | Primera versión | Rescatada con `alegrar.py` |
+| Juguetes | Primera versión | Rescatada con `alegrar.py` |
+| También para gatos | Primera versión | Rescatada con `alegrar.py` |
 
-1. Descargar, recortar y meter en `assets/fotos/`.
-2. Subir con `collectionUpdate` (banners) y `themeFilesUpsert` sobre el tema
-   duplicado (portada), que en el tema en vivo está bloqueado.
-3. Alt en castellano y descriptivo: en este tema **el alt se ve como pie de
-   foto**.
-4. Comprobar la portada y una colección renderizando, no solo por API.
+### Lo que queda flojo
+
+Con honestidad, para no repetir el error de dar por bueno lo mediocre:
+
+- **Camas y descanso** es la más débil. El perro sale pequeño y la habitación
+  está vacía. Se recortó a 4:3 desde abajo-derecha para acercarlo, pero pide
+  una regeneración cuando haya créditos.
+- **Comederos** el perro mira fuera de cuadro y la escena es estática.
+- **También para gatos** conserva un punto de amarillo en el suelo.
+
+Créditos restantes tras este lote: **2**. No dan para otra imagen (8 cada una).
