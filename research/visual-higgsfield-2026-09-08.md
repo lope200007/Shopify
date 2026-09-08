@@ -120,3 +120,16 @@ Con honestidad, para no repetir el error de dar por bueno lo mediocre:
 - **También para gatos** conserva un punto de amarillo en el suelo.
 
 Créditos restantes tras este lote: **2**. No dan para otra imagen (8 cada una).
+
+### La portada (hero) queda descartada
+
+La imagen de portada generada en el primer lote es el peor caso de todo el
+conjunto: un perro con la cabeza apoyada en el suelo, mirada baja, y una
+dominante verde-turquesa que `alegrar.py` no arregla —el equilibrio de
+blancos toma la referencia de la ventana, que está quemada y sale neutra, y
+por tanto no ve el verde de los medios tonos—. Subirle la luz la vuelve más
+turquesa todavía.
+
+No se sube a la tienda. El problema no es de color: es la pose. Un perro
+deprimido en la portada no se corrige revelando, se corrige generando otra
+vez. Cuesta 8 créditos y quedan 2.
