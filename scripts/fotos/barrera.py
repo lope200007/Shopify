@@ -52,6 +52,16 @@ def foto_con_pie(src, pie, salida, recorte=None, lado_foto=None, con_marco=True)
     guardar(base, os.path.join(SAL, salida))
 
 
+def foto_llena(src, salida, recorte=None, centro=(0.5, 0.5)):
+    """Foto a sangre, sin margen ni pie: asi la ficha de coleccion se llena
+    igual que la del resto del catalogo."""
+    im = ab(src)
+    if recorte:
+        im = im.crop(recorte)
+    im = cuadrar(im, centro)
+    guardar(ampliar(im, L), os.path.join(SAL, salida))
+
+
 # ---------------------------------------------------------------- 3 contenido
 def contenido():
     base = lienzo()
@@ -230,12 +240,8 @@ def ganchos():
 
 
 if __name__ == "__main__":
-    foto_con_pie("bar00.jpg",
-                 "Cierra el paso de una habitación sin dejar una reja fija en mitad del pasillo.",
-                 "barrera-1-perro-detras.jpg")
-    foto_con_pie("bar01.jpg",
-                 "Malla de nailon semitransparente: el perro te ve a través y tú lo ves a él.",
-                 "barrera-2-golden.jpg")
+    foto_llena("bar00.jpg", "barrera-1-perro-detras.jpg")
+    foto_llena("bar01.jpg", "barrera-2-golden.jpg", recorte=(0, 0, 800, 800))
     contenido()
     pasos()
     medidas()
@@ -243,9 +249,7 @@ if __name__ == "__main__":
     foto_con_pie("desc-75d2ef73.jpg",
                  "Presillas cosidas a los dos lados: por ahí entran las varillas de acero.",
                  "barrera-7-presillas.jpg")
-    foto_con_pie("bar04.jpg",
-                 "También sirve para el arranque de una escalera o para un hueco entre dos paredes.",
-                 "barrera-8-hueco.jpg")
+    foto_llena("bar04.jpg", "barrera-8-hueco.jpg")
     foto_con_pie("bar06.png",
                  "Se descuelga y se dobla como una tela. Los ganchos se quedan puestos para volver a colgarla.",
                  "barrera-9-plegada.jpg", lado_foto=820)

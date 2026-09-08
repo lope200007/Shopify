@@ -64,7 +64,7 @@ def ampliar(im, lado):
     nueva = (max(1, round(im.width * r)), max(1, round(im.height * r)))
     out = im.resize(nueva, Image.LANCZOS)
     if r > 1.2:
-        out = out.filter(ImageFilter.UnsharpMask(radius=1.6, percent=int(min(90, 45 * r)), threshold=3))
+        out = out.filter(ImageFilter.UnsharpMask(radius=1.9, percent=int(min(75, 40 * r)), threshold=3))
     return out
 
 
