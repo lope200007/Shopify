@@ -15,3 +15,6 @@ linkfox/
 
 # Libro de pedidos servidos en CJ: lleva direcciones de clientes.
 .cj-pedidos.json
+
+# Grafo de conocimiento de graphify: se regenera con `graphify . --code-only`.
+graphify-out/
