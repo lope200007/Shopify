@@ -225,3 +225,52 @@ cuatro fotos reales y sus tres colores cubiertos —gris, azul y rosa—, con la
 primera enseñando el vaso y el cepillo extraíble.
 
 Barrido del resto del catálogo: **ningún otro producto tiene imágenes .svg**.
+
+---
+
+## Barrera de malla — rehecha el 8 de septiembre
+
+**Lo que pasaba.** La ficha se veía falsa y el motivo era medible: las cuatro
+fotos del proveedor estaban a 801, 480, 417 y 480 píxeles. Shopify no inventa
+píxeles, así que en la ficha grande y en el zoom salía todo blando. Ninguna de
+las dos fotos del proveedor con un perro real en una casa estaba puesta.
+
+**Lo que había sin usar.** Dentro del HTML de la descripción del proveedor
+(`proveedores/cj/CJJJCWGY00196.json`, campo `description`) hay tres fotos que no
+aparecen en `productImageSet` y que nadie había mirado. Son las de más
+resolución del lote:
+
+| Archivo | Tamaño | Qué es |
+| --- | --- | --- |
+| `4c29f918…jpg` | 750 × 578 | el contenido de la caja, la mejor foto del lote |
+| `75d2ef73…jpg` | 800 × 800 | detalle de la malla y de las presillas |
+| `d2906e63…png` | 800 × 795 | el mismo contenido, en beige (color que no vendemos) |
+
+**Lo que hay ahora.** Nueve imágenes a 1200 px:
+
+1. cachorro detrás de la malla, en el paso de una habitación (a sangre)
+2. golden retriever detrás de la malla (a sangre)
+3. contenido de la caja, numerado en castellano
+4. los tres pasos de montaje
+5. medidas a escala real: 74 de alto × 124 de ancho
+6. dónde agarran los ganchos y dónde no
+7. detalle de las presillas
+8. labrador detrás de la malla en un hueco de puerta (a sangre)
+9. la barrera plegada
+
+Las tres fotos de ambiente van **a sangre, sin margen ni pie**. Con el margen
+crema puesto, la ficha de la rejilla de colección salía más pequeña que la del
+resto del catálogo, que es lo contrario de lo que se buscaba. En las tarjetas
+explicativas el pie sí hace falta y se queda.
+
+**Texto.** La descripción abre ahora con cuatro puntos de resumen (medidas,
+montaje, material, plegado) y cierra con una ficha. El aviso de que es malla y
+no reja, y de que no está homologada para bebés, sigue a la vista, sin plegar.
+
+**Además.** El collage del *Pack cachorro recién llegado* llevaba el recorte
+viejo de la barrera; se ha rehecho con la foto nueva. Y quedaban tres fichas
+—el pack, el parque y el dinosaurio— que seguían llamándola «barrera
+enrollable» y decían que «se enrolla dentro del tubo» y que «se fija a
+presión». El albarán del proveedor es *1 malla + 2 varillas + 4 ganchos
+adhesivos*: nada de eso era verdad. Corregido en las tres. Barrido posterior
+sobre los 34 productos: 0 coincidencias.
