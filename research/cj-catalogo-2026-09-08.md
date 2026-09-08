@@ -46,10 +46,39 @@ gato:
 | Polonia | 0 |
 | **Total Europa** | **120** |
 
-**120 de 29.467 es el 0,4 %.** Todo lo demás sale de China: 20-30 días.
+**120 de 29.467 es el 0,4 %.** Todo lo demás sale de China.
+
+> **Corrección del mismo día.** Escribí aquí «20-30 días» copiando
+> `cj-almacenes-2026-09-04.md`. Es falso. Ver el apartado siguiente: el dato
+> medido contra la API de CJ es **4 a 8 días** de transporte a España.
 
 Esto confirma y amplía lo de `cj-almacenes-2026-09-04.md`, que solo había
 mirado 5 categorías. Ahora está medido el catálogo entero de mascotas.
+
+## El plazo real desde China: 4 a 8 días, no 20-30
+
+Consultado `/logistic/freightCalculate` para tres productos distintos (barrera,
+parque plegable y botón grabable), destino Madrid:
+
+| Transportista | Coste | Plazo |
+| --- | ---: | --- |
+| CJPacket Ordinary | 3,79–10,81 $ | **4-8 días** |
+| CJPacket Eub | 3,57–7,43 $ | 4-9 días |
+| CJPacket Sensitive | 7,53 $ | 5-7 días |
+| YunExpress Ordinary | 6,05–9,14 $ | 8-15 días |
+| DHL Official | 37,19 $ | 7-10 días |
+
+Con 1 a 3 días laborables de preparación, el total honesto es de **5 a 11 días**:
+una o dos semanas.
+
+Esto cambia la conclusión de `cj-almacenes-2026-09-04.md`, que daba por hecho
+20-30 días sin haber consultado los portes. **El almacén europeo no es la
+frontera que parecía.** Los 29.467 productos son alcanzables con un plazo que
+un cliente español acepta; los 120 europeos ahorran unos pocos días, no tres
+semanas.
+
+Lo que sigue en pie de aquel documento: el almacén sí es europeo solo en 120
+casos, y la portada nunca debe decir «enviamos desde Europa».
 
 ## Y de esos 120, cuántos nos sirven de verdad
 
@@ -123,9 +152,12 @@ de asiento acolchado (CJJJCWGY00086) y lima de uñas a pilas (CJYD2290404).
 La pregunta «cuántos productos tiene CJ para nosotros» tiene dos respuestas muy
 distintas:
 
-- **Si aceptamos 20-30 días de envío: 29.467.** Añadir producto no es el
+- **Con el plazo real de 1 a 2 semanas: 29.467.** Añadir producto no es el
   cuello de botella; podríamos triplicar el catálogo esta semana.
-- **Si queremos entrega en una semana: 120, y útiles de verdad unos 10.**
+- **Si quisiéramos entrega en 3 o 4 días: 120, y útiles de verdad unos 10.**
 
-El límite no es el catálogo, es el plazo. Y esa decisión —la de
-`cj-almacenes-2026-09-04.md`, que sigue sin tomarse— es la que manda.
+Medidos los portes, la disyuntiva es mucho menos dramática de lo que parecía.
+Una o dos semanas no compite con Amazon Prime, pero es un plazo normal para
+una tienda pequeña y se puede decir sin avergonzarse. **El catálogo está
+abierto.** Lo que decide qué añadimos es el criterio de producto, no la
+logística.

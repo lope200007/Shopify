@@ -1,5 +1,13 @@
 # CJ conectado — y el hallazgo que cambia el plan
 
+> **Rectificado el 8 de septiembre.** La frase «no son 5-8 días, son 20-30» de
+> este documento **es falsa**: se escribió sin consultar los portes. Medido con
+> `/logistic/freightCalculate` sobre tres productos, el transporte de China a
+> España es de **4 a 8 días** con CJPacket Ordinary. Con la preparación, de una
+> a dos semanas. Lo que sí sigue siendo cierto: casi no hay stock europeo, y la
+> portada no puede decir «enviamos desde Europa».
+> Detalle en `cj-catalogo-2026-09-08.md`.
+
 4 septiembre 2026
 
 ## La conexion funciona
