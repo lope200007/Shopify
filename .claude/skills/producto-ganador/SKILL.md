@@ -79,6 +79,19 @@ Herramientas, en este orden:
 **El producto no se toca.** `mejorar-foto.py` imprime el desvio de tono; por
 encima de 0,01 hay que parar y mirar. Lo normal es 0,000-0,004.
 
+**Y no se amplia NUNCA.** Una foto de 480 px estirada a 1600 no gana detalle:
+lo inventa, y el pelo de un perro se convierte en plastico. Paso en la barrera
+de malla -el cliente dijo, con razon, que el perro parecia falso- y resulto
+que el fallo estaba en la herramienta: `--revelar` llevaba `lado=1600` y
+ampliaba todo. Ya solo reduce. Antes de publicar, comprueba que el ancho de
+salida no es mayor que el de entrada.
+
+Si el proveedor manda 800, se publican 800. Shopify sirve el tamano que toca
+en cada pantalla, y una foto pequena y nitida se ve mejor que una grande y
+derretida. Por debajo de 700 px vale como secundaria, **no como foto de
+variante ni como principal**: ahi busca otra toma del proveedor antes que
+recortar un trozo de una lamina.
+
 Con pelo de animal: **no toques el fondo**. Tres tecnicas probadas y fallidas:
 recorte simple deja halo rosa, descontaminar + erosionar deja al perro
 semitransparente, y desplazar el fondo hacia crema le mete tono verde a las
