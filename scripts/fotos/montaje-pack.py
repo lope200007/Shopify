@@ -72,6 +72,44 @@ def recortar_plano(ruta, tolerancia=26, suavizado=1.4):
     return out.crop(caja) if caja else out
 
 
+def descontaminar(obj, fondo=None, erosion=1):
+    """Quita del borde el color del fondo que se recorto.
+
+    Un recorte deja el borde a medias: los pixeles del contorno son mezcla del
+    objeto y del fondo que habia detras. Sobre un perro blanco recortado de un
+    fondo rosa eso se ve como un halo rosa, y delata el montaje al instante.
+
+    La mezcla es C = a*F + (1-a)*B, con `a` la opacidad, F el color real del
+    objeto y B el del fondo. Despejando F se recupera el color que tenia el
+    objeto antes de mezclarse. Ademas se come un pixel de borde, que es donde
+    la estimacion de `a` es menos fiable.
+
+    Esto no cambia el producto: al reves, lo devuelve a su color, quitandole
+    el tinte que le habia puesto el fondo del proveedor.
+    """
+    a = np.asarray(obj).astype(float)
+    rgb, alfa = a[..., :3], a[..., 3:4] / 255.0
+
+    if fondo is None:
+        borde = np.concatenate([a[0, :, :3], a[-1, :, :3], a[:, 0, :3], a[:, -1, :3]])
+        peso = np.concatenate([a[0, :, 3], a[-1, :, 3], a[:, 0, 3], a[:, -1, 3]])
+        flojo = peso < 40
+        fondo = borde[flojo].mean(axis=0) if flojo.sum() > 20 else np.array([255., 255., 255.])
+
+    borde_medio = (alfa > 0.03) & (alfa < 0.97)
+    limpio = np.where(borde_medio,
+                      (rgb - (1 - alfa) * fondo) / np.maximum(alfa, 0.12),
+                      rgb)
+    salida = np.dstack([np.clip(limpio, 0, 255), a[..., 3]])
+
+    if erosion:
+        m = Image.fromarray(a[..., 3].astype('uint8'))
+        m = m.filter(ImageFilter.MinFilter(2 * erosion + 1))
+        salida[..., 3] = np.asarray(m)
+
+    return Image.fromarray(salida.astype('uint8'), 'RGBA')
+
+
 def armonizar(obj, objetivo=228.0, tope=1.18):
     """Iguala SOLO la exposicion de una pieza. Nunca su color.
 
