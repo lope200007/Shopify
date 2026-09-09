@@ -199,5 +199,45 @@
     "remate": "Envío a toda España"
    }
   ]
+ },
+ {
+  "nombre": "pack-coche",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "Un morro en el hombro mientras conduces."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "pack-coche-2-barrera.jpg",
+    "texto": "Barrera atada a los reposacabezas"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "pack-coche-3-cubremaletero.jpg",
+    "texto": "El pelo y el barro se quedan en la tela"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "pack-coche-4-cinturon.jpg",
+    "texto": "Cinturón al arnés, nunca al collar"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "pack-coche-1-tarjeta.jpg",
+    "texto": "Las tres, en un solo pedido"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "64,90 €",
+    "remate": "Ahorras 19,80 €"
+   }
+  ]
  }
 ]
