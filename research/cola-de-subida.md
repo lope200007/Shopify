@@ -31,6 +31,8 @@ Está todo en `.claude/skills/producto-ganador/SKILL.md`.
 
 ## GRUPO 1 — Listos para subir en cuanto haya porte
 
+**Siete** desde la revisión del 9/9 por la noche: se suma el bozal de silicona.
+
 | # | Producto | pid | Coste | Peso | Var. | Fotos | Sirve a | Vol/mes |
 |---|---|---|---:|---:|---:|---:|---|---:|
 | 1 | **Alfombrilla de silicona bajo comedero** | `2608250338081619900` | 0,95-5,50 $ | 210-420 g | 26 | 17 | comedero perro | 1.900 |
@@ -58,22 +60,56 @@ de 12,90 a 19,90 €. Se fija con el porte real, no antes.
 Para que Google los tenga indexados en noviembre hay que subirlos en octubre.
 Los dos entran solos en `/collections/regalos` con la etiqueta `regalo`.
 
-## GRUPO 3 — Bloqueados por falta de medidas
+## GRUPO 3 — Revisado el 9/9 por la noche
 
-| # | Producto | pid | Vol/mes | Qué falta |
+| # | Producto | pid | Vol/mes | Estado |
 |---|---|---|---:|---|
-| 9 | **Jersey de punto de invierno** | `2412170611181629400` | 1.300 (2.900 dic) | 22 variantes, 9 fotos, **sin contorno de pecho en cm**. Mirar si la tabla está dentro de alguna foto |
-| 10 | **Bozal de silicona tipo cesta** | `1741674559775977472` | 880 | 30 variantes, 14 fotos, **sin medidas**. Un bozal mal medido no sujeta o asfixia: sin tabla no se sube |
-| 11 | **Collar táctico con asa** | `2609070738301614700` | **3.600** | Sigue sin contorno de cuello. Es el mismo muro que tumbó a los otros 90 collares |
+| 9 | **Jersey de punto de invierno** | `2412170611181629400` | 1.300 (2.900 dic) | ❌ **DESCARTADO.** Revisadas sus 9 fotos una a una: no hay tabla por ningún lado. Las tallas son «No 6» a «No 16», numeración china sin equivalencia publicada |
+| 10 | **Bozal de silicona tipo cesta** | `1741674559775977472` | 880 | ✅ **DESBLOQUEADO.** La tabla estaba en la foto 10, en milímetros |
+| 11 | **Collar táctico con asa** | `2609070738301614700` | **3.600** | ❌ Sigue sin contorno de cuello. Mismo muro que los otros 90 collares |
 
-El jersey es el más recuperable: si la tabla aparece en una foto, sube directo
-al grupo 1 y llega a tiempo del pico de diciembre.
+### La tabla del bozal, ya convertida
+
+Se vende por **contorno de hocico**, que es la medida que decide. La columna de
+kilos es del fabricante y **es inconsistente** —la fila 5 viene en libras y el
+resto en *catties* chinos—, así que va solo como orientación.
+
+| Talla | Contorno de hocico | Largo | Ancho | Peso orientativo |
+|---|---:|---:|---:|---|
+| 3 | 10,3 cm | 9,1 cm | 8,8 cm | 2,5 a 5 kg |
+| 4 | 11,4 cm | 10,1 cm | 9,7 cm | 5 a 7,5 kg |
+| 5 | 12,5 cm | 11,1 cm | 10,6 cm | 7,5 a 10 kg |
+| 6 | 13,3 cm | 11,8 cm | 11,3 cm | 10 a 15 kg |
+| 7 | 13,9 cm | 12,3 cm | 11,8 cm | 15 a 20 kg |
+| 8 | 16,6 cm | 14,8 cm | 14,2 cm | 20 a 30 kg |
+
+Va al grupo 1. Y es mejor producto que el bozal de nailon que ya vendemos: al
+ser de cesta, el perro puede jadear y beber con él puesto. La ficha tiene que
+decir eso y también que un bozal no se deja puesto sin vigilancia.
 
 ## GRUPO 4 — Hay que confirmar una cosa antes
 
 | # | Producto | pid | Vol/mes | Qué confirmar |
 |---|---|---|---:|---|
-| 12 | **Chapa identificativa grabada** | `2605140441451632200` | **4.400** | Es el mayor volumen de toda la cola. Pero lleva **grabado personalizado**: hay que confirmar con CJ si aceptan el texto en el pedido por API y cómo se manda. Si no lo aceptan, no se puede servir |
+| 12 | **Chapa identificativa grabada** | `2605140441451632200` | **4.400** | Ver abajo |
+
+### Chapa: respondido, y la respuesta es «sí, pero»
+
+CJ **sí acepta personalización** en este producto: `customizationVersion: 2`,
+con un área de diseño llamada `diy`, `podType: 3`. Y publica medidas: redonda
+de 3,5 cm de diámetro, cuadrada de 2,3 × 4,5 cm.
+
+El pero: **no es un campo de texto**. Es impresión bajo demanda — hay que
+mandar con el pedido una imagen de diseño colocada sobre la plantilla, con sus
+coordenadas (`left: 149.25`, `top: 410`), su escala (`scaleX: 1.698`) y su
+cuerpo de letra (`fontSize: 12`).
+
+O sea: para venderlo hay que **construir un paso que dibuje el nombre y el
+teléfono del cliente sobre la plantilla y lo suba con el pedido**. Es un
+proyecto de medio día, no una ficha de veinte minutos.
+
+Con 4.400 búsquedas/mes probablemente merezca la pena, pero es una decisión
+aparte: no se puede colar en una tanda de subidas normales.
 
 ---
 
