@@ -119,5 +119,85 @@
     "remate": "Envío a toda España"
    }
   ]
+ },
+ {
+  "nombre": "collar-isabelino-espuma",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "El cono duro ya ha tirado una lámpara."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "collar-isabelino-espuma-1-amarillo.jpg",
+    "texto": "Este es de espuma: se dobla al chocar"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "collar-isabelino-espuma-5-detalle.jpg",
+    "texto": "Y no le deja llegar a la herida"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "collar-isabelino-espuma-3-verde.jpg",
+    "texto": "Tres tallas por contorno de cuello"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "collar-isabelino-espuma-2-rosa.jpg",
+    "texto": "Cuatro colores. También para gato"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "desde 15,90 €",
+    "remate": "Envío a toda España"
+   }
+  ]
+ },
+ {
+  "nombre": "collar-inflable",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "Con el cono no ve, no come y no duerme."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "collar-inflable-1-azul.jpg",
+    "texto": "Un flotador alrededor del cuello"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "collar-inflable-4-cierre.jpg",
+    "texto": "Su propio collar pasa por las trabillas"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "collar-inflable-5-con-perros.jpg",
+    "texto": "Ve a los lados, come y se tumba con él"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "collar-inflable-3-dos-colores.jpg",
+    "texto": "Cinco tallas, de 12 a 65 cm de cuello"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "desde 19,90 €",
+    "remate": "Envío a toda España"
+   }
+  ]
  }
 ]
