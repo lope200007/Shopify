@@ -30,7 +30,7 @@
   endunless
 -%}
 
-<div class="pcj">
+<div class="pcj" id="pcj-{{ section.id }}">
   <div class="pcj-wrap">
 
     {%- comment -%} ---------- Cabecera ---------- {%- endcomment -%}
@@ -71,7 +71,7 @@
       <ul class="pcj-confianza">
         {%- for bloque in section.blocks -%}
           {%- if bloque.type == 'confianza' -%}
-            <li {{ bloque.shopify_attributes }}>
+            <li data-aparece style="--pcj-orden:{{ forloop.index0 }}" {{ bloque.shopify_attributes }}>
               <b>{{ bloque.settings.titulo | escape }}</b>
               <span>{{ bloque.settings.detalle | escape }}</span>
             </li>
@@ -82,7 +82,7 @@
 
     {%- comment -%} ---------- Categorias ---------- {%- endcomment -%}
     <section class="pcj-seccion" id="categorias" aria-labelledby="titulo-categorias">
-      <div class="pcj-cabecera">
+      <div class="pcj-cabecera" data-aparece>
         <div>
           <p class="pcj-antetitulo">{{ section.settings.antetitulo_categorias | escape }}</p>
           <h2 id="titulo-categorias">{{ section.settings.titulo_categorias | escape }}</h2>
@@ -100,7 +100,8 @@
               endif
             -%}
             {%- if col != blank -%}
-              <a class="pcj-categoria" href="{{ col.url }}" {{ bloque.shopify_attributes }}>
+              <a class="pcj-categoria" href="{{ col.url }}" data-aparece
+                 style="--pcj-orden:{{ forloop.index0 | modulo: 3 }}" {{ bloque.shopify_attributes }}>
                 {%- if foto -%}
                   <img
                     src="{{ foto | image_url: width: 700 }}"
@@ -122,7 +123,7 @@
 
     {%- comment -%} ---------- Escaparate ---------- {%- endcomment -%}
     <section class="pcj-seccion" aria-labelledby="titulo-escaparate">
-      <div class="pcj-cabecera">
+      <div class="pcj-cabecera" data-aparece>
         <div>
           <p class="pcj-antetitulo">{{ section.settings.antetitulo_escaparate | escape }}</p>
           <h2 id="titulo-escaparate">{{ section.settings.titulo_escaparate | escape }}</h2>
@@ -131,7 +132,7 @@
       </div>
       <ul class="pcj-productos">
         {%- for producto in escaparate.products limit: n_escaparate -%}
-          <li>
+          <li data-aparece style="--pcj-orden:{{ forloop.index0 | modulo: 4 }}">
             <a class="pcj-producto" href="{{ producto.url }}">
               <span class="pcj-producto-foto">
                 {%- if producto.featured_image -%}
@@ -162,7 +163,7 @@
     {%- comment -%} ---------- Packs ---------- {%- endcomment -%}
     {%- if packs != blank and packs.products_count > 0 -%}
       <section class="pcj-seccion" aria-labelledby="titulo-packs">
-        <div class="pcj-cabecera">
+        <div class="pcj-cabecera" data-aparece>
           <div>
             <p class="pcj-antetitulo">{{ section.settings.antetitulo_packs | escape }}</p>
             <h2 id="titulo-packs">{{ section.settings.titulo_packs | escape }}</h2>
@@ -171,7 +172,7 @@
         </div>
         <ul class="pcj-packs">
           {%- for producto in packs.products limit: n_packs -%}
-            <li>
+            <li data-aparece style="--pcj-orden:{{ forloop.index0 | modulo: 4 }}">
               <a class="pcj-pack" href="{{ producto.url }}">
                 <span class="pcj-pack-foto">
                   {%- if producto.featured_image -%}
@@ -204,13 +205,13 @@
       {%- if bloque.type == 'ventaja' -%}{%- assign hay_ventajas = true -%}{%- endif -%}
     {%- endfor -%}
     {%- if hay_ventajas -%}
-      <section class="pcj-seccion pcj-franja" aria-labelledby="titulo-porque">
+      <section class="pcj-seccion pcj-franja" aria-labelledby="titulo-porque" data-aparece>
         <h2 id="titulo-porque">{{ section.settings.titulo_porque | escape }}</h2>
         <p class="pcj-lead" style="color:#e8e0d0">{{ section.settings.texto_porque | escape }}</p>
         <ul class="pcj-franja-lista">
           {%- for bloque in section.blocks -%}
             {%- if bloque.type == 'ventaja' -%}
-              <li {{ bloque.shopify_attributes }}>
+              <li data-aparece style="--pcj-orden:{{ forloop.index0 }}" {{ bloque.shopify_attributes }}>
                 <h3>{{ bloque.settings.titulo | escape }}</h3>
                 <p>{{ bloque.settings.texto | escape }}</p>
               </li>
@@ -221,7 +222,7 @@
     {%- endif -%}
 
     {%- comment -%} ---------- Cierre ---------- {%- endcomment -%}
-    <section class="pcj-seccion pcj-cierre">
+    <section class="pcj-seccion pcj-cierre" data-aparece>
       <div>
         <h2>{{ section.settings.titulo_cierre | escape }}</h2>
         <p>{{ section.settings.texto_cierre | escape }}</p>
@@ -231,6 +232,42 @@
 
   </div>
 </div>
+
+<script>
+  /* Entradas al hacer scroll.
+
+     Tres decisiones que conviene no deshacer:
+
+     1. La clase `pcj-anima` la pone este script, no el HTML. Asi, si el
+        script no se ejecuta, el CSS que esconde las piezas no llega a
+        aplicarse y la portada se ve entera. El contenido nunca depende de
+        que funcione el JavaScript.
+     2. IntersectionObserver, no un `scroll` listener: el navegador avisa
+        cuando toca en vez de hacernos medir en cada fotograma.
+     3. Se deja de observar cada pieza en cuanto entra. La animacion ocurre
+        una vez; volver a subir no la repite, que marea. */
+  (function () {
+    var raiz = document.getElementById('pcj-{{ section.id }}');
+    if (!raiz) return;
+
+    var menosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (menosMovimiento.matches || !('IntersectionObserver' in window)) return;
+
+    raiz.classList.add('pcj-anima');
+
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (!entrada.isIntersecting) return;
+        entrada.target.classList.add('pcj-dentro');
+        observador.unobserve(entrada.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+    raiz.querySelectorAll('[data-aparece]').forEach(function (pieza) {
+      observador.observe(pieza);
+    });
+  })();
+</script>
 
 {% schema %}
 {

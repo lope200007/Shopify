@@ -51,6 +51,7 @@
   font-weight:800;font-size:15px;border:2px solid transparent;
   transition:transform .18s ease,box-shadow .18s ease;
 }
+.pcj .pcj-btn:active{transform:translateY(0) scale(.97)}
 .pcj .pcj-btn-primario{background:var(--terracota);color:var(--blanco)}
 .pcj .pcj-btn-secundario{background:var(--blanco);color:var(--verde);border-color:var(--verde)}
 .pcj .pcj-btn-claro{background:var(--blanco);color:var(--verde)}
@@ -86,13 +87,20 @@
 .pcj .pcj-categorias{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .pcj .pcj-categoria{
   position:relative;border-radius:var(--radio);overflow:hidden;
-  display:flex;align-items:flex-end;aspect-ratio:4/5;background:var(--arena);
+  display:flex;align-items:flex-end;aspect-ratio:1/1;background:var(--arena);
   box-shadow:var(--sombra);transition:transform .2s ease,box-shadow .2s ease;
 }
 @media(hover:hover){
   .pcj .pcj-categoria:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(35,38,31,.16)}
 }
-.pcj .pcj-categoria img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pcj .pcj-categoria img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 55%;   /* el perro suele estar en la mitad baja */
+  transition:transform .5s cubic-bezier(.22,1,.36,1);
+}
+@media(hover:hover){
+  .pcj .pcj-categoria:hover img{transform:scale(1.05)}
+}
 .pcj .pcj-categoria::after{
   content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.78) 100%);
@@ -181,10 +189,28 @@
   .pcj .pcj-cierre .pcj-btn{margin-top:20px}
 }
 
+/* ---------- Entradas al hacer scroll ----------
+   La clase .pcj-anima la pone el JavaScript. Si el JavaScript no llega a
+   ejecutarse —bloqueado, error, navegador viejo— nada de esto se aplica y la
+   portada se ve entera. Nunca se esconde contenido a la espera de un script.
+
+   Solo se animan `opacity` y `transform`: las compone la GPU y no provocan
+   ni reflujo ni repintado. Animar `height` o `top` daria tirones. */
+.pcj-anima [data-aparece]{
+  opacity:0;
+  transform:translateY(22px);
+  transition:opacity .55s cubic-bezier(.22,1,.36,1),
+             transform .55s cubic-bezier(.22,1,.36,1);
+  transition-delay:calc(var(--pcj-orden,0) * 65ms);
+}
+.pcj-anima [data-aparece].pcj-dentro{opacity:1;transform:none}
+
 /* Quien pide menos movimiento, menos movimiento tiene */
 @media(prefers-reduced-motion:reduce){
   .pcj *,.pcj *::before,.pcj *::after{
     transition-duration:.01ms!important;animation-duration:.01ms!important;
   }
   .pcj .pcj-btn:hover,.pcj .pcj-categoria:hover,.pcj .pcj-producto:hover{transform:none}
+  .pcj .pcj-categoria:hover img{transform:none}
+  .pcj-anima [data-aparece]{opacity:1;transform:none;transition:none;transition-delay:0s}
 }
