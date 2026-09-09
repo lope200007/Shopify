@@ -43,6 +43,9 @@
           <a class="pcj-btn pcj-btn-primario" href="{{ routes.all_products_collection_url }}">{{ section.settings.boton_uno | escape }}</a>
           <a class="pcj-btn pcj-btn-secundario" href="#categorias">{{ section.settings.boton_dos | escape }}</a>
         </div>
+        {%- if section.settings.aviso_envio != blank -%}
+          <p class="pcj-aviso">{{ section.settings.aviso_envio | escape }}</p>
+        {%- endif -%}
       </div>
       <div class="pcj-hero-foto">
         {%- if hero_foto -%}
@@ -221,6 +224,33 @@
       </section>
     {%- endif -%}
 
+    {%- comment -%} ---------- Preguntas frecuentes ---------- {%- endcomment -%}
+    {%- assign hay_preguntas = false -%}
+    {%- for bloque in section.blocks -%}
+      {%- if bloque.type == 'pregunta' -%}{%- assign hay_preguntas = true -%}{%- endif -%}
+    {%- endfor -%}
+    {%- if hay_preguntas -%}
+      <section class="pcj-seccion" aria-labelledby="titulo-dudas" data-aparece>
+        <div class="pcj-cabecera">
+          <div>
+            <p class="pcj-antetitulo">{{ section.settings.antetitulo_dudas | escape }}</p>
+            <h2 id="titulo-dudas">{{ section.settings.titulo_dudas | escape }}</h2>
+          </div>
+          <p>{{ section.settings.texto_dudas | escape }}</p>
+        </div>
+        <div class="pcj-dudas">
+          {%- for bloque in section.blocks -%}
+            {%- if bloque.type == 'pregunta' -%}
+              <details class="pcj-duda" {{ bloque.shopify_attributes }}>
+                <summary>{{ bloque.settings.pregunta | escape }}</summary>
+                <div class="pcj-duda-cuerpo">{{ bloque.settings.respuesta }}</div>
+              </details>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </section>
+    {%- endif -%}
+
     {%- comment -%} ---------- Cierre ---------- {%- endcomment -%}
     <section class="pcj-seccion pcj-cierre" data-aparece>
       <div>
@@ -282,6 +312,7 @@
     { "type": "text", "id": "boton_dos", "label": "Boton secundario", "default": "Comprar por categoria" },
     { "type": "image_picker", "id": "imagen_hero", "label": "Imagen de la cabecera", "info": "Si la dejas vacia se usa la imagen de marca." },
     { "type": "text", "id": "texto_alternativo_hero", "label": "Texto alternativo de la imagen", "default": "Golden retriever sentado en un parque junto a la botella de paseo 3 en 1" },
+    { "type": "text", "id": "aviso_envio", "label": "Aviso bajo los botones", "default": "Envio gratis a partir de 55 EUR · Entrega habitual de 10 a 20 dias", "info": "Dejalo vacio para no mostrarlo." },
 
     { "type": "header", "content": "Categorias" },
     { "type": "text", "id": "antetitulo_categorias", "label": "Antetitulo", "default": "Empieza por lo que necesitas" },
@@ -306,6 +337,11 @@
     { "type": "text", "id": "titulo_porque", "label": "Titulo", "default": "Por que comprar aqui" },
     { "type": "textarea", "id": "texto_porque", "label": "Texto", "default": "Somos una tienda pequena. Lo unico que podemos ofrecer mejor que nadie es contarte la verdad antes de que pagues." },
 
+    { "type": "header", "content": "Preguntas frecuentes" },
+    { "type": "text", "id": "antetitulo_dudas", "label": "Antetitulo", "default": "Antes de que preguntes" },
+    { "type": "text", "id": "titulo_dudas", "label": "Titulo", "default": "Lo que sueles querer saber" },
+    { "type": "text", "id": "texto_dudas", "label": "Texto", "default": "Las respuestas de siempre, sin tener que escribirnos." },
+
     { "type": "header", "content": "Cierre" },
     { "type": "text", "id": "titulo_cierre", "label": "Titulo", "default": "Encuentra algo que tu perro vaya a disfrutar." },
     { "type": "text", "id": "texto_cierre", "label": "Texto", "default": "Treinta y cuatro productos, todos elegidos de uno en uno." },
@@ -327,6 +363,14 @@
         { "type": "collection", "id": "coleccion", "label": "Coleccion" },
         { "type": "text", "id": "antetitulo", "label": "Antetitulo", "default": "Empieza por aqui" },
         { "type": "text", "id": "titulo", "label": "Titulo", "info": "Si lo dejas vacio se usa el nombre de la coleccion." }
+      ]
+    },
+    {
+      "type": "pregunta",
+      "name": "Pregunta frecuente",
+      "settings": [
+        { "type": "text", "id": "pregunta", "label": "Pregunta", "default": "Cuanto tarda en llegar" },
+        { "type": "richtext", "id": "respuesta", "label": "Respuesta", "default": "<p>Entre 5 y 11 dias.</p>" }
       ]
     },
     {

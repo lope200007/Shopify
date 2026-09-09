@@ -189,6 +189,42 @@
   .pcj .pcj-cierre .pcj-btn{margin-top:20px}
 }
 
+/* Aviso bajo los botones de la cabecera.
+   El umbral de envio gratis existe desde el principio, pero estaba solo en el
+   carrito: nadie aspira a un umbral que no sabe que existe. */
+.pcj .pcj-aviso{
+  margin:16px 0 0;font-size:14px;font-weight:700;color:var(--verde);
+}
+
+/* Preguntas frecuentes.
+   <details> nativo: sin JavaScript, se abre con el teclado, y Google lo lee
+   para los resultados enriquecidos. El triangulo por defecto se quita y se
+   dibuja un signo propio que gira al abrir. */
+.pcj .pcj-dudas{display:grid;gap:10px;max-width:860px}
+.pcj .pcj-duda{
+  background:var(--blanco);border:1px solid var(--borde);border-radius:16px;
+  padding:2px 20px;
+}
+.pcj .pcj-duda summary{
+  list-style:none;cursor:pointer;padding:18px 34px 18px 0;position:relative;
+  font-weight:700;font-size:16px;line-height:1.4;
+}
+.pcj .pcj-duda summary::-webkit-details-marker{display:none}
+.pcj .pcj-duda summary::after{
+  content:"";position:absolute;right:4px;top:50%;
+  width:10px;height:10px;margin-top:-7px;
+  border-right:2px solid var(--verde);border-bottom:2px solid var(--verde);
+  transform:rotate(45deg);transition:transform .2s ease;
+}
+.pcj .pcj-duda[open] summary::after{transform:rotate(-135deg);margin-top:-3px}
+.pcj .pcj-duda-cuerpo{padding:0 0 18px;color:var(--suave);line-height:1.6}
+.pcj .pcj-duda-cuerpo p{margin:0 0 10px}
+.pcj .pcj-duda-cuerpo p:last-child{margin:0}
+@media(max-width:640px){
+  .pcj .pcj-duda{padding:2px 16px}
+  .pcj .pcj-duda summary{font-size:15px}
+}
+
 /* ---------- Entradas al hacer scroll ----------
    La clase .pcj-anima la pone el JavaScript. Si el JavaScript no llega a
    ejecutarse —bloqueado, error, navegador viejo— nada de esto se aplica y la
@@ -212,5 +248,6 @@
   }
   .pcj .pcj-btn:hover,.pcj .pcj-categoria:hover,.pcj .pcj-producto:hover{transform:none}
   .pcj .pcj-categoria:hover img{transform:none}
+  .pcj .pcj-duda summary::after{transition:none}
   .pcj-anima [data-aparece]{opacity:1;transform:none;transition:none;transition-delay:0s}
 }

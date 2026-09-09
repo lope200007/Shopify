@@ -3,23 +3,168 @@
     "main": {
       "type": "patitas-home",
       "blocks": {
-        "conf1": { "type": "confianza", "settings": { "titulo": "Envío gratis desde 55 €", "detalle": "Por debajo, 6,99 €" } },
-        "conf2": { "type": "confianza", "settings": { "titulo": "Llega en 1 o 2 semanas", "detalle": "Sale del almacén en 1 a 3 días laborables" } },
-        "conf3": { "type": "confianza", "settings": { "titulo": "14 días para devolver", "detalle": "Sin dar explicaciones" } },
-        "conf4": { "type": "confianza", "settings": { "titulo": "Te contesta una persona", "detalle": "En español y casi siempre el mismo día" } },
-
-        "cat1": { "type": "categoria", "settings": { "coleccion": "comederos", "antetitulo": "Comer mejor", "titulo": "Comederos y bebederos" } },
-        "cat2": { "type": "categoria", "settings": { "coleccion": "juguetes", "antetitulo": "Jugar juntos", "titulo": "Juguetes" } },
-        "cat3": { "type": "categoria", "settings": { "coleccion": "higiene-y-cuidado", "antetitulo": "Cuidarlo cada día", "titulo": "Higiene y cuidado" } },
-        "cat4": { "type": "categoria", "settings": { "coleccion": "lluvia-y-barro", "antetitulo": "Volver limpio a casa", "titulo": "Lluvia y barro" } },
-        "cat5": { "type": "categoria", "settings": { "coleccion": "camas-y-descanso", "antetitulo": "Que duerma bien", "titulo": "Camas y descanso" } },
-        "cat6": { "type": "categoria", "settings": { "coleccion": "casa-y-coche", "antetitulo": "Salir sin estropear nada", "titulo": "Casa, coche y paseo" } },
-
-        "vent1": { "type": "ventaja", "settings": { "titulo": "Te decimos lo que no hace", "texto": "Cada ficha explica para qué perro no sirve el producto. Preferimos perder la venta a que nos lo devuelvas." } },
-        "vent2": { "type": "ventaja", "settings": { "titulo": "El plazo, antes de pagar", "texto": "Los envíos salen de China y tardan una o dos semanas. Lo ponemos delante, no en la letra pequeña." } },
-        "vent3": { "type": "ventaja", "settings": { "titulo": "Los packs ahorran de verdad", "texto": "El ahorro que ves es la resta exacta entre el pack y comprar las piezas sueltas." } }
+        "conf1": {
+          "type": "confianza",
+          "settings": {
+            "titulo": "Envío gratis desde 55 €",
+            "detalle": "Por debajo, 6,99 €"
+          }
+        },
+        "conf2": {
+          "type": "confianza",
+          "settings": {
+            "titulo": "Llega en 1 o 2 semanas",
+            "detalle": "Sale del almacén en 1 a 3 días laborables"
+          }
+        },
+        "conf3": {
+          "type": "confianza",
+          "settings": {
+            "titulo": "14 días para devolver",
+            "detalle": "Sin dar explicaciones"
+          }
+        },
+        "conf4": {
+          "type": "confianza",
+          "settings": {
+            "titulo": "Te contesta una persona",
+            "detalle": "En español y casi siempre el mismo día"
+          }
+        },
+        "cat1": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "comederos",
+            "antetitulo": "Comer mejor",
+            "titulo": "Comederos y bebederos"
+          }
+        },
+        "cat2": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "juguetes",
+            "antetitulo": "Jugar juntos",
+            "titulo": "Juguetes"
+          }
+        },
+        "cat3": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "higiene-y-cuidado",
+            "antetitulo": "Cuidarlo cada día",
+            "titulo": "Higiene y cuidado"
+          }
+        },
+        "cat4": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "lluvia-y-barro",
+            "antetitulo": "Volver limpio a casa",
+            "titulo": "Lluvia y barro"
+          }
+        },
+        "cat5": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "camas-y-descanso",
+            "antetitulo": "Que duerma bien",
+            "titulo": "Camas y descanso"
+          }
+        },
+        "cat6": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "casa-y-coche",
+            "antetitulo": "Salir sin estropear nada",
+            "titulo": "Casa, coche y paseo"
+          }
+        },
+        "vent1": {
+          "type": "ventaja",
+          "settings": {
+            "titulo": "Te decimos lo que no hace",
+            "texto": "Cada ficha explica para qué perro no sirve el producto. Preferimos perder la venta a que nos lo devuelvas."
+          }
+        },
+        "vent2": {
+          "type": "ventaja",
+          "settings": {
+            "titulo": "El plazo, antes de pagar",
+            "texto": "Los envíos salen de China y tardan una o dos semanas. Lo ponemos delante, no en la letra pequeña."
+          }
+        },
+        "vent3": {
+          "type": "ventaja",
+          "settings": {
+            "titulo": "Los packs ahorran de verdad",
+            "texto": "El ahorro que ves es la resta exacta entre el pack y comprar las piezas sueltas."
+          }
+        },
+        "categoria_ropa": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "ropa-y-abrigos",
+            "antetitulo": "Ya viene el frio",
+            "titulo": "Ropa y abrigos"
+          }
+        },
+        "duda_1": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "Cuanto tarda en llegar",
+            "respuesta": "<p>El pedido se prepara en 1 a 3 dias laborables desde que se confirma el pago. Sumando el transporte, lo habitual son <strong>entre 10 y 20 dias naturales</strong>.</p><p>El maximo es de 30 dias. Si no pudieramos cumplirlo te avisariamos y podrias cancelar y recuperar todo lo pagado.</p>"
+          }
+        },
+        "duda_2": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "De donde sale el paquete",
+            "respuesta": "<p>De China, directamente a tu casa. Trabajamos con almacen en origen y lo decimos claro porque es lo que hace que el plazo sea mas largo que el de una tienda con almacen aqui.</p><p>El IVA de importacion ya esta en el precio, por el regimen IOSS de nuestro transportista. <strong>No te van a reclamar nada en la entrega</strong> ni tienes que hacer ningun tramite de aduana.</p>"
+          }
+        },
+        "duda_3": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "Cuanto cuesta el envio",
+            "respuesta": "<p>6,99 EUR por pedido, y <strong>gratis a partir de 55 EUR</strong> de compra.</p><p>De momento solo servimos a Espana peninsular. Todavia no llegamos a Baleares, Canarias, Ceuta ni Melilla.</p>"
+          }
+        },
+        "duda_4": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "Y si no le vale o no me convence",
+            "respuesta": "<p>Tienes <strong>14 dias naturales</strong> desde que recibes el pedido para devolverlo sin dar explicaciones. Basta con escribirnos.</p><p>Te devolvemos el dinero en un maximo de 14 dias, por el mismo medio con el que pagaste. Los gastos de devolucion corren por tu cuenta, salvo que el articulo llegara defectuoso o fuera distinto al que pediste: en ese caso pagamos nosotros.</p>"
+          }
+        },
+        "duda_5": {
+          "type": "pregunta",
+          "settings": {
+            "pregunta": "Que talla cojo",
+            "respuesta": "<p><strong>Fiate del contorno de pecho, no de los kilos.</strong> Dos perros que pesan lo mismo pueden tener pechos muy distintos.</p><p>Mide con una cinta por la parte mas ancha, justo detras de las patas delanteras, y compara con la tabla en centimetros de cada ficha. Si tu perro queda entre dos tallas, coge la mayor.</p>"
+          }
+        }
       },
-      "block_order": ["conf1","conf2","conf3","conf4","cat1","cat2","cat3","cat4","cat5","cat6","vent1","vent2","vent3"],
+      "block_order": [
+        "conf1",
+        "conf2",
+        "conf3",
+        "conf4",
+        "cat1",
+        "cat2",
+        "cat3",
+        "cat4",
+        "cat5",
+        "cat6",
+        "categoria_ropa",
+        "vent1",
+        "vent2",
+        "vent3",
+        "duda_1",
+        "duda_2",
+        "duda_3",
+        "duda_4",
+        "duda_5"
+      ],
       "settings": {
         "antetitulo": "Patitascalidas · Accesorios para perros",
         "titular": "Productos que hacen más fácil la vida con tu perro.",
@@ -44,9 +189,15 @@
         "texto_porque": "Somos una tienda pequeña. Lo único que podemos hacer mejor que nadie es contarte la verdad antes de que pagues.",
         "titulo_cierre": "Encuentra algo que tu perro vaya a disfrutar.",
         "texto_cierre": "Todo el catálogo, elegido de uno en uno.",
-        "boton_cierre": "Ver todos los productos"
+        "boton_cierre": "Ver todos los productos",
+        "aviso_envio": "Envio gratis a partir de 55 EUR · Entrega habitual de 10 a 20 dias",
+        "antetitulo_dudas": "Antes de que preguntes",
+        "titulo_dudas": "Lo que sueles querer saber",
+        "texto_dudas": "Las respuestas de siempre, sin tener que escribirnos."
       }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
