@@ -18,7 +18,7 @@ import os
 import sys
 
 import numpy as np
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageChops, ImageDraw, ImageFilter
 
 CREMA = (251, 247, 241)      # --crema de la marca
 LADO = 1600
@@ -72,6 +72,95 @@ def recortar_plano(ruta, tolerancia=26, suavizado=1.4):
     return out.crop(caja) if caja else out
 
 
+def armonizar(obj, objetivo=228.0, tope=1.18):
+    """Iguala SOLO la exposicion de una pieza. Nunca su color.
+
+    El primer intento tambien corregia la dominante de cada recorte, y salio
+    caro: el albornoz verde se volvio menta, la toalla gris se volvio azul
+    marino y la banda reflectante, morada. El algoritmo estaba tratando el
+    color del producto como si fuera un defecto de la foto.
+
+    El color del producto es informacion, no ruido. Si al cliente le llega una
+    toalla gris, en la foto tiene que salir gris. Asi que aqui solo se toca el
+    brillo, multiplicando los tres canales por el MISMO numero —lo que no
+    puede cambiar el tono de nada— y con un tope del 18 % para que una pieza
+    oscura no acabe lavada.
+    """
+    a = np.asarray(obj).astype(float)
+    rgb, alfa = a[..., :3], a[..., 3]
+    dentro = alfa > 128
+    if dentro.sum() < 50:
+        return obj
+
+    claro = np.percentile(rgb[dentro], 92)
+    if claro > 8:
+        k = float(np.clip(objetivo / claro, 1.0 / tope, tope))
+        rgb *= k                                  # un solo factor: el tono no se mueve
+
+    return Image.fromarray(np.clip(np.dstack([rgb, alfa]), 0, 255).astype('uint8'), 'RGBA')
+
+
+def luz(obj, fuerza=0.11):
+    """Una unica direccion de luz para todas las piezas.
+
+    Un degradado suave sobre cada objeto: mas claro arriba a la izquierda, mas
+    oscuro abajo a la derecha. Es poco —un 11 %— pero es lo que hace que tres
+    objetos fotografiados en tres sitios distintos parezcan iluminados por la
+    misma ventana.
+    """
+    a = np.asarray(obj).astype(float)
+    h, w = a.shape[:2]
+    y = np.linspace(0, 1, h)[:, None]
+    x = np.linspace(0, 1, w)[None, :]
+    g = 1.0 + fuerza * (0.5 - (x * 0.45 + y * 0.55))
+    a[..., :3] *= g[..., None]
+    return Image.fromarray(np.clip(a, 0, 255).astype('uint8'), 'RGBA')
+
+
+def sombra_silueta(obj, aplastado=0.26, inclinacion=0.42, desenfoque=0.045, fuerza=118):
+    """La sombra que proyecta la propia pieza, no una elipse.
+
+    Una elipse debajo de cada objeto es lo que delata un collage: todas las
+    sombras iguales, todas simetricas, ninguna con la forma de lo que la
+    proyecta. Aqui se coge la silueta real —el canal alfa del recorte—, se
+    aplasta contra el suelo y se inclina hacia la derecha, que es a donde
+    caeria con la luz puesta arriba a la izquierda.
+    """
+    alfa = obj.split()[3]
+    w, h = alfa.size
+    alto = max(6, int(h * aplastado))
+    silueta = alfa.resize((w, alto), Image.LANCZOS)
+
+    ancho = w + int(alto * inclinacion) + 2
+    lienzo = Image.new('L', (ancho, alto), 0)
+    lienzo.paste(silueta, (0, 0))
+    # inclinar: cada fila se desplaza segun lo lejos que este del suelo
+    lienzo = lienzo.transform((ancho, alto), Image.AFFINE,
+                              (1, inclinacion, -inclinacion * alto, 0, 1, 0),
+                              resample=Image.BICUBIC)
+    lienzo = lienzo.filter(ImageFilter.GaussianBlur(max(2.0, h * desenfoque)))
+    return Image.eval(lienzo, lambda v: int(v * fuerza / 255))
+
+
+def graduar(im, grano=2.1, vineta=0.055):
+    """Revelado comun: un solo grano y una sola caida de luz para toda la foto.
+
+    Sin esto quedan tres texturas distintas dentro del mismo cuadro. El grano
+    es finisimo y la vineta apenas se ve, pero son las dos cosas que hacen que
+    el conjunto se lea como una sola captura y no como un montaje.
+    """
+    a = np.asarray(im).astype(float)
+    h, w = a.shape[:2]
+
+    y = (np.linspace(-1, 1, h)[:, None]) ** 2
+    x = (np.linspace(-1, 1, w)[None, :]) ** 2
+    a *= (1.0 - vineta * np.clip(x + y, 0, 2) / 2)[..., None]
+
+    ruido = np.random.default_rng(7).normal(0, grano, (h, w, 1))
+    a += ruido
+    return Image.fromarray(np.clip(a, 0, 255).astype('uint8'))
+
+
 def sombra(tam, ancho, opacidad=88):
     """Sombra de contacto: una elipse difuminada bajo el objeto.
 
@@ -100,42 +189,45 @@ def superficie(lado):
 
 
 def montar(piezas, salida, lado=LADO):
-    """Coloca cada pieza donde se le dice y devuelve una sola foto.
+    """Coloca cada pieza donde se le dice y devuelve UNA foto.
 
-    `piezas` es una lista de (ruta, cx, base, ancho), en fraccion del cuadro:
-      cx     centro horizontal
-      base   linea donde apoya la pieza
-      ancho  ancho de la pieza
+    `piezas` es una lista de (ruta, cx, base, ancho) en fraccion del cuadro.
+    Las piezas se situan a mano y no en fila: una fila deja el cuadro en una
+    banda, con todo a la misma distancia y sin profundidad. Lo grande detras y
+    arriba, lo pequeno delante y abajo, y ademas solapandose un poco: que un
+    objeto tape a otro es la senal mas fuerte de que estan en el mismo sitio.
 
-    Se colocan a mano y no en fila porque una fila deja el cuadro en una
-    banda: lo grande y lo pequeno acaban a la misma distancia y la foto no
-    tiene profundidad. Poniendo lo grande detras y arriba, y lo pequeno
-    delante y abajo, el ojo lee una mesa con tres cosas encima en vez de tres
-    recortes alineados.
-
-    Se dibujan primero todas las sombras y despues todos los objetos, para
-    que la sombra de uno pueda caer sobre el de al lado.
+    Cuatro pasos hacen el resto del trabajo:
+      1. armonizar()  iguala exposicion y dominante de cada pieza
+      2. luz()        les pone una unica direccion de luz
+      3. sombra_silueta() proyecta la sombra con la forma real de cada objeto
+      4. graduar()    revela el conjunto entero de una sola vez
     """
     lienzo = superficie(lado)
     puestas = []
     for ruta, cx, base, ancho in piezas:
-        if ruta.endswith('!plano'):
-            obj = recortar_plano(ruta[:-6])
-        else:
-            obj = recortar(ruta)
+        obj = recortar_plano(ruta[:-6]) if ruta.endswith('!plano') else recortar(ruta)
+        obj = luz(armonizar(obj))
         w = int(lado * ancho)
         h = int(obj.height * w / obj.width)
         obj = obj.resize((w, h), Image.LANCZOS)
         puestas.append((obj, int(lado * cx - w / 2), int(lado * base) - h))
 
+    # Todas las sombras antes que los objetos, para que la de una pueda caer
+    # sobre la de al lado en vez de quedar cada cual en su recuadro.
+    capa = Image.new('L', (lado, lado), 0)
     for obj, x, y in puestas:
-        s = sombra((obj.width, obj.height + 46), int(obj.width * 0.78), 96)
-        oscuro = Image.new('RGB', s.size, (86, 76, 60))
-        lienzo.paste(oscuro, (x, y + obj.height - s.size[1] + 34), s)
+        s = sombra_silueta(obj)
+        trozo = capa.crop((x, y + obj.height - s.height // 2, x + s.width,
+                           y + obj.height - s.height // 2 + s.height))
+        capa.paste(ImageChops.lighter(trozo, s), (x, y + obj.height - s.height // 2))
+    oscuro = Image.new('RGB', (lado, lado), (84, 74, 58))
+    lienzo = Image.composite(oscuro, lienzo, capa)
+
     for obj, x, y in puestas:
         lienzo.paste(obj, (x, y), obj)
 
-    lienzo.save(salida, quality=94, subsampling=0)
+    graduar(lienzo).save(salida, quality=94, subsampling=0)
     print('%s  %s' % (os.path.basename(salida), lienzo.size))
 
 
