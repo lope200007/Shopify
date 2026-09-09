@@ -64,3 +64,35 @@ lleva "AMAZON EXCLUSIVE COLOR" impreso en siete de sus nueve fotos.
 2. Revisar en abril las alfombras y camas refrescantes.
 3. Proveedor europeo (Syncee o TeemDrop): ataca los 10-20 dias de entrega, que
    es el freno real de la conversion.
+
+---
+
+## Segunda tanda (misma noche)
+
+**`arnés para perros` — 4.400 búsquedas/mes, planas todo el año** (entre 3.600
+y 5.400 cada mes), CPC 0,36. Solo teníamos el conjunto de arnés+correa.
+
+Subido: **arnés acolchado con asa y bandas reflectantes**, 15 variantes
+(3 colores × 5 tallas), 24,90 € las tres pequeñas y 27,90 las dos grandes.
+Margen de 11,47 a 13,32 € (55-60 %). Porte de 4,30 a 5,60 € según talla.
+
+Pasa el filtro que tumba a los collares: **publica la tabla de contorno de
+pecho en centímetros** (XS 38-50, S 45-55, M 55-65, L 68-80, XL 80-95). La
+ficha avisa además de los dos defectos de esa tabla: el hueco entre 65 y 68 cm
+y el solape en 45-50.
+
+Y dice la verdad sobre el reclamo: el fabricante lo vende como *no-pull*, pero
+**la anilla va en el lomo**, así que no enseña a no tirar — evita que se
+ahogue, que no es lo mismo. Eso está escrito en la ficha.
+
+### Descartado en esta tanda
+
+- **`gps para perros` 3.600/mes, CPC 1,39-1,52** (de lo más caro del nicho).
+  Tentador, pero un localizador es equipo radioeléctrico: necesita conformidad
+  CE/RED y declaración, además de SIM y suscripción. No es dropshipping desde
+  China sin más. La versión segura ya la tenemos: la funda de collar para
+  AirTag, sin radio propia ni cuota.
+- **`valla para perros` 1.900/mes**: ya cubierto por el parque plegable y la
+  barrera de malla. Es un problema de SEO en las fichas que hay, no un hueco.
+- Antiparasitarios y collares de adiestramiento eléctricos: mismo motivo que
+  la primera tanda, producto regulado o aversivo.

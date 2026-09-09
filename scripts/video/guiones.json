@@ -239,5 +239,45 @@
     "remate": "Ahorras 19,80 €"
    }
   ]
+ },
+ {
+  "nombre": "arnes-acolchado",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "El collar le aprieta el cuello cuando tira."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "arnes-antitirones-2-azul.jpg",
+    "texto": "Un arnés reparte el tirón por el pecho"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "arnes-antitirones-1-perro.jpg",
+    "texto": "Malla acolchada y bandas reflectantes"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "arnes-antitirones-6-ajuste.jpg",
+    "texto": "Se ajusta por el pecho y por el lomo"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "arnes-antitirones-3-rojo.jpg",
+    "texto": "Cinco tallas, de 38 a 95 cm de pecho"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "desde 24,90 €",
+    "remate": "Negro, rojo o azul"
+   }
+  ]
  }
 ]
