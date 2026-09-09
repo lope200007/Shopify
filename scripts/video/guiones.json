@@ -1,0 +1,123 @@
+[
+ {
+  "nombre": "correa-extensible",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "Tu perro quiere oler. Tú quieres control."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "correa-extensible-1-naranja.jpg",
+    "texto": "Cinco metros de cinta plana"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "correa-extensible-5-mecanismo.jpg",
+    "texto": "Freno y bloqueo con el pulgar"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "correa-extensible-2-gris.jpg",
+    "texto": "Y luz para el paseo de las siete"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "correa-extensible-4-tres-colores.jpg",
+    "texto": "Naranja, gris o verde"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "27,90 €",
+    "remate": "Envío a toda España"
+   }
+  ]
+ },
+ {
+  "nombre": "capucha-orejeras",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "El secador. La tormenta. Los petardos."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "capucha-antiruido-1-fucsia.jpg",
+    "texto": "Dos almohadillas sobre las orejas"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "capucha-antiruido-3-secado.jpg",
+    "texto": "Bajan el ruido que le llega"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "capucha-antiruido-4-comida.jpg",
+    "texto": "Y las orejas largas no acaban en el cuenco"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "capucha-antiruido-2-azul.jpg",
+    "texto": "Cuatro tallas, por contorno de cabeza"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "24,90 €",
+    "remate": "Envío a toda España"
+   }
+  ]
+ },
+ {
+  "nombre": "alfombra-olfativa",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "Se traga la ración en veinte segundos."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "alfombra-olfativa-1-azul.jpg",
+    "texto": "Escóndele el pienso entre las tiras"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "alfombra-olfativa-4-en-uso.jpg",
+    "texto": "Y tendrá que sacarlo con el morro"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "alfombra-olfativa-2-marron.jpg",
+    "texto": "Fleece suave y base antideslizante"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "alfombra-olfativa-3-morado.jpg",
+    "texto": "50 × 50 cm. Se enrolla y se guarda",
+    "cx": 1.0
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "24,90 €",
+    "remate": "Envío a toda España"
+   }
+  ]
+ }
+]
