@@ -22,12 +22,13 @@ import io
 import json
 import os
 import sys
+import urllib.error
 import urllib.request
 
 import numpy as np
 from PIL import Image
 
-MODELOS = ['gemini-2.5-flash-image', 'gemini-2.0-flash-exp-image-generation']
+MODELOS = ['gemini-3-pro-image', 'gemini-3.1-flash-image', 'gemini-2.5-flash-image']
 LIMITE = 0.01
 BASE = 'https://generativelanguage.googleapis.com/v1beta/models'
 
@@ -62,8 +63,22 @@ def pedir(modelo, prompt, jpg, api):
     req = urllib.request.Request(
         f'{BASE}/{modelo}:generateContent?key={api}',
         data=cuerpo, headers={'Content-Type': 'application/json'})
-    with urllib.request.urlopen(req, timeout=180) as r:
-        d = json.load(r)
+    try:
+        with urllib.request.urlopen(req, timeout=180) as r:
+            d = json.load(r)
+    except urllib.error.HTTPError as e:
+        # Google contesta 429 con dos cosas muy distintas y conviene no
+        # confundirlas: "has gastado tu cuota" y "tu cuota es CERO". Lo segundo
+        # significa que el modelo de imagen no entra en la capa gratuita y hace
+        # falta activar la facturacion, no esperar a manana.
+        detalle = e.read().decode()[:600]
+        if e.code == 429 and 'limit: 0' in detalle:
+            raise RuntimeError(
+                'la capa gratuita de Google no incluye modelos de imagen '
+                '(limit: 0). Hay que activar la facturacion del proyecto en '
+                'https://aistudio.google.com/apikey. Se paga por imagen, unos '
+                '0,04 EUR, sin cuota mensual.')
+        raise RuntimeError(f'HTTP {e.code}: ' + detalle.replace(api, '<<CLAVE>>'))
     for c in d.get('candidates', []):
         for p in c.get('content', {}).get('parts', []):
             dat = p.get('inline_data') or p.get('inlineData')
@@ -101,6 +116,10 @@ def main():
 
     d = desvio_de_tono(original, nueva, mascara)
     aviso = ''
+    # Aviso honesto: si se rehace la ESCENA entera, esta medida deja de ser un
+    # veredicto. La mascara coge fondo, y el fondo cambia a proposito, asi que
+    # el numero sube aunque el producto este intacto. Sirve para el revelado;
+    # para una escena nueva hay que mirar la foto y comparar el producto.
     if d > LIMITE and '--forzar' not in sys.argv:
         print(f'RECHAZADA  desvio de tono {d:.4f} > {LIMITE}: el producto ha cambiado de color.')
         print('Si de verdad quieres guardarla, repite con --forzar y mirala tu antes de publicar.')
