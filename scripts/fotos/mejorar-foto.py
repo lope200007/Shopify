@@ -139,11 +139,21 @@ def revelar(ruta, salida, lado=1600):
             a *= float(np.clip(224.0 / claro, 0.88, 1.16))   # un solo factor
 
     out = Image.fromarray(np.clip(a, 0, 255).astype('uint8'))
+
+    # NUNCA ampliar. Una foto de 480 px estirada a 1600 no gana detalle: lo
+    # inventa, y el pelo de un perro se convierte en plastico. Paso por esto
+    # con la barrera de malla y el resultado parecia una imagen falsa. Si el
+    # proveedor manda 480, se publican 480: Shopify sirve el tamano que toca y
+    # una foto pequena y nitida se ve mejor que una grande y derretida.
     lonja = max(out.size)
-    if lonja != lado:
+    if lonja > lado:
         k = lado / lonja
         out = out.resize((int(out.width * k), int(out.height * k)), Image.LANCZOS)
-    out = out.filter(ImageFilter.UnsharpMask(radius=2.2, percent=52, threshold=4))
+
+    # El enfoque tambien se mide: en una foto pequena hay que apretar menos,
+    # porque el grano ya es grande en proporcion.
+    fuerza = 52 if lonja >= 1000 else 34
+    out = out.filter(ImageFilter.UnsharpMask(radius=2.2, percent=fuerza, threshold=4))
     return mp.graduar(out, grano=1.6, vineta=0.04)
 
 
