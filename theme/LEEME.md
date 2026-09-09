@@ -110,3 +110,27 @@ la URL del commit concreto (con su SHA), que es única. Y comprobar siempre el
   cogen de Configuración, no del tema.
 - **El formato de moneda.** Sale `€16,90`; en España se escribe `16,90 €`.
   Es un ajuste de tienda, no de tema.
+
+## Temas y cual esta publicado
+
+| Tema | Id | Estado |
+| --- | --- | --- |
+| Patitascalidas 2026 — plazo de entrega real | 204140708188 | Publicado |
+| Patitascalidas 2026 — portada con movimiento | 204184420700 | **Listo, pendiente de publicar** |
+
+El de movimiento anade las entradas al hacer scroll y pasa las tarjetas de
+categoria a formato cuadrado. Se previsualiza en:
+
+    https://patitascalidas.com/?preview_theme_id=204184420700
+
+### Como se sube un cambio de tema
+
+`themeFilesUpsert` esta bloqueado contra el tema publicado, asi que el camino
+es: duplicar con `themeDuplicate`, escribir sobre la copia, y publicar a mano
+desde el panel.
+
+**Aviso importante:** al subir por `URL`, `themeFilesUpsert` devuelve
+`upsertedThemeFiles: []` y `userErrors: []` aunque el fichero SI se haya
+escrito. El array vacio no significa que haya fallado. La unica forma fiable
+de comprobarlo es pedir el `checksumMd5` del fichero en el tema y compararlo
+con el `md5sum` local.
