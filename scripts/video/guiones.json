@@ -279,5 +279,45 @@
     "remate": "Negro, rojo o azul"
    }
   ]
+ },
+ {
+  "nombre": "mordedor-dental",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "Muerde igual. La pregunta es qué."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "mordedor-dental-1-verde.jpg",
+    "texto": "Goma TPR con fibra de madera"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "mordedor-dental-2-azul.jpg",
+    "texto": "Las ranuras llevan pasta de perro dentro"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "mordedor-dental-3-tamanos.jpg",
+    "texto": "Al masticar le frota los dos lados"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "mordedor-dental-1-verde.jpg",
+    "texto": "12,5 cm o 16 cm, según el hocico"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "16,90 €",
+    "remate": "Nunca pasta de persona"
+   }
+  ]
  }
 ]

@@ -96,3 +96,33 @@ ahogue, que no es lo mismo. Eso está escrito en la ficha.
   barrera de malla. Es un problema de SEO en las fichas que hay, no un hueco.
 - Antiparasitarios y collares de adiestramiento eléctricos: mismo motivo que
   la primera tanda, producto regulado o aversivo.
+
+## Tercera tanda: el mordedor y la jugada de diciembre
+
+**Navidad.** La consulta de `regalos navidad` devuelve términos genéricos que no
+podemos pelear contra El Corte Inglés, pero deja el dato que sí importa:
+**en diciembre el volumen se multiplica por 10-20.**
+
+| Término | Julio | Diciembre |
+|---|---:|---:|
+| regalos navidad | 210 | **60.500** |
+| regalos de navidad | 390 | **60.500** |
+| regalos navidad originales | 40 | **6.600** |
+
+Eso no se ataca con un producto, se ataca con una colección. Creada
+**`/collections/regalos`**, inteligente (etiqueta juguete, pack o regalo), 18
+productos, ordenada de más nuevo a más antiguo. Se llena sola: cada juguete o
+pack que se suba entra solo.
+
+**El producto.** `juguetes para perros` son 1.900/mes y **4.400 en diciembre**,
+y es lo más recomprado del nicho porque los perros los destrozan. Subido el
+**mordedor con ranuras para pasta dental**, 16,90 €, margen 6,92-7,10 € (50 %).
+Margen absoluto bajo, y es esperado: el porte es casi fijo, así que un artículo
+barato deja poco en euros. Su papel es otro — entrar en la cesta y empujarla
+hacia los 55 € del envío gratis.
+
+Del mordedor salió el hallazgo de la tanda: **no son cuatro colores, son dos
+tamaños**. Verde y naranja miden 12,5 cm y pesan 70 g; azul y el que CJ llama
+"Yellow" miden 16 y pesan 85. Y ese "Yellow" es naranja en la foto. Se venden
+solo el verde y el azul, que son los dos que se pueden nombrar sin
+equivocarse, y la ficha se monta por tamaño en vez de por color.
