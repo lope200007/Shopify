@@ -1001,5 +1001,107 @@
     "remate": "Para la foto y para la puerta, no para toda la tarde"
    }
   ]
+ },
+ {
+  "nombre": "mariposa-electrica-gato",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.6,
+    "texto": "Se mueve sola. Tú no haces nada."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "mariposa-gato-1-producto.jpg",
+    "texto": "Mariposa girando y láser rojo"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "mariposa-gato-4-trazo.jpg",
+    "texto": "Detecta los muebles y cambia de dirección"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "mariposa-gato-3-salto.jpg",
+    "texto": "Tres modos, carga USB-C"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.8,
+    "precio": "22,90 €",
+    "remate": "Y la mariposa sí se puede atrapar, que un láser solo frustra"
+   }
+  ]
+ },
+ {
+  "nombre": "guante-marioneta-gato",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.8,
+    "texto": "¿Tu gato te muerde las manos al jugar?"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "guante-gato-1-producto.jpg",
+    "texto": "Se mete en el brazo: 56 cm"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "guante-gato-3-jugando.jpg",
+    "texto": "Muerde al canguro, no a ti"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "guante-gato-2-ambiente.jpg",
+    "texto": "Hierba gatera dentro y bolsillo de premios"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.8,
+    "precio": "22,90 €",
+    "remate": "Déjale ganar alguna vez: esa es la gracia"
+   }
+  ]
+ },
+ {
+  "nombre": "pez-movil-gato",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.6,
+    "texto": "Le da un manotazo y el pez colea."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "pez-gato-1-producto.jpg",
+    "texto": "Hierba gatera y silvervine"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "pez-gato-2-gato.jpg",
+    "texto": "Lo abraza y le da patadas: eso es cazar"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "pez-gato-3-cremallera.jpg",
+    "texto": "El motor sale y la funda se lava"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "17,90 €",
+    "remate": "Un tercio de los gatos pasa de la hierba gatera. Por eso lleva las dos"
+   }
+  ]
  }
 ]
