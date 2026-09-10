@@ -359,5 +359,243 @@
     "remate": "Envío a toda España"
    }
   ]
+ },
+ {
+  "nombre": "portabolsas-paseo",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "Otra vez sin bolsas en el paseo."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "bolsa-paseo-1-en-uso.jpg",
+    "texto": "Se engancha a la correa y ya está"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "bolsa-paseo-5-detalle.jpg",
+    "texto": "Ventana para ver cuántas quedan"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "bolsa-paseo-2-beige.jpg",
+    "texto": "11,2 cm: cabe en cualquier bolsillo"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "14,90 €",
+    "remate": "Envío a toda España"
+   }
+  ]
+ },
+ {
+  "nombre": "anilla-flotante",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "La pelota se hunde. Esta no."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "anilla-flotante-1-en-uso.jpg",
+    "texto": "Flota y se lanza lejos"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "anilla-flotante-2-verde.jpg",
+    "texto": "18,5 cm por fuera, 13,5 de hueco"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "anilla-flotante-6-flexible.jpg",
+    "texto": "Se retuerce entera y vuelve"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "14,90 €",
+    "remate": "Cuatro colores"
+   }
+  ]
+ },
+ {
+  "nombre": "frisbee-blando",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "Un frisbee duro le hace daño en las encías."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "frisbee-disco-1-en-uso.jpg",
+    "texto": "Este es de goma blanda"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "frisbee-disco-2-amarillo.jpg",
+    "texto": "Dos asas para que lo coja bien"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "frisbee-disco-3-azul.jpg",
+    "texto": "20 cm, en tres colores"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "16,90 €",
+    "remate": "Envío a toda España"
+   }
+  ]
+ },
+ {
+  "nombre": "comedero-plegable",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "De excursión él también bebe."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "comedero-plegable-1-en-uso.jpg",
+    "texto": "Se abre y se llena en el sitio"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "comedero-plegable-2-azul-doble.jpg",
+    "texto": "Se aplasta y queda casi plano"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "comedero-plegable-5-rojo-simple.jpg",
+    "texto": "Con mosquetón para la mochila"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "desde 14,90 €",
+    "remate": "Uno o dos cuencos"
+   }
+  ]
+ },
+ {
+  "nombre": "alfombrilla-comedero",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "El agua acaba siempre en el rodapié."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "alfombrilla-comedero-1-en-uso.jpg",
+    "texto": "Borde levantado: se queda dentro"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "alfombrilla-comedero-9-impermeable.jpg",
+    "texto": "Silicona de una pieza, al fregadero"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "alfombrilla-comedero-2-colores.jpg",
+    "texto": "Dos tamaños y seis colores"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "desde 17,90 €",
+    "remate": "Envío a toda España"
+   }
+  ]
+ },
+ {
+  "nombre": "bozal-silicona",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.6,
+    "texto": "Con un bozal de tela no puede jadear."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "bozal-silicona-1-en-uso.jpg",
+    "texto": "Este es de cesta: jadea y bebe"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "bozal-silicona-6-correas.jpg",
+    "texto": "Correas ajustables, silicona blanda"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "bozal-silicona-2-colores.jpg",
+    "texto": "Seis tallas por contorno de hocico"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "17,90 €",
+    "remate": "De 10,3 a 16,6 cm"
+   }
+  ]
+ },
+ {
+  "nombre": "cepillo-carda",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "Lo peor no es cepillar. Es limpiar el cepillo."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "cepillo-autolimpiable-3-boton.jpg",
+    "texto": "Aprietas el botón y las púas se meten"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "cepillo-autolimpiable-4-puas.jpg",
+    "texto": "El pelo se suelta de una pieza"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "cepillo-autolimpiable-2-medidas.jpg",
+    "texto": "20 cm de largo, cabezal de 8 cm"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "16,90 €",
+    "remate": "Cinco colores"
+   }
+  ]
  }
 ]

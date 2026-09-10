@@ -1,53 +1,49 @@
-# Cola de subida — lista para ejecutar cuando vuelva la API de portes
+# Cola de subida — EJECUTADA el 10 de septiembre de 2026
 
-Preparada el 9 de septiembre de 2026, con la calculadora de portes de CJ caída.
-**Todo lo demás ya está investigado**: producto localizado, coste, peso,
-variantes, fotos contadas y comprobado si publica medidas. Lo único que falta
-de cada línea es el porte, que es el filtro que decide.
+**El Grupo 1 está subido y publicado.** La API de portes de CJ volvió a
+funcionar y los siete pasaron el filtro: portes de 3,59 a 6,47 €.
 
-Barrido: 23 categorías del catálogo de CJ, 1.873 candidatos que pasan el filtro
-de plano y ligero (≤600 g, 0,80-16 $), descartando de entrada lo regulado, lo
-aversivo y lo que es de gato, pájaro o roedor.
+| Producto | Handle | PVP | Porte | Margen | Var. |
+|---|---|---:|---:|---:|---:|
+| Portabolsas de paseo | `portabolsas-paseo-perro` | 14,90 € | 3,59 € | 6,84 € (56 %) | 3 |
+| Anilla flotante de espuma | `anilla-flotante-perro` | 14,90 € | 4,44 € | 6,47 € (53 %) | 4 |
+| Frisbee blando con dos asas | `frisbee-blando-perro` | 16,90 € | 4,57 € | 7,43 € (53 %) | 3 |
+| Comedero plegable de viaje | `comedero-plegable-viaje` | 14,90 / 19,90 € | 4,37-4,68 € | 6,54-9,63 € | 8 |
+| Alfombrilla bajo comedero | `alfombrilla-bajo-comedero` | 17,90 / 21,90 € | 5,42-6,10 € | 7,75-9,60 € | 12 |
+| Bozal de silicona de cesta | `bozal-silicona-cesta-perro` | 17,90 € | 3,70-4,82 € | 7,74-9,53 € | 18 |
+| Cepillo carda redondo | `cepillo-carda-redondo-perro` | 16,90 € | 4,06 € | 8,42 € (60 %) | 5 |
+
+53 variantes nuevas, cada una con su foto real del proveedor. Sumadas a
+las 6 del cepillo con spray de la misma tanda son 59 SKU, y las 59
+resuelven contra el volcado: `59 SKU, 0 sin mapeo`. Los siete entran
+solos en Novedades y en su colección por etiqueta, y llevan su vídeo
+vertical en `assets/video/`.
+
+## Dos cosas que salieron por el camino
+
+**1. Los nombres del barrido estaban cruzados.** Lo que la cola llamaba
+«frisbee blando de anilla» es una **anilla** de espuma, y la «anilla de
+tira y afloja» es un **disco** con dos asas. Son dos productos distintos,
+los dos buenos, y se han subido los dos con el nombre que les toca.
+
+**2. El cepillo carda rectangular estaba ARCHIVADO.** Al ir a subir el
+redondo apareció `cepillo-autolimpiable-para-perro` en el catálogo, y por
+un momento pareció un duplicado. No lo es: está archivado, no se vende.
+Y tenía dos fallos de bulto:
+
+- la foto principal llevaba texto en inglés («Deep Deshedding & Gentle on Skin»),
+- y **la variante Verde mostraba el cepillo morado**: se subió la foto del
+  color equivocado.
+
+Se ha arreglado igualmente (fotos reales de los cinco colores, las medidas
+en centímetros, diez variantes con su imagen correcta), pero **sigue
+archivado**: no se toca su estado sin que lo decida Pablo.
+
+Su margen tampoco cuadra: cuesta 3,32 $ y el porte son 4,50 €, así que a
+14,90 € deja **4,25 €**, por debajo de la regla de los 6 €. Si se
+desarchiva habría que subirlo a 16,90 / 19,90 €.
 
 ---
-
-## Cómo se ejecuta cada línea
-
-```
-1. node scripts/cj/portes-candidatos.js   (o medir el vid a mano)
-      -> si el porte deja menos de 6 EUR de margen, se descarta y se anota
-2. bajar fotos, mirarlas UNA A UNA a tamaño legible
-      -> fuera las que llevan texto en inglés, marca ajena o un color que no se vende
-3. scripts/fotos/borrar-banda.py / borrar-rotulo.py / cuadrar.py
-4. scripts/fotos/mejorar-foto.py --revelar   (nunca amplía; desvío de tono < 0,01)
-5. productCreate -> productVariantsBulkCreate -> publishablePublish -> colección
-6. guardar el volcado en proveedores/cj/ y verificar con scripts/cj/mapa.js
-7. añadir guion a scripts/video/guiones.json y generar el vertical
-```
-
-Está todo en `.claude/skills/producto-ganador/SKILL.md`.
-
----
-
-## GRUPO 1 — Listos para subir en cuanto haya porte
-
-**Siete** desde la revisión del 9/9 por la noche: se suma el bozal de silicona.
-
-| # | Producto | pid | Coste | Peso | Var. | Fotos | Sirve a | Vol/mes |
-|---|---|---|---:|---:|---:|---:|---|---:|
-| 1 | **Alfombrilla de silicona bajo comedero** | `2608250338081619900` | 0,95-5,50 $ | 210-420 g | 26 | 17 | comedero perro | 1.900 |
-| 2 | **Frisbee blando de anilla** | `2605250925121630500` | 0,97 $ | 125 g | 4 | 8 | juguetes para perros | 1.900 |
-| 3 | **Anilla de tira y afloja (perro grande)** | `2604290649151607300` | 1,55 $ | 165 g | 3 | 8 | juguetes para perros | 1.900 |
-| 4 | **Comedero plegable de viaje** | `2608280130201619400` | 0,92-1,67 $ | 120-180 g | 16 | 10 | comedero perro | 1.900 |
-| 5 | **Peine deslanador de acero** | `2608030601051636000` | 1,02 $ | 97 g | 5 | 8 | cepillo para perros | 880 |
-| 6 | **Bolsa de paseo con portabolsas** | `2607101002501618600` | 1,49 $ | 62 g | 3 | 5 | bolsa paseo perro | 720 |
-
-Ninguno de estos necesita tabla de tallas en centímetros: no son prendas ni
-van ceñidos al cuerpo. Los números 1 y 2 publican medidas igualmente.
-
-**Precio orientativo**: con la regla de siempre (el margen en euros sale más o
-menos la mitad del PVP, porque el porte es casi fijo), estos caen en la banda
-de 12,90 a 19,90 €. Se fija con el porte real, no antes.
 
 ## GRUPO 2 — Estacional: subir en OCTUBRE, no ahora
 
