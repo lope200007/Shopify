@@ -87,6 +87,24 @@ tirado una foto o un producto entero:
   GORE-TEX. Eso es infraccion de marca en la UE, con responsabilidad personal.
 - Fotos de un color que no se vende, o de un producto distinto al que se vende.
 
+**Antes de retocar una sola foto, busca la marca de agua.** El 10/9/2026 se
+retocaron y se subieron a GitHub las diez fotos de una correa de cuero -8,51 $
+de coste, 32,90 $ de PVP, 13,67 EUR de margen- antes de ver que las trece
+fotos del proveedor llevaban *JINYUDA* repetido en mosaico. Es invisible sobre
+el fondo claro y se lee entero encima del cuero, que es donde importa. Se
+perdio el trabajo entero.
+
+El mosaico de texto tenue **no se puede quitar**: no es un rotulo en una
+esquina, es una capa de baja opacidad sobre todo el producto. Se intento
+separarlo por apertura morfologica y por autocorrelacion, y el grano del cuero
+se come la senal en los dos casos. Reconstruirlo seria repintar el producto,
+que es justo lo que no se hace. **Producto con marca de agua en mosaico =
+producto descartado**, por bueno que sea el margen.
+
+Como se mira, en treinta segundos y antes de nada: abre dos fotos, una de
+fondo claro y otra del producto oscuro. Si el fondo esta limpio pero el
+producto tiene texto tenue repetido, es mosaico. Fuera.
+
 Herramientas, en este orden:
 
 1. `scripts/fotos/borrar-banda.py in out y0 y1` — el rotulo ocupa la fila
@@ -146,6 +164,23 @@ sigue sin cubrir.
 
 Y si el fabricante lista una talla que no sirve, **no la ofrezcas**: el de
 espuma tiene M en su tabla pero no en sus variantes.
+
+### El corolario: lo mejor es que no haya talla
+
+La regla de los centimetros se lee como una barrera, pero tambien es una
+brujula. Un producto **sin eje de talla** no puede fallar de talla: no hay
+devolucion por ajuste, no hay tabla que traducir, no hay que fiarse de que el
+proveedor midiera bien.
+
+Los tres de Navidad del 10/9/2026 se eligieron por eso antes que por el margen:
+calendario de adviento (una caja), comedero puzzle (una tabla de 34x26 cm) y
+mordedor de peluche (tres disenos, mismo tamano). Ninguno tiene talla. Los dos
+que se cayeron ese mismo dia -disfraz de Papa Noel y jersey de punto- se
+cayeron por S-XL sin centimetros.
+
+Cuando dudes entre dos candidatos con margen parecido, **quedate con el que no
+tiene talla**. Y para regalo es todavia mas fuerte: el que regala no sabe las
+medidas del animal de otro.
 
 ## Crear la ficha
 
@@ -222,6 +257,28 @@ El 10/9/2026 aparecieron **16 fichas fuera de TikTok** por publicar solo en dos.
 Las viejas si estaban, porque la app de TikTok las publico en bloque al
 instalarse; las creadas despues se quedaron invisibles para el canal sin que
 nada avisara. Comprueba siempre con `resourcePublicationsV2` despues de subir.
+
+
+### La coleccion tiene que estar en el menu
+
+Una coleccion inteligente recoge el producto sola por la etiqueta, y eso
+enganya: parece que el trabajo esta hecho. El 10/9/2026 `/collections/regalos`
+tenia **22 productos y no estaba en el menu principal**, y `/collections/ropa-y-abrigos`
+tampoco. Una coleccion a la que no se llega desde la navegacion no la rastrea
+Google ni la encuentra el visitante: son 22 fichas trabajadas apuntando a un
+pico de 2.900 busquedas en diciembre, invisibles.
+
+Despues de crear o llenar una coleccion, lee el menu
+(`menu(id: "gid://shopify/Menu/341834989916")`) y comprueba que esta. Recuerda
+que `menuUpdate` **reemplaza la lista entera**: hay que reenviar todos los items.
+
+Y publica la coleccion en los tres canales, igual que el producto.
+
+### El contador miente, la pertenencia no
+
+`collection.productsCount` va con retraso y no es de fiar justo despues de
+subir. Para comprobar de verdad si el producto entro donde tocaba, lee
+`product.collections`, no el contador de la coleccion.
 
 
 1. Comprobar la pagina en vivo con `curl -A "Mozilla/5.0 ..."` (sin User-Agent

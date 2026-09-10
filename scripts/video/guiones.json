@@ -751,5 +751,113 @@
     "remate": "Y de paso queda como un cuadro"
    }
   ]
+ },
+ {
+  "nombre": "calendario-adviento-gato",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.6,
+    "texto": "A tu gato le aburre un juguete en dos días."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "adviento-gato-3-caja.jpg",
+    "texto": "24 ventanas, una cada día"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "adviento-gato-2-los-24.jpg",
+    "texto": "Ratones, pelotas, plumas, muelles"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "adviento-gato-4-gato.jpg",
+    "texto": "Un juguete nuevo cada mañana"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "29,90 €",
+    "remate": "Pídelo en noviembre y llega para el día 1"
+   }
+  ]
+ },
+ {
+  "nombre": "comedero-arbol-navidad",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.6,
+    "texto": "Se come el plato en treinta segundos."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "arbol-comedero-2-perro.jpg",
+    "texto": "Escondes el premio bajo la tapa"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "arbol-comedero-3-gato.jpg",
+    "texto": "Vale igual para el gato"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "arbol-comedero-5-medidas.jpg",
+    "texto": "34 × 26 cm, con pies antideslizantes"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "26,90 €",
+    "remate": "Quince minutos en vez de treinta segundos"
+   }
+  ]
+ },
+ {
+  "nombre": "mordedor-navidad",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "El detalle que cabe en el zapato de Reyes."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "mordedor-navidad-2-papanoel.jpg",
+    "texto": "Papá Noel"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "mordedor-navidad-3-reno.jpg",
+    "texto": "Reno"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "mordedor-navidad-1-arbol.jpg",
+    "texto": "O abeto"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "mordedor-navidad-4-ambiente.jpg",
+    "texto": "Dos asas de cuerda para el tira y afloja"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "16,90 €",
+    "remate": "Peluche blando: para jugar con él, no para dejarlo solo"
+   }
+  ]
  }
 ]
