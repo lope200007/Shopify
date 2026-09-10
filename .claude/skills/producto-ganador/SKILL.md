@@ -27,22 +27,44 @@ antiparasitarios (`collar seresto` 9.900/mes) son producto veterinario o biocida
 regulado; los collares de adiestramiento electricos y antiladridos (5.500/mes
 entre los tres) son aversivos y estan restringidos en varias comunidades.
 
-## 2. El porte se cobra por VOLUMEN
+## 2. El porte: lo decide el lado mayor del bulto, no el peso
 
-Es el filtro que mas candidatos mata y el menos obvio. Mide siempre con
-`cj.portes()` sobre el **vid de la variante mas grande**, nunca la mas pequena.
+Antes de medir nada, mira `variantStandard` en el volcado de CJ. Viene en
+milimetros: `long=300,width=200,height=30`.
 
-| Producto | Peso | Porte |
-|---|---:|---:|
-| Abrigo | 66 g | 4,32 € |
-| Capucha | 63 g | 3,60 € |
-| Alfombra olfativa | 235 g | 5,46 € |
-| **Cama redonda de 50 cm** | **380 g** | **18,12 €** |
-| **Rampa** | **3.520 g** | **38,51 €** |
+- **Si el lado mayor pasa de unos 600 mm, el producto esta muerto.** Cae en la
+  `CJPacket Sensitive Oversize Line` y paga 25-29 EUR de porte pase lo que pase.
+  Una colchoneta de 900 g en un bulto de 650 mm paga 25,39 EUR; una cama de
+  870 g en un bulto de 350 mm paga 9,80 EUR.
+- **Por debajo de eso se cobra por volumen.** Entre dos versiones del mismo
+  articulo, elige siempre la que viene **comprimida al vacio o plegada**: la
+  misma cama de 40 cm paga 5,05 EUR comprimida (1.800 cm3) y 23,64 EUR sin
+  comprimir (21.888 cm3).
 
-La cama de 380 gramos paga cuatro veces mas que la alfombra de 235 porque va por
-"CJPacket Sensitive Oversize Line", que cobra el bulto. **Busca solo cosas que
-viajen planas o que se enrollen**: ropa, collares, correas, panuelos, alfombras.
+Esto se aprendio tarde. Durante semanas se dieron por muertas las camas enteras
+—13.200 busquedas/mes— por un solo dato mal leido: se midio una cama sin
+comprimir, salio 18,12 EUR, y se archivo la categoria. Estaba viva.
+
+Detalle completo en `research/porte-por-volumen-2026-09-10.md`.
+
+## 2 bis. Medirlo, y que sale en euros
+
+Aunque el bulto pase el filtro de arriba, **mide siempre** con `cj.portes()`
+sobre el **vid de la variante mas grande**, nunca la mas pequena.
+
+| Producto | Bulto mayor | Peso | Porte |
+|---|---:|---:|---:|
+| Capucha | — | 63 g | 3,60 € |
+| Portabolsas | 11,5 cm | 62 g | 3,59 € |
+| Alfombra olfativa | — | 235 g | 5,46 € |
+| Cama en donut 40 cm | 30 cm | 230 g | 5,05 € |
+| Cama en donut 80 cm | 35 cm | 870 g | 9,80 € |
+| Bozal talla 8 | 18 cm | 198 g | 4,82 € |
+| **Colchoneta 60x45** | **65 cm** | **900 g** | **25,39 €** |
+| **Rampa** | — | **3.520 g** | **38,51 €** |
+
+La colchoneta de 900 g paga cinco veces mas que la cama de 870 g. Es el lado
+largo, siempre el lado largo.
 
 Regla practica para el precio: el margen en euros sale mas o menos la mitad del
 PVP, porque el porte es casi fijo. Calculo exacto en `scripts/cj/margenes.js`
@@ -98,6 +120,20 @@ semitransparente, y desplazar el fondo hacia crema le mete tono verde a las
 sombras del pelo.
 
 ## 4. Tallas en centimetros o no se vende
+
+Rechazados por esto el 10/9/2026, los dos con buen porte y buenas fotos:
+
+- **Cama ortopedica** (`2608270816251620800`), 1.600 busquedas/mes y el CPC mas
+  alto del nicho: tallas M, L y XL y ni un centimetro en la descripcion, ni en
+  `variantStandard`, ni en ninguna de sus seis fotos.
+- **40 collares** revisados leyendo la ficha entera del proveedor y no solo las
+  fotos: **cero** publican el contorno de cuello. 9.300 busquedas/mes que siguen
+  sin poder cubrirse.
+
+Cuando el proveedor no publica la medida pero **si la publica por variante**
+(`Diameter 60cm`, `45x35cm`), se puede dibujar el esquema en espanol con
+`scripts/fotos/tarjeta-tallas.py` en vez de subir una tabla en ingles.
+
 
 Si el ajuste importa (collar, arnes, ropa, bozal, capucha) y el proveedor solo
 publica "S, M, L", **el producto no se sube**. Inventarse la tabla es una
