@@ -677,5 +677,79 @@
     "remate": "Pídelo con margen"
    }
   ]
+ },
+ {
+  "nombre": "rascador-redondo",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.6,
+    "texto": "Un rascador plano lo usan dos días."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "rascador-redondo-3-en-uso.jpg",
+    "texto": "Este tiene forma de cuenco"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "rascador-redondo-4-detalle.jpg",
+    "texto": "Rasca las paredes estirado"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "rascador-redondo-1.jpg",
+    "texto": "Y luego se queda a dormir dentro"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "rascador-redondo-2-tallas.jpg",
+    "texto": "30, 35 o 45 cm"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "desde 17,90 €",
+    "remate": "Se le da la vuelta y dura el doble"
+   }
+  ]
+ },
+ {
+  "nombre": "rascador-pared",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.6,
+    "texto": "Tu gato no rasca el sofá por fastidiar."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "rascador-pared-1-en-uso.jpg",
+    "texto": "Rasca de pie y estirado"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "rascador-pared-3-salon.jpg",
+    "texto": "Se pega a la pared, a su altura"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "rascador-pared-2-disenos.jpg",
+    "texto": "80 × 25 cm, en dos diseños"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "desde 19,90 €",
+    "remate": "Y de paso queda como un cuadro"
+   }
+  ]
  }
 ]
