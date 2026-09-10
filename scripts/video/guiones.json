@@ -859,5 +859,147 @@
     "remate": "Peluche blando: para jugar con él, no para dejarlo solo"
    }
   ]
+ },
+ {
+  "nombre": "hamaca-ventana-gato",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.6,
+    "texto": "Tu gato quiere la ventana, no el suelo."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "hamaca-ventana-5-ambiente.jpg",
+    "texto": "Cuatro ventosas al cristal"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "hamaca-ventana-6-medidas.jpg",
+    "texto": "54 × 30 cm, aguanta hasta 18 kg"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "hamaca-ventana-2-rosa.jpg",
+    "texto": "En cuatro colores, funda lavable"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "24,90 €",
+    "remate": "Limpia el cristal con alcohol antes: la grasa es lo que suelta la ventosa"
+   }
+  ]
+ },
+ {
+  "nombre": "protector-sofa-gato",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.8,
+    "texto": "No va a dejar de rascar. Dale dónde."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "protector-sofa-8-rollo.jpg",
+    "texto": "Rollo de 100 × 40 cm, se corta con tijeras"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "protector-sofa-4-beige.jpg",
+    "texto": "Se pega en la esquina que él eligió"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "protector-sofa-2-gris-oscuro.jpg",
+    "texto": "Siete colores para que case con el mueble"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "18,90 €",
+    "remate": "Se despega sin dejar pegamento"
+   }
+  ]
+ },
+ {
+  "nombre": "alas-murcielago-halloween",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "Halloween, sin pelearse con un disfraz."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "alas-murcielago-1-perro-gato.jpg",
+    "texto": "Dos cintas de velcro y ya está"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "alas-murcielago-2-ambiente.jpg",
+    "texto": "Vale para perro y para gato"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "alas-murcielago-3-tallas.jpg",
+    "texto": "De 44 a 95 cm de pecho, con tabla"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "19,90 €",
+    "remate": "Pídelas a principios de octubre, no la semana del 31"
+   }
+  ]
+ },
+ {
+  "nombre": "gorro-halloween",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "Talla única: no hay medida que acertar."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "gorro-halloween-7-gato.jpg",
+    "texto": "Goma bajo la barbilla, con tope"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "gorro-halloween-3-calabaza-arriba.jpg",
+    "texto": "Bruja con calabaza y farol"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "gorro-halloween-5-arana.jpg",
+    "texto": "Araña"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "gorro-halloween-6-calavera.jpg",
+    "texto": "O calavera. Seis diseños"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "12,90 €",
+    "remate": "Para la foto y para la puerta, no para toda la tarde"
+   }
+  ]
  }
 ]

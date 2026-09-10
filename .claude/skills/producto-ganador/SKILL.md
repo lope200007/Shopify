@@ -47,6 +47,12 @@ comprimir, salio 18,12 EUR, y se archivo la categoria. Estaba viva.
 
 Detalle completo en `research/porte-por-volumen-2026-09-10.md`.
 
+**El umbral de los 600 mm es una alarma, no un muro.** El 10/9/2026 unas alas de
+murcielago con un bulto de **605 mm** de lado mayor pagaron **4,04 EUR**, tarifa
+normal, no la de sobredimensionado. Por encima de 600 mm hay que **medir**, no
+descartar: lo que descarta de entrada sin medir son los 900-1.200 mm, donde el
+tunel de gato se murio con 1.160.
+
 ## 2 bis. Medirlo, y que sale en euros
 
 Aunque el bulto pase el filtro de arriba, **mide siempre** con `cj.portes()`
@@ -164,6 +170,19 @@ sigue sin cubrir.
 
 Y si el fabricante lista una talla que no sirve, **no la ofrezcas**: el de
 espuma tiene M en su tabla pero no en sus variantes.
+
+### Lee la lista de contenido, no solo el titulo
+
+Una hamaca de ventana de gato a 1,00 $ y 220 g parecia el chollo del dia. Su
+`packing list` decia **"Mesh Laundry Cover x1pc"**: era la funda de repuesto
+sola, no la hamaca. Se habria vendido un recambio como si fuera el producto.
+
+La buena, del mismo barrido, decia "Skeleton x1, Round tube x2, Cloth cover x1,
+Suction cup x4". Esa si es la hamaca entera.
+
+Mira siempre `packing list` en la descripcion antes de medir el porte. Y
+desconfia de lo que sea sospechosamente barato dentro de su categoria: casi
+siempre es un accesorio, un recambio o una talla suelta.
 
 ### El corolario: lo mejor es que no haya talla
 
@@ -286,3 +305,26 @@ subir. Para comprobar de verdad si el producto entro donde tocaba, lee
 2. Anadir el guion a `scripts/video/guiones.json` y generar el vertical con
    `python3 scripts/video/vertical.py scripts/video/guiones.json <nombre>`.
 3. Commit con el porte medido y el margen calculado en el mensaje.
+
+### Encender y apagar una temporada
+
+Shopify sabe **publicar** en una fecha y no sabe **despublicar** en una fecha.
+
+`publishablePublish` acepta `publishDate` por canal, y funciona: se guarda y se
+activa sola. Pero **solo en el canal Tienda online**. Shop y TikTok descartan la
+fecha en silencio -sin `userErrors`- y el recurso se queda sin publicar en ellos
+para siempre. Comprueba siempre con:
+
+```
+resourcePublicationsV2(first: 5, onlyPublished: false) { nodes { publication { name } isPublished publishDate } }
+```
+
+Si solo vuelve un nodo cuando pediste tres canales, los otros dos se perdieron.
+
+Para apagar en una fecha no hay nada nativo: o una app de terceros, o un
+disparador externo, o a mano. Y al apagar, **despublica, no borres**: el año
+siguiente se vuelve a encender sin rehacer fotos, tabla de tallas ni mapeo de
+SKU a vid.
+
+Puesto el 10/9/2026 para Halloween: encendido programado el 1 de octubre en
+Tienda online, y dos Routines de aviso para lo que la API no cubre.
