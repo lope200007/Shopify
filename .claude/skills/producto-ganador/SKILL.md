@@ -167,6 +167,27 @@ con `node scripts/cj/mapa.js fichero.txt` — sin vid no se puede servir el pedi
 
 ## El texto de la ficha
 
+### Nunca prometas envio gratis, y no inventes una especificacion
+
+Dos errores reales del 10/9/2026, los dos mios, los dos en fichas ya publicadas:
+
+1. **Ocho fichas decian «Envio gratis».** El envio de esta tienda cuesta
+   **6,99 € y solo es gratis a partir de 55 €**. Prometer gratis y cobrar 6,99
+   en el pago es la forma mas rapida de que abandonen el carrito, y ademas es
+   informacion de precio enganosa. La frase correcta es: *«El envio cuesta
+   6,99 € y es gratis a partir de 55 € de compra.»* Comprueba la tarifa real con
+   `deliveryProfiles`, no de memoria.
+2. **El cepillo con spray decia «Se carga por USB-C, 5 V. El cable va
+   incluido».** El proveedor solo publica «USB power port». Ni el tipo de
+   conector, ni el voltaje, ni el cable estaban en ningun sitio: me los invente.
+   Si el dato no esta en la ficha del proveedor o en una foto legible, **no se
+   escribe**, o se escribe diciendo que no se sabe.
+
+Antes de dar por buena una ficha, relee lo que promete y pregunta de cada frase:
+*¿de donde he sacado esto?* Si la respuesta no es «del volcado» o «de la foto
+numero tal», fuera.
+
+
 La voz de la tienda esta en las fichas existentes: frase corta, concreta, sin
 adjetivos de folleto. Empieza por el problema del dueno, no por el producto.
 
