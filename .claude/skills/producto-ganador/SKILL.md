@@ -153,7 +153,8 @@ espuma tiene M en su tabla pero no en sus variantes.
 productCreate(product: ProductCreateInput!)        # NO ProductInput
   -> productVariantsBulkCreate(strategy: REMOVE_STANDALONE_VARIANT)
        el SKU va en inventoryItem.sku, no suelto
-  -> publishablePublish   Tienda online 365626753372 + Shop 365626786140
+  -> publishablePublish   LOS TRES: Tienda online 365626753372
+                          + Shop 365626786140 + TikTok 369532469596
   -> collectionAddProducts
 ```
 
@@ -205,6 +206,23 @@ Enlaza a los productos relacionados que ya existen: es lo que sube el ticket
 hasta los 55 € del envio gratis.
 
 ## Despues de subirlo
+
+### Los TRES canales, no dos
+
+`productCreate` deja el producto **sin publicar en ningun canal**. Hay que
+llamar a `publishablePublish` con los tres:
+
+```
+365626753372  Tienda online
+365626786140  Shop
+369532469596  TikTok
+```
+
+El 10/9/2026 aparecieron **16 fichas fuera de TikTok** por publicar solo en dos.
+Las viejas si estaban, porque la app de TikTok las publico en bloque al
+instalarse; las creadas despues se quedaron invisibles para el canal sin que
+nada avisara. Comprueba siempre con `resourcePublicationsV2` despues de subir.
+
 
 1. Comprobar la pagina en vivo con `curl -A "Mozilla/5.0 ..."` (sin User-Agent
    de navegador salta el anti-bot con un 429).
