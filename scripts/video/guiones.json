@@ -597,5 +597,45 @@
     "remate": "Cinco colores"
    }
   ]
+ },
+ {
+  "nombre": "cama-donut",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.6,
+    "texto": "Duerme enroscado. Dale una cama con esa forma."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "cama-donut-1-en-uso.jpg",
+    "texto": "El borde alto le hace de almohada"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "cama-donut-9-detalle.jpg",
+    "texto": "Pelo largo por fuera y por dentro"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "cama-donut-2-tallas.jpg",
+    "texto": "De 40 a 80 cm de diámetro"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "cama-donut-3-gris-claro.jpg",
+    "texto": "Y en seis colores"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "desde 22,90 €",
+    "remate": "Lavable a máquina en frío"
+   }
+  ]
  }
 ]
