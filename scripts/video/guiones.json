@@ -319,5 +319,45 @@
     "remate": "Nunca pasta de persona"
    }
   ]
+ },
+ {
+  "nombre": "cepillo-spray",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.4,
+    "texto": "El pelo que suelta acaba en el sofá."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "cepillo-spray-7-en-uso.jpg",
+    "texto": "Pulveriza agua mientras cepillas"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "cepillo-spray-1-blanco-blanda.jpg",
+    "texto": "El pelo se queda pegado, no vuela"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "cepillo-spray-3-blanco-dura.jpg",
+    "texto": "Púas blandas o duras según su pelo"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "cepillo-spray-6-caqui-vibracion.jpg",
+    "texto": "Y una versión con vibración"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "desde 24,90 €",
+    "remate": "Envío a toda España"
+   }
+  ]
  }
 ]
