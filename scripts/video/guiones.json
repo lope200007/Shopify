@@ -637,5 +637,45 @@
     "remate": "Lavable a máquina en frío"
    }
   ]
+ },
+ {
+  "nombre": "navidad",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.6,
+    "texto": "La foto de Navidad se hace una vez al año."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "navidad-1-en-uso.jpg",
+    "texto": "Bufanda de punto de verdad"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "navidad-2-conjuntos.jpg",
+    "texto": "O el conjunto: gorro y bufanda"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "navidad-6-bufanda-reno.jpg",
+    "texto": "Cuatro bufandas y dos gorros"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.4,
+    "foto": "navidad-7-gorro-rojo.jpg",
+    "texto": "55 cm, se cruza y no aprieta"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.6,
+    "precio": "desde 12,90 €",
+    "remate": "Pídelo con margen"
+   }
+  ]
  }
 ]
