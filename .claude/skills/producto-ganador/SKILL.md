@@ -80,6 +80,60 @@ Si el coste y el porte suben de verdad con la talla, **pon precio por talla**.
 El collar inflable va de 19,90 a 24,90 porque la XL cuesta y pesa el triple que
 la XS.
 
+
+## El SKU de la tienda no puede ser el del proveedor
+
+Shopify publica el `sku` de cada variante en el JSON de la ficha y en el
+endpoint `/products/<handle>.js`. Se ve mirando el codigo fuente:
+
+    "sku":"CJCT257892301AZ","title":"Rojo"
+
+Si ahi pones el SKU de CJ, le estas dando al cliente el codigo exacto para
+buscar el articulo en el proveedor. Y en cada ficha salen ademas los SKU de
+los productos recomendados, asi que no basta con cuidar uno.
+
+**El SKU de la tienda se llama `PTC-<producto>-<variante>`.** La traduccion a
+`vid` de CJ vive en el `manual` de `scripts/cj/mapa.js`, que no sale a la web.
+Al crear el producto se puede poner el SKU de CJ para no equivocarse, pero
+antes de terminar hay que renombrarlo con `productVariantsBulkUpdate` y
+anadir la linea al mapa. Comprobacion final:
+
+    curl -s -A "Mozilla/5.0" https://patitascalidas.com/products/<handle> \
+      | grep -oE '"sku":"CJ[A-Z0-9]+"'
+
+Si devuelve algo del producto que acabas de subir, no has terminado.
+
+## Los SKU inventados: el fallo que no se ve hasta que hay un pedido
+
+El 13/9/2026 aparecieron cinco borradores con SKU como
+`CJYD240093301AZ-M`: el SKU de una variante real de CJ con un sufijo pegado
+detras. Parece un SKU y no lo es. CJ solo resuelve el SKU exacto, asi que
+ninguno de los cinco se podia servir.
+
+**Cada SKU que escribas tiene que salir del volcado, no de tu cabeza.** La
+forma de asegurarlo es construir las variantes leyendo el JSON del proveedor
+y afirmarlo antes de enviarlo:
+
+    reales = {v['variantSku'] for v in volcado['variants']}
+    assert sku in reales, sku
+
+Y despues, `node scripts/cj/mapa.js lista.txt` tiene que dar `0 sin mapeo`.
+
+## Lo que lleva motor y bateria casi siempre se muere en el porte
+
+El comedero automatico programable son 720 busquedas/mes **planas todo el
+ano**, y aun asi no se puede vender: 1,3 kg con motor va por linea
+`Sensitive` y paga **25,10 EUR** de porte. A los 39,90 EUR a los que lo vende
+Cecotec el margen sale **negativo**. Habria que pedir 53 EUR.
+
+La regla: si pesa mas de un kilo y lleva motor, mide el porte **antes** de
+escribir una sola linea de ficha. Lo pequeno con bateria si pasa —la pelota
+de gato de 69 g paga 3,93 EUR por Liquid Line—, lo que mata es el kilo.
+
+Cuando un concepto se muere asi, mira si el trabajo que hace el cliente ya lo
+cubre otra cosa del catalogo antes de buscar sustituto: el dispensador por
+gravedad ya resolvia «que coma sin que yo este».
+
 ## 3. Las fotos: mirarlas UNA A UNA a tamano legible
 
 Nunca subas una foto que no hayas visto grande. Motivos reales por los que se ha
