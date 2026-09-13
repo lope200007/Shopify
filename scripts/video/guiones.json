@@ -1103,5 +1103,73 @@
     "remate": "Un tercio de los gatos pasa de la hierba gatera. Por eso lleva las dos"
    }
   ]
+ },
+ {
+  "nombre": "collar-airtag",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.8,
+    "texto": "El AirTag colgando se lo arranca de un mordisco."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "collar-airtag-2-alojamiento.jpg",
+    "texto": "Va dentro, con dos automáticos"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "collar-airtag-1-verde.jpg",
+    "texto": "Cuero sobre nailon, anilla en D"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "collar-airtag-5-tallas.jpg",
+    "texto": "De 24 a 60 cm de cuello, tres tallas"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.8,
+    "precio": "22,90 €",
+    "remate": "El AirTag se compra aparte: esto es el collar"
+   }
+  ]
+ },
+ {
+  "nombre": "secador-cepillo",
+  "escenas": [
+   {
+    "tipo": "gancho",
+    "segundos": 2.6,
+    "texto": "Secar y cepillar, en una sola pasada."
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.8,
+    "foto": "secador-cepillo-4-autolimpieza.jpg",
+    "texto": "Aprietas y suelta el pelo de una pieza"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "secador-cepillo-1-perro-gato.jpg",
+    "texto": "Vale para perro y para gato"
+   },
+   {
+    "tipo": "producto",
+    "segundos": 2.6,
+    "foto": "secador-cepillo-3-rosa.jpg",
+    "texto": "Blanco o rosa, enchufe europeo"
+   },
+   {
+    "tipo": "cierre",
+    "segundos": 2.8,
+    "precio": "29,90 €",
+    "remate": "Acostúmbralo al ruido primero: es lo que asusta, no el aire"
+   }
+  ]
  }
 ]
