@@ -52,6 +52,18 @@ const IOSS_TIPO = 3;
 const IOSS_NUMERO = '';
 
 /**
+ * TELEFONO DE RESPALDO
+ *
+ * CJ acepta un pedido sin telefono, pero el transportista espanol no entrega
+ * sin un numero al que llamar: el paquete se queda en delegacion y vuelve.
+ * Paso en el pedido #1001, que llego a CJ con el telefono vacio.
+ *
+ * Si el cliente no deja telefono en el checkout, se manda este. Debe ser un
+ * numero real de la tienda, atendido: el repartidor puede llamar de verdad.
+ */
+const TELEFONO_RESPALDO = process.env.TELEFONO_TIENDA ?? '';
+
+/**
  * COMO SE PAGA CADA PEDIDO A CJ
  *
  *   'enlace' (payType 1) -> CJ devuelve un enlace de pago al crear el pedido.
@@ -251,11 +263,22 @@ const OBLIGATORIOS = [
   'shippingAddress',
   'logisticName',
   'fromCountryCode',
+  'shippingZip',
+  'shippingPhone',
 ] as const;
 
 function validar(cuerpo: Record<string, any>): void {
   const faltan = OBLIGATORIOS.filter((c) => !cuerpo[c] || String(cuerpo[c]).trim() === '');
-  if (faltan.length) throw new Error(`Faltan campos obligatorios para CJ: ${faltan.join(', ')}`);
+  if (faltan.length) {
+    const ayuda: Record<string, string> = {
+      shippingZip: 'el pedido no trae codigo postal: revisalo en Shopify antes de servir',
+      shippingPhone:
+        'no hay telefono del cliente ni TELEFONO_TIENDA en .env. ' +
+        'Sin telefono el transportista espanol no entrega.',
+    };
+    const detalle = faltan.map((c) => ayuda[c] ?? c).join(' | ');
+    throw new Error(`No se puede crear el pedido en CJ. ${detalle}`);
+  }
 
   if (!Array.isArray(cuerpo.products) || cuerpo.products.length === 0) {
     throw new Error('El pedido no lleva ningun producto.');
@@ -282,7 +305,7 @@ function payload(
     shippingCountry: e.pais,
     shippingCountryCode: e.codigoPais,
     shippingZip: e.codigoPostal ?? '',
-    shippingPhone: e.telefono ?? '',
+    shippingPhone: e.telefono?.trim() || TELEFONO_RESPALDO,
     email: pedido.email ?? '',
     logisticName: transporte,
     fromCountryCode: PAIS_ORIGEN,
