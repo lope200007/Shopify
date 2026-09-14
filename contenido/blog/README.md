@@ -14,6 +14,9 @@ Blog: `gid://shopify/Blog/129727922524` → https://patitascalidas.com/blogs/not
 | 14/09/2026 | [Qué tamaño de cama necesita tu perro](que-tamano-de-cama-necesita-mi-perro.html) | cama perro (clúster ~22.000/mes) | cama dónut, cama sofá, manta impermeable, escalera plegable |
 | 14/09/2026 | [Arnés o collar: cómo medir a tu perro](arnes-o-collar-como-medir-a-tu-perro.html) | arnés perro / talla arnés | arnés acolchado, conjunto arnés+correa, correa extensible, funda AirTag |
 
+| 14/09/2026 | [¿Tu perro necesita abrigo?](mi-perro-necesita-abrigo-y-que-talla.html) | abrigo perro (1.000/mes, pico 4.400 en noviembre) | plumífero, abrigo reflectante, capa impermeable, chubasquero, correa con linterna |
+| 14/09/2026 | [Mi perro come demasiado rápido](mi-perro-come-demasiado-rapido.html) | comedero lento / perro come rápido | comedero puzzle, tentetieso, alfombrilla de lamer, Pack comer despacio |
+
 ## La regla
 
 **Cada artículo enlaza a dos o tres fichas de producto**, con el enlace dentro
@@ -53,5 +56,31 @@ Uno o dos por semana. Siguientes candidatos, por orden:
 1. Golpe de calor en perros: señales y qué hacer (estacional, pico en verano)
 2. Cuánto tarda un pedido y por qué (responde la objeción real de la tienda)
 3. Cómo lavar la cama del perro sin destrozarla
-4. Qué comedero necesita un perro que come demasiado rápido
-5. Primer invierno de un cachorro: qué ropa hace falta y cuál no
+4. Primer invierno de un cachorro: qué ropa hace falta y cuál no
+5. Miedo a los petardos y a las tormentas: qué ayuda y qué no
+
+## Estacionalidad: por qué el de abrigos se publica el 14 de septiembre
+
+Búsquedas de "abrigo perro" en España, mes a mes (medido 14/09/2026):
+
+| Ago | Sep | Oct | **Nov** | Dic | Ene | Feb | Mar | Abr | May | Jun | Jul |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 260 | 720 | 1.000 | **4.400** | 3.600 | 2.900 | 590 | 320 | 90 | 110 | 50 | 140 |
+
+Se multiplica por 17 entre agosto y noviembre, y se desploma en primavera.
+Un artículo tarda semanas en posicionar, así que **publicar en noviembre llega
+tarde**. La regla para los estacionales: publicar con dos meses de antelación
+sobre el pico.
+
+Mismo patrón en "abrigo perros pequeños" (90 en agosto → 1.300 en noviembre) y
+en "abrigo para perros" (170 → 2.900).
+
+## Regla: no enlazar a lo que no existe
+
+El artículo de arneses iba a ser de collares. Al ir a poner los enlaces se vio
+que **el catálogo no tiene ningún collar de paseo** — solo el isabelino y la
+funda para AirTag. Se cambió el tema antes de escribir.
+
+**Antes de escribir un artículo, comprobar que los productos a los que va a
+enlazar existen y están ACTIVE.** Se hace con `productByIdentifier` por handle,
+que además no gasta peticiones contra el escudo antibots de la tienda.
