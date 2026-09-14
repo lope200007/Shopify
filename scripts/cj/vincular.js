@@ -105,6 +105,7 @@ async function main() {
   await dormir(ESPACIADO);
 
   let hechos = 0, saltados = 0, fallos = 0;
+  const intentados = []; // para comprobar despues que CJ los guardo de verdad
 
   for (const p of productos) {
     const titulo = String(p.platformProductTitle || p.platformProductId).slice(0, 52);
@@ -161,26 +162,67 @@ async function main() {
       continue;
     }
 
+    const cuerpo = {
+      shopId: TIENDA,
+      defaultArea: 1,
+      logistics: TRANSPORTE,
+      cjProductId: String(cjProductId),
+      platformProductId: String(p.platformProductId),
+      sourceCountryCode: 'CN', sourceCountry: 'China',
+      targetCountryCode: 'ES', targetCountry: 'Spain',
+      variantList: pares,
+    };
+
     try {
-      await api('/product/conn/connection', {
-        cuerpo: {
-          shopId: TIENDA,
-          defaultArea: 1,
-          logistics: TRANSPORTE,
-          cjProductId: String(cjProductId),
-          platformProductId: String(p.platformProductId),
-          sourceCountryCode: 'CN', sourceCountry: 'China',
-          targetCountryCode: 'ES', targetCountry: 'Spain',
-          variantList: pares,
-        },
-      });
+      await api('/product/conn/connection', { cuerpo });
       console.log(`+ ${titulo}  vinculado (${pares.length} variantes)`);
+      intentados.push({ titulo, cuerpo });
       hechos++;
     } catch (e) {
       console.log(`! ${titulo}  ${String(e.message).slice(0, 70)}`);
       fallos++;
     }
     await dormir(ESPACIADO);
+  }
+
+  // CJ a veces responde "Congratulation!" y no guarda nada. Comprobado el
+  // 14/09/2026: 7 de 74 se perdieron asi. Por eso se repasa y se reintenta.
+  if (ejecutar && intentados.length) {
+    console.log('\nComprobando que CJ los ha guardado de verdad...');
+    await dormir(ESPACIADO);
+    const guardados = new Set(
+      (await paginar('/product/conn/connection', { shopId: TIENDA }))
+        .map((c) => String(c.platformProductId)),
+    );
+    const perdidos = intentados.filter((x) => !guardados.has(String(x.cuerpo.platformProductId)));
+    console.log(`${intentados.length - perdidos.length} confirmados, ${perdidos.length} no se guardaron.`);
+
+    for (const x of perdidos) {
+      await dormir(ESPACIADO);
+      try {
+        await api('/product/conn/connection', { cuerpo: x.cuerpo });
+        console.log(`  reintentado: ${x.titulo}`);
+      } catch (e) {
+        console.log(`  ! ${x.titulo}  ${String(e.message).slice(0, 70)}`);
+        hechos--; fallos++;
+      }
+    }
+
+    if (perdidos.length) {
+      await dormir(ESPACIADO);
+      const final = new Set(
+        (await paginar('/product/conn/connection', { shopId: TIENDA }))
+          .map((c) => String(c.platformProductId)),
+      );
+      const siguenFuera = perdidos.filter((x) => !final.has(String(x.cuerpo.platformProductId)));
+      if (siguenFuera.length) {
+        console.log(`\nATENCION: ${siguenFuera.length} siguen sin vincular tras el reintento:`);
+        siguenFuera.forEach((x) => console.log(`  - ${x.titulo}`));
+        hechos -= siguenFuera.length; fallos += siguenFuera.length;
+      } else {
+        console.log('  todos confirmados en el segundo intento.');
+      }
+    }
   }
 
   console.log(`\n${hechos} vinculado(s), ${saltados} ya estaban, ${fallos} con problema.`);

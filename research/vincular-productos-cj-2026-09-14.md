@@ -41,7 +41,23 @@ GET /product/conn/connection?shopId=2609031958293531800
      `mapa.js` pero cuyo `pid` no estaba en `proveedores/cj/`: los resuelve ya
      el nuevo fallback contra la API.
 
-## Lo que bloquea
+## RESUELTO el 14/09/2026 por la tarde
+
+Pablo lanzó la sincronización en CJ. A partir de ahí:
+
+- CJ pasó a tener **80 productos** de la tienda (los 74 activos + 6 borradores).
+- `node scripts/cj/vincular.js --ejecutar` creó **74 vínculos**, 5 packs saltados,
+  1 ya estaba (rascador).
+- **Aviso importante**: CJ respondió `200 Congratulation! Well done!` a los 74,
+  pero al comprobar contra su base de datos **7 no se habían guardado**: alas de
+  murciélago, capucha con orejeras, anilla flotante, bozal de silicona, cepillo
+  carda, manta impermeable y comedero rotativo. Se repitieron uno a uno y
+  entraron a la primera. Por eso el script ahora **verifica y reintenta solo**
+  al terminar.
+- Estado final verificado: **422 conexiones, 75 productos vinculados**, que es
+  todo el catálogo menos los 5 packs.
+
+## Lo que bloqueaba (histórico)
 
 CJ **solo tiene cargado 1 de los 74 productos** de la tienda:
 
