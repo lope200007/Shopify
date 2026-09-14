@@ -125,3 +125,77 @@ enlazar Google Ads** mientras no haya ventas que digan qué producto tira.
 ## Siguiente revisión
 
 `trig_01QcLBVbszbY2CAcudoH2UWr` — 17 de septiembre.
+
+---
+
+## Cierre: los 67 "Limitado" y el único aviso de la cuenta
+
+Fecha: 14 de septiembre de 2026, 12:20. Verificado por Pablo pantalla por
+pantalla dentro de Merchant Center 5851656186.
+
+### Lo que dice Merchant Center
+
+| Pantalla | Resultado |
+| --- | --- |
+| Productos totales | 391 (= 74 productos, Google cuenta variantes) |
+| No aprobado | **0** |
+| Productos > Necesita atención | **vacía** — "Aquí aparecerán los productos que requieren su atención" |
+| Problemas de configuración y políticas | **1** |
+| Columna Visibilidad de los "Limitado" | **check verde** — se están mostrando |
+
+### El único aviso de la cuenta
+
+Literal de `/mc/products/diagnostics/accountissues?a=5851656186`:
+
+> **No hay ninguna cuenta de Google Ads vinculada.**
+> Para crear anuncios, deberá vincular su cuenta de Google Ads con Merchant Center.
+
+Es el upsell de publicidad de pago, no un defecto de la tienda. **No se
+vincula**: con 0 ventas, invertir en Ads es apostar a ciegas, y además el
+formulario de alta que Google ofrece venía con huso horario
+`(GMT-04:00) Hora estándar del Atlántico` preseleccionado — el huso horario de
+una cuenta de Google Ads **no se puede cambiar después de crearla**, así que
+aceptarlo habría dejado todos los informes desfasados para siempre.
+
+Google empuja a ese mismo formulario desde al menos cuatro sitios distintos
+(el aviso amarillo de Descripción general, el panel de la app en Shopify, la
+pestaña de configuración y este diagnóstico). Es el mismo botón, no cuatro
+problemas.
+
+### Por qué "Limitado", con el resto ya descartado
+
+Descartado uno a uno contra Shopify: los cuatro productos afectados que se
+pudieron leer en pantalla tienen categoría, marca, foto de 670 px o más,
+precio y `availableForSale: true`.
+
+| Producto | Variantes | Categoría | Marca | Foto |
+| --- | --- | --- | --- | --- |
+| Alfombrilla de seda de hielo | 24 | Accesorios de cama | sí | 1400 px |
+| Bozal de silicona tipo cesta | 18 | Bozales para mascotas | sí | 670 px |
+| Pelota rodante para gato | 7 | Juguetes para gatos | sí | 800 px |
+| Bebedero portátil 2 en 1 | 3 | Cuencos de viaje | sí | 800 px |
+| | **52** | | | |
+
+Suman 52 de los 67; los ~15 restantes no se llegaron a ver al hacer scroll.
+
+Con "Necesita atención" vacía, la causa que queda es la falta de **GTIN**
+(el EAN de fabricante). Los artículos de CJ no lo llevan porque no son de una
+marca registrada: el identificador **no existe**, no es que se haya omitido.
+
+Consecuencia real: Google no los agrupa en las comparativas de "mismo producto
+en varias tiendas", pero sí los muestra en Shopping. De ahí el check verde.
+
+**No se arregla y no se intenta.** Inventar códigos EAN está prohibido por la
+política de Google y es motivo de suspensión de la cuenta de Merchant Center.
+
+### Regla para futuras subidas
+
+No dejar el campo código de barras a medias ni rellenarlo con nada inventado.
+"Limitado" es el estado normal y esperado de un catálogo de dropshipping sin
+marca propia. No es un defecto que perseguir.
+
+### Lo que sí queda pendiente en Google
+
+Verificar el dominio en Search Console y enviar el sitemap. Eso es la búsqueda
+orgánica (los resultados de texto), que es un canal distinto de Shopping y el
+que de verdad puede traer visitas sin pagar.
