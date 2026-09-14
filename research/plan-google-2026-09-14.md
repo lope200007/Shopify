@@ -142,3 +142,66 @@ La tienda está en el plan **Advanced de Shopify (289-384 €/mes)** con cero
 ventas. El plan **Basic** hace exactamente lo mismo que necesitas ahora. Eso
 son unos **3.000 € al año** que dan para mucha publicidad cuando llegue el
 momento de hacerla.
+
+---
+
+# HECHO: el canal de Google está instalado (14 de septiembre, por la tarde)
+
+Pablo lo instaló él mismo desde el ordenador. Verificado desde dentro de la
+tienda, no por la pantalla:
+
+- El canal **`Google & YouTube`** aparece en las publicaciones de
+  `g5d031-ir.myshopify.com` → `gid://shopify/Publication/370321752412`.
+- **Merchant Center conectado.**
+- **72 de los 74 productos activos** quedaron publicados en el canal.
+- Los 2 que faltan son las **alas de murciélago** y el **gorro de Halloween**,
+  que están programados para el 1 de octubre. Correcto e intencional.
+
+## Un susto que no era
+
+La barra de direcciones de su navegador ponía `/store/prestige-12657/`, no
+`g5d031-ir`. Parecía que hubiera instalado Google en otra tienda. No: Shopify
+conserva en la URL del panel el identificador con el que se creó la tienda
+aunque después se le cambie el nombre. La prueba definitiva fue mirar desde
+dentro si el canal había aparecido en la tienda que gestiono. Apareció.
+
+**Para la próxima: la URL del panel no identifica la tienda. El
+`myshopifyDomain` sí.**
+
+## El aviso amarillo de Merchant Center no es un error
+
+Dice *«No Google Ads account linked»*. Es Google intentando vender publicidad.
+Se queda ahí para siempre y no afecta a las fichas gratuitas de Shopping. **No
+enlazar Google Ads** mientras no haya ventas que digan qué producto tira.
+
+## Lo que NO se ve desde aquí
+
+La aplicación de Google **no guarda el estado de aprobación dentro de la
+tienda**. Solo deja un metafield `mm_google_shopping_extension.merchant_id`.
+Comprobado producto a producto: no hay metafields de feed.
+
+Así que **el estado Approved / Not Approved solo lo ve Pablo**, en la pantalla
+del canal dentro de Shopify. El reparto queda así:
+
+| Quién | Qué |
+| --- | --- |
+| Pablo | Lee los contadores y me pasa los rechazos |
+| Yo | Arreglo la ficha: título, descripción, fotos, precio, canales |
+| Nadie desde aquí | Ajustes dentro de Merchant Center (envíos, datos del negocio) |
+
+## Las Routines de temporada, corregidas
+
+Las dos de encendido daban por hecho que había **tres** canales. Ahora son
+cuatro. Actualizadas para que publiquen también en `Google & YouTube`:
+
+- **Halloween ON — 1 de octubre** (`trig_017wWZ1oMALfy8xYtn9NfiG9`)
+- **Navidad ON — 1 de noviembre** (`trig_01Mty91eisJcd1Gr37zWdvxe`)
+
+Sin esto, los productos de temporada habrían salido en la web pero **no en
+Google Shopping** justo en su campaña. Y como la aprobación tarda de 3 a 5
+días, encenderlos tarde es perder la temporada.
+
+## Siguiente revisión
+
+Programada para el **17 de septiembre**: comprobar aprobaciones, visitas y
+pedidos (`trig_01QcLBVbszbY2CAcudoH2UWr`).
