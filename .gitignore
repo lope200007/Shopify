@@ -22,3 +22,4 @@ graphify-out/
 # Cachés de Python
 __pycache__/
 *.pyc
+.cj-pid-por-vid.json
