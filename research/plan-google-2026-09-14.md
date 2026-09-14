@@ -205,3 +205,63 @@ días, encenderlos tarde es perder la temporada.
 
 Programada para el **17 de septiembre**: comprobar aprobaciones, visitas y
 pedidos (`trig_01QcLBVbszbY2CAcudoH2UWr`).
+
+---
+
+## HECHO: Search Console verificado y sitemap enviado
+
+14 de septiembre de 2026, 12:50. Ejecutado por Pablo paso a paso.
+
+| Paso | Estado |
+| --- | --- |
+| Propiedad `https://patitascalidas.com` añadida (prefijo de URL) | hecho |
+| Verificación | **automática** — método "Etiqueta HTML" |
+| Sitemap `sitemap.xml` enviado | hecho |
+| Indexación solicitada: artículo de camas | hecho |
+| Indexación solicitada: artículo de arneses | hecho |
+
+### La verificación fue gratis, y por qué
+
+Google verificó la propiedad **sin intervención manual**. La etiqueta
+`google-site-verification` ya estaba en la portada: la había puesto el canal
+de Google y YouTube al instalarse el 14/09. Confirmado desde fuera con una
+petición a la portada (1 coincidencia en el HTML en línea).
+
+**Consecuencia operativa: no desinstalar la app de Google y YouTube.** Si se
+desinstala, desaparece la etiqueta y se pierde la verificación de Search
+Console. Si alguna vez hay que quitarla, añadir antes un segundo método en
+Ajustes → Verificación de la propiedad (registro DNS o archivo HTML).
+
+### Estado del sitemap en pantalla
+
+Search Console mostró "Tipo desconocido / No se ha podido obtener" justo
+después del envío. **No es un fallo.** Comprobado con una petición usando el
+User-Agent de Googlebot:
+
+| Comprobación | Resultado |
+| --- | --- |
+| `GET /sitemap.xml` como Googlebot | 200, 892 B, 0,53 s |
+| `content-type` | `application/xml; charset=utf-8` |
+| Cabecera `cf-mitigated` | ausente — Cloudflare no interfiere |
+| `GET /sitemap_blogs_1.xml` | 200, lista las 5 entradas |
+
+Los dos artículos publicados hoy ya figuran en el sitemap del blog. El estado
+de la pantalla pasa a "Correcto" solo, entre unas horas y dos días.
+**No reenviar el sitemap**: no acelera nada y duplica la fila.
+
+### Nota: el 429 es nuestro, no de la tienda
+
+Al pedir `robots.txt` desde esta sesión salió **HTTP 429**. Es el escudo
+antibots de la propia tienda limitando este centro de datos tras un volumen
+alto de peticiones. No afecta a Googlebot. Al leer analítica o probar la web
+desde aquí, espaciar las peticiones.
+
+### Qué esperar ahora
+
+Search Console empieza a acumular datos desde hoy. En unos días habrá
+consultas reales: qué escribe la gente en Google antes de llegar a la tienda.
+Ese dato no lo teníamos y es el que permitirá elegir los siguientes artículos
+sobre demanda observada en vez de estimada.
+
+Indexar no es posicionar. Los dos artículos se leerán en días; aparecer en
+las primeras posiciones lleva semanas y depende de la calidad del contenido.
