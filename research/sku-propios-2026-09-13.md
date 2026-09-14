@@ -16,7 +16,7 @@ Con ese código, pegarlo en Google lleva al artículo en CJdropshipping.
 Y en cada ficha aparecían además los SKU de los productos recomendados,
 así que no bastaba con cuidar uno.
 
-## Qué se ha hecho
+## Qué se ha hecho (ejecutado el 13-14 de septiembre de 2026)
 
 Las 388 variantes del catálogo pasan a llevar un SKU propio,
 `PTC-<producto>-<nn>`. La traducción a `vid` de CJ —lo único que CJ acepta
@@ -433,3 +433,12 @@ poner el repositorio en privado.
 | collar-airtag-perro | `PTC-COLAIRTA-01` | `CJPN218261001AZ` | `1853701129163919360` |
 | collar-airtag-perro | `PTC-COLAIRTA-02` | `CJPN218261002BY` | `1853701129163919361` |
 | collar-airtag-perro | `PTC-COLAIRTA-03` | `CJPN218261003CX` | `1853701129163919362` |
+
+## Comprobación posterior al renombrado
+
+- **388 de 388** variantes resuelven a su `vid` de CJ. Ninguna rota.
+- Los cinco packs siguen descomponiéndose en sus tres piezas cada uno.
+- Ocho fichas en vivo, incluido el endpoint `/products/<handle>.js` que el tema
+  no puede tapar: **0 apariciones** de un SKU de CJ.
+- Compra real de tres artículos distintos por `POST /cart/add.js`: entran al
+  carrito con su precio en euros y su SKU propio. Checkout HTTP 200.
