@@ -39,6 +39,9 @@ async function loVe() {
   while (Date.now() < limite) {
     if (await loVe()) {
       console.log(`CJ ya ve ${ID}. Vinculando...`);
+      // El sondeo acaba de gastar la peticion de este segundo: si lanzamos
+      // vincular.js de golpe, CJ responde 1600200 y se pierde el intento.
+      await dormir(2500);
       console.log(execFileSync('node', [path.join(__dirname, 'vincular.js'), '--ejecutar'], { encoding: 'utf8' }));
       return;
     }
