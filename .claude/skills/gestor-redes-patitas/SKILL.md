@@ -291,3 +291,69 @@ lo vea es una acción irreversible, y de esas no se hacen solas.
 - Si algún vídeo llevó a la portada en vez de a una ficha: corregirlo.
 - Si una franja horaria dejó de funcionar: volver a medir.
 - Cuántas visitas reales llegaron a la tienda desde TikTok e Instagram.
+
+---
+
+# Cuarta parte: lo aprendido publicando de verdad
+
+Verificado el 14 de septiembre de 2026 con una publicación real que salió a las
+16:15 a TikTok, Instagram y Facebook.
+
+## Los 32 vídeos ya están, y no hacen falta manos
+
+Están en **`assets/video/`** de este repositorio, uno por producto, 83 MB en
+total. Son públicos en
+`https://raw.githubusercontent.com/lope200007/Shopify/main/assets/video/<nombre>.mp4`
+y **Metricool los descarga y los sube a su propio CDN automáticamente** al
+pasarle esa URL en `media`.
+
+No hay que buscarlos en el ordenador de Pablo, ni subirlos a mano, ni pedírselos.
+Cuando alguien pregunte "¿de dónde saco los vídeos?", la respuesta es esta ruta.
+
+Lista: alas-murcielago-halloween, alfombra-olfativa, alfombrilla-comedero,
+anilla-flotante, arnes-acolchado, bozal-silicona, calendario-adviento-gato,
+cama-donut, capucha-orejeras, cepillo-carda, cepillo-spray, collar-airtag,
+collar-inflable, collar-isabelino-espuma, comedero-arbol-navidad,
+comedero-plegable, correa-extensible, frisbee-blando, gorro-halloween,
+guante-marioneta-gato, hamaca-ventana-gato, mariposa-electrica-gato,
+mordedor-dental, mordedor-navidad, navidad, pack-coche, pez-movil-gato,
+portabolsas-paseo, protector-sofa-gato, rascador-pared, rascador-redondo,
+secador-cepillo.
+
+## Comprobar SIEMPRE que el producto está publicado
+
+Antes de enlazar, mirar `onlineStoreUrl` del producto en Shopify. Si es `null`,
+**el producto no está en la web** aunque su `status` sea `ACTIVE`, y el enlace
+llevaría a una página que no existe.
+
+Pasó de verdad con `alas-murcielago-halloween`: activo pero sin publicar, porque
+la rutina estacional lo enciende en octubre. Se cambió de producto a tiempo.
+
+## Cosas de la API de Metricool que cuestan un intento
+
+| Síntoma | Causa |
+| --- | --- |
+| `TikTok title is required` | Con TikTok hay que mandar `tiktokData.title`, aparte del `text` |
+| `Cannot enable autoAddMusic in posts with videos` | `autoAddMusic` solo vale para imágenes y carruseles. Con vídeo, `false` |
+| `Cannot get approval data on FREE user` | `createScheduledPostForReview` exige plan de pago. En el gratuito, `createScheduledPost` |
+| La fecha no puede estar en el pasado | Para publicar "ya", dejar unos 5-10 minutos de margen para que procese el vídeo |
+
+`updateScheduledPost` sirve para adelantar o retrasar una publicación ya creada:
+hay que reenviar el contenido completo cambiando solo `publicationDate`, y pasar
+la URL de `static.metricool.com` que devolvió la creación, no la original.
+
+## Datos de la cuenta
+
+Marca `patitascalidas`, id `6914116`, zona `Europe/Madrid`. Conectados TikTok
+(`patitascalidas`), Instagram (`patitascalidas_`) y una página de Facebook.
+
+Instagram y Facebook son cuentas **nuevas, con cero seguidores**. Van a rendir
+poco durante semanas y eso es normal. El tráfico real de Instagram sigue
+viniendo de las historias que Pablo sube desde su cuenta personal: eso no se
+para mientras la cuenta de marca arranca.
+
+## El enlace en Instagram no es clicable
+
+Instagram no convierte en enlace el texto del pie de foto. Se pone igual, pero
+el que funciona es **el de la biografía**, que hay que ir cambiando al producto
+que se esté promocionando esa semana. En Facebook sí es clicable.
