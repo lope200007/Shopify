@@ -717,9 +717,25 @@ En la práctica, tres pasos, siempre en este orden:
    sistema externo. CJ ya dijo "Congratulation!" sin guardar nada: de 74 envíos
    se perdieron 7 en silencio.
 
-Y su hermana, para lo que no es código: **no afirmar lo que no se ha
-comprobado.** Si es comprobable, se comprueba antes de decirlo. Si no se puede
-comprobar, se dice que no se ha comprobado.
+### La segunda regla de Pablo: no dar por hecho lo que no se ha verificado
+
+Vale para todo, no solo para el código. Dicha el 15 de septiembre de 2026.
+
+- Si es comprobable, **se comprueba antes de decirlo**.
+- Si no se puede comprobar, **se dice que no se ha comprobado**. No se rellena
+  el hueco con una suposición que suene bien.
+- Una captura de pantalla **se lee, no se interpreta**. Si no está claro lo que
+  pone, se pregunta.
+- Lo que responde un sistema externo **no es prueba**: la prueba es volver a
+  leer el estado después.
+
+Los tres fallos que originaron esta regla, para no repetirlos:
+
+| Fallo | Qué se dio por hecho | Cómo se evitaba |
+|---|---|---|
+| El "23" del pedido | Que era la fecha de entrega | Era la fecha de pago de Shopify. Estaba en la captura |
+| El enlace de pago de CJ | Que funcionaba | Nunca se había ejecutado. Había que probarlo |
+| Recargar con tarjeta | Que servía para el monedero | El monedero solo admite Payoneer, transferencia y tarjeta regalo |
 
 ### Lo que SIEMPRE se pregunta antes
 
