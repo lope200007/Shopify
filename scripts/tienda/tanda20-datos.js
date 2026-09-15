@@ -12,6 +12,7 @@ const COL = {
   ropa:      'gid://shopify/Collection/698287325532',
   novedades: 'gid://shopify/Collection/698323140956',
   regalos:   'gid://shopify/Collection/698327368028',
+  navidad:   'gid://shopify/Collection/698367115612',
 };
 
 const PLAZO_RAPIDO = '<p>Llega a España en una o dos semanas. Sale de nuestro proveedor en Asia: de 1 a 3 días laborables de preparación y luego el transporte, siempre con número de seguimiento.</p>';
@@ -776,6 +777,88 @@ ${PLAZO_RAPIDO}
 <p>Viene en un solo color, azul zafiro.</p>
 <p>No abriga. Es ropa de entretiempo y de casa; para el frío de verdad hace falta un abrigo acolchado.</p>
 <p>Déjaselo puesto un rato en casa antes de salir con él. Y si se queda quieto como un pasmarote o intenta quitárselo, no es para tu animal.</p>`,
+},
+
+
+// ─────────────────────────────────────────── 21
+{
+  clave: 'sudadera', pid: '1403920038016192512',
+  titulo: 'Sudadera con capucha de frutas y animales | Siete diseños, seis tallas',
+  tipo: 'Ropa y calzado',
+  etiquetas: ['perro', 'gato', 'ropa', 'invierno', 'sudadera', 'disfraz', 'regalo'],
+  colecciones: ['ropa', 'novedades', 'regalos', 'navidad'],
+  sku: 'PTC-SUDAFRUTA',
+  opciones: [
+    { nombre: 'Diseño', valores: ['Manzana roja', 'Corazón', 'Zanahoria', 'Ajo tierno', 'Rana', 'Reno', 'Plátano'] },
+    { nombre: 'Talla', valores: ['XS', 'S', 'M', 'L', 'XL', '2XL'] },
+  ],
+  variantes: [
+    { vid: '1403920039480004608', valores: ['Manzana roja', 'XS'], precio: '19.90' },
+    { vid: '1403920039488393216', valores: ['Manzana roja', 'S'], precio: '19.90' },
+    { vid: '1403920039496781824', valores: ['Manzana roja', 'M'], precio: '19.90' },
+    { vid: '1403920039505170432', valores: ['Manzana roja', 'L'], precio: '19.90' },
+    { vid: '1403920039517753344', valores: ['Manzana roja', 'XL'], precio: '19.90' },
+    { vid: '1403920039526141952', valores: ['Manzana roja', '2XL'], precio: '19.90' },
+    { vid: '1403920039534530560', valores: ['Corazón', 'XS'], precio: '19.90' },
+    { vid: '1403920039542919168', valores: ['Corazón', 'S'], precio: '19.90' },
+    { vid: '1403920039551307776', valores: ['Corazón', 'M'], precio: '19.90' },
+    { vid: '1403920039563890688', valores: ['Corazón', 'L'], precio: '19.90' },
+    { vid: '1403920039580667904', valores: ['Corazón', 'XL'], precio: '19.90' },
+    { vid: '1403920039589056512', valores: ['Corazón', '2XL'], precio: '19.90' },
+    { vid: '1403920039601639424', valores: ['Zanahoria', 'XS'], precio: '19.90' },
+    { vid: '1403920039610028032', valores: ['Zanahoria', 'S'], precio: '19.90' },
+    { vid: '1403920039622610944', valores: ['Zanahoria', 'M'], precio: '19.90' },
+    { vid: '1403920039630999552', valores: ['Zanahoria', 'L'], precio: '19.90' },
+    { vid: '1403920039639388160', valores: ['Zanahoria', 'XL'], precio: '19.90' },
+    { vid: '1403920039651971072', valores: ['Zanahoria', '2XL'], precio: '19.90' },
+    { vid: '1403920039660359680', valores: ['Ajo tierno', 'XS'], precio: '19.90' },
+    { vid: '1403920039672942592', valores: ['Ajo tierno', 'S'], precio: '19.90' },
+    { vid: '1403920039681331200', valores: ['Ajo tierno', 'M'], precio: '19.90' },
+    { vid: '1403920039689719808', valores: ['Ajo tierno', 'L'], precio: '19.90' },
+    { vid: '1403920039698108416', valores: ['Ajo tierno', 'XL'], precio: '19.90' },
+    { vid: '1403920039710691328', valores: ['Ajo tierno', '2XL'], precio: '19.90' },
+    { vid: '1403920039719079936', valores: ['Rana', 'XS'], precio: '19.90' },
+    { vid: '1403920039727468544', valores: ['Rana', 'S'], precio: '19.90' },
+    { vid: '1403920039735857152', valores: ['Rana', 'M'], precio: '19.90' },
+    { vid: '1403920039744245760', valores: ['Rana', 'L'], precio: '19.90' },
+    { vid: '1403920039752634368', valores: ['Rana', 'XL'], precio: '19.90' },
+    { vid: '1403920039761022976', valores: ['Rana', '2XL'], precio: '19.90' },
+    { vid: '1403920039769411584', valores: ['Reno', 'XS'], precio: '19.90' },
+    { vid: '1403920039781994496', valores: ['Reno', 'S'], precio: '19.90' },
+    { vid: '1403920039790383104', valores: ['Reno', 'M'], precio: '19.90' },
+    { vid: '1403920039798771712', valores: ['Reno', 'L'], precio: '19.90' },
+    { vid: '1403920039807160320', valores: ['Reno', 'XL'], precio: '19.90' },
+    { vid: '1403920039815548928', valores: ['Reno', '2XL'], precio: '19.90' },
+    { vid: '1403920039823937536', valores: ['Plátano', 'XS'], precio: '19.90' },
+    { vid: '1403920039832326144', valores: ['Plátano', 'S'], precio: '19.90' },
+    { vid: '1403920039840714752', valores: ['Plátano', 'M'], precio: '19.90' },
+    { vid: '1403920039849103360', valores: ['Plátano', 'L'], precio: '19.90' },
+    { vid: '1403920039857491968', valores: ['Plátano', 'XL'], precio: '19.90' },
+    { vid: '1403920039870074880', valores: ['Plátano', '2XL'], precio: '19.90' },
+  ],
+  seoTitulo: 'Sudadera con capucha para perro pequeño | 7 diseños',
+  seoDesc: 'Sudadera de forro polar con capucha de fruta o animal. Siete diseños y seis tallas, de XS a 2XL. Para perro pequeño y gato. Envío a España.',
+  html: `
+<p>Es una sudadera de forro polar, de las de dos patas: se le pone por la cabeza, le cubre el lomo y el pecho y le deja las patas de atrás libres. Por dentro es suave y por fuera abriga de verdad, que es lo que hace falta a un perro pequeño en enero.</p>
+<p>Lo de la capucha es lo que la hace distinta. Hay siete: manzana, zanahoria, plátano, ajo tierno, un corazón, una rana y un reno. La del reno es la de las fotos de Navidad, y la rana es la que más se ve en los vídeos.</p>
+<p>La capucha se le puede bajar y queda como una sudadera normal. Se ata con un cordón por delante.</p>
+<h3>Características</h3>
+<ul>
+<li>Forro polar por dentro, tejido abrigado por fuera</li>
+<li>De dos patas: se pone por la cabeza, sin meterle las patas traseras</li>
+<li>Capucha con forma, que se puede bajar</li>
+<li>Siete diseños y seis tallas, de XS a 2XL</li>
+<li>Se lava a máquina en frío</li>
+</ul>
+<h3>Cómo elegir la talla</h3>
+<p>Mide el <strong>largo del lomo</strong> (del cuello a la base de la cola) y el <strong>contorno de pecho</strong> (la parte más ancha, detrás de las patas delanteras). Las medidas están en las fotos.</p>
+<p><strong>Las tallas son asiáticas y tiran pequeñas.</strong> Si tu medida cae entre dos, coge la grande. Es el fallo más habitual comprando ropa de mascota por internet, y con una sudadera de meter por la cabeza se nota más.</p>
+<p>Está pensada para perro pequeño y para gato. La 2XL llega a perro pequeño-mediano, no a uno grande.</p>
+<h3>Antes de comprar</h3>
+<p>Llega a España en dos o tres semanas. Sale de nuestro proveedor en Asia: de 1 a 3 días laborables de preparación y luego el transporte, siempre con número de seguimiento.</p>
+<p>Abriga, pero no es impermeable. Con lluvia se cala.</p>
+<p>No le cubre las patas ni la tripa. Si buscas eso, mira el mono acolchado de cuatro patas.</p>
+<p>La capucha puesta molesta a algunos perros. Se puede llevar bajada perfectamente, y así sigue siendo una sudadera de abrigo.</p>`,
 },
 
 ]};
