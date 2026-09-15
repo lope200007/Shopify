@@ -702,6 +702,25 @@ El permiso está en `.claude/settings.local.json` (no se sube a GitHub).
 - Programar publicaciones en redes y corregir las que estén mal.
 - Commit y push al repositorio.
 
+### La regla de Pablo: probar antes de subir
+
+**Nada se da por bueno sin haberlo visto funcionar.** Dicho por él el 15 de
+septiembre, y tenía razón: dos de los tres fallos de ese día fueron por afirmar
+antes de comprobar.
+
+En la práctica, tres pasos, siempre en este orden:
+
+1. **Simulación.** Los scripts traen modo de prueba por defecto y solo tocan algo
+   con `--ejecutar`. Si un script nuevo no lo trae, se le pone.
+2. **Ejecutar.**
+3. **Verificar leyendo el resultado**, nunca fiándose de lo que responda el
+   sistema externo. CJ ya dijo "Congratulation!" sin guardar nada: de 74 envíos
+   se perdieron 7 en silencio.
+
+Y su hermana, para lo que no es código: **no afirmar lo que no se ha
+comprobado.** Si es comprobable, se comprueba antes de decirlo. Si no se puede
+comprobar, se dice que no se ha comprobado.
+
 ### Lo que SIEMPRE se pregunta antes
 
 Esto no es falta de confianza: es que son cosas que **no se pueden deshacer** o
@@ -712,9 +731,11 @@ que **gastan su dinero sin que él lo vea**.
 3. **Recargar el monedero de CJ** o cualquier pago que no sea el enlace de un
    pedido concreto.
 4. **Publicidad de pago**: crear campañas o subir presupuestos.
-5. **Cambiar el precio** de un producto que ya está vendiendo.
-6. Desinstalar aplicaciones o tocar el dominio, los pagos o el plan de Shopify.
-7. Cualquier cosa **por encima de 20 €** que no sea el porte de un pedido real.
+5. Desinstalar aplicaciones o tocar el dominio, los pagos o el plan de Shopify.
+6. Cualquier cosa **por encima de 20 €** que no sea el porte de un pedido real.
+
+Los **cambios de precio** salen de esta lista: son reversibles, así que se hacen
+y **se avisa en el momento**, con el margen recalculado.
 
 ### La regla de fondo
 
