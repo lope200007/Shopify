@@ -251,3 +251,37 @@ Alternativas reales para España, por si llega el momento:
 | **DSers + AliExpress** | plan gratis | no | Cada pedido se paga en AliExpress con tarjeta. |
 | **Zendrop** | plan gratis | no | Más orientado a EE. UU. |
 | **Spocket** | ~40 $/mes | no | Proveedores de UE y EE. UU. |
+
+---
+
+# Prueba sandbox: NO se puede (15 sept 2026)
+
+Con permiso de Pablo se intentó crear un pedido de prueba en CJ con
+`isSandbox: 1`. CJ lo rechaza las dos veces, con y sin `shopId`:
+
+    1603001 This sandbox order does not belong to your account.
+
+El sandbox de CJ **necesita credenciales de sandbox propias**, distintas del
+token normal. No están documentadas públicamente y hay que pedírselas a su
+soporte de desarrolladores.
+
+**Conclusión: el sandbox no es una vía.** Para probar la creación del pedido hay
+que hacer uno real.
+
+## Lo que sí queda probado sin crear el pedido
+
+- Los 11 campos obligatorios del payload están completos, incluido el teléfono
+  y el código postal que faltaron en el #1001.
+- El producto resuelve a su `vid` y está vinculado en CJ.
+- Existe ruta de transporte CN → ES con precio (3,28 € CJPacket Eub).
+- `payType: 1`, es decir enlace de pago, no monedero.
+
+Lo único sin probar es la llamada final a `createOrderV2` y que CJ devuelva el
+enlace.
+
+## Estado de la cuenta
+
+- Saldo: **0 $**.
+- El pedido **#1001 sigue en CJ**, `orderStatus: CREATED`, sin pagar
+  (`paymentDate: null`, importe sin calcular, sin teléfono ni transporte).
+  Es el de su hermano, ya reembolsado: **hay que cancelarlo en CJ**, no pagarlo.
