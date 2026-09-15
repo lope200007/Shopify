@@ -217,6 +217,9 @@ transferencia bancaria. Con tarjeta o PayPal los minimos son mucho menores.
 
 Pablo se encuentra con que CJ **no le deja recargar menos de 2.000 $**.
 
+**CONFIRMADO en su documentación (15 sept 2026):** *«the minimum amount for
+wire transfer is 2000»*. El mínimo es **solo de la transferencia bancaria**.
+
 **No es un muro: es la pestaña equivocada.** CJ acepta **nueve** métodos de pago
 —PayPal, tarjeta, transferencia bancaria, CJ Wallet, Payoneer, WeChat Pay,
 Klarna, iDEAL y Pix— y el mínimo alto es de la **transferencia bancaria**, no de
@@ -226,6 +229,9 @@ monedero **o en el método de pago vinculado**»*.
 **Y además, para nuestro flujo da igual**: `scripts/cj/servir.ts` crea el pedido
 con `payType: 1`, que devuelve un **enlace de pago** y se paga con tarjeta, ese
 pedido y nada más. El monedero no interviene.
+
+Dónde está: **cjdropshipping.com/my.html → Wallet**. Métodos sin ese mínimo:
+PayPal, tarjeta, Payoneer y tarjeta regalo.
 
 Qué hacer si la pantalla insiste: cambiar el método a **tarjeta o PayPal** en
 vez de transferencia, o directamente pagar por el enlace que imprime el script.
