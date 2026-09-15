@@ -1,0 +1,222 @@
+[
+ {
+  "nombre": "Fuente de agua con filtro",
+  "pid": "2601100740171632100",
+  "pvp": 24.9,
+  "coste": 1.3,
+  "porte": 4.0388,
+  "margen": 14.657962396694213,
+  "variantes": 6,
+  "fotos": 11,
+  "transporte": "CJPacket Eub 4-9d"
+ },
+ {
+  "nombre": "Coche teledirigido gato",
+  "pid": "2608170459031619400",
+  "pvp": 19.9,
+  "coste": 0.76,
+  "porte": 3.5512,
+  "margen": 11.597630991735539,
+  "variantes": 5,
+  "fotos": 10,
+  "transporte": "CJPacket Eub Special Line 13-16d"
+ },
+ {
+  "nombre": "Bicho electrico para gato",
+  "pid": "2608170503571620500",
+  "pvp": 14.9,
+  "coste": 1,
+  "porte": 3.0636,
+  "margen": 7.819699586776862,
+  "variantes": 28,
+  "fotos": 15,
+  "transporte": "CJPacket Eub Special Line 13-16d"
+ },
+ {
+  "nombre": "Tunel para gato",
+  "pid": "2046237940014739458",
+  "pvp": 29.9,
+  "coste": 7.05,
+  "porte": 4.9036,
+  "margen": 12.54789380165289,
+  "variantes": 1,
+  "fotos": 1,
+  "transporte": "YunExpress Ordinary 8-15d"
+ },
+ {
+  "nombre": "Hierba gatera hidroponica",
+  "pid": "2609090236291637700",
+  "pvp": 14.9,
+  "coste": 0.67,
+  "porte": 4.4988,
+  "margen": 6.68809958677686,
+  "variantes": 4,
+  "fotos": 13,
+  "transporte": "YunExpress Ordinary 8-15d"
+ },
+ {
+  "nombre": "Mochila transportin gato",
+  "pid": "2607010317231632700",
+  "pvp": 29.9,
+  "coste": 3.48,
+  "porte": 4.581600000000001,
+  "margen": 16.15429380165289,
+  "variantes": 21,
+  "fotos": 10,
+  "transporte": "YunExpress Ordinary 8-15d"
+ },
+ {
+  "nombre": "Mochila transpirable grande",
+  "pid": "2606060301511601800",
+  "pvp": 39.9,
+  "coste": 5.17,
+  "porte": 9.476,
+  "margen": 17.79455661157025,
+  "variantes": 1,
+  "fotos": 6,
+  "transporte": "YunExpress Ordinary 8-15d"
+ },
+ {
+  "nombre": "Correa antitirones",
+  "pid": "2607140844131605400",
+  "pvp": 19.9,
+  "coste": 2.19,
+  "porte": 4.774800000000001,
+  "margen": 9.058430991735536,
+  "variantes": 4,
+  "fotos": 8,
+  "transporte": "YunExpress Ordinary 8-15d"
+ },
+ {
+  "nombre": "Bolsa de premios",
+  "pid": "2607121000221620800",
+  "pvp": 16.9,
+  "coste": 1.74,
+  "porte": 4.1676,
+  "margen": 7.65279214876033,
+  "variantes": 3,
+  "fotos": 7,
+  "transporte": "YunExpress Ordinary 8-15d"
+ },
+ {
+  "nombre": "Zanahoria de goma",
+  "pid": "2607300900071633500",
+  "pvp": 17.9,
+  "coste": 2.71,
+  "porte": 5.354400000000001,
+  "margen": 6.382538429752064,
+  "variantes": 1,
+  "fotos": 5,
+  "transporte": "YunExpress Ordinary 8-15d"
+ },
+ {
+  "nombre": "Cuerda dental doble nudo",
+  "pid": "1985606756796379137",
+  "pvp": 14.9,
+  "coste": 1.67,
+  "porte": 3.6984,
+  "margen": 6.568499586776861,
+  "variantes": 5,
+  "fotos": 11,
+  "transporte": "CJPacket Eub 4-9d"
+ },
+ {
+  "nombre": "Cuerda con ventosa",
+  "pid": "2601290345451621600",
+  "pvp": 19.9,
+  "coste": 1.57,
+  "porte": 4.8208,
+  "margen": 9.582830991735538,
+  "variantes": 3,
+  "fotos": 8,
+  "transporte": "YunExpress Ordinary 8-15d"
+ },
+ {
+  "nombre": "Oca de peluche",
+  "pid": "2603190904161622000",
+  "pvp": 17.9,
+  "coste": 2.19,
+  "porte": 4.83,
+  "margen": 7.385338429752066,
+  "variantes": 6,
+  "fotos": 8,
+  "transporte": "YunExpress Ordinary 8-15d"
+ },
+ {
+  "nombre": "Juguete papel crujiente",
+  "pid": "2605040637151639600",
+  "pvp": 16.9,
+  "coste": 2.08,
+  "porte": 4.314800000000001,
+  "margen": 7.192792148760328,
+  "variantes": 4,
+  "fotos": 8,
+  "transporte": "YunExpress Ordinary 8-15d"
+ },
+ {
+  "nombre": "Balsamo de almohadillas",
+  "pid": "2608240157081631900",
+  "pvp": 14.9,
+  "coste": 1.04,
+  "porte": 3.9836,
+  "margen": 6.862899586776861,
+  "variantes": 1,
+  "fotos": 6,
+  "transporte": "CJPacket Liquid Line 5-11d"
+ },
+ {
+  "nombre": "Toallitas limpia lagrimas",
+  "pid": "2608261446101630200",
+  "pvp": 14.9,
+  "coste": 1.25,
+  "porte": 5.050800000000001,
+  "margen": 5.60249958677686,
+  "variantes": 1,
+  "fotos": 6,
+  "transporte": "CJPacket Liquid Line 5-11d"
+ },
+ {
+  "nombre": "Comedero elevado de acero",
+  "pid": "2609120406151603000",
+  "pvp": 24.9,
+  "coste": 2.21,
+  "porte": 4.6000000000000005,
+  "margen": 13.259562396694212,
+  "variantes": 3,
+  "fotos": 8,
+  "transporte": "YunExpress Ordinary 8-15d"
+ },
+ {
+  "nombre": "Alfombrilla de arena EVA",
+  "pid": "2604040616471624900",
+  "pvp": 14.9,
+  "coste": 0.63,
+  "porte": 4.232,
+  "margen": 6.991699586776861,
+  "variantes": 84,
+  "fotos": 12,
+  "transporte": "CJPacket Eub 4-9d"
+ },
+ {
+  "nombre": "Gorro de sol transpirable",
+  "pid": "2605310913451608000",
+  "pvp": 12.9,
+  "coste": 0.51,
+  "porte": 3.22,
+  "margen": 6.496207024793389,
+  "variantes": 8,
+  "fotos": 10,
+  "transporte": "CJPacket Eub 4-9d"
+ },
+ {
+  "nombre": "Vestido preppy",
+  "pid": "2605310623221609100",
+  "pvp": 16.9,
+  "coste": 0.88,
+  "porte": 3.8364000000000003,
+  "margen": 8.77519214876033,
+  "variantes": 6,
+  "fotos": 6,
+  "transporte": "CJPacket Eub 4-9d"
+ }
+]
