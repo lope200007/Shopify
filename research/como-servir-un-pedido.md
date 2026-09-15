@@ -210,3 +210,38 @@ pedido, recargar 165-220 USD cubre los primeros 12-14 pedidos.
 
 **Importante:** el tramo de 5.000 USD que aparece al recargar es el de
 transferencia bancaria. Con tarjeta o PayPal los minimos son mucho menores.
+
+---
+
+# El mínimo de 2.000 $ (15 sept 2026)
+
+Pablo se encuentra con que CJ **no le deja recargar menos de 2.000 $**.
+
+**No es un muro: es la pestaña equivocada.** CJ acepta **nueve** métodos de pago
+—PayPal, tarjeta, transferencia bancaria, CJ Wallet, Payoneer, WeChat Pay,
+Klarna, iDEAL y Pix— y el mínimo alto es de la **transferencia bancaria**, no de
+los demás. Su propia documentación dice que basta con tener saldo *«en el
+monedero **o en el método de pago vinculado**»*.
+
+**Y además, para nuestro flujo da igual**: `scripts/cj/servir.ts` crea el pedido
+con `payType: 1`, que devuelve un **enlace de pago** y se paga con tarjeta, ese
+pedido y nada más. El monedero no interviene.
+
+Qué hacer si la pantalla insiste: cambiar el método a **tarjeta o PayPal** en
+vez de transferencia, o directamente pagar por el enlace que imprime el script.
+
+## Si algún día se cambia de proveedor
+
+Cambiar de proveedor **no es gratis**: hay que rehacer las 466 conexiones, el
+mapa de SKU → vid, y volver a medir portes y márgenes de los 81 productos.
+Antes de plantearlo, que haya ventas.
+
+Alternativas reales para España, por si llega el momento:
+
+| Proveedor | Coste | Monedero | Nota |
+|---|---|---|---|
+| **BigBuy** | de pago | no | Almacén en España: 24-72 h en vez de 5-11 días. Es la mejora de verdad. |
+| **EPROLO** | gratis | no | Red propia de almacenes. |
+| **DSers + AliExpress** | plan gratis | no | Cada pedido se paga en AliExpress con tarjeta. |
+| **Zendrop** | plan gratis | no | Más orientado a EE. UU. |
+| **Spocket** | ~40 $/mes | no | Proveedores de UE y EE. UU. |
