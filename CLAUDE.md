@@ -685,3 +685,42 @@ publicar hay que comprobar dos cosas:
 2. **Que el titulo describa el producto real.** "Bolso con ruedas
    monograma" no tenia ruedas: era una mala traduccion del proveedor.
    Describir mal un producto es devolucion garantizada y riesgo legal.
+
+---
+
+## Reglas de autonomía (15 de septiembre de 2026)
+
+Pablo ha dado permiso para trabajar sin pedirle confirmación en el día a día.
+El permiso está en `.claude/settings.local.json` (no se sube a GitHub).
+
+### Lo que se hace SIN preguntar
+
+- **Servir pedidos**: `npm run servir`, `scripts/cj/*`. Crean el pedido en CJ con
+  `payType: 1`, así que **devuelven un enlace y no cobran nada**. Pablo paga.
+- Vincular productos con CJ, medir portes, auditar el catálogo y el checkout.
+- Crear y publicar fichas de producto, colecciones, artículos del blog.
+- Programar publicaciones en redes y corregir las que estén mal.
+- Commit y push al repositorio.
+
+### Lo que SIEMPRE se pregunta antes
+
+Esto no es falta de confianza: es que son cosas que **no se pueden deshacer** o
+que **gastan su dinero sin que él lo vea**.
+
+1. **Borrar** productos, colecciones, pedidos o publicaciones ya publicadas.
+2. **Reembolsos** y cancelaciones de pedidos.
+3. **Recargar el monedero de CJ** o cualquier pago que no sea el enlace de un
+   pedido concreto.
+4. **Publicidad de pago**: crear campañas o subir presupuestos.
+5. **Cambiar el precio** de un producto que ya está vendiendo.
+6. Desinstalar aplicaciones o tocar el dominio, los pagos o el plan de Shopify.
+7. Cualquier cosa **por encima de 20 €** que no sea el porte de un pedido real.
+
+### La regla de fondo
+
+Ante la duda, hacer el trabajo y **enseñar el resultado**, no pedir permiso para
+empezar. Pero si algo puede costarle dinero o romper algo que ya funciona,
+preguntar primero aunque parezca pesado.
+
+Y verificar siempre leyendo el resultado, nunca dar por bueno lo que responda un
+sistema externo. CJ ya mintió una vez: dijo "Congratulation!" y no guardó nada.
