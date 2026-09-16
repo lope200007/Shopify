@@ -17,6 +17,7 @@ Blog: `gid://shopify/Blog/129727922524` → https://patitascalidas.com/blogs/not
 | 14/09/2026 | [¿Tu perro necesita abrigo?](mi-perro-necesita-abrigo-y-que-talla.html) | abrigo perro (1.000/mes, pico 4.400 en noviembre) | plumífero, abrigo reflectante, capa impermeable, chubasquero, correa con linterna |
 | 14/09/2026 | [Mi perro come demasiado rápido](mi-perro-come-demasiado-rapido.html) | comedero lento / perro come rápido | comedero puzzle, tentetieso, alfombrilla de lamer, Pack comer despacio |
 | 16/09/2026 | [Mi gato se hace fuera del arenero](mi-gato-se-hace-fuera-del-arenero.html) | gato fuera del arenero (informativa) | escalera de arenero, alfombrilla atrapa-arena, fuente de agua |
+| 16/09/2026 | [Mi gato tiene frío: dónde duerme en invierno](mi-gato-tiene-frio-donde-duerme-en-invierno.html) | gato frío invierno (informativa; el pico de «cama para gato» es noviembre) | hamaca de radiador, saco cueva, cama cueva, manta autocalentable, manta de felpa |
 
 ## La regla
 
@@ -82,6 +83,31 @@ Ojo: ese SERP tiene *AI overview*. Una parte de las visitas se las queda Google
 sin que nadie haga clic. Aun así, quien llega buscando esa causa concreta llega
 decidido.
 
+## El mismo patrón, otra vez: camas de gato (16/09/2026)
+
+Medido «cama para gato» antes de escribir el segundo artículo del día:
+
+| Término | Búsquedas/mes | Competencia | Intención |
+| --- | ---: | --- | --- |
+| cama para gato | 3.600 | ALTA | transaccional |
+| cama para gato amazon | 260 | ALTA | transaccional |
+| cama para gato ikea | 170 | ALTA | transaccional |
+
+Estacionalidad medida, mes a mes:
+
+| Jun | Jul | Ago | **Sep** | Oct | **Nov** | Dic | Ene |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 2.400 | 2.400 | 3.600 | 4.400 | 4.400 | **5.400** | 4.400 | 3.600 |
+
+El pico es **noviembre**, así que por la regla de los dos meses tocaba
+publicarlo ahora. Pero el término de producto es otra vez transaccional y de
+competencia alta: no se ataca de frente. El artículo va a la pregunta previa
+—dónde poner el sitio del gato— y enlaza a los cinco productos de invierno
+desde dentro de la respuesta.
+
+Enlaza a cuatro productos de la tanda 3 (hamaca de radiador, saco cueva,
+manta de felpa) y a dos que ya estaban (cama cueva, manta autocalentable).
+
 ### Lo que se descartó, y por qué
 
 - **Miedo a los petardos.** SERP copado por clínicas veterinarias y National
@@ -96,11 +122,12 @@ Uno o dos por semana. Siguientes candidatos, por orden:
 1. Cuánto tarda un pedido y por qué (responde la objeción real de la tienda)
 2. Primer invierno de un cachorro: qué ropa hace falta y cuál no (estacional:
    el pico de «abrigo perro» es noviembre, así que hay que publicarlo ya)
-3. Mi gato tiene frío: dónde duerme un gato en invierno (hamaca de radiador,
-   saco cueva, manta — línea nueva de la tanda 3, sin artículo todavía)
-4. Cómo lavar la cama del perro sin destrozarla
-5. Identificar a tu perro en España: microchip, chapa y collar grabado
+3. Cómo lavar la cama del perro sin destrozarla
+4. Identificar a tu perro en España: microchip, chapa y collar grabado
    (el microchip es obligatorio; tenemos tres productos de identificación)
+5. Gato mayor: las señales de la artrosis felina que se confunden con la edad
+   (se ha citado ya en dos artículos; da para uno propio y enlaza a la
+   escalera de arenero y a las camas)
 
 ## Estacionalidad: por qué el de abrigos se publica el 14 de septiembre
 
