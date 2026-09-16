@@ -1,0 +1,159 @@
+# Los productos «desincronizados» de CJ: qué pasaba y por qué
+
+**16 de septiembre de 2026.** Pablo avisó de que al sincronizar en CJ le
+aparecían productos sin conectar. Esto es lo que se encontró, medido contra la
+API de CJ y la de Shopify, no supuesto.
+
+---
+
+## El resultado, en corto
+
+**Había 8 productos reales sin vincular. Ya están los 8, confirmados contra la
+base de datos de CJ.** Los 5 packs que también aparecen sin conectar es normal
+y no tiene arreglo: son cinco productos de CJ metidos en uno solo de la tienda,
+y el vínculo de CJ es uno a uno.
+
+Y el motivo por el que se quedaron fuera **no fue un descuido: era un fallo en
+nuestro propio código**, que ya está corregido.
+
+---
+
+## Estado antes de tocar nada
+
+| | |
+| --- | ---: |
+| Productos activos en Shopify | 124 |
+| Productos cargados en CJ | 126 (los 124 + 2 archivados) |
+| Conexiones variante a variante en CJ | 753 |
+| Productos con al menos una conexión | 113 |
+| **Productos activos SIN ninguna conexión** | **13** |
+
+De esos 13:
+
+- **5 packs** — baño y lluvia, aseo en casa, comer despacio, cachorro recién
+  llegado y pack de coche. **No se pueden vincular nunca.** Un pack son varios
+  productos distintos de CJ y su sistema solo admite uno a uno. Cuando se venda
+  uno hay que crear los pedidos en CJ a mano. Esto ya estaba documentado.
+- **8 productos normales** que sí deberían estar vinculados:
+
+```
+Peluche cabezón con sonido          Alfombrilla atrapa-arena
+Juguete de papel crujiente          Gorro de sol
+Toallitas de dedo para los ojos     Vestido estilo colegial
+Comedero elevado de acero           Sudadera de frutas y animales
+```
+
+---
+
+## Por qué importa
+
+Sin vínculo, CJ recibe el pedido y **no sabe qué artículo meter en la caja**.
+Lo convierte en una «solicitud de abastecimiento» inútil. Es exactamente lo que
+pasó con el pedido #1001: llegó con importe 0, sin código postal y sin
+transporte.
+
+Si alguien hubiera comprado cualquiera de esos 8, el pedido habría llegado roto.
+
+---
+
+## La causa: paginación inestable y un contador mal puesto
+
+Lo primero que se descartó: **no era un problema de datos**. Los 78 SKU de esos
+productos resuelven los 78 en `mapa.js`. Estaban bien.
+
+La causa está en `scripts/cj/vincular.js`. La función que recorre las páginas de
+CJ hacía esto:
+
+```js
+todo.push(...lote);
+if (lote.length < POR_PAGINA || todo.length >= total) return todo;   // ← el fallo
+```
+
+Contaba **filas**, no productos distintos. Y resulta que **la paginación de CJ
+no es estable**: entre una petición y la siguiente reordena la lista, así que la
+misma fila puede salir en dos páginas y otra no salir en ninguna.
+
+Medido hoy, tres lecturas seguidas de la misma lista:
+
+| Lectura | Filas devueltas | Productos distintos |
+| --- | ---: | ---: |
+| 1.ª | 126 | **116** |
+| 2.ª | 126 | **125** |
+| 3.ª (una pasada) | — | **123** |
+
+Con 10 filas repetidas, el contador llegaba a 126 y el bucle paraba **10
+productos antes de tiempo**. Esos 10 no se vinculaban, y **nadie se enteraba**:
+el script terminaba diciendo «todo correcto».
+
+---
+
+## El arreglo
+
+Dos cambios en `paginar()`:
+
+1. **Cuenta elementos distintos, no filas.** Mete todo en un `Map` con una
+   clave estable (`platformVariantId`, `platformProductId` o `id`).
+2. **Si al terminar faltan, repite la pasada** (hasta 3). Como CJ reordena, en
+   otra pasada afloran los que faltaban. Si aun así faltan, **lo dice en voz
+   alta** en vez de callarse.
+
+Funcionó exactamente así en la comprobación:
+
+```
+paginacion incompleta en /shop/product/queryPage (123/126); pasada 2...
+paginacion incompleta en /shop/product/queryPage (124/126); pasada 3...
+CJ tiene cargados 126 producto(s) de la tienda.
+```
+
+---
+
+## Estado después
+
+```
+8 vinculado(s), 118 ya estaban, 0 con problema.
+Comprobando que CJ los ha guardado de verdad...
+8 confirmados, 0 no se guardaron.
+```
+
+Y la comprobación posterior, ya con la paginación arreglada:
+
+```
+CJ tiene cargados 126 producto(s) de la tienda.
+0 vinculado(s), 126 ya estaban, 0 con problema.
+```
+
+**Los 121 productos vinculables están vinculados.** Los 5 packs quedan fuera a
+propósito.
+
+---
+
+## Dos cosas que me equivoqué al mirar, y cómo se cazaron
+
+Las anoto porque la trampa va a volver:
+
+1. **«Hay 10 productos que CJ no tiene cargados.»** Falso. Era mi propio
+   diagnóstico usando la misma paginación mala. Al releer con la versión
+   corregida, CJ los tenía todos.
+2. **«La mochila transportín grande no está en CJ.»** También falso, y por lo
+   mismo. CJ tiene los 126.
+
+**Regla que sale de aquí: una lista paginada de CJ no se cree a la primera.**
+Se lee contando elementos distintos y se compara con el total que declara CJ.
+
+---
+
+## Lo que hay que hacer cada vez que se suba una tanda nueva
+
+```bash
+node scripts/cj/vincular.js              # simulación: dice qué haría
+node scripts/cj/vincular.js --ejecutar   # crea los vínculos que falten
+```
+
+Si la simulación dice **«0 vinculado(s)»** y no sale ningún `AVISO`, está todo
+conectado. Si sale un `AVISO` de paginación incompleta, **repetir** antes de dar
+nada por bueno.
+
+CJ tarda un rato en cargar los productos nuevos de la tienda. Si un producto
+recién subido no aparece, hay que entrar en cjdropshipping.com →
+**Products → Store Products** → elegir la tienda → **Sync**, esperar unos
+minutos y volver a ejecutar.

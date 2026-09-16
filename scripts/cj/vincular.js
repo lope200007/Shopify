@@ -43,17 +43,59 @@ async function api(ruta, { query, cuerpo } = {}) {
   return j.data;
 }
 
-/** CJ solo devuelve 10 por pagina, asi que hay que recorrerlas todas. */
+/**
+ * CJ devuelve 10 por pagina y hay que recorrerlas todas.
+ *
+ * OJO: la paginacion de CJ NO es estable. Entre una peticion y la siguiente
+ * reordena, asi que la misma fila puede salir en dos paginas y otra no salir
+ * en ninguna. Medido el 16/09/2026: 126 filas devueltas, 116 productos
+ * distintos.
+ *
+ * La version anterior contaba filas (`todo.length >= total`) y paraba en
+ * cuanto llegaba al total. Con 10 filas repetidas paraba 10 productos antes
+ * de tiempo y esos 10 se quedaban sin vincular, en silencio. Asi se quedaron
+ * fuera 8 productos hasta el 16/09/2026.
+ *
+ * Ahora se cuentan elementos DISTINTOS, no filas.
+ */
+function claveDe(x) {
+  if (x == null) return String(x);
+  if (x.platformVariantId != null) return `v:${x.platformVariantId}`;
+  if (x.platformProductId != null) return `p:${x.platformProductId}`;
+  if (x.id != null) return `i:${x.id}`;
+  return 'j:' + JSON.stringify(x);
+}
+
 async function paginar(ruta, query) {
-  const todo = [];
-  for (let pagina = 1; ; pagina++) {
-    const d = await api(ruta, { query: { ...query, pageNum: pagina, pageSize: POR_PAGINA } });
-    const lote = (d && (d.list || d.content)) || [];
-    todo.push(...lote);
-    const total = d && Number(d.total);
-    if (lote.length < POR_PAGINA || (Number.isFinite(total) && todo.length >= total)) return todo;
+  const unicos = new Map();
+  let total = null;
+  const TOPE = 300;      // tope duro de paginas por pasada
+  const PASADAS = 3;     // CJ reordena: en otra pasada afloran los que faltaban
+
+  for (let pasada = 1; pasada <= PASADAS; pasada++) {
+    const antes = unicos.size;
+    for (let pagina = 1; pagina <= TOPE; pagina++) {
+      const d = await api(ruta, { query: { ...query, pageNum: pagina, pageSize: POR_PAGINA } });
+      const lote = (d && (d.list || d.content)) || [];
+      if (total === null && d && Number.isFinite(Number(d.total))) total = Number(d.total);
+      for (const x of lote) {
+        const k = claveDe(x);
+        if (!unicos.has(k)) unicos.set(k, x);
+      }
+      if (lote.length < POR_PAGINA) break;
+      if (Number.isFinite(total) && unicos.size >= total) break;
+      await dormir(ESPACIADO);
+    }
+    if (!Number.isFinite(total) || unicos.size >= total) break;
+    if (unicos.size === antes) break; // otra pasada no aporta nada
+    console.log(`  paginacion incompleta en ${ruta} (${unicos.size}/${total}); pasada ${pasada + 1}...`);
     await dormir(ESPACIADO);
   }
+
+  if (Number.isFinite(total) && unicos.size < total) {
+    console.log(`  AVISO: CJ dice ${total} en ${ruta} y solo ha devuelto ${unicos.size} distintos tras ${PASADAS} pasadas.`);
+  }
+  return [...unicos.values()];
 }
 
 /** El pid de CJ sale de los volcados guardados, buscando por vid. */
