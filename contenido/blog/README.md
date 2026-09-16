@@ -16,6 +16,7 @@ Blog: `gid://shopify/Blog/129727922524` → https://patitascalidas.com/blogs/not
 
 | 14/09/2026 | [¿Tu perro necesita abrigo?](mi-perro-necesita-abrigo-y-que-talla.html) | abrigo perro (1.000/mes, pico 4.400 en noviembre) | plumífero, abrigo reflectante, capa impermeable, chubasquero, correa con linterna |
 | 14/09/2026 | [Mi perro come demasiado rápido](mi-perro-come-demasiado-rapido.html) | comedero lento / perro come rápido | comedero puzzle, tentetieso, alfombrilla de lamer, Pack comer despacio |
+| 16/09/2026 | [Mi gato se hace fuera del arenero](mi-gato-se-hace-fuera-del-arenero.html) | gato fuera del arenero (informativa) | escalera de arenero, alfombrilla atrapa-arena, fuente de agua |
 
 ## La regla
 
@@ -49,15 +50,57 @@ responden mal y lo que trae al comprador ya decidido.
 De ahí el enfoque de los dos artículos: resolver la duda con una medida
 concreta y llevar a la ficha desde dentro de la respuesta.
 
+## Por qué el del arenero se escribió así (16/09/2026)
+
+El primer impulso era escribir sobre areneros, porque «arenero para gato» son
+**8.100 búsquedas al mes**. Medido el clúster entero, no se puede:
+
+| Término | Búsquedas/mes | Competencia | Intención |
+| --- | ---: | --- | --- |
+| arenero para gato | 8.100 | ALTA | transaccional |
+| arenero para gato grande | 1.000 | ALTA | transaccional |
+| arenero cerrado | 720 | ALTA | transaccional |
+| arenero autolimpiable | 720 | ALTA | transaccional |
+| arenero automático | 480 | ALTA | transaccional |
+| mueble para arenero | 260 | ALTA | transaccional |
+
+**Todo el clúster es transaccional y de competencia alta, y además no vendemos
+areneros** (el porte de uno de 2,8 kg sale a 101,47 €). Escribir para esos
+términos es tirar el trabajo.
+
+Lo que sí se puede ganar es la pregunta informativa. Mirando el SERP real de
+«mi gato se hace fuera del arenero», los ocho resultados —Tiendanimal, Hill's,
+Santévet, Beaphar, Reddit— hablan de estrés, tipo de arena, limpieza, número de
+bandejas e infección de orina. **Ninguno menciona la causa física: un gato con
+artrosis que ya no puede pasar el borde.**
+
+Ese es el hueco, y es justo el que resuelve la escalera de arenero que subimos
+el 16 de septiembre. El artículo cubre las siete causas en orden para ser
+realmente útil, y la sexta —la nuestra— es la que nadie más cuenta.
+
+Ojo: ese SERP tiene *AI overview*. Una parte de las visitas se las queda Google
+sin que nadie haga clic. Aun así, quien llega buscando esa causa concreta llega
+decidido.
+
+### Lo que se descartó, y por qué
+
+- **Miedo a los petardos.** SERP copado por clínicas veterinarias y National
+  Geographic, con AI overview. Sin volumen medible y sin ventaja nuestra.
+- **Golpe de calor.** Estacional de verano; publicarlo en septiembre es llegar
+  nueve meses antes o tres tarde.
+
 ## Lo que queda por escribir
 
 Uno o dos por semana. Siguientes candidatos, por orden:
 
-1. Golpe de calor en perros: señales y qué hacer (estacional, pico en verano)
-2. Cuánto tarda un pedido y por qué (responde la objeción real de la tienda)
-3. Cómo lavar la cama del perro sin destrozarla
-4. Primer invierno de un cachorro: qué ropa hace falta y cuál no
-5. Miedo a los petardos y a las tormentas: qué ayuda y qué no
+1. Cuánto tarda un pedido y por qué (responde la objeción real de la tienda)
+2. Primer invierno de un cachorro: qué ropa hace falta y cuál no (estacional:
+   el pico de «abrigo perro» es noviembre, así que hay que publicarlo ya)
+3. Mi gato tiene frío: dónde duerme un gato en invierno (hamaca de radiador,
+   saco cueva, manta — línea nueva de la tanda 3, sin artículo todavía)
+4. Cómo lavar la cama del perro sin destrozarla
+5. Identificar a tu perro en España: microchip, chapa y collar grabado
+   (el microchip es obligatorio; tenemos tres productos de identificación)
 
 ## Estacionalidad: por qué el de abrigos se publica el 14 de septiembre
 
