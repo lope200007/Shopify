@@ -1,0 +1,202 @@
+[
+ {
+  "clave": "comederoauto2",
+  "pid": "2095395403559620610",
+  "pvp": 49.9,
+  "nombre": "Comedero con tapa que se abre sola",
+  "margen": 14.79,
+  "listados": 1,
+  "fotos": 16,
+  "variantes": 1
+ },
+ {
+  "clave": "pijama2",
+  "pid": "1711607915393593344",
+  "pvp": 22.9,
+  "nombre": "Pijama de invierno perro pequeño",
+  "margen": 11.44,
+  "listados": 432,
+  "fotos": 7,
+  "variantes": 25
+ },
+ {
+  "clave": "almohadaluna",
+  "pid": "1720401506911920128",
+  "pvp": 19.9,
+  "nombre": "Almohada luna para gato",
+  "margen": 11.18,
+  "listados": 378,
+  "fotos": 20,
+  "variantes": 4
+ },
+ {
+  "clave": "collarletras",
+  "pid": "1466292579283898368",
+  "pvp": 22.9,
+  "nombre": "Collar de piel con el nombre en letras",
+  "margen": 10.8,
+  "listados": 378,
+  "fotos": 7,
+  "variantes": 20
+ },
+ {
+  "clave": "hamacaradiador",
+  "pid": "1374673216794136576",
+  "pvp": 29.9,
+  "nombre": "Hamaca de radiador para gato",
+  "margen": 10.75,
+  "listados": 699,
+  "fotos": 7,
+  "variantes": 4
+ },
+ {
+  "clave": "pijama",
+  "pid": "1498178745700323328",
+  "pvp": 24.9,
+  "nombre": "Jersey-pijama de felpa",
+  "margen": 10.62,
+  "listados": 441,
+  "fotos": 6,
+  "variantes": 20
+ },
+ {
+  "clave": "collargrabado",
+  "pid": "1583281996799946752",
+  "pvp": 24.9,
+  "nombre": "Collar de microfibra con chapa grabada",
+  "margen": 10.32,
+  "listados": 89,
+  "fotos": 14,
+  "variantes": 25
+ },
+ {
+  "clave": "arnespersonal",
+  "pid": "1602479641544110080",
+  "pvp": 27.9,
+  "nombre": "Arnes personalizado + correa 150 cm",
+  "margen": 10.17,
+  "listados": 1145,
+  "fotos": 7,
+  "variantes": 20
+ },
+ {
+  "clave": "rampaarenero",
+  "pid": "2077315573976064002",
+  "pvp": 39.9,
+  "nombre": "Rampa de acceso al arenero",
+  "margen": 9.97,
+  "listados": 11,
+  "fotos": 10,
+  "variantes": 3
+ },
+ {
+  "clave": "cuellosnood",
+  "pid": "2407190509401618400",
+  "pvp": 18.9,
+  "nombre": "Cuello de invierno (snood)",
+  "margen": 9.87,
+  "listados": 197,
+  "fotos": 8,
+  "variantes": 6
+ },
+ {
+  "clave": "esterillacoche",
+  "pid": "2408190929101611800",
+  "pvp": 39.9,
+  "nombre": "Hamaca de asiento trasero 147x137",
+  "margen": 9.78,
+  "listados": 674,
+  "fotos": 8,
+  "variantes": 3
+ },
+ {
+  "clave": "chapapersonal",
+  "pid": "1451367516994670592",
+  "pvp": 19.9,
+  "nombre": "Chapa identificativa personalizada",
+  "margen": 9.68,
+  "listados": 168,
+  "fotos": 5,
+  "variantes": 3
+ },
+ {
+  "clave": "panuelocuadros",
+  "pid": "1605851344785649664",
+  "pvp": 16.9,
+  "nombre": "Panuelo de cuadros con pajarita",
+  "margen": 9.66,
+  "listados": 1645,
+  "fotos": 23,
+  "variantes": 16
+ },
+ {
+  "clave": "sacodormir",
+  "pid": "B834A31A-E818-4465-BE5E-F5DD4744D7AD",
+  "pvp": 29.9,
+  "nombre": "Saco de dormir cueva de forro polar",
+  "margen": 9.65,
+  "listados": 425,
+  "fotos": 11,
+  "variantes": 24
+ },
+ {
+  "clave": "ropainvierno",
+  "pid": "1444222714729598976",
+  "pvp": 24.9,
+  "nombre": "Conjunto de invierno 7 tallas",
+  "margen": 9.53,
+  "listados": 648,
+  "fotos": 5,
+  "variantes": 7
+ },
+ {
+  "clave": "hamacajaula",
+  "pid": "2408140518361620500",
+  "pvp": 19.9,
+  "nombre": "Hamaca colgante de borreguito",
+  "margen": 9.46,
+  "listados": 436,
+  "fotos": 15,
+  "variantes": 40
+ },
+ {
+  "clave": "bolaelectrica",
+  "pid": "2412140237331628300",
+  "pvp": 27.9,
+  "nombre": "Pelota electrica con sonido de pajaro",
+  "margen": 9.39,
+  "listados": 381,
+  "fotos": 17,
+  "variantes": 16
+ },
+ {
+  "clave": "cuencoinclin",
+  "pid": "2087087650684329985",
+  "pvp": 29.9,
+  "nombre": "Cuencos inclinados 15 grados acero 304",
+  "margen": 9.09,
+  "listados": 13,
+  "fotos": 6,
+  "variantes": 1
+ },
+ {
+  "clave": "almohadaU",
+  "pid": "1453184226961788928",
+  "pvp": 19.9,
+  "nombre": "Almohada cervical en U",
+  "margen": 8.17,
+  "listados": 1782,
+  "fotos": 22,
+  "variantes": 14
+ },
+ {
+  "clave": "mantafelpa",
+  "pid": "1373824542056779776",
+  "pvp": 24.9,
+  "nombre": "Colchoneta de felpa (escalonada)",
+  "margen": 5.31,
+  "listados": 466,
+  "fotos": 9,
+  "variantes": 15
+ }
+]

@@ -77,3 +77,47 @@ Subir el precio hasta que el margen cuadre es hacer trampa. El precio tiene que
 ser defendible: la hamaca de radiador a 29,90 € vale porque Trixie la vende a
 33 € y Nayeco a 40,76 €. Si no hay referencia española que lo sostenga, el
 producto no entra.
+
+## Adenda: dos trampas que aparecieron en la tercera tanda
+
+**1. El mismo producto listado dos veces en CJ.** `almohadaluna` y `almohadaU`
+parecian dos productos distintos ("Moon Pillow" y "U-Shaped Pillow"). Al abrir
+las fotos son el mismo articulo: misma tela de borreguito, mismo bordado rosa,
+27x17x6 cm y unos 60 g en los dos. Un tercer listado (`almohadaU2`, 691 tiendas)
+era otra vez lo mismo. Publicar los dos habria sido vender el mismo cojin dos
+veces en la tienda. **Cuando dos candidatos coincidan en medidas y peso al
+gramo, hay que abrir las fotos antes de darlos por distintos.**
+
+**2. El titulo dice una cosa y la foto dice otra.** `panuelocuadros` se llamaba
+"Plaid Pet Tie ... Scarf Accessories" y estaba clasificado en la zona
+"Pajaritas y lazos". No es un panuelo: son **pajaritas** sobre un collar
+ajustable de 20 a 36 cm. Los ocho "disenos" venian con codigos internos
+(VN10611, VN10614...) que no dicen nada a un comprador; hubo que mirar las ocho
+fotos de variante y ponerles nombre en espanol (tartan rojo, rombos azul
+marino, vichy verde...).
+
+## Por que la tanda son 19 y no 20
+
+Cayeron dos candidatos despues de medirlos:
+
+- `almohadaU` — duplicado, explicado arriba.
+- Sustituto: no lo hay. Se reviso el resto de los 36 medidos y los 1.526 de la
+  cola de huecos:
+  - `bufandanavidad` (197 tiendas) duplica la "Bufanda y gorro de Navidad" que
+    ya vendemos.
+  - `bandana` duplica la pajarita de esta misma tanda.
+  - `colganteled` da 6,40 EUR a 17,90 EUR, pero Kiwoko vende una luz LED de
+    collar a **6,29 EUR**: no se puede competir.
+  - El hueco real que queda es el **comedero automatico programable**
+    ("comedero automatico para gatos", 2.400 busquedas/mes y subiendo de 1.900
+    a 3.600). Se busco en CJ con tres terminos: los que hay tienen `listedNum`
+    de 0 a 3, es decir, **casi nadie los vende por CJ**, y el unico de 3,8 L es
+    otra vez un dispensador por gravedad. El detector de `listedNum` dice lo
+    mismo que con el arenero: si nadie lo vende, el porte lo hace imposible.
+  - Por encima de 1.500 busquedas en "accesorios para perros" solo quedan
+    marcas (Seresto 9.900, Scalibor 1.900), producto sanitario (collar
+    antiparasitario 3.600), collares de descarga (adiestramiento 2.900,
+    electrico 1.600) y categorias que ya cubrimos (arnes, collar, correa,
+    valla).
+
+Se publican 19 productos buenos en vez de 20 con uno forzado.
