@@ -8,7 +8,7 @@ con 74 productos no se pone a buscar: se va.
 
 Formato del enlace: `patitascalidas.com/products/` + el trozo de la columna del medio.
 
-Envío gratis a partir de 55 €. Los cinco packs cruzan ese umbral solos.
+Envío gratis a partir de 39 €. Los cinco packs y cualquier pedido de dos productos cruzan ese umbral.
 
 ## Barrera
 
