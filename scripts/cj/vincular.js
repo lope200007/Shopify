@@ -177,9 +177,13 @@ async function main() {
     }
 
     if (esPack) {
-      // Un pack son varios productos de CJ y el vinculo es uno a uno:
-      // CJ no lo admite. Estos pedidos hay que servirlos a mano.
-      console.log(`= ${titulo}  es un pack, se sirve a mano`);
+      // Un pack son varios productos de CJ y el vinculo de CJ es uno a uno,
+      // asi que aqui no se puede vincular y en el panel de CJ sale siempre
+      // como "Desconectado". NO es un fallo y NO hay que servirlo a mano:
+      // scripts/cj/servir.ts lo resuelve por SKU con mapa.js y crea UN pedido
+      // en CJ con las tres piezas dentro. El vinculo de CJ solo hace falta
+      // para la creacion automatica de pedidos de su app, que esta apagada.
+      console.log(`= ${titulo}  es un pack: no se vincula (lo sirve servir.ts)`);
       saltados++;
       continue;
     }

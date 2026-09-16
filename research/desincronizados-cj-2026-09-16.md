@@ -157,3 +157,96 @@ CJ tarda un rato en cargar los productos nuevos de la tienda. Si un producto
 recién subido no aparece, hay que entrar en cjdropshipping.com →
 **Products → Store Products** → elegir la tienda → **Sync**, esperar unos
 minutos y volver a ejecutar.
+
+---
+
+# Adenda: lo que se ve en el panel de CJ (capturas de Pablo, 13:54)
+
+Pablo mandó dos capturas de `m.cjdropshipping.com`. En la pestaña
+**Desconectado** salían: la sudadera de frutas y los packs. En **Conectado**:
+mariposa eléctrica, calendario de adviento, mordedor de Navidad y comedero árbol.
+
+## 1. La sudadera: la captura es de antes del arreglo
+
+Los vínculos se crearon a las **14:18** (hora de Madrid). La captura es de las
+**13:54**, veinticuatro minutos antes. En ese momento la sudadera estaba
+desconectada de verdad.
+
+Comprobado ahora contra la API:
+
+```
+/product/conn/connection?platformProductId=15820490211676  ->  total: 42
+relevanceStatus a nivel de producto: 2   (= conectado)
+42 de 42 variantes con relevanceStatus 2
+```
+
+**Está conectada.** El panel hay que recargarlo.
+
+## 2. Cómo saber si un producto está conectado, sin fiarse del panel
+
+El campo es **`relevanceStatus`** en `/shop/product/queryDetail`:
+
+| Producto | relevanceStatus | Panel |
+| --- | ---: | --- |
+| Mariposa eléctrica | **2** | Conectado |
+| Sudadera de frutas | **2** | (ya conectado) |
+| Comedero elevado | **2** | (vinculado hoy) |
+| Pack de coche | **0** | Desconectado |
+
+**2 = conectado. 0 = sin conectar.**
+
+Cuidado con una trampa: `queryDetail` **nunca** devuelve `cjVariantId`, ni
+siquiera en los productos que sí están conectados. Si se mira ese campo para
+decidir, salen todos a cero y parece que no hay ningún vínculo. No sirve.
+
+## 3. El precio en dólares de la pestaña «Desconectado» no es un fallo
+
+CJ muestra ahí el precio convertido a dólares. La sudadera vale 19,90 € en la
+tienda y el panel pone 22,96 $. Es la misma cifra con el cambio aplicado, no un
+precio mal puesto.
+
+## 4. Los packs van a salir SIEMPRE como «Desconectado», y no pasa nada
+
+Esto es lo importante de toda la revisión, porque la documentación anterior
+decía lo contrario y **estaba mal**:
+
+> ~~«Los packs no se pueden automatizar: hay que crear tres pedidos en CJ a mano.»~~
+
+**Falso.** Hay que separar dos cosas:
+
+- **El vínculo de CJ** es uno a uno, así que un pack (tres productos de CJ
+  dentro de uno de la tienda) no se puede vincular. Por eso sale como
+  «Desconectado» y va a seguir saliendo siempre.
+- **Servir el pedido no usa ese vínculo.** `scripts/cj/servir.ts` resuelve el
+  SKU con `mapa.js`, expande el pack en sus tres piezas y crea **un solo
+  pedido** en CJ con las tres dentro, con un solo porte calculado para el
+  conjunto.
+
+Comprobado hoy, los cinco:
+
+```
+OK  PACK-BANO-LLUVIA      3 piezas  vid: si,si,si
+OK  PACK-ASEO-CASA        3 piezas  vid: si,si,si
+OK  PACK-COMER-DESPACIO   3 piezas  vid: si,si,si
+OK  PACK-CACHORRO         3 piezas  vid: si,si,si
+OK  PACK-COCHE            3 piezas  vid: si,si,si
+```
+
+**Los cinco packs se pueden servir automáticamente.**
+
+## 5. Y lo de fondo: el vínculo de CJ no es lo que nos sirve los pedidos
+
+El vínculo solo lo usa **la creación automática de pedidos de la app de CJ**,
+que es justo la que hay que tener **apagada**: es la que convirtió el pedido
+#1001 en una «solicitud de abastecimiento» con importe 0.
+
+Nuestro camino es `servir.ts`, que no depende de ese vínculo.
+
+Entonces, ¿para qué vincular? Por dos razones, las dos buenas:
+1. **Red de seguridad**, por si algún día se usa la vía de CJ.
+2. **Para poder leer el panel.** Con todo conectado menos los packs, cualquier
+   cosa que aparezca en «Desconectado» que no sea un pack es una señal de que
+   hay un producto nuevo sin vincular.
+
+**Regla para el futuro: en «Desconectado» deben salir exactamente los 5 packs.
+Si sale un sexto, ejecutar `node scripts/cj/vincular.js --ejecutar`.**

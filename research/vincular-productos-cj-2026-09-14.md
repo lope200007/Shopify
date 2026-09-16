@@ -30,7 +30,8 @@ GET /product/conn/connection?shopId=2609031958293531800
    - Si el `pid` de CJ no está en los volcados locales, se lo pregunta a CJ con
      `/product/variant/queryByVid` y lo guarda en `.cj-pid-por-vid.json`.
    - Los packs los salta: un pack son tres productos de CJ y el vínculo es uno
-     a uno, CJ no lo admite.
+     a uno, CJ no lo admite. Salen siempre como «Desconectado» en el panel de
+     CJ y eso es normal: no afecta a poder servirlos.
    - Respeta 1 petición por segundo (espaciado de 1,8 s).
 
 3. **Informe de preparación** del catálogo (74 productos activos):
@@ -96,5 +97,9 @@ por SKU. Es opcional: el script lo hace con los `vid` exactos, que es más fiabl
 
 - Teléfono obligatorio en el checkout (o `TELEFONO_TIENDA` en `.env`): sin
   teléfono el transportista español no entrega.
-- Los 5 packs no se pueden automatizar: cuando se venda uno hay que crear tres
-  pedidos en CJ a mano.
+- ~~Los 5 packs no se pueden automatizar: cuando se venda uno hay que crear tres
+  pedidos en CJ a mano.~~ **CORREGIDO el 16/09/2026: esto era falso.** Los packs
+  no se pueden *vincular* (el vinculo de CJ es uno a uno), pero `servir.ts` no
+  usa ese vinculo: resuelve el SKU con `mapa.js` y crea **un solo pedido** en CJ
+  con las tres piezas dentro y un solo porte. Comprobado: los 5 packs resuelven
+  a 3 piezas con `vid` valido.
