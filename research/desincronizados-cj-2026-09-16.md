@@ -250,3 +250,62 @@ Entonces, ¿para qué vincular? Por dos razones, las dos buenas:
 
 **Regla para el futuro: en «Desconectado» deben salir exactamente los 5 packs.
 Si sale un sexto, ejecutar `node scripts/cj/vincular.js --ejecutar`.**
+
+---
+
+# Adenda 2: apagada la sincronización automática (17/09/2026)
+
+## Dónde estaba el interruptor
+
+Costó encontrarlo, así que queda escrito. **No está en el móvil**: los ajustes
+del engranaje de «Mi CJ» solo tienen perfil, correo y direcciones.
+
+El camino real, en la **versión de escritorio** de cjdropshipping.com:
+
+```
+columna de iconos de la izquierda
+  → octavo icono (el de la tiendecita con un sello)
+  → Shopify (1)
+  → Lista de tiendas → fila de g5d031-ir
+```
+
+Esa fila tiene tres interruptores:
+
+| Columna | Estado | Qué es |
+| --- | --- | --- |
+| Permiso de correo electrónico | encendido | se deja |
+| **Sincronización automática (Información de pedidos y productos)** | **APAGADO** | el que traía los pedidos |
+| Permiso de perfil de entrega | apagado | se deja |
+
+## Por qué se podía apagar sin miedo
+
+En el menú de autorización de CJ hay **dos** conexiones con nuestra tienda:
+
+- **Shopify (1)** — la app. Es la que tiene ese interruptor y la que rompió
+  el pedido #1001.
+- **API (1)** — la nuestra, la que usa `scripts/cj/servir.ts` con el token.
+
+**Son independientes.** Apagar la primera no toca la forma en que servimos los
+pedidos, porque no pasamos por ahí.
+
+## Comprobado después de apagarlo
+
+```
+productos de la tienda que ve CJ : 126  (igual)
+conexiones variante a variante   : 833  (igual)
+sudadera de frutas               : 42 de 42  (igual)
+```
+
+Nota: en la conversación se dijo «antes 831». Era un error de cuenta: eran 753
+antes de vincular los 8 productos, que suman 80 variantes. 753 + 80 = **833**.
+No cambió nada.
+
+## Lo que queda por comprobar de verdad
+
+Que CJ siga viendo los 126 productos **no prueba que la sincronización de
+catálogo siga activa**: puede ser la lista que ya tenía guardada. El interruptor
+juntaba «pedidos **y productos**».
+
+**Se sabrá en la siguiente tanda.** Si CJ no ve los productos nuevos, hay que
+entrar a *Productos de la tienda* y pulsar **Sync** a mano antes de ejecutar
+`node scripts/cj/vincular.js --ejecutar`.
