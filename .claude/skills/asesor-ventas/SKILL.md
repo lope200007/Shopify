@@ -105,6 +105,15 @@ El tráfico humano de verdad era **72 sesiones de móvil desde España**.
   8 fotos en un collage, no leyendo el título.
 - **Busca duplicados dentro de tu propia tanda.** Dos listados distintos de CJ
   pueden ser el mismo producto (misma tela, mismas medidas, mismo peso).
+- **Pon la categoría de la taxonomía de Shopify** (`category`), no solo el
+  `productType`. Son dos campos distintos: el `productType` es nuestro texto
+  libre y no sale de la tienda; la categoría es la que se traduce a
+  `google_product_category` en Merchant Center. Sin ella, Google adivina por el
+  título y puede rechazar el producto. Se subieron 46 sin categoría hasta el
+  17/09/2026 por no mirarlo.
+  Buscar el id: `taxonomy { categories(search: "…") { nodes { id fullName } } }`.
+  Comprobar al terminar: `productsCount(query: "status:ACTIVE AND NOT category_id:*")`
+  tiene que dar **0**.
 
 ### Para escribir la ficha
 
