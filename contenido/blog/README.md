@@ -18,6 +18,7 @@ Blog: `gid://shopify/Blog/129727922524` → https://patitascalidas.com/blogs/not
 | 14/09/2026 | [Mi perro come demasiado rápido](mi-perro-come-demasiado-rapido.html) | comedero lento / perro come rápido | comedero puzzle, tentetieso, alfombrilla de lamer, Pack comer despacio |
 | 16/09/2026 | [Mi gato se hace fuera del arenero](mi-gato-se-hace-fuera-del-arenero.html) | gato fuera del arenero (informativa) | escalera de arenero, alfombrilla atrapa-arena, fuente de agua |
 | 16/09/2026 | [Mi gato tiene frío: dónde duerme en invierno](mi-gato-tiene-frio-donde-duerme-en-invierno.html) | gato frío invierno (informativa; el pico de «cama para gato» es noviembre) | hamaca de radiador, saco cueva, cama cueva, manta autocalentable, manta de felpa |
+| 17/09/2026 | [Cuánto tarda en llegar tu pedido](cuanto-tarda-en-llegar-tu-pedido.html) | **sin volumen de búsqueda: es página de conversión, no de SEO** | Empieza por aquí, pack baño y lluvia, pack de coche |
 
 ## La regla
 
@@ -115,17 +116,39 @@ manta de felpa) y a dos que ya estaban (cama cueva, manta autocalentable).
 - **Golpe de calor.** Estacional de verano; publicarlo en septiembre es llegar
   nueve meses antes o tres tarde.
 
+## No todos los artículos son de SEO, y hay que decirlo
+
+El de plazos de entrega (17/09) **no tiene volumen de búsqueda**. Se comprobó:
+`cuanto tarda un pedido de china` no llega ni a 100 búsquedas al mes en España.
+
+Se escribió igualmente, y a propósito, porque **no es un artículo de SEO: es
+una página de conversión**. Con 40 visitas reales a la semana, quitarle a esas
+40 la duda que más frena la compra vale más que perseguir tráfico que tardaría
+meses en llegar. El plazo de 10 a 20 días es LA objeción de esta tienda.
+
+La consecuencia práctica: **ese artículo hay que enlazarlo desde donde se toma
+la decisión**, no dejarlo esperando en el blog. Sitios donde pegarlo:
+- el pie de página, junto a la política de envío;
+- la ficha de producto, cerca del aviso de plazo;
+- la respuesta tipo cuando alguien pregunte por mensaje.
+
 ## Lo que queda por escribir
 
 Uno o dos por semana. Siguientes candidatos, por orden:
 
-1. Cuánto tarda un pedido y por qué (responde la objeción real de la tienda)
-2. Primer invierno de un cachorro: qué ropa hace falta y cuál no (estacional:
-   el pico de «abrigo perro» es noviembre, así que hay que publicarlo ya)
-3. Cómo lavar la cama del perro sin destrozarla
-4. Identificar a tu perro en España: microchip, chapa y collar grabado
-   (el microchip es obligatorio; tenemos tres productos de identificación)
-5. Gato mayor: las señales de la artrosis felina que se confunden con la edad
+1. Primer invierno de un cachorro: qué ropa hace falta y cuál no (estacional:
+   el pico de «abrigo perro» es noviembre, así que hay que publicarlo ya).
+   **Ojo con canibalizar**: ya existe «¿Tu perro necesita abrigo?», que cubre la
+   decisión y la talla. Este tiene que ir a una intención distinta —cachorro,
+   cuándo se le puede sacar, qué no hace falta— y no a «abrigo perro».
+2. Cómo lavar la cama del perro sin destrozarla
+3. Identificar a tu perro en España: microchip, chapa y collar grabado.
+   **Medido el 17/09/2026:** `chapa identificativa perro` hace solo **260
+   búsquedas/mes**, es **transaccional** y tiene competencia **ALTA**. El
+   término de producto no se puede ganar. Si se escribe, el ángulo tiene que
+   ser la pregunta informativa (qué hacer si se pierde, qué obliga la ley con
+   el microchip), no la chapa.
+4. Gato mayor: las señales de la artrosis felina que se confunden con la edad
    (se ha citado ya en dos artículos; da para uno propio y enlaza a la
    escalera de arenero y a las camas)
 
