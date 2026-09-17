@@ -195,10 +195,21 @@ panel**. No lo dejes en «habría que…».
 
 ## 8. Riesgos vivos que rompen el primer pedido
 
-1. **La creación automática de pedidos de la app de CJ.** El pedido #1001 llegó
-   a CJ sin producto, sin código postal y sin teléfono, porque los productos se
-   crearon por API y la app no sabe cuál es cuál. **Se sirve con
-   `scripts/cj/servir.ts`, no con la app.**
+1. ~~**La creación automática de pedidos de la app de CJ.**~~ **RESUELTO el
+   17/09/2026.** Se apagó el interruptor «Sincronización automática (Información
+   de pedidos y productos)» en la versión de **escritorio** de CJ: columna de
+   iconos de la izquierda → **octavo icono** (tiendecita con un sello) →
+   **Shopify (1)** → fila de `g5d031-ir`. No está en la versión móvil.
+   Se podía apagar sin miedo porque en ese menú hay dos conexiones
+   independientes: **Shopify (1)**, que es la app y la que rompió el #1001, y
+   **API (1)**, que es la nuestra y la que usa `servir.ts` con el token.
+   Comprobado después: 126 productos, 833 conexiones y 42 de 42 variantes de la
+   sudadera, todo intacto.
+   **Pendiente de comprobar en la siguiente tanda:** ese interruptor juntaba
+   pedidos *y productos*, así que puede que ya no sincronice el catálogo solo.
+   Si CJ no ve los productos nuevos, pulsar **Sync** a mano en *Productos de la
+   tienda* antes de ejecutar `vincular.js --ejecutar`.
+   **Se sigue sirviendo con `scripts/cj/servir.ts`, nunca con la app.**
 2. **El teléfono es obligatorio en el envío** (verificado). Sin él el
    transportista español no entrega.
 3. **Saldo en CJ.** Sin saldo el pedido no sale aunque el cliente haya pagado.
