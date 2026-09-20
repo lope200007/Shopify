@@ -6,7 +6,7 @@
         "conf1": {
           "type": "confianza",
           "settings": {
-            "titulo": "Envío gratis desde 55 €",
+            "titulo": "Envío gratis desde 39 €",
             "detalle": "Por debajo, 6,99 €"
           }
         },
@@ -126,7 +126,7 @@
           "type": "pregunta",
           "settings": {
             "pregunta": "¿Cuánto cuesta el envío?",
-            "respuesta": "<p>6,99 € por pedido, y <strong>gratis a partir de 55 €</strong> de compra.</p><p>De momento solo servimos a España peninsular. Todavía no llegamos a Baleares, Canarias, Ceuta ni Melilla.</p>"
+            "respuesta": "<p>6,99 € por pedido, y <strong>gratis a partir de 39 €</strong> de compra.</p><p>Servimos a España peninsular y Baleares. Todavía no llegamos a Canarias, Ceuta ni Melilla.</p>"
           }
         },
         "duda_4": {
@@ -190,7 +190,7 @@
         "titulo_cierre": "Encuentra algo que tu perro vaya a disfrutar.",
         "texto_cierre": "Todo el catálogo, elegido de uno en uno.",
         "boton_cierre": "Ver todos los productos",
-        "aviso_envio": "Envío gratis a partir de 55 € · Entrega habitual de 10 a 20 días",
+        "aviso_envio": "Envío gratis a partir de 39 € · Entrega habitual de 10 a 20 días",
         "antetitulo_dudas": "Antes de que preguntes",
         "titulo_dudas": "Lo que sueles querer saber",
         "texto_dudas": "Las respuestas de siempre, sin que tengas que escribirnos."

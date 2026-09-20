@@ -1,5 +1,22 @@
 # Lo que sigue pendiente en el panel — comprobado el 20/09/2026
 
+> **ACTUALIZADO el 20/09/2026, más tarde.** De los cinco puntos de abajo, dos
+> ya están resueltos desde aquí y los tres textos de la portada están hechos y
+> probados en un tema borrador. Lo único que queda es **un clic tuyo**:
+>
+> 1. **Publicar el tema** «Patitascalidas 2026 — envío gratis 39 €».
+>    https://admin.shopify.com/store/g5d031-ir/themes
+>    (Tiene los tres textos ya corregidos. Comprobado en su vista previa.)
+> 2. **Cambiar la descripción de la tienda** (una línea, 55 → 39):
+>    https://admin.shopify.com/store/g5d031-ir/online_store/preferences
+> 3. **Pegar la política de envío** corregida:
+>    https://admin.shopify.com/store/g5d031-ir/settings/legal
+>
+> La tarifa vieja de 55 € **ya está borrada** y las tarifas verificadas con
+> pedidos de prueba. Lo de abajo se deja como estaba para que se vea de dónde
+> se partía.
+
+
 No es una lista de memoria. Cada línea se ha verificado hoy contra la tienda
 en vivo (API de Shopify y el escaparate con `curl` y User-Agent de móvil).
 
@@ -98,3 +115,58 @@ Confirma la fecha exacta aquí y apúntala:
 https://admin.shopify.com/store/g5d031-ir/settings/plan
 
 Ver `research/plan-advanced-promocion-2026-09-20.md`.
+
+
+---
+
+## 6. Lo hecho desde aquí el 20/09/2026 (y una trampa que costó un susto)
+
+### Tema borrador con los textos corregidos
+
+Escribir en el tema **publicado** está bloqueado, pero duplicarlo y escribir en
+la copia **no**. Así que:
+
+1. Se duplicó el tema vivo → `OnlineStoreTheme/204883591516`, sin publicar.
+2. Se subió a esa copia el `templates/index.json` con los tres textos a 39 €.
+3. Se comprobó en su vista previa real, no de memoria:
+   `https://patitascalidas.com/?preview_theme_id=204883591516`
+   Salen los tres a 39 € y ningún 55 € que venga del tema.
+
+Publicar un tema también está bloqueado, y está bien que lo esté: eso lo decide
+el dueño de la tienda. Es un botón.
+
+### La tarifa vieja de 55 €: borrada, pero por el camino se rompió el envío
+
+Esto conviene leerlo entero porque la trampa se puede repetir.
+
+La condición de «gratis a partir de 55 €» no era una tarifa aparte: era un
+**rango de precio** pegado a la tarifa «Estándar» de 6,99 €. La API la enseña
+con un identificador falso, con una interrogación dentro:
+
+```
+gid://shopify/DeliveryMethodDefinition/1375216238940?source=RateRangeCondition&source_id=457161671004
+```
+
+- Borrarla como condición (`conditionsToDelete`) **dice que sí y no hace nada**.
+  Sin error. Silencio. Si te fías del «sin errores», te crees que está hecho.
+- Borrarla como método (`methodDefinitionsToDelete`) con ese identificador
+  **borra la tarifa Estándar entera**, no solo el rango. Durante un minuto la
+  tienda se quedó **sin ninguna forma de envío por debajo de 39 €**: cualquiera
+  con un carrito pequeño no habría podido terminar la compra.
+
+Se recreó al momento con los mismos valores (Estándar, 6,99 €, sin condiciones)
+y se verificó con pedidos de prueba de verdad (`draftOrderCalculate`):
+
+| Carrito | Destino | Qué sale | Correcto |
+| --- | --- | --- | --- |
+| 29,90 € | Valladolid | Estándar 6,99 € | sí |
+| 43,80 € | Madrid | Envío gratis 0 € + Estándar 6,99 € | sí — el umbral de 39 € funciona |
+| 59,80 € | **Palma** | Envío gratis 0 € + Estándar 6,99 € | sí — y Baleares se sirve |
+
+**La regla que queda:** en las tarifas de envío, «sin errores» no es «hecho».
+Se vuelve a leer el perfil después de cada cambio, y se prueba un carrito por
+debajo y otro por encima del umbral. Si solo se prueba por encima, un envío
+roto pasa desapercibido.
+
+La tarifa Estándar tiene ahora un identificador nuevo:
+`DeliveryMethodDefinition/1400203051356`.
