@@ -1,5 +1,13 @@
 # Análisis de la estructura del negocio
 
+
+> **AVISO (20/09/2026).** Este documento da por hecho que el plan Advanced
+> cuesta ~384 € al mes y que bajar a Basic es la mejora más rentable. **Eso
+> es falso:** Pablo tiene Advanced en promoción por **1 € durante tres meses**
+> (hasta ~2 de diciembre de 2026). Todo lo que este documento diga sobre bajar
+> de plan está anulado por `research/plan-advanced-promocion-2026-09-20.md`.
+> El resto del documento sigue siendo válido.
+
 **16 de septiembre de 2026.** Todo medido hoy contra la API de Shopify y la web
 en vivo. Lo que es estimación, se dice que lo es.
 
@@ -51,6 +59,12 @@ puesto, cada mes se van 384 € a cambio de nada, y el punto de equilibrio está
 diez veces más lejos de lo que hace falta.
 
 **Esto es, con diferencia, la mejora número uno. Y es gratis.**
+
+> **Corregido el 20/09/2026:** este apartado entero está mal. Advanced está
+> en promoción de **1 € al mes** hasta ≈2/12/2026, así que no se van 384 € a
+> ningún sitio y el punto de equilibrio real de hoy son 3 pedidos, no 30.
+> La mejora número uno **no** es bajar de plan: es no pasarse de la fecha.
+> Ver `research/plan-advanced-promocion-2026-09-20.md`.
 
 ---
 
@@ -233,7 +247,7 @@ Por impacto dividido entre esfuerzo, no por gusto:
 
 | # | Qué | Quién | Coste | Efecto |
 | --- | --- | --- | --- | --- |
-| 1 | **Bajar a Basic** | Pablo (panel) | 0 € | Ahorra 352 €/mes y baja el equilibrio de 30 pedidos a 3 |
+| 1 | ~~Bajar a Basic~~ → **Confirmar en el panel cuándo acaba la promoción de 1 €** | Pablo (panel) | 0 € | Advanced está a 1 €/mes hasta ≈2/12/2026. Bajar hoy no ahorra nada; lo que cuesta dinero es pasarse de la fecha |
 | 2 | **Apagar la creación automática de pedidos de la app de CJ** | Pablo (panel) | 0 € | Evita que el primer pedido real llegue roto |
 | 3 | **Activar el IVA sobre el envío** | Pablo (panel) | 0 € | Evita el error contable |
 | 4 | **Pedirse 3–4 productos héroe a casa** | Pablo | 60–80 € | Vídeo real, fotos propias y control de calidad |

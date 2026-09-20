@@ -58,10 +58,37 @@ visitas necesarias al mes = pedidos × (100 / 1,5)
 ```
 
 Con Shopify Basic (32 €): **3 pedidos, ~200 visitas**.
-Con Shopify Advanced (384 €): **30 pedidos, ~2.000 visitas**.
+Con Shopify Advanced a precio de tarifa (384 €): **30 pedidos, ~2.000 visitas**.
 
-**Antes de discutir tráfico, mira el coste fijo.** Bajar un coste fijo mueve el
-punto de equilibrio diez veces más rápido que cualquier campaña.
+### CORRECCIÓN IMPORTANTE (20/09/2026): hoy el plan NO cuesta 384 €
+
+Pablo tiene **Advanced en promoción: 1 € al mes durante tres meses**. Lo contó
+el 17/09/2026 y dijo que llevaba unos 15 días, así que la promoción empezó
+**alrededor del 2 de septiembre de 2026** y termina **alrededor del 2 de
+diciembre de 2026**. *Esa fecha es una deducción de lo que él dijo, no un dato
+leído del panel: la fecha exacta está en Ajustes → Plan → Facturación y hay que
+mirarla antes de tomar ninguna decisión basada en ella.*
+
+Consecuencias, y hay que aplicarlas:
+
+- **Hoy el coste fijo del plan es ~1 €, no 384 €.** El punto de equilibrio real
+  de este momento son **3 pedidos al mes**, no 30. Cualquier documento de este
+  repositorio que diga «bajar a Basic es la mejora número uno» está escrito con
+  la premisa vieja y **ya no vale**.
+- **Lo que sí sigue valiendo es la fecha.** El día que acabe la promoción, si
+  sigue en Advanced, empiezan a salir ~384 € al mes de una tienda con 0 ventas.
+  Pablo ya tiene una alarma puesta; la tarea aquí es **no dejar que se pase**.
+- **Mientras dure, Advanced sale gratis: úsalo.** Pero distingue dos cosas:
+  - Lo que **desaparece al bajar de plan** (por ejemplo, tarifas de envío
+    calculadas por transportista) **no se monta**. Montarlo es dejar la tienda
+    rota el día de la bajada.
+  - Lo que **queda para siempre** sí se aprovecha: datos e informes que
+    extraigamos ahora, y la comisión de tarjeta más baja (1,6 % + 0,30 en vez de
+    2,1 % + 0,30) en cualquier venta que ocurra durante estos meses.
+
+**Antes de discutir tráfico, mira el coste fijo.** Sigue siendo la primera
+pregunta; lo que ha cambiado es la respuesta: hoy el coste fijo ya está bien, y
+la tarea es que lo siga estando en diciembre.
 
 ---
 
@@ -70,6 +97,8 @@ punto de equilibrio diez veces más rápido que cualquier campaña.
 Cuando alguien pregunte «¿qué hacemos para vender más?», el orden es este y no otro:
 
 1. **Coste fijo.** ¿Hay algo que se paga y no devuelve nada? Arréglalo primero: es gratis e inmediato.
+   Hoy no lo hay (Advanced está a 1 € por promoción), pero **comprueba la fecha de fin de la promoción**
+   en Ajustes → Plan antes de dar este punto por bueno. Ver la corrección del apartado 1.
 2. **Fugas que cuestan dinero en cada pedido.** Umbral de envío mal puesto, IVA mal configurado, un descuento que no hace falta.
 3. **Tráfico.** Es el cuello de botella real de esta tienda. Sin gente no hay nada que optimizar.
 4. **Conversión.** Solo cuando haya **300–500 visitas reales al mes**. Por debajo de eso, cualquier cambio es una corazonada disfrazada de mejora.

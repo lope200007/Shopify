@@ -1,5 +1,13 @@
 # Auditoría profunda de la tienda — 4 sept 2026
 
+
+> **AVISO (20/09/2026).** Este documento da por hecho que el plan Advanced
+> cuesta ~384 € al mes y que bajar a Basic es la mejora más rentable. **Eso
+> es falso:** Pablo tiene Advanced en promoción por **1 € durante tres meses**
+> (hasta ~2 de diciembre de 2026). Todo lo que este documento diga sobre bajar
+> de plan está anulado por `research/plan-advanced-promocion-2026-09-20.md`.
+> El resto del documento sigue siendo válido.
+
 Revisión completa tras cerrar la subida de productos. Método: skill
 `merchandising-rules` para el orden de colecciones, skill `seo-ecommerce` para
 la checklist de fichas, y verificación contra la tienda **en vivo**, no contra

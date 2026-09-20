@@ -1,5 +1,13 @@
 # Lo que se ha cambiado hoy en la tienda
 
+
+> **AVISO (20/09/2026).** Este documento da por hecho que el plan Advanced
+> cuesta ~384 € al mes y que bajar a Basic es la mejora más rentable. **Eso
+> es falso:** Pablo tiene Advanced en promoción por **1 € durante tres meses**
+> (hasta ~2 de diciembre de 2026). Todo lo que este documento diga sobre bajar
+> de plan está anulado por `research/plan-advanced-promocion-2026-09-20.md`.
+> El resto del documento sigue siendo válido.
+
 **16 de septiembre de 2026.** Todo comprobado contra la tienda en vivo después
 de hacerlo, no solo contra la respuesta de la API.
 
@@ -156,7 +164,7 @@ API. El texto corregido está listo para copiar y pegar en
 
 | # | Qué | Dónde | Por qué importa |
 | --- | --- | --- | --- |
-| 1 | **Bajar de Advanced a Basic** | Ajustes → Plan | 352 €/mes. Baja el equilibrio de 30 pedidos a 3 |
+| 1 | ~~Bajar de Advanced a Basic~~ → **Mirar la fecha de fin de la promoción de 1 €** | Ajustes → Plan | Hoy Advanced cuesta 1 €, no 384 €. Bajar ahora no ahorra nada; lo que importa es bajar **antes** de que acabe (≈2/12/2026) |
 | 2 | **Apagar los pedidos automáticos de la app de CJ** | panel de la app | El #1001 llegó roto por esto |
 | 3 | **Activar el IVA sobre el envío** | Ajustes → Impuestos | Error contable en cuanto haya un pedido |
 | 4 | **Pegar la política de envío corregida** | Ajustes → Políticas → Envío | Hoy contradice a la tienda |
