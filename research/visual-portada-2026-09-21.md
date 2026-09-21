@@ -281,3 +281,66 @@ El hueco se hace ahora en los enlaces, que es donde funciona.
 **La regla:** una explicación que encaja no es una comprobación. Exagerar el
 elemento sospechoso —más grueso, de otro color— cuesta diez segundos y
 distingue «está roto» de «no se ve».
+
+---
+
+## 12. Perros en el menú, y color basado en lo que hacen las grandes
+
+Pablo: «solo ver gatos es como que… ¿y la sección de perro?». Y: «dale un
+poco de color a esa zona, no tan llamativo, algo suave, básate en páginas
+famosas».
+
+### Perros: había etiquetas, no hizo falta inventar nada
+
+La colección «Gatos» no era una lista a mano: es una **colección inteligente**
+con la regla `etiqueta = gato`. Mirando las etiquetas del catálogo:
+
+| | |
+| --- | ---: |
+| Productos con etiqueta `perro` | 92 |
+| Productos con etiqueta `gato` | 60 |
+| Con las dos | 42 |
+| **Sin ninguna de las dos** | **16** |
+
+Así que se creó `perros` exactamente igual que `gatos` —misma regla, mismo
+orden, publicada en los cuatro canales— en vez de enlazar «Perros» a
+`/collections/all`, que habría metido los productos de gato dentro.
+
+**Los 16 sin etiquetar eran todos de perro** (arnés, correa, cubremaletero,
+escalera para la cama, parque de cachorro, los tres packs…). Sin la etiqueta
+no aparecían ni en Perros ni en Gatos: invisibles en las dos secciones nuevas.
+Se les añadió `perro`.
+
+Queda pendiente decidir, ficha a ficha, cuáles de esos 16 merecen además la
+etiqueta `gato` (el cepillo y el dispensador por gravedad, seguro). Eso no se
+hace a ojo desde una lista de títulos.
+
+### El color: dos referencias, la misma receta
+
+Mirados con el navegador los menús de móvil de **Tiendanimal** y **Kiwoko**,
+las dos cadenas de tiendas de mascotas más conocidas de España. Hacen lo
+mismo, hasta el detalle:
+
+1. **Una banda del color de la marca cruzando arriba**, con el cerrar a la
+   derecha en blanco. Verde en Tiendanimal, rojo en Kiwoko.
+2. Debajo, **lista limpia sobre fondo claro**, con una línea fina entre cada
+   entrada.
+3. **Un solo elemento en color de acento** — «Ofertas» en las dos.
+4. **Perros y Gatos arriba del todo**, antes que nada.
+
+La lección no es «pon color»: es **dónde**. El color va contenido en una
+franja y en un acento. El cuerpo se queda neutro. Por eso tienen vida y no
+cansan.
+
+Traducido a esta tienda:
+
+- Banda con **el mismo verde que la barra de aviso** de la cabecera, para que
+  al abrir el menú el color no salte a otro sitio. Crema encima: 10:1.
+- Línea fina entre todas las entradas de primer nivel.
+- El acento ya estaba puesto: la píldora de terracota de «Empieza por aquí».
+- Perros y Gatos justo después de la píldora.
+
+**Lo que NO se ha copiado:** el galón (›) al final de las entradas que tienen
+hijos. Ellos lo ponen porque al pulsar se abre otro nivel; aquí los hijos ya
+se ven desplegados. Un galón que no abre nada es una mentira pequeña, y de
+esas se acumulan.
