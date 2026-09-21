@@ -151,3 +151,24 @@
   .menu-drawer .menu-drawer__menu-item,
   .menu-drawer .menu-drawer__menu-item:active{transition:none;transform:none}
 }
+
+
+/* ------------------------------------------------------------------
+   Tarjetas de producto: la segunda parte del titulo
+   ------------------------------------------------------------------
+   Nuestros titulos van en dos partes separadas por una barra. En la
+   rejilla, blocks/product-title.liquid las separa y mete la segunda
+   aqui dentro. Va debajo, mas pequena y en gris: se lee como un
+   subtitulo en vez de como una linea rota.
+   En la ficha del producto esto no aparece: alli el titulo va entero.
+------------------------------------------------------------------ */
+.pcj-tarjeta-detalle{
+  display:block;
+  margin-top:3px;
+  font-weight:400;
+  font-size:.8125rem;
+  line-height:1.3;
+  letter-spacing:0;
+  color:#575c50;
+  text-wrap:pretty;
+}
