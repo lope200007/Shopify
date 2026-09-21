@@ -12,6 +12,14 @@
 > 3. **Pegar la política de envío** corregida:
 >    https://admin.shopify.com/store/g5d031-ir/settings/legal
 >
+> 4. **Cambiar el título de la portada** (añadido el 21/09). Hoy dice
+>    «Accesorios para perros que resuelven algo» — deja fuera a los gatos,
+>    que son 55 productos del catálogo. Propuesta: «Accesorios para perros y
+>    gatos que resuelven algo». Está en la misma página que el punto 2:
+>    https://admin.shopify.com/store/g5d031-ir/online_store/preferences
+>    No hay forma de cambiarlo desde la API: comprobado, no existe la
+>    operación. Es panel obligatoriamente.
+>
 > La tarifa vieja de 55 € **ya está borrada** y las tarifas verificadas con
 > pedidos de prueba. Lo de abajo se deja como estaba para que se vea de dónde
 > se partía.
