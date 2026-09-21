@@ -228,6 +228,30 @@ Nada configurado aquí sobrevive al final de la sesión. Es una propiedad de
 seguridad, no un inconveniente: no hay credenciales acumulándose en una
 máquina remota. Lo que debe persistir, se commitea; lo que es secreto, no.
 
+### El navegador no abre ninguna página con candado hasta que se arregla
+
+Síntoma: Playwright devuelve `net::ERR_CERT_AUTHORITY_INVALID` en **cualquier**
+URL https, incluida la propia tienda. No es que el servidor MCP esté mal
+configurado —`.mcp.json` ya lo trae, apuntando al Chromium preinstalado de
+`/opt/pw-browsers`—: es que el navegador no se fía del intermediario por el que
+sale todo el trafico de este entorno.
+
+Se arregla metiendo su autoridad en el almacén del navegador. Dos órdenes:
+
+```bash
+apt-get update -qq && apt-get install -y -qq libnss3-tools
+certutil -d sql:/root/.pki/nssdb -A -t "C,," -n ccr-agent-proxy \
+  -i /root/.ccr/agent-proxy-ca.crt
+```
+
+Después, `browser_navigate` funciona sin más. **No** se desactiva la
+verificación de certificados ni se quita `HTTPS_PROXY`: eso sería apagar la
+seguridad de un entorno que toca la tienda de verdad.
+
+Como el contenedor es efímero, esto hay que rehacerlo en cada sesión nueva que
+necesite navegador. Sin navegador no hay capturas, y sin capturas el trabajo
+visual son suposiciones.
+
 ## Protocolo obligatorio: buscar skill antes de trabajar
 
 **Antes de empezar cualquier tarea que toque un área nueva** (un canal de
