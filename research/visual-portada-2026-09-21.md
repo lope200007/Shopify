@@ -221,3 +221,63 @@ visible no necesita cargar las palabras clave.
 Así que se podrían acortar los 126 títulos sin perder posicionamiento. No lo
 he hecho: es el catálogo de Pablo, su voz, y afecta a los textos ya
 programados en Metricool. Queda propuesto con la prueba delante.
+
+---
+
+## 11. El menú lateral: «se ve saturado»
+
+Medido antes de tocar nada, con el menú abierto en el navegador a 390 px:
+**dieciséis entradas del mismo tamaño**, en una sola lista plana, sin grupos,
+y había que hacer scroll para llegar a «Contacto». El problema no era el
+aspecto: era que no se podía leer de un vistazo.
+
+El arreglo va por dos sitios distintos, y conviene no confundirlos:
+
+### a) El menú en sí — **esto ya está en vivo**
+
+Un menú es **dato de la tienda, no del tema**. No espera a publicar nada.
+
+De dieciséis entradas a **siete**:
+
+| | |
+| --- | --- |
+| **Empieza por aquí** | entra: la colección existía y no se enlazaba desde el menú |
+| **Categorías** | con las siete categorías colgando debajo |
+| Gatos · Packs y ahorro · Regalos · Novedades | sueltas, como estaban |
+| **Ayuda** | con Envíos, Preguntas frecuentes, Quiénes somos y Contacto |
+
+Sale «Inicio»: el logotipo ya lleva a la portada.
+
+La estructura anterior está guardada **entera** en
+`copias/menu-principal-antes-2026-09-21.json`. Deshacerlo es un minuto.
+
+### b) El aspecto — esto va en el borrador
+
+- Ritmo más apretado: 17 px en los padres, 15 en los hijos.
+- Una línea fina entre grupos.
+- Guía verde y sangrado en lo que cuelga de un padre.
+- «Empieza por aquí» como píldora de terracota con flecha: es la
+  recomendación de la casa, no una línea más.
+- Área de toque de 44 px en el aspa de cerrar.
+
+Los estilos van en `assets/patitas-menu.css`, cargado desde nuestro override
+de `snippets/stylesheets.liquid`. **No se modifica ningún archivo de Horizon.**
+
+### El error que cometí, y cómo se cazó
+
+Al ver la primera versión dije que la guía verde «salía cortada a trozos» y
+escribí una explicación convincente: que Horizon dibujaba una separación por
+fila y borraba la línea al cruzarla.
+
+**Era falso.** Se comprobó inyectando un estilo temporal que pintaba la guía
+de rojo y 8 px de ancho: aparecía **entera**. Lo que pasaba es que los
+enlaces hijos se salen por la izquierda de la caja de contenido del `<ul>`,
+así que el `padding-left` del contenedor no los apartaba y **el texto se
+montaba encima de la línea**. A 2 px y con poco contraste, eso se lee como
+una línea rota.
+
+El hueco se hace ahora en los enlaces, que es donde funciona.
+
+**La regla:** una explicación que encaja no es una comprobación. Exagerar el
+elemento sospechoso —más grueso, de otro color— cuesta diez segundos y
+distingue «está roto» de «no se ve».
