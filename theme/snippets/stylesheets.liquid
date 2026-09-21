@@ -1,0 +1,11 @@
+{% comment %}
+  Hojas de estilo del tema. Las dos primeras lineas son de Horizon y no se
+  tocan. La tercera es nuestra: estilos que valen para toda la tienda y que
+  no caben dentro de una seccion concreta (hoy, el menu lateral).
+
+  Va aqui y no dentro de una seccion a proposito: una seccion se puede
+  quitar del grupo de cabecera y los estilos se irian con ella sin avisar.
+{% endcomment %}
+{{ 'overflow-list.css' | asset_url | preload_tag: as: 'style' }}
+{{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'patitas-menu.css' | asset_url | stylesheet_tag }}

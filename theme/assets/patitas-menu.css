@@ -1,0 +1,117 @@
+/* Menu lateral de Patitascalidas.
+   ------------------------------------------------------------------
+   El problema que arregla, dicho por Pablo: "se ve saturado".
+   Medido antes de tocar nada: dieciseis lineas del mismo tamano, una
+   detras de otra, sin grupos. No es que fuera feo: es que no se podia
+   leer de un vistazo.
+
+   La mitad del arreglo no es CSS, es el propio menu: se agrupo en siete
+   entradas con dos submenus (ver copias/menu-principal-antes-*.json).
+   Esto es la otra mitad: ritmo, jerarquia y un punto de color.
+
+   Reglas que se respetan:
+   - Solo se tocan clases de Horizon desde fuera. No se modifica ningun
+     archivo del tema.
+   - Contraste comprobado sobre el crema #fbf7f1 del panel.
+   - Todo lo que se mueve va en `transform` u `opacity`, y se apaga con
+     prefers-reduced-motion.
+   ------------------------------------------------------------------ */
+
+.menu-drawer{
+  --pcj-tinta:#23261f;
+  --pcj-suave:#575c50;      /* 6,45:1 sobre crema */
+  --pcj-verde:#1f4a37;      /* 9,40:1 sobre crema */
+  --pcj-terracota:#a94f1e;  /* blanco encima 5,49:1 */
+  --pcj-borde:#e4dbcc;
+}
+
+/* ---------- Ritmo ----------
+   Los titulares estaban a 22 px con mucho aire: cabian nueve lineas en
+   la pantalla y habia que hacer scroll para llegar a Contacto. A 17 px
+   y con menos relleno entra el menu entero. */
+.menu-drawer .menu-drawer__navigation{
+  padding-top:4px;
+}
+.menu-drawer .menu-drawer__menu-item--mainlist{
+  font-size:17px;
+  font-weight:700;
+  line-height:1.25;
+  letter-spacing:-.01em;
+  padding-top:11px;
+  padding-bottom:11px;
+  color:var(--pcj-tinta);
+}
+
+/* ---------- Grupos ----------
+   Una linea fina por encima de cada entrada principal. Separa sin
+   meter mas ruido que un pixel. La primera no la lleva. */
+.menu-drawer .menu-drawer__list-item--flat + .menu-drawer__list-item--flat > .menu-drawer__menu-item--mainlist,
+.menu-drawer .menu-drawer__menu--childlist + .menu-drawer__list-item--flat > .menu-drawer__menu-item--mainlist{
+  border-top:1px solid var(--pcj-borde);
+  margin-top:2px;
+}
+
+/* ---------- Lo de dentro de un grupo ----------
+   Sangrado con una guia verde: se ve de un golpe que esas siete lineas
+   cuelgan de "Categorias" y no son siete entradas mas del mismo rango. */
+.menu-drawer .menu-drawer__menu--childlist{
+  margin:2px 0 10px;
+  padding-left:14px;
+  border-left:2px solid var(--pcj-verde);
+  margin-left:2px;
+}
+.menu-drawer .menu-drawer__menu-item--child{
+  font-size:15px;
+  font-weight:500;
+  color:var(--pcj-suave);
+  padding-top:7px;
+  padding-bottom:7px;
+}
+
+/* ---------- La primera entrada ----------
+   "Empieza por aqui" es la recomendacion de la casa, no una linea mas.
+   Se marca la primera, sea cual sea: si algun dia se reordena el menu,
+   el marcado se va con ella. */
+.menu-drawer .menu-drawer__menu > .menu-drawer__list-item--flat:first-child > .menu-drawer__menu-item--mainlist{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--pcj-terracota);
+  color:#fff;
+  border-radius:999px;
+  padding:11px 18px;
+  margin:2px 0 14px;
+  font-size:16px;
+  box-shadow:0 6px 16px rgba(169,79,30,.22);
+  border-top:0;
+}
+.menu-drawer .menu-drawer__menu > .menu-drawer__list-item--flat:first-child > .menu-drawer__menu-item--mainlist::after{
+  content:"→";
+  font-weight:700;
+  transform:translateY(-.5px);
+}
+
+/* ---------- Respuesta al tacto ----------
+   Se quito el recuadro gris del navegador en toda la tienda, asi que
+   cada cosa pulsable se responde ella misma. */
+.menu-drawer .menu-drawer__menu-item{
+  transition:opacity .12s ease,transform .12s ease;
+}
+.menu-drawer .menu-drawer__menu-item:active{
+  opacity:.65;
+  transform:scale(.985);
+}
+
+/* ---------- El aspa de cerrar ----------
+   Estaba suelta arriba a la izquierda y pequena. Se alinea con el texto
+   y se le da area de toque de sobra. */
+.menu-drawer .menu-drawer__close-button{
+  min-width:44px;
+  min-height:44px;
+  color:var(--pcj-suave);
+}
+
+@media(prefers-reduced-motion:reduce){
+  .menu-drawer .menu-drawer__menu-item,
+  .menu-drawer .menu-drawer__menu-item:active{transition:none;transform:none}
+}

@@ -1,0 +1,23 @@
+{
+  "nota": "Estructura del menu principal ANTES de agruparlo, 21/09/2026. 16 items planos, sin submenus. Guardado para poder deshacer en un minuto.",
+  "menu": "gid://shopify/Menu/341834989916",
+  "handle": "main-menu",
+  "items": [
+    { "title": "Inicio", "type": "FRONTPAGE", "url": "/" },
+    { "title": "Novedades", "url": "/collections/novedades" },
+    { "title": "Gatos", "url": "/collections/gatos" },
+    { "title": "Ropa y abrigos", "url": "/collections/ropa-y-abrigos" },
+    { "title": "Lluvia y barro", "url": "/collections/lluvia-y-barro" },
+    { "title": "Comederos", "url": "/collections/comederos" },
+    { "title": "Juguetes", "url": "/collections/juguetes" },
+    { "title": "Higiene y cuidado", "url": "/collections/higiene-y-cuidado" },
+    { "title": "Camas y descanso", "url": "/collections/camas-y-descanso" },
+    { "title": "Casa y coche", "url": "/collections/casa-y-coche" },
+    { "title": "Regalos", "url": "/collections/regalos" },
+    { "title": "Packs y ahorro", "url": "/collections/packs" },
+    { "title": "Envíos y entregas", "url": "/pages/envios-y-entregas" },
+    { "title": "Preguntas frecuentes", "url": "/pages/preguntas-frecuentes" },
+    { "title": "Quiénes somos", "url": "/pages/quienes-somos" },
+    { "title": "Contacto", "url": "/pages/contact" }
+  ]
+}
