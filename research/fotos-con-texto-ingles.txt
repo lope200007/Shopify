@@ -1,0 +1,24 @@
+PRIMERA FOTO CON TEXTO EN INGLES INCRUSTADO
+Detectado con OCR (tesseract) sobre la primera foto de los 127 productos activos,
+el 21/09/2026. Filtro: 2+ palabras del diccionario ingles con confianza >=75%.
+Quitados dos falsos positivos (texto en espanol) y anadido a mano el pijama fino
+("Pet Pajamas": solo daba una palabra larga y no pasaba el filtro).
+
+Estas son las fotos que se ven en la rejilla de coleccion, o sea lo primero que
+mira un visitante. Sustituir por una foto sin rotulos, de las que ya tiene cada
+ficha, o recortar la parte con texto.
+
+balsamo-para-almohadillas-de-perro-y-gato-50-g-para-grietas-y-asfalto
+calendario-adviento-gato
+cepillo-spray-agua-perro
+coche-teledirigido-para-gato-juguete-electrico-con-mando-plumas-incluidas
+comedero-con-tapa-que-se-abre-sola-sensor-de-30-cm-sin-moscas-ni-hormigas
+comedero-elevado-de-acero-inoxidable-soporte-de-metacrilato
+correa-extensible-5-metros-linterna
+cuerda-con-ventosa-para-perro-se-pega-al-suelo-y-juega-solo
+fuente-de-agua-para-gato-con-filtro-agua-en-movimiento-2-4-litros
+hamaca-colgante-para-jaula-y-transportin-de-gato-cuatro-tamanos-verano-e-invierno
+hierba-gatera-hidroponica-kit-para-cultivarla-en-casa-sin-tierra
+pijama-fino-para-perro-y-gato-pequenos-cinco-colores-cinco-tallas
+toallitas-de-dedo-para-los-ojos-50-unidades-perro-y-gato
+zanahoria-mordedor-para-perro-goma-resistente-flota-y-rebota
