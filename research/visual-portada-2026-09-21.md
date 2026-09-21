@@ -344,3 +344,22 @@ Traducido a esta tienda:
 hijos. Ellos lo ponen porque al pulsar se abre otro nivel; aquí los hijos ya
 se ven desplegados. Un galón que no abre nada es una mentira pequeña, y de
 esas se acumulan.
+
+### Comprobación del recuento (21-09, después de que refrescara el índice)
+
+Al etiquetar los 16, el buscador de Shopify seguía diciendo 90. No lo di por
+bueno: leí los productos uno a uno por su id y la etiqueta estaba puesta.
+Vuelto a consultar ya con el índice al día:
+
+| Consulta | Antes | Ahora |
+| --- | --- | --- |
+| Colección **Perros** | 90 | **106** |
+| Colección **Gatos** | 60 | 60 |
+| Productos con etiqueta `perro` | 92 | **108** |
+| Productos **sin ninguna de las dos** | 16 | **0** |
+
+Ya no hay ni un producto invisible en las dos secciones nuevas.
+(«Perros» muestra 106 y no 108 porque la colección sólo cuenta los publicados.)
+
+Regla que confirma esto otra vez: **el número del buscador no es la verdad,
+es una copia que tarda.** La verdad está en el producto.
