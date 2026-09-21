@@ -156,3 +156,68 @@ coinciden.
 2. Si le gusta, **publicar** el tema «Patitascalidas 2026 — envío gratis 39 €».
 3. Los dos textos que siguen fuera de mi alcance: la descripción de la tienda y
    la política de envío (ver `pendiente-de-pablo-2026-09-20.md`).
+
+---
+
+## 9. Segunda pasada, con las skills nuevas (mismo día)
+
+Instaladas `mobile-native` e `impeccable`, se repasó la tienda con ellas. No
+como lectura: aplicando su lista contra la página de verdad con el navegador.
+
+### Lo que encontró `mobile-native` (siete medidas, cinco fallos)
+
+| Comprobación | Estaba | Ahora |
+| --- | --- | --- |
+| `viewport-fit=cover` | **no** → `env(safe-area-inset-*)` valía 0 | sí |
+| `theme-color` | **puesta y vacía** | `#1f4a37` |
+| `color-scheme` | no declarado | `light` |
+| `-webkit-tap-highlight-color` | `rgba(0,0,0,.18)` → **recuadro gris al tocar** | `transparent` |
+| `-webkit-text-size-adjust` | `auto` → texto inflado en horizontal | `100%` |
+| `touch-action` en pulsables | `auto` → retardo del doble toque | `manipulation` |
+| `user-select` en controles | `auto` → la pulsación larga seleccionaba el texto del botón | `none` **solo en controles** |
+| Tamaño de los `input` | 16 px | ya estaba bien: no había zoom al enfocar |
+
+Dos decisiones que el skill obliga a razonar, no a copiar:
+
+- **`overscroll-behavior` NO se toca.** Su receta lo pone a `none`, pero una
+  tienda es un documento que se scrollea y ahí «tirar para recargar» se espera.
+  El propio skill dice que se quite en ese caso.
+- **Quitar el recuadro gris deja la tienda muda al tacto.** Los botones ya
+  tenían `:active`; las tarjetas y las preguntas frecuentes, no. Se les añadió
+  (120 ms, solo `transform`, anulado con `prefers-reduced-motion`).
+
+Comprobado en una página de colección, no solo en la portada: los siete valores
+salen bien y el texto normal **sigue siendo seleccionable** (la gente copia
+números de pedido).
+
+### Lo que apareció al mirar por fin una ficha de producto
+
+Nunca se había mirado una ficha en móvil. Medido en la cama en dónut:
+
+- **Título: 28 px en negrita. Precio: 16 px, peso normal** — el mismo tamaño
+  que el texto corrido. En una ficha el precio es lo segundo que se mira
+  después de la foto, y aquí susurraba.
+- Arreglado **configurando**, no con CSS encima del tema: el bloque de precio
+  de Horizon ya tiene ajustes de tipografía. Ahora 24 px con la tipografía de
+  titulares. Verificado: 24 px / peso 700.
+
+---
+
+## 10. Una decisión que NO he tomado por mi cuenta
+
+Los títulos de producto llevan la barra vertical del SEO dentro:
+
+> Cama en dónut de pelo largo **|** De 40 a 80 cm, en seis colores
+
+En el móvil eso son **tres líneas de titular**, y la barra se lee como un
+error de maquetación. Sale igual en las tarjetas de la portada, en el blog y
+en lo que se comparte.
+
+**El dato que lo hace decidible:** el `<title>` de la página ya es distinto
+del título del producto —«Cama redonda en dónut para gato y perro | 40, 50,
+60, 70 y 80 cm»—, es decir, **el SEO ya lo lleva el campo de SEO**. El título
+visible no necesita cargar las palabras clave.
+
+Así que se podrían acortar los 126 títulos sin perder posicionamiento. No lo
+he hecho: es el catálogo de Pablo, su voz, y afecta a los textos ya
+programados en Metricool. Queda propuesto con la prueba delante.
