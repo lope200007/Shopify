@@ -352,6 +352,52 @@ Instalados con `npx skills add`, viven en `.agents/skills/` y se enlazan desde
 | `find-animation-opportunities` | `emilkowalski/skill` | Solo lectura: dónde falta movimiento y dónde sobra |
 | `mobile-native` | `emilkowalski/skill` | Que una web se sienta nativa en el móvil: *tap highlight*, hover pegado, meta. **El más aplicable de los ocho: nuestro tráfico humano es móvil.** |
 | `impeccable` | `pbakaus/impeccable` | Dirección de arte y craft de interfaz. **Copia solo-markdown, sin el binario.** Ver abajo. |
+| `ui-ux-pro-max` | `nextlevelbuilder/ui-ux-pro-max-skill` | Base de datos de diseño consultable desde el terminal: 192 paletas por tipo de producto, 74 parejas de tipografías, 119 reglas de UX, 79 estilos. Python de biblioteca estándar, sin red. Ver abajo. |
+
+### `ui-ux-pro-max`: 192 paletas, y por qué pasa el filtro
+
+La tarjeta que me pasó Pablo decía «161 paletas». La versión que hay hoy en el
+repositorio oficial (v2.13.0, commit del 21-09-2026) va por **192**. Es esa la
+que está instalada.
+
+**Fuente:** `nextlevelbuilder/ui-ux-pro-max-skill`, licencia MIT.
+
+Qué trae, y qué se puede preguntar desde el terminal:
+
+```bash
+# una paleta para un tipo de negocio
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "pet supplies ecommerce" --domain color
+
+# una regla concreta de UX
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "touch target" --domain ux
+
+# un sistema de diseño entero (colores + tipografía + estilo + reglas)
+python3 .claude/skills/ui-ux-pro-max/scripts/search.py "tienda de accesorios para mascotas, cálida y de confianza" --design-system -p "Patitascalidas"
+```
+
+**Los cuatro controles, con lo que devolvió cada uno:**
+
+| Control | Resultado |
+|---|---|
+| Inyección de prompt | Cero coincidencias en los 92 archivos. |
+| Scripts ejecutables | 5 `.py` leídos. Importan solo biblioteca estándar: `csv`, `re`, `json`, `pathlib`, `difflib`, `math`. |
+| Salida de red | **Ninguna.** Las únicas apariciones de `http` están en `validate_data.py`, y son cadenas de texto que compara (comprueba que las URL de Google Fonts del CSV estén bien escritas). No hay `urlopen` ni `requests`. |
+| Credenciales y pagos | Ninguna clave, ningún registro, ningún SaaS. Hay un enlace de donación a PayPal en el README, que no se instala. |
+
+Tampoco hay `subprocess`, ni `os.system`, ni `eval`, ni `exec`, ni `pickle`.
+Solo escribe ficheros si se le pasa `--persist`, y en la carpeta que se le diga.
+
+**Qué aporta, que es el segundo filtro:** los skills de diseño que ya teníamos
+(`emil-design-eng`, `apple-design`, `impeccable`) dan **criterio** — cómo
+decidir. Este da **datos** — 192 paletas con sus contrastes ya calculados, 74
+parejas de tipografías, 119 reglas de UX con su severidad. Son cosas distintas
+y no se pisan.
+
+**Nota sobre el `SKILL.md`:** el repositorio no trae el `SKILL.md` hecho, lo
+genera su CLI a partir de `templates/platforms/claude.json` + `base/skill-content.md`
++ `base/quick-reference.md`. Se ha generado igual, a mano, sin ejecutar su CLI.
+`data/` y `scripts/` son copia literal.
+
 
 ### `impeccable`: instalado a medias, y a propósito
 
