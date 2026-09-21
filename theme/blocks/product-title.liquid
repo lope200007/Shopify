@@ -7,10 +7,14 @@
   varias lineas y la barra acaba cayendo sola al principio de una linea. Se
   lee roto.
 
-  Que hace: en las tarjetas (todo lo que no sea la ficha del producto)
-  separa las dos partes y pone la segunda debajo, mas pequena y en gris.
-  No se pierde informacion: se lee mejor. En la ficha del producto el
-  titulo sale entero, como siempre.
+  Que hace: separa las dos partes y pone la segunda debajo, mas pequena
+  y en gris. No se pierde informacion: las dos partes siguen dentro del
+  mismo elemento de titular, asi que para Google el titulo es el mismo.
+  Solo cambia como se lee.
+
+  En la ficha del producto el subtitulo va un poco mas grande (15 px)
+  que en las tarjetas (13 px), porque debajo hay un titular de 28 px y
+  no de 14.
 
   Lo que NO hace: tocar el titulo del producto. Esto es solo presentacion.
   El titulo real, el de SEO y el de los envios a Metricool siguen intactos.
@@ -31,15 +35,19 @@
     assign trozos = closest.product.title | split: ' | '
     assign parte_principal = trozos[0]
     assign parte_detalle = ''
-    if trozos.size > 1 and template.name != 'product'
+    if trozos.size > 1
       assign parte_detalle = trozos | slice: 1, 9 | join: ' · '
+    endif
+    assign clase_detalle = 'pcj-titulo-detalle'
+    if template.name == 'product'
+      assign clase_detalle = 'pcj-titulo-detalle pcj-titulo-detalle--ficha'
     endif
   -%}
   {%- capture product_title -%}
     <p role="heading" aria-level="3">
       {%- if parte_detalle != blank -%}
         {{- parte_principal -}}
-        <span class="pcj-tarjeta-detalle">{{ parte_detalle }}</span>
+        <span class="{{ clase_detalle }}">{{ parte_detalle }}</span>
       {%- else -%}
         {{- closest.product.title -}}
       {%- endif -%}

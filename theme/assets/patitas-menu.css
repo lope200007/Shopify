@@ -154,15 +154,14 @@
 
 
 /* ------------------------------------------------------------------
-   Tarjetas de producto: la segunda parte del titulo
+   La segunda parte del titulo (tarjetas y ficha)
    ------------------------------------------------------------------
    Nuestros titulos van en dos partes separadas por una barra. En la
-   rejilla, blocks/product-title.liquid las separa y mete la segunda
-   aqui dentro. Va debajo, mas pequena y en gris: se lee como un
-   subtitulo en vez de como una linea rota.
-   En la ficha del producto esto no aparece: alli el titulo va entero.
+   blocks/product-title.liquid las separa y mete la segunda aqui dentro.
+   Va debajo, mas pequena y en gris: se lee como un subtitulo en vez de
+   como una linea rota. Las dos partes siguen dentro del mismo titular.
 ------------------------------------------------------------------ */
-.pcj-tarjeta-detalle{
+.pcj-titulo-detalle{
   display:block;
   margin-top:3px;
   font-weight:400;
@@ -171,4 +170,11 @@
   letter-spacing:0;
   color:#575c50;
   text-wrap:pretty;
+}
+
+/* En la ficha el titular es de 28 px, asi que el subtitulo pide 15. */
+.pcj-titulo-detalle--ficha{
+  margin-top:6px;
+  font-size:.9375rem;
+  line-height:1.35;
 }
