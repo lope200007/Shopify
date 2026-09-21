@@ -1088,3 +1088,61 @@ se aplica.
 - El **Pack de coche** sigue con los precios escritos dentro de la foto.
 - El **Pack baño y lluvia a 39,90 €** se queda 0,90 € por encima del umbral:
   con BIENVENIDA10 baja de 39 € y vuelve a pagar envío.
+
+## 21. «¿Están bien los colores para lanzar?» — tres fallos más, medidos
+
+Pablo preguntó si la tienda está lista. En vez de opinar, medí otra vez toda
+la paleta contra los mínimos de la WCAG. Los textos y los botones pasan de
+sobra:
+
+| Dónde | Contraste | Mínimo |
+| --- | ---: | ---: |
+| Texto normal (tinta sobre crema) | 14,38:1 | 4,5 |
+| Texto gris sobre crema | 6,45:1 | 4,5 |
+| Texto gris sobre arena | 5,81:1 | 4,5 |
+| Botón «Añadir al carrito» | 5,15:1 | 4,5 |
+| Banda verde con texto crema | 9,40:1 | 4,5 |
+
+### Fallo 1 — el borde de las cajas de texto no se veía
+
+`#E4DBCC` sobre `#FBF7F1` da **1,29:1**. La WCAG 1.4.11 pide **3:1** en el
+borde de un control cuando ese borde es lo único que lo identifica, y aquí lo
+era: el fondo de los campos es el mismo crema que la página. Si el borde no se
+ve, la caja no existe.
+
+Nuevo: **`#968973`, 3,21:1**. Mismo matiz cálido (37°), solo más oscuro, para
+no cambiar el carácter de la paleta. `color3` se usa en exactamente dos sitios
+—comprobado con grep en todo el tema—: el borde de los campos y el de los
+selectores de variante. Ningún borde decorativo se ve afectado.
+
+### Fallo 2 — el selector de cantidad se saltaba el ajuste
+
+Cambiar `color3` no llegó al selector de cantidad de la ficha. **Visto en el
+navegador, no deducido:** ese bloque tenía su propio color fijado a `color11`,
+que seguía siendo el `#E4DBCC` viejo. Ahora apunta a `color3`, como el resto.
+
+Comprobado después en el navegador, midiendo el contraste real de cada control
+de la ficha: selector de color **3,21:1**, selector de cantidad **3,21:1**,
+alta de correo del pie **6,88:1**. Los tres pasan.
+
+Este es el motivo de abrir el navegador de verdad: el fichero decía una cosa y
+la página pintaba otra.
+
+### Fallo 3 — el arnés salía preseleccionado en talla 2XL
+
+Mirando la captura de la ficha vi que el desplegable de talla venía puesto en
+**2XL**. No era casualidad: las tallas estaban guardadas en orden alfabético
+(2XL, L, M, S, XL), así que Shopify preseleccionaba la primera, que es la más
+grande de todas.
+
+Quien compre para un chihuahua y no se fije se lleva un arnés de perro
+gigante. Eso es una devolución, y encima pagada por el cliente.
+
+Repasados **los 127 productos activos**: solo dos tenían el orden mal.
+
+| Producto | Antes | Ahora |
+| --- | --- | --- |
+| Arnés de pecho con correa | 2XL, L, M, S, XL | S, M, L, XL, 2XL |
+| Saco de dormir cueva | S, M, L, XS | XS, S, M, L |
+
+Comprobado en la ficha después del cambio: el desplegable ya viene en **S**.
