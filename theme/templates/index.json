@@ -147,7 +147,7 @@
           "type": "categoria",
           "settings": {
             "coleccion": "perros",
-            "antetitulo": "Todo para él",
+            "antetitulo": "Comer, pasear, dormir",
             "titulo": "Perros"
           }
         },
@@ -155,7 +155,7 @@
           "type": "categoria",
           "settings": {
             "coleccion": "gatos",
-            "antetitulo": "Todo para él",
+            "antetitulo": "Rascar, trepar, dormir",
             "titulo": "Gatos"
           }
         }
