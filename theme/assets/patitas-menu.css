@@ -57,12 +57,14 @@
 .menu-drawer .menu-drawer__menu--childlist{
   position:relative;
   margin:2px 0 8px 2px;
-  padding-left:16px;
 }
-/* La guia va en un ::before colocado, no en un `border-left`.
-   Con el borde salia cortada a trozos: Horizon dibuja una separacion en
-   cada elemento de la lista y, al cruzar los dos primeros pixeles, borraba
-   la linea una vez por fila. Un elemento colocado se pinta por encima. */
+/* La guia va en un ::before colocado y el hueco se hace en los ENLACES,
+   no en el contenedor.
+   Por que: los enlaces hijos se salen por la izquierda de la caja de
+   contenido del <ul>, asi que un `padding-left` en el <ul> no los aparta:
+   el texto acaba montado sobre la linea y esta parece cortada a trozos.
+   Comprobado pintando la guia de rojo y 8 px: estaba entera, lo que
+   fallaba era la separacion. */
 .menu-drawer .menu-drawer__menu--childlist::before{
   content:"";
   position:absolute;
@@ -79,6 +81,7 @@
   color:var(--pcj-suave);
   padding-top:6px;
   padding-bottom:6px;
+  padding-inline-start:16px;
 }
 
 /* ---------- La primera entrada ----------
