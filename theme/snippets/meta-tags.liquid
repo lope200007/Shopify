@@ -14,8 +14,48 @@
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="">
+{% comment %}
+  Capa de plataforma en movil. Cinco arreglos medidos el 21/09/2026 con el
+  navegador contra la tienda, siguiendo el skill `mobile-native`:
+
+  1. `viewport-fit=cover`. Sin el, `env(safe-area-inset-*)` vale 0 y el
+     navegador deja la pagina en una caja dentro de la zona segura: en un
+     iPhone con isla, la barra verde de arriba no llega al borde.
+  2. `theme-color` estaba puesta y VACIA, que es peor que no ponerla: la barra
+     de estado del movil no coge ningun color. Se pone el verde de la barra de
+     aviso, que es lo que hay en la primerisima linea de la pagina.
+  3. `color-scheme: light`. La tienda no tiene modo oscuro; declararlo evita
+     que el navegador oscurezca por su cuenta los campos de formulario.
+  4. `-webkit-tap-highlight-color`: el navegador pintaba un recuadro gris
+     encima de cada cosa que se toca. Es la senal mas ruidosa de "esto es una
+     web". Al quitarlo hay que devolver la respuesta al tacto con `:active`,
+     y eso se hace en patitas-cj.css.
+  5. `touch-action: manipulation` en lo pulsable: quita el retardo que el
+     navegador se guarda por si viene un segundo toque (doble toque = zoom).
+
+  Lo que NO se toca, a proposito: `overscroll-behavior`. Una tienda es un
+  documento que se scrollea y el "tirar para recargar" ahi se espera.
+{% endcomment %}
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f4a37">
+<meta name="color-scheme" content="light">
+
+{% style %}
+  html{
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+  }
+  a, button, summary, [role="button"], input[type="submit"]{
+    touch-action: manipulation;
+  }
+  /* Solo en los controles. En el texto NUNCA: la gente copia numeros de
+     pedido, direcciones y mensajes de error. */
+  button, summary, [role="button"], .pcj-btn, .pcj-etiqueta{
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+{% endstyle %}
 
 {%- liquid
   assign nombre_tienda = shop.name | strip

@@ -296,3 +296,34 @@
 @media(max-width:430px){
   .pcj .pcj-etiqueta-largo{display:none}
 }
+
+/* ---------- Respuesta al tacto ----------
+   Al quitar el recuadro gris que el navegador pintaba al tocar (ver
+   snippets/meta-tags.liquid) hay que devolver esa respuesta a mano, o la
+   tienda se queda muda al tacto: tocas una tarjeta y no pasa nada hasta que
+   carga la pagina siguiente.
+
+   Los botones ya tenian su `:active`. Las tarjetas y las preguntas, no.
+   120 ms y ease-out: por debajo de 100 no se percibe, por encima de 200 se
+   nota lento. Solo `transform`, que lo compone la GPU. */
+.pcj .pcj-categoria,
+.pcj .pcj-producto,
+.pcj .pcj-pack{
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.pcj .pcj-categoria:active,
+.pcj .pcj-producto:active,
+.pcj .pcj-pack:active{
+  transform:scale(.985);
+  transition-duration:.12s;
+}
+.pcj .pcj-duda summary:active{
+  opacity:.72;
+  transition:opacity .12s ease;
+}
+@media(prefers-reduced-motion:reduce){
+  .pcj .pcj-categoria:active,
+  .pcj .pcj-producto:active,
+  .pcj .pcj-pack:active{transform:none}
+  .pcj .pcj-duda summary:active{opacity:1}
+}
