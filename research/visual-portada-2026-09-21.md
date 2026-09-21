@@ -978,3 +978,113 @@ Hoy es verdad. El día que cambie un precio, la imagen mentirá y nadie se
 acordará de ella.
 
 Las tres nuevas no llevan ni un número dentro. A propósito.
+
+## 20. Los dos barridos que pediste, y el tercero que hizo falta
+
+Pablo pidió *«sin errores… como mínimo haz dos barridos de revisión»*. Hice
+dos. El segundo dio limpio. **El segundo estaba mal hecho**, y el tercero es
+el que encontró lo gordo. Lo cuento en ese orden porque el fallo de método
+es más útil que el resultado.
+
+### Barrido 1 — sobre lo que acababa de escribir
+
+Empecé por lo más peligroso: comprobar, frase a frase, que las fichas de los
+tres packs nuevos no afirmaran nada que no estuviera en la ficha del producto
+suelto. Salieron **tres inventos míos**:
+
+| Lo que escribí | Lo que dice la ficha real |
+| --- | --- |
+| La hierba «brota en 3 días, lista en 7» | «Lista en **cuatro o cinco días**» |
+| La manta lleva «capa metalizada» | «Capa **térmica reflectante**» |
+| Tres cosas de la botella de paseo | Eran del **Bebedero 2 en 1**, otro producto |
+
+Las tres reescritas. El origen de la primera es el que más me preocupa: la
+saqué del rótulo en inglés de una foto del proveedor que yo mismo acababa de
+descartar por llevar texto incrustado. Leí el gráfico y no la ficha.
+
+### Barrido 2 — y por qué no valía
+
+Comprobé pertenencia a colecciones, orden de «Novedades», su descripción SEO
+(estaba vieja, corregida) y **las descripciones de los 127 productos activos**
+contra el 55 € antiguo. Cero apariciones. Di el barrido por bueno.
+
+Dos errores de método:
+
+1. **Busqué el 55 € en los productos, no en el tema.** El número no vivía en
+   ningún producto.
+2. **La comprobación de rutas era humo.** Inventé los `handle` en vez de
+   pedirlos a la tienda, y `curl` devuelve un 404 con la página entera del
+   tema dentro. Mis comprobaciones de texto «pasaban» sobre páginas de error.
+   Los tres packs nuevos no son `pack-gato-hierba-gatera-y-juguete-de-plumas`
+   sino `pack-gato-recien-llegado`, `pack-gato-invierno` y
+   `pack-todo-el-paseo`.
+
+Regla nueva, ya en CLAUDE.md: **los `handle` se piden a la tienda; y una
+comprobación de ruta sin mirar el código HTTP no es una comprobación.**
+
+### Barrido 3 — el que sí
+
+Hecho al revés: contra el tema y contra el HTML que de verdad sirve el
+borrador (entrando primero por `?preview_theme_id=` para coger la cookie, que
+si no se sirve el tema publicado y parece que no ha cambiado nada).
+
+**Hallazgo 1 — el 55 € seguía en las 127 fichas.**
+`templates/product.json` tenía un bloque de envío que decía *«Envío gratis a
+partir de 55 €»*. No es una ficha suelta: es la plantilla, y **los 127
+productos activos tienen `templateSuffix` nulo**, así que la usan todos. El
+sitio con más lectores de la tienda era el único que seguía con el número
+viejo. Corregido y comprobado en el HTML servido.
+
+**Hallazgo 2 — los plazos se contradecían dentro de la misma página.**
+Treinta fichas dicen «llega a España en dos o tres semanas» porque su
+producto va en la línea lenta. El bloque del tema, justo al lado, decía
+«Llega en 1 o 2 semanas» y daba un desglose que suma once días laborables
+como mucho. La portada hacía lo mismo consigo misma: dos textos de «una o dos
+semanas» contra su propia pregunta frecuente, que dice «entre 10 y 20 días
+naturales» y que es la que está bien.
+
+Arreglado hacia el lado de prometer de menos: **1 a 3 semanas** en los tres
+sitios, y el párrafo de la ficha ya no da un desglose genérico, remite al
+plazo concreto de la descripción cuando lo hay. **Cuarenta y dos fichas no
+llevan ningún plazo escrito**, por eso el bloque sigue dando un rango en vez
+de limitarse a remitir.
+
+**Hallazgo 3 — la portada solo hablaba de España.** La pregunta «¿cuánto
+cuesta el envío?» decía 6,99 € y peninsular y Baleares, y ya. Las zonas de UE
+(8,99 €) e internacional (12,99 €) están activas. Ahora dice las tres, con el
+«gratis desde 39 €» pegado a la frase de España, que es la única zona donde
+se aplica.
+
+### Lo que el barrido 3 sí dio limpio
+
+- **Enlaces**: los 38 enlaces internos de la portada del borrador devuelven
+  200. Ninguno roto. (Las cuatro fuentes que salían como «rotas» eran un
+  fallo de mi script, que le pegaba el dominio a una URL que ya lo llevaba.)
+- **El 55 € en el borrador**: cero en portada, colecciones, carrito,
+  buscador, páginas y cuatro de las cinco políticas. **Queda en
+  `/policies/shipping-policy`**, que sigue siendo la única que no puedo tocar
+  (falta el permiso `write_legal_policies`). El texto corregido está en
+  `research/textos/politica-envio.html`.
+- **Las cuentas de los tres packs**, componente a componente, leyendo la
+  variante exacta que nombra el texto:
+
+  | Pack | Suma de las piezas | Precio | Ahorro |
+  | --- | --- | --- | --- |
+  | El gato recién llegado | 20,90 + 16,90 + 17,90 = 55,70 | 46,90 | 8,80 ✓ |
+  | El gato en invierno | 29,90 + 29,90 + 19,90 = 79,70 | 66,90 | 12,80 ✓ |
+  | Todo el paseo | 27,90 + 22,90 + 14,90 = 65,70 | 55,90 | 9,80 ✓ |
+
+  Los tres pasan de 39 €, así que la frase «el envío sale gratis» es cierta
+  en los tres.
+- **Las afirmaciones del pack del paseo**: aquí me asusté por nada. Creí que
+  había mezclado dos arneses distintos, porque hay dos a 27,90 €. Fui a
+  comprobarlo antes de decir nada y el texto describe el correcto (el
+  «Conjunto arnés de pecho + correa a juego»): las bandas reflectantes, la
+  anilla en D, las cuatro tallas en centímetros y hasta el aviso de que el
+  reflectante se despega están, palabra por palabra, en su ficha.
+
+### Lo que dejo señalado y no toco
+
+- El **Pack de coche** sigue con los precios escritos dentro de la foto.
+- El **Pack baño y lluvia a 39,90 €** se queda 0,90 € por encima del umbral:
+  con BIENVENIDA10 baja de 39 € y vuelve a pagar envío.

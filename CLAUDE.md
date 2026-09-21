@@ -917,6 +917,31 @@ Los tres fallos que originaron esta regla, para no repetirlos:
 | El enlace de pago de CJ | Que funcionaba | Nunca se había ejecutado. Había que probarlo |
 | Recargar con tarjeta | Que servía para el monedero | El monedero solo admite Payoneer, transferencia y tarjeta regalo |
 
+### Cómo se hace un barrido de verdad (21 de septiembre de 2026)
+
+Pablo pidió «como mínimo dos barridos de revisión». Hice dos, el segundo dio
+limpio, y estaba mal hecho: un tercero encontró que el 55 € viejo seguía en
+las 127 fichas de producto. Tres reglas que salen de ahí.
+
+1. **Un texto que se ve en una página puede no estar en ningún producto.**
+   Buscar el 55 € en las descripciones de los 127 productos y dar el barrido
+   por bueno fue el error: vivía en `templates/product.json`, la plantilla que
+   usan todos (los 127 tienen `templateSuffix` nulo). Un barrido de textos se
+   hace **contra el HTML servido**, no contra la base de datos.
+
+2. **Los `handle` se piden a la tienda, nunca se inventan.** Comprobé rutas
+   con handles inventados de memoria. Se piden con una consulta y se usan los
+   que devuelve.
+
+3. **Una comprobación de ruta sin mirar el código HTTP no es una
+   comprobación.** Shopify devuelve el 404 con la página entera del tema
+   dentro, así que un `grep` de texto «pasa» sobre páginas de error, y el
+   código de salida de `curl` es 0. Se mira `%{http_code}`.
+
+   Y para ver el tema **borrador** hay que entrar primero por
+   `?preview_theme_id=<id>` guardando la cookie; si no, se sirve el publicado
+   y parece que el cambio no ha llegado.
+
 ### Lo que SIEMPRE se pregunta antes
 
 Esto no es falta de confianza: es que son cosas que **no se pueden deshacer** o
