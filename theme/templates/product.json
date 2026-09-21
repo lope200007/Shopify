@@ -188,7 +188,7 @@
                     "input_style": "custom",
                     "input_background_color": "{{ settings.color_palette.background }}",
                     "input_text_color": "{{ settings.color_palette.color10 }}",
-                    "input_border_color": "{{ settings.color_palette.color11 }}"
+                    "input_border_color": "{{ settings.color_palette.color3 }}"
                   },
                   "blocks": {}
                 },
