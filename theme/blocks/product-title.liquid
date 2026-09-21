@@ -12,9 +12,11 @@
   mismo elemento de titular, asi que para Google el titulo es el mismo.
   Solo cambia como se lee.
 
-  En la ficha del producto el subtitulo va un poco mas grande (15 px)
-  que en las tarjetas (13 px), porque debajo hay un titular de 28 px y
-  no de 14.
+  Donde NO actua: el <h1> de la ficha del producto. Ese titular no sale
+  de este bloque, sale de un bloque de texto de templates/product.json
+  con `<h1>{{ closest.product.title }}</h1>` dentro. Comprobado mirando
+  el HTML: es un <h1> pelado, sin clases. Alli el titulo sale entero, y
+  esta bien que salga entero: es el titular de la pagina.
 
   Lo que NO hace: tocar el titulo del producto. Esto es solo presentacion.
   El titulo real, el de SEO y el de los envios a Metricool siguen intactos.
@@ -38,16 +40,12 @@
     if trozos.size > 1
       assign parte_detalle = trozos | slice: 1, 9 | join: ' · '
     endif
-    assign clase_detalle = 'pcj-titulo-detalle'
-    if template.name == 'product'
-      assign clase_detalle = 'pcj-titulo-detalle pcj-titulo-detalle--ficha'
-    endif
   -%}
   {%- capture product_title -%}
     <p role="heading" aria-level="3">
       {%- if parte_detalle != blank -%}
         {{- parte_principal -}}
-        <span class="{{ clase_detalle }}">{{ parte_detalle }}</span>
+        <span class="pcj-titulo-detalle">{{ parte_detalle }}</span>
       {%- else -%}
         {{- closest.product.title -}}
       {%- endif -%}

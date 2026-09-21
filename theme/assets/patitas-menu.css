@@ -171,10 +171,3 @@
   color:#575c50;
   text-wrap:pretty;
 }
-
-/* En la ficha el titular es de 28 px, asi que el subtitulo pide 15. */
-.pcj-titulo-detalle--ficha{
-  margin-top:6px;
-  font-size:.9375rem;
-  line-height:1.35;
-}
