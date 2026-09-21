@@ -1,0 +1,151 @@
+{%- comment -%}
+  Aviso de envio gratis en el carrito.
+
+  Dice una de estas tres cosas:
+    - "Te faltan 9,10 EUR para el envio gratis", con una barrita.
+    - "Ya tienes el envio gratis."
+    - Lo anterior + un aviso, solo a quien le afecta (ver abajo).
+
+  EL AVISO DEL CODIGO, que es la razon de que esto no sea trivial:
+  comprobado con un pedido de prueba el 21/09/2026, la condicion de
+  envio gratis se evalua SOBRE EL IMPORTE YA REBAJADO. Un carrito de
+  42 EUR con BIENVENIDA10 se queda en 37,80 EUR y paga 6,99 EUR de
+  envio. Si aqui dijeramos "ya tienes el envio gratis" y luego le
+  cobraramos el envio, seria mentira.
+
+  Asi que cuando alguien esta por encima del umbral pero caeria por
+  debajo al aplicar el codigo, Y todavia no tiene ningun descuento
+  puesto, se le avisa. A los demas no se les dice nada: no les afecta.
+
+  Sin JavaScript. Se recalcula solo porque la pagina del carrito se
+  vuelve a pintar al cambiar cantidades.
+{%- endcomment -%}
+
+{%- liquid
+  assign umbral = section.settings.umbral | times: 100
+  assign total = cart.total_price
+  assign falta = umbral | minus: total
+
+  assign pct = 0
+  if umbral > 0
+    assign pct = total | times: 100 | divided_by: umbral
+  endif
+  if pct > 100
+    assign pct = 100
+  endif
+
+  comment
+    Caeria por debajo del umbral al aplicar el codigo de bienvenida?
+  endcomment
+  assign rebaja = total | times: section.settings.porcentaje_codigo | divided_by: 100
+  assign tras_codigo = total | minus: rebaja
+  assign avisar_del_codigo = false
+  if falta <= 0 and tras_codigo < umbral and cart.cart_level_discount_applications.size == 0
+    assign avisar_del_codigo = true
+  endif
+-%}
+
+{%- if cart.item_count > 0 and section.settings.umbral > 0 -%}
+  <div class="pcj-envio-gratis{% if falta <= 0 %} pcj-envio-gratis--logrado{% endif %}">
+    <div class="pcj-envio-gratis__caja">
+      {%- if falta > 0 -%}
+        <p class="pcj-envio-gratis__texto">
+          Te faltan <b>{{ falta | money }}</b> para el envío gratis.
+        </p>
+        <div class="pcj-envio-gratis__barra" role="presentation">
+          <span style="width: {{ pct }}%"></span>
+        </div>
+      {%- else -%}
+        <p class="pcj-envio-gratis__texto">
+          <b>Ya tienes el envío gratis.</b>
+        </p>
+        {%- if avisar_del_codigo -%}
+          <p class="pcj-envio-gratis__aviso">
+            Si usas un código de descuento, el envío gratis se calcula sobre el
+            importe ya rebajado. Con el tuyo te quedarías en {{ tras_codigo | money }}
+            y volverías a pagar el envío.
+          </p>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .pcj-envio-gratis {
+    padding: 0 16px;
+    margin: 12px 0 4px;
+  }
+  .pcj-envio-gratis__caja {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px 16px;
+    border: 1px solid #e4dbcc;
+    border-radius: 14px;
+    background: #fffdf9;
+  }
+  .pcj-envio-gratis--logrado .pcj-envio-gratis__caja {
+    border-color: #cfe0d6;
+    background: #f2f8f4;
+  }
+  .pcj-envio-gratis__texto {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.35;
+    color: #23261f;
+  }
+  .pcj-envio-gratis__texto b { font-weight: 700; }
+  .pcj-envio-gratis--logrado .pcj-envio-gratis__texto { color: #1f4a37; }
+
+  .pcj-envio-gratis__barra {
+    height: 6px;
+    margin-top: 9px;
+    border-radius: 999px;
+    background: #ece4d6;
+    overflow: hidden;
+  }
+  .pcj-envio-gratis__barra span {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: #1f4a37;
+    transition: width .35s cubic-bezier(.22, 1, .36, 1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pcj-envio-gratis__barra span { transition: none; }
+  }
+
+  .pcj-envio-gratis__aviso {
+    margin: 7px 0 0;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #575c50;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Aviso de envio gratis",
+  "enabled_on": { "templates": ["cart"] },
+  "settings": [
+    {
+      "type": "number",
+      "id": "umbral",
+      "label": "Desde cuantos euros es gratis el envio",
+      "default": 39,
+      "info": "Tiene que ser el mismo numero que la tarifa de envio de la tienda. Si cambias uno, cambia el otro."
+    },
+    {
+      "type": "range",
+      "id": "porcentaje_codigo",
+      "label": "Descuento del codigo de bienvenida (%)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 10,
+      "info": "Solo se usa para avisar a quien se quedaria por debajo del umbral al aplicarlo. Pon 0 si no hay codigo activo."
+    }
+  ],
+  "presets": []
+}
+{% endschema %}
