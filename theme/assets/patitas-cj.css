@@ -113,6 +113,10 @@
   background:var(--blanco);color:var(--tinta);border-radius:999px;
   padding:8px 16px;font-weight:800;font-size:14px;
 }
+/* El padre es inline-flex, asi que este <span> pasa a ser un elemento flex
+   (o sea, un bloque) y el navegador se come el espacio con el que empieza:
+   salia "Ver los 104productos". white-space:pre lo conserva. */
+.pcj .pcj-etiqueta-largo{ white-space:pre; }
 
 /* Rejilla de productos */
 .pcj .pcj-productos{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;list-style:none;padding:0;margin:0}
