@@ -29,9 +29,6 @@
    Los titulares estaban a 22 px con mucho aire: cabian nueve lineas en
    la pantalla y habia que hacer scroll para llegar a Contacto. A 17 px
    y con menos relleno entra el menu entero. */
-.menu-drawer .menu-drawer__navigation{
-  padding-top:4px;
-}
 .menu-drawer .menu-drawer__menu-item--mainlist{
   font-size:17px;
   font-weight:700;
@@ -42,11 +39,11 @@
   color:var(--pcj-tinta);
 }
 
-/* ---------- Grupos ----------
-   Una linea fina por encima de cada entrada principal. Separa sin
-   meter mas ruido que un pixel. La primera no la lleva. */
-.menu-drawer .menu-drawer__list-item--flat + .menu-drawer__list-item--flat > .menu-drawer__menu-item--mainlist,
-.menu-drawer .menu-drawer__menu--childlist + .menu-drawer__list-item--flat > .menu-drawer__menu-item--mainlist{
+/* ---------- Separaciones ----------
+   Una linea fina entre todas las entradas de primer nivel, como en las dos
+   tiendas de referencia. Separa sin meter mas ruido que un pixel. La
+   primera —la pildora— no la lleva. */
+.menu-drawer .menu-drawer__list-item--flat + .menu-drawer__list-item--flat > .menu-drawer__menu-item--mainlist{
   border-top:1px solid var(--pcj-borde);
   margin-top:2px;
 }
@@ -118,13 +115,36 @@
   transform:scale(.985);
 }
 
-/* ---------- El aspa de cerrar ----------
-   Estaba suelta arriba a la izquierda y pequena. Se alinea con el texto
-   y se le da area de toque de sobra. */
+/* ---------- La banda de arriba ----------
+   Mirado el 21/09/2026 en los dos menus de movil mas vistos de Espana,
+   Tiendanimal y Kiwoko: los dos hacen lo mismo. Una banda del color de la
+   marca cruzando el ancho, con el cerrar a la derecha en blanco; debajo,
+   lista limpia sobre fondo claro. El color va contenido en una franja, no
+   repartido por todo el panel: por eso se ve con vida y no cansa.
+
+   Aqui la franja usa el mismo verde que la barra de aviso de la cabecera,
+   asi que al abrir el menu el color no cambia de sitio. Crema sobre ese
+   verde da 10:1 de contraste.
+
+   Lo que NO se copia de ellos: el galon (>) al final de cada entrada con
+   hijos. Ellos lo ponen porque al pulsar se abre otro nivel; aqui los
+   hijos ya se ven desplegados. Un galon que no abre nada es una mentira
+   pequena, y de esas se acumulan. */
 .menu-drawer .menu-drawer__close-button{
-  min-width:44px;
-  min-height:44px;
-  color:var(--pcj-suave);
+  width:100%;
+  min-height:52px;
+  justify-content:flex-end;
+  padding-inline:16px;
+  background:var(--pcj-verde);
+  color:#fbf7f1;
+  border-radius:0;
+}
+.menu-drawer .menu-drawer__close-button svg{
+  width:22px;
+  height:22px;
+}
+.menu-drawer .menu-drawer__navigation{
+  padding-top:14px;
 }
 
 @media(prefers-reduced-motion:reduce){
