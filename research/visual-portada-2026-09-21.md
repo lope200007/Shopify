@@ -707,3 +707,89 @@ el catálogo.**
 - **Solo un pack lleva el ahorro en el título** («| Ahorras 19,80 €»). Los
   otros cuatro no. Unificarlo es cambiar cuatro títulos del catálogo, que
   es la voz de Pablo. Lo dejo propuesto, no hecho.
+
+---
+
+## 17. «¿Son los colores correctos?» — medido, no opinado
+
+Pablo lo preguntó y la respuesta corta es **sí, la elección es correcta;
+la ejecución tenía tres derivas, y una de ellas era un fallo de verdad**.
+
+### Lo que hace la competencia, medido por dentro
+
+No de memoria: abriendo sus webs y leyendo los estilos calculados del DOM.
+
+| | Lienzo | Texto | Marca | Acento / CTA |
+|---|---|---|---|---|
+| **Tiendanimal** | blanco (35,7 M px²) | `#444` `#555` | verde `#00632E` | naranja `#EC6533` |
+| **Kiwoko** | blanco (20,7 M px²) | `#444` `#333` | rojo `#CB333B` | el mismo rojo |
+| **Patitascalidas** | crema `#FBF7F1` | `#23261F` `#575C50` | verde `#1F4A37` | terracota `#A94F1E` |
+
+**La estructura es la misma en las tres**: un lienzo neutro dominante, un
+texto oscuro que no es negro puro, y **un solo color de acción**.
+Tiendanimal usa verde de marca + naranja de oferta, que es exactamente
+nuestro reparto.
+
+La única diferencia real es el lienzo: ellos blanco, nosotros crema. Y eso
+está bien que sea distinto. Ellos son cadenas grandes con miles de
+referencias: el blanco es el fondo neutro que deja respirar un catálogo
+enorme. Nosotros somos 124 productos con fotos de proveedor de calidad
+desigual, y **el crema las unifica**: sobre blanco, una foto con fondo
+blanco recortado y otra con fondo gris se ven como dos tiendas distintas;
+sobre crema, las tarjetas blancas flotan y el conjunto se lee como una sola.
+
+### Contraste: los siete pares que importan
+
+| | Ratio | Mínimo | |
+|---|---|---|---|
+| Texto normal (tinta sobre crema) | 14,38:1 | 4,5 | AAA |
+| Texto secundario | 6,45:1 | 4,5 | AA |
+| Barra de aviso (crema sobre verde) | 9,40:1 | 4,5 | AAA |
+| Botón secundario | 9,40:1 | 4,5 | AAA |
+| Botón principal | 5,49:1 | 4,5 | AA |
+
+Todos pasan.
+
+### Las tres derivas
+
+Al medir la portada aparecieron colores que no estaban en nuestra paleta:
+
+| Debería ser uno | Y eran dos | Distancia |
+|---|---|---|
+| Verde | `#1F4A37` (nuestro) y `#2E5943` (pie y boletín) | **ΔE 6,4** |
+| Naranja | `#A94F1E` (nuestro) y `#C0602B` (tema) | **ΔE 7,5** |
+| Beige de borde | `#E0D5C2` y `#E4DBCC` | ΔE 3,1 |
+
+Por encima de ΔE 2 se nota a simple vista. Son colores lo bastante
+parecidos para parecer un error y lo bastante distintos para verse.
+
+### Y el fallo de verdad
+
+El naranja del tema, `#C0602B`, con texto blanco da **4,24:1**. El mínimo
+de la norma es 4,5:1. **No llega.**
+
+Y no es un color cualquiera: `color10` es
+`palette_primary_button_background`. Es el color del botón **«Añadir al
+carrito»** de las 124 fichas, y el de las insignias de oferta.
+
+Unificado con el nuestro, `#A94F1E`, que da **5,49:1** con blanco y 5,15:1
+con crema. Se arregla el contraste y la duplicidad de un solo cambio.
+
+Comprobado en la ficha después: **un solo naranja y un solo verde en toda
+la página.**
+
+### La regla que queda
+
+Nuestra paleta vive en dos sitios: las variables CSS de
+`assets/patitas-cj.css` y el `color_palette` de
+`config/settings_data.json`. **Los dos tienen que decir lo mismo.** Si se
+cambia un color, se cambia en los dos. Si no, aparece esto: dos verdes, dos
+naranjas y un botón que no cumple la norma sin que nadie lo haya decidido.
+
+### Lo que NO he cambiado, y por qué
+
+`ui-ux-pro-max` propone para «tienda de mascotas» un verde azulado
+`#0D9488` con estilo «plastilina». **No lo he puesto.** Nuestra paleta está
+copiada de tiendas españolas que venden de verdad; la suya sale de una
+base de datos genérica. Una base de datos no sabe que Tiendanimal y
+Kiwoko, las dos, evitan el turquesa.
