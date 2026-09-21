@@ -338,7 +338,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<h4>Llega en 1 o 2 semanas</h4>",
+                    "text": "<h4>Llega en 1 a 3 semanas</h4>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -363,7 +363,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Sale de nuestro proveedor en Asia: de 1 a 3 días laborables de preparación y de 4 a 8 de transporte, con número de seguimiento. El plazo exacto lo ves antes de pagar. Envío gratis a partir de 39 €.</p>",
+                    "text": "<p>Sale de nuestro proveedor en Asia, siempre con número de seguimiento. Cuánto tarda depende del producto: si en la descripción pone un plazo concreto, ese es el que manda. El plazo exacto lo ves antes de pagar. Envío gratis a partir de 39 €.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",

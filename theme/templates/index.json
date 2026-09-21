@@ -13,7 +13,7 @@
         "conf2": {
           "type": "confianza",
           "settings": {
-            "titulo": "Llega en 1 o 2 semanas",
+            "titulo": "Llega en 1 a 3 semanas",
             "detalle": "Sale del almacén en 1 a 3 días laborables"
           }
         },
@@ -90,7 +90,7 @@
           "type": "ventaja",
           "settings": {
             "titulo": "El plazo, antes de pagar",
-            "texto": "Los envíos salen de China y tardan una o dos semanas. Lo ponemos delante, no en la letra pequeña."
+            "texto": "Los envíos salen de China y tardan entre una y tres semanas, según el producto. Lo ponemos delante, no en la letra pequeña."
           }
         },
         "vent3": {
@@ -126,7 +126,7 @@
           "type": "pregunta",
           "settings": {
             "pregunta": "¿Cuánto cuesta el envío?",
-            "respuesta": "<p>6,99 € por pedido, y <strong>gratis a partir de 39 €</strong> de compra.</p><p>Servimos a España peninsular y Baleares. Todavía no llegamos a Canarias, Ceuta ni Melilla.</p>"
+            "respuesta": "<p>6,99 € por pedido a España peninsular y Baleares, y <strong>gratis a partir de 39 €</strong> de compra.</p><p>Al resto de la Unión Europea, 8,99 €. A otros países, 12,99 €. Todavía no llegamos a Canarias, Ceuta ni Melilla.</p>"
           }
         },
         "duda_4": {
