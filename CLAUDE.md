@@ -343,6 +343,34 @@ Instalados con `npx skills add`, viven en `.agents/skills/` y se enlazan desde
 | `product-photography` | `skills-101/superpowers` | Fotografía de producto |
 | `humanizer` | `blader/humanizer` | Reescribe texto que suena a IA. Útil para descripciones de producto y anuncios. |
 | `linkfox-dld-product-search` | `linkfox-ai/linkfox-skills` | Búsqueda de proveedores en 1688. **De pago.** Ver aviso abajo. |
+| `emil-design-eng` | `emilkowalski/skill` | Criterio de pulido de UI y detalles invisibles. Emil Kowalski (Sonner, Vaul). |
+| `apple-design` | `emilkowalski/skill` | El enfoque de Apple de movimiento físico, traducido a web |
+| `animate` | `emilkowalski/skill` | Decidir una animación en orden: si animar, para qué, qué propiedades |
+| `animation-vocabulary` | `emilkowalski/skill` | Glosario inverso: «lo que rebota al abrir» → *pop in* |
+| `review-animations` | `emilkowalski/skill` | Revisa código de movimiento contra un listón alto |
+| `improve-animations` | `emilkowalski/skill` | Auditoría de movimiento de un repositorio, con plan priorizado |
+| `find-animation-opportunities` | `emilkowalski/skill` | Solo lectura: dónde falta movimiento y dónde sobra |
+| `mobile-native` | `emilkowalski/skill` | Que una web se sienta nativa en el móvil: *tap highlight*, hover pegado, meta. **El más aplicable de los ocho: nuestro tráfico humano es móvil.** |
+| `impeccable` | `pbakaus/impeccable` | Dirección de arte y craft de interfaz. **Copia solo-markdown, sin el binario.** Ver abajo. |
+
+### `impeccable`: instalado a medias, y a propósito
+
+`pbakaus/impeccable` v4.3.1 (Apache 2.0) es un skill de diseño muy completo:
+41 archivos de referencia con criterio de tipografía, color, retícula, crítica
+y auditoría. Todo eso es markdown y se ha leído.
+
+Pero su `SKILL.md` manda ejecutar `scripts/impeccable`, un lanzador que
+**descarga un binario cerrado** desde las releases de GitHub y lo corre en esta
+máquina. El lanzador está bien hecho —verifica sha256 y se niega a ejecutar lo
+que no cuadra— pero el binario no se puede leer. Y esta máquina tiene
+credenciales de escritura sobre la tienda de verdad.
+
+Así que está instalado **sin `scripts/`**. El propio skill contempla ese caso
+(«Launcher unavailable») y trae `reference/degraded/` para eso. Nuestro
+`SKILL.md` lleva un aviso arriba explicándolo.
+
+No es una acusación contra el autor: es que «no he visto nada malo» y «no lo he
+podido ver» no son lo mismo, y aquí solo vale lo segundo dicho en voz alta.
 | **pack de Matt Pocock** (37) | `mattpocock/skills` | Ingeniería: specs, tickets, TDD, review, entrevistas |
 | **pack de Addy Osmani** (25) | `addyosmani/agent-skills` | Ciclo `/spec → /plan → /build → /test → /review → /ship` |
 
@@ -444,6 +472,11 @@ No están instalados, y no por capricho:
 | `linkfox-ai@linkfox-dld-product-search` | SaaS comercial: login por SMS con tu número, venta de planes por WeChat/Alipay y envío de tus búsquedas a `tool-gateway.linkfox.com`. No es malicioso, pero no es gratis ni privado. |
 | `scrapecreators@ad-library-teardown` | Exige `SCRAPECREATORS_API_KEY` de pago. La Meta Ad Library es pública y gratis: `researching-product-market` ya la usa directamente. |
 | `agricidaniel/claude-ads@ads-tiktok` | 38 líneas que referencian `ads/references/*` y un "conductor" inexistentes. Es una pieza de una suite mayor; suelta no funciona. Reevaluar solo si se instala `claude-ads` entera. |
+| `emilkowalski/skill@write-swift` | Swift y concurrencia de iOS. No tenemos app nativa. |
+| `emilkowalski/skill@animate-expo` | React Native y Expo. Nuestro escaparate es Liquid. |
+| `emilkowalski/skill@ask-sonner` | Guía de Sonner, librería de *toasts* de React. No usamos React. |
+| `emilkowalski/skill@pick-ui-library` | Catálogo de librerías de React (cmdk, dnd-kit, recharts…). Mismo motivo. |
+| `emilkowalski/skill@prototype` | Necesita servidor de desarrollo y React, y el nombre ya lo ocupa otro skill instalado. |
 
 Lección: **el número de instalaciones no mide calidad.** Los dos de dropshipping
 más instalados eran folletos publicitarios.
