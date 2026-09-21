@@ -276,3 +276,23 @@
   .pcj .pcj-confianza b{font-size:13px;margin-bottom:2px}
   .pcj .pcj-confianza span{font-size:12px;line-height:1.3}
 }
+
+/* Contraste de las tarjetas de categoria en movil.
+   Al pasarlas a dos columnas el texto ocupa mas parte de la tarjeta y se salia
+   de la zona oscura del degradado: "Comer mejor" sobre un suelo claro y "Salir
+   sin estropear nada" sobre un cielo azul no se leian. Se oscurece antes y mas.
+   Comprobado con captura, no a ojo. */
+@media(max-width:640px){
+  .pcj .pcj-categoria::after{
+    background:linear-gradient(180deg,
+      rgba(0,0,0,.10) 0%,
+      rgba(0,0,0,.38) 42%,
+      rgba(0,0,0,.86) 100%);
+  }
+  .pcj .pcj-etiqueta{white-space:nowrap}
+}
+/* En lo mas estrecho la pildora dice solo "Ver los 47": la palabra completa
+   partia en dos lineas y descuadraba la tarjeta. */
+@media(max-width:430px){
+  .pcj .pcj-etiqueta-largo{display:none}
+}

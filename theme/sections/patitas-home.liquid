@@ -156,7 +156,7 @@
                 <span class="pcj-categoria-texto">
                   <small>{{ bloque.settings.antetitulo | escape }}</small>
                   <h3>{{ bloque.settings.titulo | default: col.title | escape }}</h3>
-                  <span class="pcj-etiqueta">Ver los {{ col.products_count }} productos</span>
+                  <span class="pcj-etiqueta">Ver los {{ col.products_count }}<span class="pcj-etiqueta-largo"> productos</span></span>
                 </span>
               </a>
             {%- endif -%}
