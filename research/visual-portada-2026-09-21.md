@@ -901,3 +901,80 @@ páginas, descripciones SEO de colección, artículos del blog, la política
 legal y los ajustes de envío. Cambiar uno no cambia los otros.
 
 **Antes de dar por corregido un dato, hay que listar dónde vive.**
+
+---
+
+## 19. Tres packs nuevos, y cómo se resolvió lo de la foto
+
+Ayer dejé el pack de gato sin hacer porque «necesita una foto de conjunto y
+no tengo con qué generarla». Eso era cierto a medias: no puedo **generar**
+una imagen, pero sí puedo **componer** una con las fotos reales de cada
+pieza. Y componer es mejor que generar: el cliente puede ir a ver cada foto
+en su propia ficha.
+
+### Los tres
+
+| Pack | Piezas | Suma real | Precio | Ahorro | Con BIENVENIDA10 |
+|---|---|---|---|---|---|
+| **El gato recién llegado** | rascador 35 cm + hierba gatera + pez | 55,70 € | 46,90 | 8,80 | 42,21 € ✓ |
+| **El gato en invierno** | hamaca radiador + saco cueva M + manta 40×50 | 79,70 € | 66,90 | 12,80 | 60,21 € ✓ |
+| **Todo el paseo** | arnés+correa + botella 3 en 1 + portabolsas | 65,70 € | 55,90 | 9,80 | 50,31 € ✓ |
+
+La última columna importa: los tres siguen por encima de 39 € después de
+aplicar el código de bienvenida, así que la frase «el envío sale gratis» no
+miente a nadie.
+
+### El error que volví a estar a punto de cometer
+
+Iba a poner el rascador a **17,90 €**. Ese es el precio de la variante de
+**30 cm**. El pack lleva la de **35 cm**, que su propia ficha llama «la
+medida más habitual para un gato adulto normal», y cuesta **20,90 €**.
+
+Es exactamente el mismo fallo del albornoz de ayer. La regla ya está en el
+manual y aun así casi cae otra vez: **en un producto con variantes, el
+precio del producto no existe.**
+
+### Las fotos: tres intentos hasta que estuvo bien
+
+Compuestas con PIL, 1200 × 1200, fondo crema `#FBF7F1` y borde `#E4DBCC` —
+los de la tienda. Arriba la foto de ambiente, abajo las otras dos piezas.
+
+**Intento 1 — formato equivocado.** Salieron 1380 × 500. Las tarjetas del
+tema recortan en **cuadrado**: se habrían comido las dos piezas laterales.
+
+**Intento 2 — texto en inglés dentro.** La foto de la hierba gatera lleva
+rótulos incrustados: «Hydroponic Cat Grass Box». Poner eso en la portada de
+un pack, el mismo día que acabo de pasar 304 textos a español de España,
+sería deshacerlo con una imagen. De sus diez fotos, **nueve tienen texto**;
+solo una está limpia. Es la que se usó.
+
+Lo mismo con el conjunto de arnés y correa: la única foto que enseña las dos
+piezas lleva la medida impresa («0.8x1.8m») y salía cortada por el borde.
+
+**Intento 3 — una foto que engaña.** Puse arriba al teckel con el
+portabolsas, pero el recorte dejaba en primer plano un **jersey de rayas
+que no va en el pack**. Reordenado: arriba la botella, abajo el arnés y el
+teckel en pequeño, donde el dispensador se ve claro.
+
+**La regla:** una foto de pack no puede enseñar en grande algo que no va
+dentro. Aunque sea la foto oficial del producto.
+
+### Y un desajuste que creé yo
+
+Al meter los tres con «| Ahorras X €» en el título, la rejilla quedó con
+**cuatro packs que lo dicen y cuatro que no**. Ayer decidí no tocar esos
+cuatro títulos porque son la voz de Pablo. Hoy, habiendo creado el
+desajuste, dejarlo a medias era peor que cualquiera de las dos opciones.
+
+Añadido a los cuatro. Los ahorros son los verificados ayer, uno a uno.
+**Los cuatro `handle` no han cambiado**, así que ningún enlace se rompe:
+comprobado en la respuesta de cada mutación.
+
+### Una fragilidad que dejo señalada, sin tocar
+
+La foto del **Pack de coche** (el de septiembre) lleva **los precios
+escritos dentro de la imagen**: «34,90 € por separado», «En pack: 64,90 €».
+Hoy es verdad. El día que cambie un precio, la imagen mentirá y nadie se
+acordará de ella.
+
+Las tres nuevas no llevan ni un número dentro. A propósito.
