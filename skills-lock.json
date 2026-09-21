@@ -464,6 +464,14 @@
       "skillPath": "skills/spec-driven-development/SKILL.md",
       "computedHash": "aca026683acdae1cd8a58f335fb26e60fb5db11ae81461a6896b0bf561aacb75"
     },
+    "taste": {
+      "source": "senlindesign/taste-skill",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "86baaf8bd95bbb7af5eed371c548f44d1ce4ff18c66e37ead9a350ffbbe1e597",
+      "commit": "6dce223f2f5665d3636ca9a44ec3a7aa1322a9b8",
+      "nota": "Instalado a mano: SKILL.md + references/. No se copian docs/ (imagenes y una web de demo) ni evals/. El unico fichero ejecutable, references/extract.js, es una funcion que se pasa a browser_evaluate y solo LEE el DOM: cero llamadas de red."
+    },
     "tdd": {
       "source": "mattpocock/skills",
       "sourceType": "github",

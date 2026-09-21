@@ -512,3 +512,91 @@ Los seis ficheros del tema se subieron con la técnica de la URL, apuntando
 al SHA exacto del commit, y **cada uno verificado comparando su `checksumMd5`
 en Shopify con el `md5sum` local**. `upsertedThemeFiles` vuelve vacío en las
 subidas por URL: no sirve para saber si funcionó.
+
+---
+
+## 15. La ficha de producto y el carrito
+
+### El botón decía «Agregar al carrito»
+
+Y esa es una frase de español de América, no de España. Aquí se dice
+**«Añadir»**. Al mirarlo, el fichero de idioma entero (`locales/es.json`,
+304 textos) estaba en la variante americana: «Retiro disponible» en vez de
+recogida, «En existencias» en vez de en stock, «video» sin tilde, «la
+calificación de este producto»…
+
+Y una falta de ortografía a la vista de todo el mundo, en el carrito vacío:
+
+> Tu carrito **esta** vacío
+
+Reescrito entero. **Esto no es un capricho de estilo.** Esta tienda tiene
+un problema de confianza —35 visitas, cero ventas— y el idioma es la
+primera señal que lee un comprador español para decidir si esto es una
+tienda de aquí o un revendedor de fuera.
+
+**La red de seguridad:** el fichero original sigue intacto en el tema que
+está publicado, así que nada de esto es irreversible. Y si se hubiera
+perdido alguna clave, Shopify enseña el texto en inglés: se vería, no se
+rompería.
+
+### Los títulos se leían rotos, también en la rejilla
+
+Ya contado en la sección 14. Un apunte de lo que **no** funcionó: intenté
+aplicar el mismo tratamiento al `<h1>` de la ficha de producto y **no hizo
+nada**, porque ese titular no sale de `blocks/product-title.liquid`: sale
+de un bloque de texto de `templates/product.json` con `<h1>{{ product.title }}</h1>`
+dentro. Lo vi mirando el HTML, no suponiéndolo.
+
+Peor: el modificador que había añadido para «la ficha» se habría aplicado
+a las tarjetas de productos relacionados de la ficha, que es donde NO lo
+quería. Comprobé que en esa página no hay tarjetas (cero), así que no
+rompía nada — y aun así lo quité. **Código muerto que dice hacer algo que
+no hace es peor que no tener código.**
+
+### El carrito no decía nada del envío gratis
+
+Con 39,80 € en el carrito ya lo tenías y la página no se enteraba. Con
+29,90 €, nadie te decía que por 9,10 € más te lo llevabas gratis. Eso, en
+una tienda con pedido medio de ~20 €, es dinero que se deja en la mesa.
+
+**La trampa, que es la razón de que esto no sea trivial.** Antes de
+escribir nada lo comprobé con un pedido de prueba:
+
+| Carrito | Con BIENVENIDA10 | Envío |
+|---|---|---|
+| 42,00 € | **37,80 €** | **6,99 € — se pierde el envío gratis** |
+
+La condición de envío gratis se evalúa **sobre el importe ya rebajado**.
+O sea: un aviso que dijera «ya tienes el envío gratis» a alguien con 40 €
+le estaría mintiendo en cuanto usara el código que le ofrecemos en la
+barra de arriba.
+
+Por eso el aviso tiene tres estados, y el tercero solo lo ve quien le
+afecta:
+
+| Carrito | Qué se ve |
+|---|---|
+| 19,90 € | «Te faltan **19,10 €** para el envío gratis» + barra |
+| 39,80 € | «Ya tienes el envío gratis» **+ aviso**: con el código te quedarías en 35,82 € y volverías a pagar el envío |
+| 99,50 € | «Ya tienes el envío gratis», **sin aviso** (con el código seguirías por encima) |
+
+Los tres comprobados en el navegador, uno a uno. Sin JavaScript: se
+recalcula solo porque la página del carrito se vuelve a pintar al cambiar
+cantidades.
+
+### «También te podría gustar» no recomendaba nada
+
+Debajo del carrito había un bloque con ese título. No es el recomendador
+de Shopify: es una lista fija apuntando a la colección `all` con
+`max_products: 4`. O sea, **los cuatro primeros productos del catálogo**,
+que resultan ser abrigos de perro. A quien lleva un rascador de gato en el
+carrito se le enseñaban cuatro abrigos de perro y se le decía que le
+podrían gustar.
+
+Ahora apunta a `empieza-por-aqui` (los diez elegidos) y se llama **«Lo que
+más se busca»**, que es lo que es. Además ayuda con el envío gratis: son
+productos de entre 17 y 30 €.
+
+**La regla:** un título que promete personalización sobre una lista fija es
+una mentira pequeña. Se arregla cambiando el título o cambiando la lista.
+Aquí se han cambiado las dos.

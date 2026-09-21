@@ -330,6 +330,20 @@ npx skills add "<owner/repo@skill>" -y
   `ads/references/*` y un "conductor" que no existen si no instalas la suite
   entera. Suelto está roto.
 
+- **Se contradice a sí mismo** → `bergside/awesome-design-skills`, 68
+  ficheros de estilos (neon, cosmic, retro, brutalism…). El llamado
+  «Refined» se describe como *«serif elegante, paletas sobrias y
+  sofisticadas»* y sus colores reales son `#3B82F6` y `#8B5CF6`: **el azul
+  y el violeta por defecto de Tailwind**. Es el «AI slop» genérico que
+  `impeccable` existe para evitar. Además esta tienda ya tiene un diseño
+  decidido y copiado de tiendas españolas que venden de verdad; 68 estilos
+  sueltos solo invitan a cambiarlo sin motivo. (21/09/2026)
+- **Resuelve un problema que no tenemos** → `img2threejs/img2threejs`
+  convierte la foto de un objeto en un modelo 3D de Three.js. Técnicamente
+  no tiene nada malo. Pero esta es una tienda de dropshipping con fotos de
+  proveedor y cero ventas: lo que le falta no es 3D. Rechazado por no
+  encajar, no por inseguro. (21/09/2026)
+
 Deja constancia en la tabla de abajo de lo instalado y de lo rechazado con su
 motivo, para no reevaluar lo mismo dos veces.
 
@@ -370,6 +384,39 @@ Instalados con `npx skills add`, viven en `.agents/skills/` y se enlazan desde
 | `mobile-native` | `emilkowalski/skill` | Que una web se sienta nativa en el móvil: *tap highlight*, hover pegado, meta. **El más aplicable de los ocho: nuestro tráfico humano es móvil.** |
 | `impeccable` | `pbakaus/impeccable` | Dirección de arte y craft de interfaz. **Copia solo-markdown, sin el binario.** Ver abajo. |
 | `ui-ux-pro-max` | `nextlevelbuilder/ui-ux-pro-max-skill` | Base de datos de diseño consultable desde el terminal: 192 paletas por tipo de producto, 74 parejas de tipografías, 119 reglas de UX, 79 estilos. Python de biblioteca estándar, sin red. Ver abajo. |
+| `taste` | `senlindesign/taste-skill` | Desmonta el diseño de una web ajena y devuelve los valores exactos: colores, escala tipográfica, espaciados, radios. Y el **porqué** de cada elección, no solo el qué. Ver abajo. |
+
+### `taste`: lo que yo hacía a mano, hecho bien
+
+Todo el 21/09 estuve midiendo Tiendanimal y Kiwoko a ojo y con consultas
+sueltas al navegador para copiarles el patrón del menú. Este skill es
+exactamente ese trabajo, pero sistemático: le das una dirección y devuelve
+la paleta real, la escala de tamaños de letra, los espaciados, los radios
+de las esquinas y las sombras, **medidos del DOM**, no estimados de una
+captura.
+
+Y una cosa que lo separa de los demás: obliga a escribir **por qué** el
+diseño funciona, y prohíbe expresamente las palabras vacías. Trae un `grep`
+que busca «clean», «modern», «sleek», «premium», «elegante»… en tu propia
+salida y te la tumba si las has usado. Esa es justo la disciplina que
+necesita este proyecto.
+
+**Los cuatro controles:**
+
+| Control | Resultado |
+|---|---|
+| Inyección de prompt | Cero coincidencias. |
+| Scripts ejecutables | Uno solo: `references/extract.js`. Leído entero (409 líneas). |
+| Salida de red | **Ninguna.** `extract.js` no es un programa que se ejecute: es una función que se le pasa a `browser_evaluate` y que solo **lee** el DOM de la página abierta. Sin `fetch`, sin `import`, sin `require`. |
+| Credenciales y pagos | Nada. |
+
+Un detalle que dice mucho de quien lo escribió: al recorrer una web, el
+skill **salta a propósito** las URL que contengan `login`, `checkout`,
+`cart`, `account` o `password`. No husmea donde no debe.
+
+**Lo que NO se ha copiado:** `docs/` (imágenes, un modelo 3D y una web de
+demostración) y `evals/`. No hacen falta para usarlo.
+
 
 ### `ui-ux-pro-max`: 192 paletas, y por qué pasa el filtro
 
