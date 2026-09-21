@@ -793,3 +793,111 @@ naranjas y un botón que no cumple la norma sin que nadie lo haya decidido.
 copiada de tiendas españolas que venden de verdad; la suya sale de una
 base de datos genérica. Una base de datos no sabe que Tiendanimal y
 Kiwoko, las dos, evitan el turquesa.
+
+---
+
+## 18. El barrido que no había hecho
+
+Pablo preguntó si había corregido todo y hecho un barrido. La respuesta
+honesta era **no**: había ido corrigiendo lo que me iba encontrando tirando
+de hilos, que no es lo mismo. Este es el barrido de verdad.
+
+### Lo primero: llevaba toda la sesión ignorando un aviso
+
+Cada vez que cargaba una página, el navegador decía «3 errores en consola».
+No miré ni uno en todo el día. Al mirarlos: son **de Shopify y del
+laboratorio**, no del tema. El medidor de analítica de Shopify
+(`event_observer_reporter`) y el iframe de Shop Pay, que este entorno
+bloquea por política de red.
+
+**Salvedad honesta:** aquí el proxy bloquea a los terceros, así que esto no
+demuestra que un visitante real no vea otra cosa. Demuestra que **el tema no
+lanza errores propios**.
+
+### Lo que encontró el barrido
+
+**Cinco sitios más con el «55 €», y ninguno era un producto.** Por eso no
+los pillé: había barrido las 124 fichas y me había parado ahí.
+
+| Dónde | Por qué importa |
+|---|---|
+| Página **Envíos y entregas** | Es la página a la que va la gente justo a mirar eso |
+| Página **Preguntas frecuentes** | |
+| Colección **Ropa y abrigos** (SEO) | Sale en Google |
+| Colección **Regalos** (SEO) | Sale en Google |
+| Artículo **«Mi perro come demasiado rápido»** | |
+
+### Y algo peor que el 55 €: dos páginas que se contradecían
+
+- **Preguntas frecuentes:** «6,99 € a España peninsular… A la Unión Europea,
+  8,99 €. Resto de destinos, 12,99 €.»
+- **Envíos y entregas:** «De momento, **solo a España peninsular**. Todavía
+  no servimos a Baleares, Canarias, Ceuta, Melilla ni fuera de España.»
+
+Fui a mirar el perfil de envío real en vez de elegir a ojo:
+
+| Zona activa | Tarifa |
+|---|---|
+| España peninsular **y Baleares** (48 provincias) | 6,99 € · gratis desde 39 € |
+| **Unión Europea** (27 países) | 8,99 € |
+| **Internacional** (EE. UU., R. Unido, Japón, Australia…) | 12,99 € |
+
+**La de Preguntas frecuentes tenía razón. La de Envíos estaba mal.** Le
+estaba diciendo a un cliente balear o europeo que se fuera, cuando puede
+comprar perfectamente. Corregida.
+
+Y el texto que tenía preparado para la política legal
+(`research/textos/politica-envio.html`) repetía el mismo error. También
+corregido, con un aviso dentro del fichero.
+
+### Lo que comprobé y está bien
+
+| Qué | Resultado |
+|---|---|
+| **40 rutas** (productos, colecciones, páginas, políticas, carrito, búsqueda) | **0 rotas** |
+| **22 productos enlazados** desde blog, páginas y fichas | los 22 **activos** (ninguno archivado) |
+| Enlaces externos del blog | 3, todos a fuentes citadas de precios de peluquería |
+| Políticas legales | 4 de 5 limpias |
+
+### Lo que queda, y por qué
+
+**1. La política de envío legal sigue diciendo 55 €.** Verificado hoy, no
+de memoria: los permisos de esta aplicación incluyen `read_legal_policies`
+pero **no** `write_legal_policies`. No se puede desde aquí. El texto
+corregido está listo para pegar.
+
+**2. Unos 250 textos alternativos de imagen son de relleno.** Hay dos
+generaciones:
+
+- Las primeras: escritas a mano y descriptivas — *«Perro secándose con el
+  albornoz después del baño»*.
+- Las últimas 250: automáticas — *«Hamaca colgante para jaula y transportín
+  de gato — foto 7»*.
+
+Las segundas **existen** (no hay fallo de accesibilidad: toda imagen tiene
+su atributo) pero **no dicen nada**. A una persona ciega, «foto 7» no le
+cuenta qué hay en la foto 7.
+
+**No las he reescrito, y es a propósito.** Para escribir un texto
+alternativo de verdad hay que **mirar la imagen**. Inventar 250
+descripciones sin mirarlas sería peor que dejarlas: tendríamos 250
+descripciones que pueden estar mal. Queda como tarea, con la misma regla
+que la revisión de fotos de septiembre: a tamaño legible y de una en una.
+
+**3. Seis colecciones sin foto de portada**: novedades, regalos, navidad,
+halloween, empieza-por-aqui y la `frontpage` vacía que trae Shopify de
+serie. Solo se nota si alguna se pone como tarjeta en la portada.
+
+**4. Una decisión que es de Pablo:** las zonas de UE e Internacional están
+activas. O el texto dice la verdad (que es lo que he hecho), o se cierran
+las zonas. Se pueden cerrar desde aquí si lo dice, pero es decisión suya,
+no mía.
+
+### La regla que deja este barrido
+
+Barrer «los productos» no es barrer «la tienda». El mismo dato —el umbral
+de envío gratis— vivía en **seis** sitios distintos: fichas de producto,
+páginas, descripciones SEO de colección, artículos del blog, la política
+legal y los ajustes de envío. Cambiar uno no cambia los otros.
+
+**Antes de dar por corregido un dato, hay que listar dónde vive.**
