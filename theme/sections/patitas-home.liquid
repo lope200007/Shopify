@@ -40,8 +40,10 @@
         <h1>{{ section.settings.titular | escape }}</h1>
         <p class="pcj-lead">{{ section.settings.entradilla | escape }}</p>
         <div class="pcj-hero-acciones">
-          <a class="pcj-btn pcj-btn-primario" href="{{ routes.all_products_collection_url }}">{{ section.settings.boton_uno | escape }}</a>
-          <a class="pcj-btn pcj-btn-secundario" href="#categorias">{{ section.settings.boton_dos | escape }}</a>
+          {%- assign destino_uno = section.settings.enlace_uno | default: routes.all_products_collection_url -%}
+          {%- assign destino_dos = section.settings.enlace_dos | default: '#categorias' -%}
+          <a class="pcj-btn pcj-btn-primario" href="{{ destino_uno }}">{{ section.settings.boton_uno | escape }}</a>
+          <a class="pcj-btn pcj-btn-secundario" href="{{ destino_dos }}">{{ section.settings.boton_dos | escape }}</a>
         </div>
         {%- if section.settings.aviso_envio != blank -%}
           <p class="pcj-aviso">{{ section.settings.aviso_envio | escape }}</p>
@@ -83,6 +85,45 @@
       </ul>
     {%- endif -%}
 
+    {%- comment -%} ---------- Escaparate ---------- {%- endcomment -%}
+    <section class="pcj-seccion" aria-labelledby="titulo-escaparate">
+      <div class="pcj-cabecera" data-aparece>
+        <div>
+          <p class="pcj-antetitulo">{{ section.settings.antetitulo_escaparate | escape }}</p>
+          <h2 id="titulo-escaparate">{{ section.settings.titulo_escaparate | escape }}</h2>
+        </div>
+        <p>{{ section.settings.texto_escaparate | escape }}</p>
+      </div>
+      <ul class="pcj-productos">
+        {%- for producto in escaparate.products limit: n_escaparate -%}
+          <li data-aparece style="--pcj-orden:{{ forloop.index0 | modulo: 4 }}">
+            <a class="pcj-producto" href="{{ producto.url }}">
+              <span class="pcj-producto-foto">
+                {%- if producto.featured_image -%}
+                  <img
+                    src="{{ producto.featured_image | image_url: width: 600 }}"
+                    srcset="{{ producto.featured_image | image_url: width: 300 }} 300w, {{ producto.featured_image | image_url: width: 600 }} 600w, {{ producto.featured_image | image_url: width: 900 }} 900w"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1000px) 33vw, 25vw"
+                    alt="{{ producto.featured_image.alt | default: producto.title | escape }}"
+                    width="600" height="600" loading="lazy" decoding="async">
+                {%- endif -%}
+              </span>
+              <span class="pcj-producto-cuerpo">
+                <span class="pcj-producto-nombre">{{ producto.title | escape }}</span>
+                <span class="pcj-precio">
+                  {%- if producto.price_varies -%}<span class="pcj-desde">Desde</span> {% endif -%}
+                  {{ producto.price | money }}
+                </span>
+                <span class="pcj-producto-enlace">Ver producto &rarr;</span>
+              </span>
+            </a>
+          </li>
+        {%- else -%}
+          <li><p class="pcj-vacio">Todavia no hay productos publicados en esta coleccion.</p></li>
+        {%- endfor -%}
+      </ul>
+    </section>
+
     {%- comment -%} ---------- Categorias ---------- {%- endcomment -%}
     <section class="pcj-seccion" id="categorias" aria-labelledby="titulo-categorias">
       <div class="pcj-cabecera" data-aparece>
@@ -122,45 +163,6 @@
           {%- endif -%}
         {%- endfor -%}
       </div>
-    </section>
-
-    {%- comment -%} ---------- Escaparate ---------- {%- endcomment -%}
-    <section class="pcj-seccion" aria-labelledby="titulo-escaparate">
-      <div class="pcj-cabecera" data-aparece>
-        <div>
-          <p class="pcj-antetitulo">{{ section.settings.antetitulo_escaparate | escape }}</p>
-          <h2 id="titulo-escaparate">{{ section.settings.titulo_escaparate | escape }}</h2>
-        </div>
-        <p>{{ section.settings.texto_escaparate | escape }}</p>
-      </div>
-      <ul class="pcj-productos">
-        {%- for producto in escaparate.products limit: n_escaparate -%}
-          <li data-aparece style="--pcj-orden:{{ forloop.index0 | modulo: 4 }}">
-            <a class="pcj-producto" href="{{ producto.url }}">
-              <span class="pcj-producto-foto">
-                {%- if producto.featured_image -%}
-                  <img
-                    src="{{ producto.featured_image | image_url: width: 600 }}"
-                    srcset="{{ producto.featured_image | image_url: width: 300 }} 300w, {{ producto.featured_image | image_url: width: 600 }} 600w, {{ producto.featured_image | image_url: width: 900 }} 900w"
-                    sizes="(max-width: 640px) 50vw, (max-width: 1000px) 33vw, 25vw"
-                    alt="{{ producto.featured_image.alt | default: producto.title | escape }}"
-                    width="600" height="600" loading="lazy" decoding="async">
-                {%- endif -%}
-              </span>
-              <span class="pcj-producto-cuerpo">
-                <span class="pcj-producto-nombre">{{ producto.title | escape }}</span>
-                <span class="pcj-precio">
-                  {%- if producto.price_varies -%}<span class="pcj-desde">Desde</span> {% endif -%}
-                  {{ producto.price | money }}
-                </span>
-                <span class="pcj-producto-enlace">Ver producto &rarr;</span>
-              </span>
-            </a>
-          </li>
-        {%- else -%}
-          <li><p class="pcj-vacio">Todavia no hay productos publicados en esta coleccion.</p></li>
-        {%- endfor -%}
-      </ul>
     </section>
 
     {%- comment -%} ---------- Packs ---------- {%- endcomment -%}
@@ -309,10 +311,12 @@
     { "type": "text", "id": "titular", "label": "Titular", "default": "Productos que hacen mas facil la vida con tu perro." },
     { "type": "textarea", "id": "entradilla", "label": "Entradilla", "default": "Comida, juego, paseo, higiene y descanso. Cada ficha te dice para que perro sirve y para cual no." },
     { "type": "text", "id": "boton_uno", "label": "Boton principal", "default": "Ver todo el catalogo" },
+    { "type": "url", "id": "enlace_uno", "label": "A donde lleva el boton principal", "info": "Si lo dejas vacio, lleva a todo el catalogo." },
     { "type": "text", "id": "boton_dos", "label": "Boton secundario", "default": "Comprar por categoria" },
+    { "type": "url", "id": "enlace_dos", "label": "A donde lleva el boton secundario", "info": "Si lo dejas vacio, baja hasta las categorias de esta misma pagina." },
     { "type": "image_picker", "id": "imagen_hero", "label": "Imagen de la cabecera", "info": "Si la dejas vacia se usa la imagen de marca." },
     { "type": "text", "id": "texto_alternativo_hero", "label": "Texto alternativo de la imagen", "default": "Golden retriever sentado en un parque junto a la botella de paseo 3 en 1" },
-    { "type": "text", "id": "aviso_envio", "label": "Aviso bajo los botones", "default": "Envio gratis a partir de 55 EUR · Entrega habitual de 10 a 20 dias", "info": "Dejalo vacio para no mostrarlo." },
+    { "type": "text", "id": "aviso_envio", "label": "Aviso bajo los botones", "default": "Envio gratis a partir de 39 EUR · Entrega habitual de 10 a 20 dias", "info": "Dejalo vacio para no mostrarlo." },
 
     { "type": "header", "content": "Categorias" },
     { "type": "text", "id": "antetitulo_categorias", "label": "Antetitulo", "default": "Empieza por lo que necesitas" },
@@ -344,7 +348,7 @@
 
     { "type": "header", "content": "Cierre" },
     { "type": "text", "id": "titulo_cierre", "label": "Titulo", "default": "Encuentra algo que tu perro vaya a disfrutar." },
-    { "type": "text", "id": "texto_cierre", "label": "Texto", "default": "Treinta y cuatro productos, todos elegidos de uno en uno." },
+    { "type": "text", "id": "texto_cierre", "label": "Texto", "default": "Todo el catalogo, elegido de uno en uno." },
     { "type": "text", "id": "boton_cierre", "label": "Boton", "default": "Ver todos los productos" }
   ],
   "blocks": [
@@ -352,7 +356,7 @@
       "type": "confianza",
       "name": "Dato de confianza",
       "settings": [
-        { "type": "text", "id": "titulo", "label": "Titulo", "default": "Envio gratis desde 55 EUR" },
+        { "type": "text", "id": "titulo", "label": "Titulo", "default": "Envio gratis desde 39 EUR" },
         { "type": "text", "id": "detalle", "label": "Detalle", "default": "Por debajo, 6,99 EUR" }
       ]
     },

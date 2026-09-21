@@ -251,3 +251,28 @@
   .pcj .pcj-duda summary::after{transition:none}
   .pcj-anima [data-aparece]{opacity:1;transform:none;transition:none;transition-delay:0s}
 }
+
+/* ---------- Ajuste movil de septiembre de 2026 ----------
+   Medido con el navegador a 390 px: la portada ocupaba 7.690 px de alto y el
+   primer producto con precio no aparecia hasta los 3.300 px, cuatro pantallas
+   de scroll. Las tiendas que se miraron de referencia (Wild One, Fable,
+   Tiendanimal) ensenan producto en la primera o la segunda pantalla.
+
+   Dos cambios, los dos de altura, ninguno de color ni de tipografia:
+   1. Las categorias pasan de una a dos columnas. Eran siete tarjetas de 3/2
+      apiladas: 1.900 px. En cuadrado y de dos en dos bajan a unos 800.
+   2. La barra de confianza se compacta: era un bloque de 400 px entre la
+      cabecera y lo siguiente. */
+@media(max-width:640px){
+  .pcj .pcj-categorias{grid-template-columns:repeat(2,1fr);gap:12px}
+  .pcj .pcj-categoria{aspect-ratio:1/1}
+  .pcj .pcj-categoria-texto{padding:14px}
+  .pcj .pcj-categoria-texto small{font-size:10.5px;letter-spacing:.1em}
+  .pcj .pcj-categoria-texto h3{font-size:17px;margin:4px 0 10px;line-height:1.1}
+  .pcj .pcj-etiqueta{min-height:32px;padding:6px 11px;font-size:12.5px}
+
+  .pcj .pcj-confianza{gap:8px;margin:-14px 0 40px}
+  .pcj .pcj-confianza li{padding:12px 10px;border-radius:14px}
+  .pcj .pcj-confianza b{font-size:13px;margin-bottom:2px}
+  .pcj .pcj-confianza span{font-size:12px;line-height:1.3}
+}

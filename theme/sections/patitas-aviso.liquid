@@ -1,0 +1,79 @@
+{% comment %}
+  Barra de aviso de Patitascalidas.
+
+  Por que existe: la tienda tiene dos cosas que la mayoria de visitantes no
+  llega a saber nunca —el envio gratis desde 39 EUR y el 10 % de la primera
+  compra con BIENVENIDA10— porque solo aparecian dentro de la portada o en
+  ningun sitio. Las tres tiendas que se miraron de referencia (Wild One,
+  Fable y Tiendanimal) ponen exactamente esto en la primera linea de todas
+  sus paginas, encima del logotipo.
+
+  Va en el grupo de cabecera, asi que sale en TODAS las paginas: portada,
+  colecciones, fichas y blog.
+
+  Sin JavaScript. Si el mensaje esta vacio, la barra no se pinta.
+{% endcomment %}
+
+{%- liquid
+  assign mensaje = section.settings.mensaje | strip
+-%}
+
+{%- if mensaje != blank -%}
+  <div class="pcj-aviso-barra">
+    {%- if section.settings.enlace != blank -%}
+      <a class="pcj-aviso-barra__txt" href="{{ section.settings.enlace }}">{{ mensaje }}</a>
+    {%- else -%}
+      <p class="pcj-aviso-barra__txt">{{ mensaje }}</p>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .pcj-aviso-barra{
+    background:#1f4a37;
+    color:#fbf7f1;
+    text-align:center;
+  }
+  .pcj-aviso-barra__txt{
+    display:block;
+    margin:0 auto;
+    max-width:1240px;
+    padding:9px 16px;
+    font-size:13px;
+    font-weight:700;
+    line-height:1.35;
+    letter-spacing:.01em;
+    color:inherit;
+    text-decoration:none;
+  }
+  a.pcj-aviso-barra__txt{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+  a.pcj-aviso-barra__txt:hover{text-decoration-thickness:2px}
+  a.pcj-aviso-barra__txt:focus-visible{
+    outline:2px solid #fbf7f1;outline-offset:-4px;border-radius:6px;
+  }
+  @media(max-width:480px){
+    .pcj-aviso-barra__txt{font-size:12.5px;padding:8px 12px}
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Aviso de Patitascalidas",
+  "settings": [
+    {
+      "type": "text",
+      "id": "mensaje",
+      "label": "Mensaje",
+      "info": "Dejalo vacio para quitar la barra.",
+      "default": "Envio gratis desde 39 EUR · -10 % en tu primera compra con BIENVENIDA10"
+    },
+    {
+      "type": "url",
+      "id": "enlace",
+      "label": "A donde lleva al pulsar",
+      "info": "Opcional. Si lo dejas vacio, el mensaje no es un enlace."
+    }
+  ],
+  "presets": [{ "name": "Aviso de Patitascalidas" }]
+}
+{% endschema %}
