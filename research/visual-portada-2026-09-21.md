@@ -363,3 +363,152 @@ Ya no hay ni un producto invisible en las dos secciones nuevas.
 
 Regla que confirma esto otra vez: **el número del buscador no es la verdad,
 es una copia que tarda.** La verdad está en el producto.
+
+---
+
+## 13. «Entro en gatos y veo más cosas de perros»
+
+Pablo lo dijo así, y tenía razón por **tres motivos distintos**, no uno.
+Los tres estaban a la vez, y por eso la sensación era tan fuerte.
+
+### Motivo 1: cinco productos de perro llevaban la etiqueta `gato`
+
+La colección Gatos es automática: entra todo lo que lleve la etiqueta
+`gato`. Cinco productos que son **solo de perro** la llevaban puesta.
+
+No se decidió por el título. Se leyó la ficha de cada uno, que es donde
+está la verdad:
+
+| Producto | Lo que dice su propia ficha | Decisión |
+|---|---|---|
+| Pijama de felpa para perro | «Es ropa de perro pequeño y mediano», tallas por kilos | **Fuera** |
+| Abrigo de invierno para perro | Talla más pequeña: cuello 30 cm, pecho 44 cm | **Fuera** |
+| Bebedero portátil 2 en 1 | «sin soltar la correa», 29 cm de alto | **Fuera** |
+| Collar de perro con AirTag | Ver nota abajo | **Fuera** |
+| Limpiapatas eléctrico | Cepillos giratorios para el barro del paseo | **Fuera** |
+
+Y cuatro que **parecían** de perro por el título y se quedan, porque su
+ficha dice explícitamente que también sirven para gato:
+
+| Producto | Lo que dice su ficha | Decisión |
+|---|---|---|
+| Bufanda y gorro de Navidad | «da de sobra para un gato»; las fotos son con un gato | Se queda |
+| Collar inflable | «Vale igual para gatos grandes en las tallas XS y S» | Se queda |
+| Alfombra olfativa | Tiene una sección entera: «También vale para gatos» | Se queda |
+| Sudadera con capucha | «Está pensada para perro pequeño y para gato» | Se queda |
+
+**Nota sobre el collar con AirTag.** Su ficha sí dice «perro pequeño o gato
+grande» en la talla S. Aun así se ha sacado de Gatos, y es una decisión mía,
+no un dato: es un collar de hebilla metálica y anilla en D, de 60 a 90 g.
+Un collar de gato debe llevar cierre de seguridad que se suelte solo si el
+animal se engancha. Este no lo lleva. Prefiero no ofrecérselo a alguien que
+está comprando para un gato. Si Pablo quiere volver a ponerlo, es un cambio
+de una etiqueta.
+
+### Motivo 2: solo cabía UN producto por pantalla
+
+Y eso es lo que más pesaba. El tema tenía `mobile_product_card_size` en
+`large`, que en móvil es **una sola tarjeta por fila**. Con la foto ocupando
+toda la anchura, un perro dorado a pantalla completa es lo único que ves.
+
+Lo llamativo: **`small` (dos por fila) es el valor por defecto de Horizon.**
+Alguien lo había cambiado. Vuelto a `small`.
+
+Medido en una pantalla de 390 px de ancho, en la portada de Gatos:
+
+| | Antes | Ahora |
+|---|---|---|
+| Productos visibles sin bajar | **1** (a medias) | **4** |
+| Líneas de texto antes del primer producto | 10 | 3 |
+
+### Motivo 3: la foto de la propia sección tenía un perro dentro
+
+La imagen de la colección Gatos era «un gato **y un perro** descansando
+juntos». Como foto está bien; como cartel de la sección de gatos, no.
+Cambiada por un gato solo, dentro del rascador redondo, mirando a cámara.
+
+**Aviso: esa foto anterior ya no existe.** La imagen de una colección se
+sustituye en el sitio, y el CDN de Shopify no guarda la versión vieja (lo
+comprobé pidiendo la URL antigua: devuelve la nueva). No estaba en
+Archivos ni en el repositorio. Si la quería, hay que volver a generarla.
+
+### Lo que sigue sin estar resuelto
+
+De los 55 que quedan en Gatos, unos 20 son **solo de gato** y unos 35 son
+compartidos de verdad (cepillos, comederos, camas). Un producto compartido
+tiene que salir en las dos secciones: eso no es un error.
+
+Pero **muchos de esos compartidos tienen foto de perro**, porque es la que
+manda el proveedor. Eso no se arregla con etiquetas. Se arregla con lo que
+Pablo pidió después: **más productos que sean solo de gato**. Queda anotado
+como tarea.
+
+## 14. Repaso visual del resto de la tienda
+
+### La portada decía que la tienda es de perros
+
+Literalmente: «PATITASCALIDAS · ACCESORIOS **PARA PERROS**» y «Productos que
+hacen más fácil la vida con **tu perro**». Con 55 productos de gato en el
+catálogo, eso es la raíz del problema: la sección de gatos parecía un
+añadido porque la portada decía que lo era.
+
+Cambiado a «Perros y gatos» y «tu perro o tu gato». Y donde decía «para qué
+**perro** sirve» ahora dice «para qué **animal** sirve».
+
+**Perros y Gatos entran como las dos primeras tarjetas de categoría**, antes
+que Comederos. Es lo que hacen Tiendanimal y Kiwoko: la especie primero,
+la necesidad después.
+
+### Un fallo que llevaba tiempo a la vista: «Ver los 104productos»
+
+Sin espacio. En todas las tarjetas de categoría, desde siempre.
+
+La causa no era una errata: el espacio **sí estaba** en el código. El
+contenedor `.pcj-etiqueta` es `display:inline-flex`, y eso convierte al
+`<span>` de dentro en un elemento flex —o sea, en un bloque— y el navegador
+se come el espacio con el que empieza. Arreglado con `white-space:pre`.
+
+**La lección:** esto no se ve leyendo el código, porque el código está bien.
+Se ve mirando la página.
+
+### Los títulos se leían rotos
+
+Nuestros títulos van en dos partes separadas por una barra. En la rejilla,
+el título se parte en varias líneas y la barra acaba cayendo sola al
+principio de una línea:
+
+```
+Pijama fino para perro
+y gato pequeños
+| Cinco colores,
+cinco tallas
+```
+
+En vez de acortar los 126 títulos —que es catálogo de Pablo y afecta a lo
+que ya está programado en Metricool— se ha hecho algo que **no toca ningún
+dato**: `blocks/product-title.liquid` separa las dos partes y pone la
+segunda debajo, más pequeña y en gris. Queda como un subtítulo.
+
+```
+Pijama fino para perro y gato pequeños
+Cinco colores, cinco tallas
+```
+
+En la ficha del producto el título sale entero, como siempre. Comprobado:
+en la ficha hay 0 subtítulos y el `<h1>` lleva la barra.
+
+**Si un título no lleva barra**, `split` devuelve el título entero y el
+detalle queda vacío: se comporta exactamente como antes.
+
+### La búsqueda
+
+Mismo tratamiento: el titular «Resultados de la búsqueda» ocupaba dos
+líneas a 48 px y media pantalla. Ahora es una línea a 32 px y se ven cuatro
+productos.
+
+### Cómo se subió cada cambio
+
+Los seis ficheros del tema se subieron con la técnica de la URL, apuntando
+al SHA exacto del commit, y **cada uno verificado comparando su `checksumMd5`
+en Shopify con el `md5sum` local**. `upsertedThemeFiles` vuelve vacío en las
+subidas por URL: no sirve para saber si funcionó.
