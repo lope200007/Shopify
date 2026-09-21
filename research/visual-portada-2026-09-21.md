@@ -600,3 +600,110 @@ productos de entre 17 y 30 €.
 **La regla:** un título que promete personalización sobre una lista fija es
 una mentira pequeña. Se arregla cambiando el título o cambiando la lista.
 Aquí se han cambiado las dos.
+
+---
+
+## 16. Los packs: la auditoría que casi hago mal
+
+«Actualiza los packs.» Lo primero era comprobar la promesa que hace la
+propia colección:
+
+> «El ahorro de cada pack está calculado sobre el precio real de sus piezas
+> sueltas, no sobre un precio inventado.»
+
+Eso no es una frase de marketing: es una afirmación comprobable, y en
+España un precio de referencia inflado no es solo feo, es sancionable.
+
+### El error que estuve a punto de cometer
+
+Saqué el catálogo con `priceRangeV2.minVariantPrice` y comparé. Salió esto:
+
+| Pieza | Lo que dice el pack | Lo que leí |
+|---|---|---|
+| Albornoz de secado | 21,90 € | **16,90 €** |
+| Toalla de microfibra | 15,90 € | **12,90 €** |
+
+Iba a acusar al Pack baño y lluvia de inflar el precio de referencia en 8 €.
+
+**Y era mentira mía.** `minVariantPrice` es el precio de la variante **más
+barata**, no el de la que lleva el pack:
+
+- Albornoz: XS 16,90 · S 18,90 · **M 21,90** · L 23,90 · XL 25,90
+- Toalla: Pequeña 12,90 · **Mediana 15,90** · Grande 19,90
+
+El pack dice «albornoz **talla M**» y «toalla **mediana**». Los dos precios
+son correctos.
+
+**La regla, que es nueva y va al manual:** en un producto con variantes, el
+precio del producto no existe. Existe el precio de *cada variante*. Comparar
+contra `minVariantPrice` es comparar contra otra cosa.
+
+### El resultado, ya comprobado bien
+
+Los cinco, contra el precio de la variante exacta que cita cada descripción:
+
+| Pack | Suma real | Precio | Ahorro |
+|---|---|---|---|
+| Coche | 34,90 + 34,90 + 14,90 = 84,70 | 64,90 | 19,80 ✓ |
+| Cachorro | 34,90 + 24,90 + 14,90 = 74,70 | 59,90 | 14,80 ✓ |
+| Comer despacio | 29,90 + 14,90 + 19,90 = 64,70 | 55,90 | 8,80 ✓ |
+| Aseo en casa | 29,90 + 24,90 + 9,90 = 64,70 | 55,90 | 8,80 ✓ |
+| Baño y lluvia | 21,90 + 15,90 + 16,90 = 54,70 | 39,90 | 14,80 ✓ |
+
+**Ninguno miente.** La promesa de la colección se cumple.
+
+Un susto de paso: aparecían **dos limas de uñas**, a 19,90 € y a 29,90 €.
+Si las dos estuvieran a la venta, el precio de referencia del Pack de aseo
+quedaría en entredicho. La de 19,90 € está **archivada** (SKU
+`PTC-LIMAVIEJ-01`, «la vieja»). No está a la venta. No hay conflicto.
+
+### Lo que sí estaba mal
+
+**1. Tres packs seguían diciendo «el envío sale gratis, porque pasa de 55 €».**
+El umbral es 39 € desde el 16 de septiembre. Corregido en cachorro, comer
+despacio y aseo. Comprobado antes de escribirlo que la frase sigue siendo
+verdad con BIENVENIDA10: 59,90 × 0,9 = 53,91 € y 55,90 × 0,9 = 50,31 €,
+los dos por encima de 39.
+
+**2. El Pack de coche era el único sin precio tachado.** Los otros cuatro
+llevaban `compareAtPrice`; este no, así que en la rejilla se veía como un
+producto normal de 64,90 € y el ahorro solo aparecía en el título. Puesto
+en 84,70 €, que es la suma real.
+
+### Y entonces apareció lo gordo
+
+Si tres packs tenían el «55 €» viejo, era razonable pensar que no eran los
+únicos. Barrí **las fichas de los 124 productos activos**, en tres páginas,
+buscando cualquier mención a 55.
+
+**Quince fichas más** decían a sus clientes que el envío gratis empieza en
+55 €, cuando empieza en 39 €.
+
+Esto no es una errata: es **contarle al cliente una oferta peor que la que
+tenemos**. Alguien con 42 € en el carrito leía «gratis a partir de 55 €»,
+calculaba que le faltaban 13 € y se iba.
+
+Las quince corregidas y vueltas a barrer: **cero menciones a 55 € en todo
+el catálogo.**
+
+| | Antes | Ahora |
+|---|---|---|
+| Fichas diciendo 55 € | **18** (15 + 3 packs) | **0** |
+| Fichas diciendo 39 € | 0 | 15 |
+
+### Lo que dejo apuntado y no toco
+
+- **El Pack baño y lluvia cuesta 39,90 €**, noventa céntimos por encima del
+  umbral. Con BIENVENIDA10 se queda en 35,91 € y vuelve el envío de 6,99 €.
+  El nuevo aviso del carrito ya se lo dice a quien compre así. Subirlo a
+  43,90 € lo dejaría a salvo del código, pero **eso es decisión de precio
+  de Pablo**, no mía.
+- **Los cinco packs son de perro.** Ninguno de gato. Es el pack que falta, y
+  además los packs son lo que más empuja a pasar de 39 €. No lo he creado
+  porque un pack nuevo necesita una foto de conjunto, y ahora mismo no
+  tengo con qué generarla (Higgsfield pide autorización y nanobanana no
+  conecta). Con una foto suelta de una de las piezas quedaría peor que los
+  otros cuatro. Queda como tarea.
+- **Solo un pack lleva el ahorro en el título** («| Ahorras 19,80 €»). Los
+  otros cuatro no. Unificarlo es cambiar cuatro títulos del catálogo, que
+  es la voz de Pablo. Lo dejo propuesto, no hecho.

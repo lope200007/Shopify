@@ -347,6 +347,19 @@ npx skills add "<owner/repo@skill>" -y
 Deja constancia en la tabla de abajo de lo instalado y de lo rechazado con su
 motivo, para no reevaluar lo mismo dos veces.
 
+### El precio de un producto con variantes no existe
+
+`priceRangeV2.minVariantPrice` es el precio de la variante **mas barata**,
+no «el precio del producto». Comprobando los packs el 21/09 estuve a punto
+de acusar al Pack bano y lluvia de inflar su precio de referencia porque
+lei 16,90 € donde el pack decia 21,90 €. El albornoz tiene cinco tallas:
+XS 16,90 · S 18,90 · **M 21,90** · L 23,90 · XL 25,90. El pack lleva la M.
+El pack tenia razon y yo no.
+
+**Regla:** para comparar un precio citado en un texto, hay que leer la
+variante concreta que cita ese texto, no el rango del producto.
+
+
 ## Skills de terceros (`.agents/skills/`)
 
 Instalados con `npx skills add`, viven en `.agents/skills/` y se enlazan desde
