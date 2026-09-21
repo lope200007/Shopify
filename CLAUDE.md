@@ -228,6 +228,23 @@ Nada configurado aquí sobrevive al final de la sesión. Es una propiedad de
 seguridad, no un inconveniente: no hay credenciales acumulándose en una
 máquina remota. Lo que debe persistir, se commitea; lo que es secreto, no.
 
+### Las capturas de Playwright caen en el repositorio equivocado
+
+`browser_take_screenshot` con un `filename` suelto guarda **relativo al
+directorio de trabajo de la sesión**, que es `/home/user/libre` (el proyecto
+del token NLX), no este repositorio. Resultado: dieciocho `.png` sueltos en
+la raíz de un repositorio que no tiene nada que ver, y el hook de git
+avisando de ficheros sin seguimiento al terminar.
+
+No es un fallo de Playwright: es que hay dos repositorios en esta máquina y
+el navegador no sabe en cuál estamos trabajando.
+
+Qué hacer: al acabar un repaso visual, mover las capturas a
+`/home/user/libre/.playwright-mcp/` (esa carpeta ya está en su `.gitignore`)
+o borrarlas. Lo que valga la pena conservar va **descrito** en
+`research/`, no como imagen: una captura de un tema borrador caduca en
+cuanto se publica.
+
 ### El navegador no abre ninguna página con candado hasta que se arregla
 
 Síntoma: Playwright devuelve `net::ERR_CERT_AUTHORITY_INVALID` en **cualquier**
