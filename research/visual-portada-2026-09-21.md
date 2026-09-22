@@ -1444,3 +1444,73 @@ eso no cambia el fondo: Instagram funciona y no se le está alimentando.
 
 Retocar la ficha, el botón o el carrito para «subir la conversión». Con 85
 visitas al mes, ninguna de esas mejoras se puede ni medir.
+
+## 26. Publicidad de pago en Meta: los números antes de gastar
+
+Pablo plantea pagar anuncios en Meta. Los datos, antes de opinar.
+
+### Lo que deja cada pedido
+
+Solo **34 de los 127 productos tienen el coste de proveedor registrado**. Con
+esos 34:
+
+| | |
+| --- | ---: |
+| Precio medio de venta (con IVA) | 25,49 € |
+| − IVA (21 %) | 21,06 € |
+| − coste del proveedor | −10,94 € |
+| **= margen bruto** | **10,12 €** (48 %) |
+| − comisión de pago (~1,9 % + 0,25 €) | −0,73 € |
+| **= queda por pedido de un artículo** | **9,39 €** |
+
+### Lo que costaría traer ese pedido
+
+Para una tienda desconocida, en frío, sin historial de compras y sin píxel, el
+coste por venta en Meta en España para este tipo de producto está entre 15 y
+40 €. Con 9,39 € de margen:
+
+| Si Meta cobra por venta | Resultado |
+| ---: | ---: |
+| 15 € | **−5,61 €** |
+| 20 € | **−10,61 €** |
+| 30 € | **−20,61 €** |
+
+Cada venta perdería dinero. No es una opinión pesimista: es una resta.
+
+### Tres cosas que además faltan
+
+1. **No hay píxel de Meta.** Comprobado en el HTML de una ficha: no hay `fbq(`
+   ni `connect.facebook.net`. Tampoco TikTok, ni Google Analytics, ni Google
+   Ads. Sin píxel, Meta no sabe quién compra y no puede optimizar: se gasta a
+   ciegas.
+2. **No está el canal de Facebook e Instagram.** Los canales instalados son
+   Tienda online, Shop, Point of Sale, TikTok y Google & YouTube. Sin ese canal
+   no hay catálogo en Meta, y sin catálogo no hay anuncios dinámicos de
+   producto, que son los que funcionan en comercio.
+3. **93 de 127 productos sin coste.** Sin el coste no se puede saber si un
+   anuncio gana o pierde, ni siquiera a toro pasado.
+
+### Lo que sí haría que salieran los números
+
+El coste por venta se paga **por pedido**, no por artículo. Un pedido de 14,90 €
+y uno de 66,90 € cuestan lo mismo de traer.
+
+- El **Pack el gato en invierno** son 66,90 €. Con el mismo 48 % de margen,
+  deja unos **26 €**.
+- A ese nivel, un coste por venta de 20 € deja beneficio en vez de pérdida.
+
+Es decir: **anunciar packs, no productos sueltos.** Y el envío gratis desde
+39 € ya empuja en esa dirección.
+
+### El orden que propongo
+
+1. Instagram (gratis, y el contenido ya está escrito): ahora mismo las 16
+   publicaciones programadas van solo a TikTok, que trae cero visitas.
+2. Píxel de Meta + canal de Facebook e Instagram. Una tarde, sin coste.
+3. Rellenar el coste de los 93 productos que faltan.
+4. Y entonces, si quiere, anuncios **solo a packs**, con presupuesto pequeño y
+   un límite de pérdida decidido de antemano.
+
+**La decisión es suya.** Gastar en anuncios con 3 visitas al día también sirve
+para comprar datos, que es algo que hoy no tiene. Pero que sea a sabiendas de
+que las primeras semanas se pierde dinero, no por sorpresa.
