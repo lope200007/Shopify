@@ -13,8 +13,32 @@
 
   El numero de productos sale de la coleccion, asi que si manana hay dos mas,
   se actualiza solo.
+
+  POR QUE LLEVA "padre" Y NO ES UNA PLANTILLA APARTE: la alternativa era crear
+  collection.perros.json y collection.gatos.json y apuntar cada coleccion a su
+  plantilla. Eso obliga a cambiar un ajuste de la coleccion, y ese ajuste es de
+  la tienda, no del tema: se aplicaria tambien al tema publicado, que no tiene
+  esas plantillas. Asi que la seccion vive en la plantilla normal de coleccion
+  y se pinta sola solo en la pagina que le toca. Todo entra y sale con el tema,
+  de una vez.
 {%- endcomment -%}
 
+{%- liquid
+  comment
+    "break" aqui no valdria: en Liquid solo funciona dentro de un for. Asi que
+    se calcula una bandera y se envuelve todo el bloque en un if.
+  endcomment
+  assign mostrar = false
+  assign padre = section.settings.padre
+  if padre != blank and collection != blank
+    assign col_padre = collections[padre]
+    if col_padre != blank and collection.handle == col_padre.handle
+      assign mostrar = true
+    endif
+  endif
+-%}
+
+{%- if mostrar -%}
 <div class="pcj pcj-rejilla-seccion" id="pcj-{{ section.id }}">
   <div class="pcj-wrap">
     <section class="pcj-seccion" aria-labelledby="titulo-rejilla-{{ section.id }}">
@@ -86,6 +110,7 @@
     </section>
   </div>
 </div>
+{%- endif -%}
 
 {% stylesheet %}
   .pcj-rejilla-seccion .pcj-seccion { margin-bottom: 48px; }
@@ -191,6 +216,7 @@
   "name": "Rejilla de categorias",
   "tag": "section",
   "settings": [
+    { "type": "collection", "id": "padre", "label": "Se muestra solo en esta coleccion", "info": "La rejilla se pinta unicamente en la pagina de esta coleccion. En el resto no sale nada." },
     { "type": "text", "id": "antetitulo", "label": "Antetitulo" },
     { "type": "text", "id": "titulo", "label": "Titulo" },
     { "type": "textarea", "id": "entradilla", "label": "Entradilla" },

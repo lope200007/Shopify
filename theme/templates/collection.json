@@ -219,9 +219,149 @@
         "padding-block-start": 0,
         "padding-block-end": 64
       }
+    },
+    "rejilla_perros": {
+      "type": "patitas-rejilla-cat",
+      "blocks": {
+        "camas_perro": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "camas-perro",
+            "titulo": "Cama",
+            "texto": "Descanso suave para recuperar energía después de un gran día."
+          }
+        },
+        "comederos_perro": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "comederos-perro",
+            "titulo": "Comedor",
+            "texto": "Comer despacio, sin atragantarse y sin poner la cocina perdida."
+          }
+        },
+        "paseo_perro": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "paseo-perro",
+            "titulo": "Paseo",
+            "texto": "Correas, arneses y lo que hace falta para salir a la calle."
+          }
+        },
+        "juguetes_perro": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "juguetes-perro",
+            "titulo": "Juguetes",
+            "texto": "Para perseguir, morder y gastar la energía de la tarde."
+          }
+        },
+        "higiene_perro": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "higiene-perro",
+            "titulo": "Higiene",
+            "texto": "Cepillos, baño y cuidado para el pelo, las uñas y las patas."
+          }
+        },
+        "viaje_perro": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "viaje-perro",
+            "titulo": "Viaje",
+            "texto": "Coche, tren o avión: lo que necesita para ir contigo."
+          }
+        }
+      },
+      "block_order": [
+        "camas_perro",
+        "comederos_perro",
+        "paseo_perro",
+        "juguetes_perro",
+        "higiene_perro",
+        "viaje_perro"
+      ],
+      "settings": {
+        "padre": "perros",
+        "antetitulo": "Colección canina",
+        "titulo": "Favoritos para perros",
+        "entradilla": "Seis puertas para no recorrer los 107 productos de arriba abajo.",
+        "enlace_texto": "Volver al inicio",
+        "enlace_destino": "/"
+      }
+    },
+    "rejilla_gatos": {
+      "type": "patitas-rejilla-cat",
+      "blocks": {
+        "camas_gato": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "camas-gato",
+            "titulo": "Cama",
+            "texto": "Un rincón mullido donde cada siesta se siente especial."
+          }
+        },
+        "comederos_gato": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "comederos-gato",
+            "titulo": "Comedor",
+            "texto": "Cuencos y fuentes para su ritual de cada día."
+          }
+        },
+        "rascadores_gato": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "rascadores-gato",
+            "titulo": "Rascadores",
+            "texto": "Sitios donde estirarse y afilar las uñas sin destrozar el sofá."
+          }
+        },
+        "juguetes_gato": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "juguetes-gato",
+            "titulo": "Juguetes",
+            "texto": "Para cazar y perseguir sin que tus pies sean la presa."
+          }
+        },
+        "higiene_gato": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "higiene-gato",
+            "titulo": "Higiene",
+            "texto": "Cepillos y cuidado para el pelo, las uñas y los ojos."
+          }
+        },
+        "viaje_gato": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "viaje-gato",
+            "titulo": "Viaje",
+            "texto": "Transportines y mochilas para el veterinario y para el viaje."
+          }
+        }
+      },
+      "block_order": [
+        "camas_gato",
+        "comederos_gato",
+        "rascadores_gato",
+        "juguetes_gato",
+        "higiene_gato",
+        "viaje_gato"
+      ],
+      "settings": {
+        "padre": "gatos",
+        "antetitulo": "Colección felina",
+        "titulo": "Favoritos para gatos",
+        "entradilla": "Seis puertas para encontrar lo suyo sin recorrer la lista entera.",
+        "enlace_texto": "Volver al inicio",
+        "enlace_destino": "/"
+      }
     }
   },
   "order": [
+    "rejilla_perros",
+    "rejilla_gatos",
     "section",
     "main"
   ]
