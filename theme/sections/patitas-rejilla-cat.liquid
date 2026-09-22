@@ -1,0 +1,214 @@
+{%- comment -%}
+  Rejilla de categorias para las paginas de perro y de gato.
+
+  Va arriba del listado de productos. Motivo: la coleccion "Perros" tiene 107
+  productos y la de "Gatos" 57. Una lista de 107 cosas sin ningun corte es una
+  lista que nadie recorre entera. Estas tarjetas parten esos 107 en seis
+  puertas —cama, comedor, paseo, juguetes, higiene, viaje— y quien ya sabe a
+  que viene entra directo.
+
+  A diferencia de las tarjetas de la portada, aqui la foto va arriba y el texto
+  debajo sobre fondo claro. No es capricho: con el texto fuera de la foto, el
+  contraste no depende de como sea cada imagen.
+
+  El numero de productos sale de la coleccion, asi que si manana hay dos mas,
+  se actualiza solo.
+{%- endcomment -%}
+
+<div class="pcj pcj-rejilla-seccion" id="pcj-{{ section.id }}">
+  <div class="pcj-wrap">
+    <section class="pcj-seccion" aria-labelledby="titulo-rejilla-{{ section.id }}">
+      <div class="pcj-cabecera" data-aparece>
+        <div>
+          {%- if section.settings.antetitulo != blank -%}
+            <p class="pcj-antetitulo">{{ section.settings.antetitulo | escape }}</p>
+          {%- endif -%}
+          {%- if section.settings.titulo != blank -%}
+            <h2 id="titulo-rejilla-{{ section.id }}">{{ section.settings.titulo | escape }}</h2>
+          {%- endif -%}
+          {%- if section.settings.entradilla != blank -%}
+            <p>{{ section.settings.entradilla | escape }}</p>
+          {%- endif -%}
+        </div>
+        {%- if section.settings.enlace_texto != blank -%}
+          <a class="pcj-volver" href="{{ section.settings.enlace_destino | default: '/' }}">
+            &uarr; {{ section.settings.enlace_texto | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      <ul class="pcj-rejilla">
+        {%- for bloque in section.blocks -%}
+          {%- assign col = collections[bloque.settings.coleccion] -%}
+          {%- if col != blank and col.all_products_count > 0 -%}
+            <li data-aparece style="--pcj-orden:{{ forloop.index0 | modulo: 3 }}" {{ bloque.shopify_attributes }}>
+              <a class="pcj-ficha-cat" href="{{ col.url }}">
+                <span class="pcj-ficha-foto">
+                  {%- if col.image -%}
+                    <img
+                      src="{{ col.image | image_url: width: 700 }}"
+                      srcset="{{ col.image | image_url: width: 400 }} 400w, {{ col.image | image_url: width: 700 }} 700w"
+                      sizes="(min-width: 900px) 33vw, 100vw"
+                      alt=""
+                      width="700"
+                      height="470"
+                      loading="lazy"
+                    >
+                  {%- elsif col.products.first.featured_image -%}
+                    {%- comment -%}
+                      Sin foto de portada, tiramos de la primera foto de su primer
+                      producto. Asi la tarjeta nunca sale como un hueco gris.
+                    {%- endcomment -%}
+                    <img
+                      src="{{ col.products.first.featured_image | image_url: width: 700 }}"
+                      alt=""
+                      width="700"
+                      height="470"
+                      loading="lazy"
+                    >
+                  {%- endif -%}
+                </span>
+                <span class="pcj-ficha-cuerpo">
+                  <span class="pcj-ficha-titulo">{{ bloque.settings.titulo | default: col.title | escape }}</span>
+                  {%- if bloque.settings.texto != blank -%}
+                    <span class="pcj-ficha-lead">{{ bloque.settings.texto | escape }}</span>
+                  {%- endif -%}
+                  <span class="pcj-ficha-btn">
+                    Ver productos
+                    <span class="pcj-ficha-cuenta">({{ col.all_products_count }})</span>
+                  </span>
+                </span>
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </section>
+  </div>
+</div>
+
+{% stylesheet %}
+  .pcj-rejilla-seccion .pcj-seccion { margin-bottom: 48px; }
+
+  .pcj .pcj-volver {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--suave);
+    border-bottom: 2px solid var(--borde);
+    padding-bottom: 2px;
+    white-space: nowrap;
+  }
+  .pcj .pcj-volver:hover { color: var(--tinta); border-bottom-color: var(--tinta); }
+
+  .pcj .pcj-rejilla {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .pcj .pcj-ficha-cat {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    overflow: hidden;
+    transition: transform .3s cubic-bezier(.22, 1, .36, 1), box-shadow .3s;
+  }
+  @media (hover: hover) {
+    .pcj .pcj-ficha-cat:hover { transform: translateY(-4px); box-shadow: var(--sombra); }
+    .pcj .pcj-ficha-cat:hover .pcj-ficha-foto img { transform: scale(1.05); }
+  }
+
+  .pcj .pcj-ficha-foto {
+    display: block;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: var(--arena);
+  }
+  .pcj .pcj-ficha-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+  }
+
+  .pcj .pcj-ficha-cuerpo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 20px;
+    flex: 1;
+  }
+
+  .pcj .pcj-ficha-titulo {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -.02em;
+    color: var(--tinta);
+  }
+
+  .pcj .pcj-ficha-lead {
+    font-size: 14.5px;
+    line-height: 1.45;
+    color: var(--suave);
+    text-wrap: pretty;
+  }
+
+  .pcj .pcj-ficha-btn {
+    margin-top: auto;
+    padding-top: 12px;
+    font-weight: 700;
+    font-size: 14.5px;
+    color: var(--terracota);
+  }
+  .pcj .pcj-ficha-cuenta { color: var(--suave); font-weight: 600; }
+
+  @media (max-width: 900px) {
+    .pcj .pcj-rejilla { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  }
+  @media (max-width: 560px) {
+    .pcj .pcj-rejilla { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .pcj .pcj-ficha-cuerpo { padding: 14px; gap: 6px; }
+    .pcj .pcj-ficha-titulo { font-size: 16px; }
+    .pcj .pcj-ficha-lead { font-size: 13.5px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pcj .pcj-ficha-cat, .pcj .pcj-ficha-foto img { transition: none; }
+    .pcj .pcj-ficha-cat:hover { transform: none; }
+    .pcj .pcj-ficha-cat:hover .pcj-ficha-foto img { transform: none; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Rejilla de categorias",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "antetitulo", "label": "Antetitulo" },
+    { "type": "text", "id": "titulo", "label": "Titulo" },
+    { "type": "textarea", "id": "entradilla", "label": "Entradilla" },
+    { "type": "text", "id": "enlace_texto", "label": "Enlace de la derecha", "default": "Volver al inicio" },
+    { "type": "url", "id": "enlace_destino", "label": "Destino del enlace" }
+  ],
+  "blocks": [
+    {
+      "type": "categoria",
+      "name": "Categoria",
+      "settings": [
+        { "type": "collection", "id": "coleccion", "label": "Coleccion" },
+        { "type": "text", "id": "titulo", "label": "Titulo", "info": "Vacio = el nombre de la coleccion." },
+        { "type": "textarea", "id": "texto", "label": "Texto" }
+      ]
+    }
+  ],
+  "max_blocks": 9,
+  "presets": [{ "name": "Rejilla de categorias" }]
+}
+{% endschema %}

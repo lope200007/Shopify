@@ -142,22 +142,6 @@
             "pregunta": "¿Qué talla cojo?",
             "respuesta": "<p><strong>Fíate del contorno de pecho, no de los kilos.</strong> Dos perros que pesan lo mismo pueden tener pechos muy distintos.</p><p>Mide con una cinta por la parte más ancha, justo detrás de las patas delanteras, y compara con la tabla en centímetros de cada ficha. Si tu perro queda entre dos tallas, coge la mayor.</p>"
           }
-        },
-        "cat_perros": {
-          "type": "categoria",
-          "settings": {
-            "coleccion": "perros",
-            "antetitulo": "Comer, pasear, dormir",
-            "titulo": "Perros"
-          }
-        },
-        "cat_gatos": {
-          "type": "categoria",
-          "settings": {
-            "coleccion": "gatos",
-            "antetitulo": "Rascar, trepar, dormir",
-            "titulo": "Gatos"
-          }
         }
       },
       "block_order": [
@@ -165,8 +149,6 @@
         "conf2",
         "conf3",
         "conf4",
-        "cat_perros",
-        "cat_gatos",
         "cat1",
         "cat2",
         "cat3",
@@ -215,9 +197,44 @@
         "enlace_uno": "/collections/empieza-por-aqui",
         "enlace_dos": "/collections/all"
       }
+    },
+    "dos_caminos": {
+      "type": "patitas-dos-caminos",
+      "blocks": {
+        "perro": {
+          "type": "camino",
+          "settings": {
+            "coleccion": "perros",
+            "etiqueta": "Colitas felices",
+            "titulo": "Todo para tu perro",
+            "texto": "Cama, comedero, paseo, juguetes e higiene. Con las tallas en centímetros.",
+            "enlace": "Explorar para perros"
+          }
+        },
+        "gato": {
+          "type": "camino",
+          "settings": {
+            "coleccion": "gatos",
+            "etiqueta": "Ronroneos felices",
+            "titulo": "Todo para tu gato",
+            "texto": "Rincones de descanso, rascadores, caza y cuidado para su mundo de casa.",
+            "enlace": "Explorar para gatos"
+          }
+        }
+      },
+      "block_order": [
+        "perro",
+        "gato"
+      ],
+      "settings": {
+        "antetitulo": "Para vidas con patas",
+        "titulo": "Pequeños detalles para grandes compañeros",
+        "entradilla": "Elige por quién vives: todo lo de perro por un lado y todo lo de gato por otro."
+      }
     }
   },
   "order": [
+    "dos_caminos",
     "main"
   ]
 }
