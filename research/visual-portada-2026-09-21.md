@@ -1328,3 +1328,64 @@ Comprobado con capturas a 390 px y a 1440 px: el móvil arranca por el titular
 de siempre y su página de colección va directa al listado; el ordenador tiene
 las dos tarjetas y la rejilla «Compra por categoría» empieza en Comederos, sin
 repetir Perros y Gatos.
+
+## 24. El otro agente dijo que la tienda estaba agotada. No lo está.
+
+El resumen diario del 22/09 concluyó: *«los 127 productos activos están a 0
+unidades de stock, todo el catálogo está agotado… probablemente por eso no ha
+entrado ningún pedido: no hay nada disponible para comprar»*.
+
+El dato de partida es cierto y la conclusión es falsa.
+
+### Por qué
+
+Los 127 productos **no llevan control de inventario**. Comprobado en las **828
+variantes** de la tienda:
+
+| | |
+| --- | ---: |
+| Variantes con control de inventario activado | **0** |
+| Variantes no disponibles para comprar | **0** |
+| `inventoryPolicy` | `CONTINUE` en todas |
+| `availableForSale` | `true` en todas |
+
+En dropshipping esto es lo correcto: el almacén es de CJ, no nuestro, así que
+Shopify no debe llevar la cuenta. Cuando el inventario no se controla, el «0»
+no significa nada: es el valor por defecto de un contador apagado.
+
+### La prueba de que se puede comprar
+
+En vez de discutirlo, metí un producto en el carrito de la tienda real:
+
+```
+POST /cart/add.js  ->  200
+  añadido: Comedero rotativo antivoracidad | Verde | 1 ud. | 29,90 €
+  carrito: 1 artículo, total 29,90 €
+```
+
+Si el catálogo estuviera agotado, eso habría devuelto un error.
+
+### Lo que sí dicen los números
+
+Pedidos de la tienda desde que existe: **uno**, el #1001 del 14 de septiembre,
+de 26,89 €, y está reembolsado (fue la prueba).
+
+Últimos 30 días:
+
+| | |
+| --- | ---: |
+| Visitas | 617 |
+| Visitas que añadieron algo al carrito | **4** |
+| Llegaron al pago | 2 |
+| Pagaron | 1 |
+
+Ese **0,65 %** de añadidos al carrito es el problema real. Lo normal en una
+tienda pequeña está entre el 5 % y el 10 %. No es que no puedan comprar: es que
+miran y se van.
+
+### La lección de método
+
+El otro agente vio un dato llamativo (127 ceros) y saltó a la causa sin
+comprobar si el dato significaba lo que parecía. Bastaba una pregunta más:
+*¿estos productos llevan control de inventario?* Y una prueba: *¿se puede meter
+uno en el carrito?*
