@@ -578,6 +578,14 @@ const manual = {
   'PTC-HAMJAULA-37': '2408140518361627500', 'PTC-HAMJAULA-38': '2408140518361627700',
   'PTC-HAMJAULA-39': '2408140518361627800', 'PTC-HAMJAULA-40': '2408140518361628000',
 
+  // --- Tendencias de Amazon.es, 22 de septiembre de 2026 -------------------
+  // peluche con latido (pid 1378174766942392320, variante Brown)
+  'PTC-LATIDO-01': '1378174768334901248',
+  // búho que aletea (pid 2407140642131613900, variante «Picture Style-17cm» = búho gris)
+  'PTC-BUHO-01': '2407140642131614100',
+  // correa manos libres (pid 9FC380E5-6678-4D8D-8159-479F870481BB, única variante Gray-Q1set)
+  'PTC-MANOSLIBRES-01': '3356FEAE-66FE-48D4-B9F4-C7DE427002E3',
+
 };
 
 // Un pack son varios articulos distintos que salen en un solo envio. Agrupar
