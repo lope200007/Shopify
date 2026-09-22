@@ -1389,3 +1389,58 @@ El otro agente vio un dato llamativo (127 ceros) y saltó a la causa sin
 comprobar si el dato significaba lo que parecía. Bastaba una pregunta más:
 *¿estos productos llevan control de inventario?* Y una prueba: *¿se puede meter
 uno en el carrito?*
+
+## 25. «Ataquemos ese 0,65 %» — el 0,65 % no existe, y el fallo real es otro
+
+### De dónde salía ese número
+
+617 visitas en 30 días, 4 con carrito. Pero al abrir las visitas por país:
+
+| País / dispositivo | Visitas | Con carrito |
+| --- | ---: | ---: |
+| **Estados Unidos · ordenador** | **457** | 2 |
+| **España · móvil** | **85** | 2 |
+| Estados Unidos · móvil | 25 | 0 |
+| Resto (Paraguay, Polonia, China…) | 50 | 0 |
+
+457 visitas de escritorio desde Estados Unidos, directas y aterrizando todas
+en `/`, en una tienda española recién abierta y sin publicidad. Eso son
+rastreadores, no personas. (Y de esos 2 «carritos» de EE. UU., **uno es mío**:
+la prueba de `/cart/add.js` que hice hace un rato desde este servidor.)
+
+El público real es **España, móvil: 85 visitas en 30 días.** Tres al día.
+Su tasa de carrito es **2,35 %**, no 0,65 %. Baja, pero de otro mundo.
+
+Con tres visitas al día no hay nada que medir: cualquier cambio de conversión
+queda dentro del ruido. **El número no es el problema.**
+
+### El fallo real: se publica en el canal que no trae a nadie
+
+De dónde vienen las visitas, por fuente:
+
+| Fuente | Visitas | Con carrito |
+| --- | ---: | ---: |
+| Directo (casi todo robots) | 519 | 2 |
+| **Instagram** | **58** | **2** |
+| Google | 29 | 0 |
+| Facebook | 8 | 0 |
+| **TikTok** | **0** | 0 |
+
+Instagram es **el único canal que trae gente de verdad**, y su tasa de carrito
+es del **3,4 %**, que es normal para una tienda pequeña.
+
+Y en Metricool hay **16 publicaciones programadas** del 22 al 29 de septiembre.
+Las dieciséis tienen `providers: [{network: tiktok}]`. **Todas van solo a
+TikTok.** Instagram no recibe ninguna.
+
+O sea: se está publicando a diario en el canal que trae cero visitas, y no se
+publica nada en el que trae el 100 % de las reales.
+
+**Matiz honesto:** parte del tráfico de TikTok puede estar escondido en
+«directo», porque su navegador interno no siempre manda la procedencia. Pero
+eso no cambia el fondo: Instagram funciona y no se le está alimentando.
+
+### Lo que NO hay que hacer
+
+Retocar la ficha, el botón o el carrito para «subir la conversión». Con 85
+visitas al mes, ninguna de esas mejoras se puede ni medir.
