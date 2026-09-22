@@ -9,8 +9,11 @@
   La foto sale de la propia coleccion (su imagen de portada). Si una coleccion
   no tiene foto, la tarjeta se pinta igual con el color de fondo: no se rompe.
 
-  En movil las dos tarjetas se apilan. Es a proposito: en una pantalla estrecha
-  dos tarjetas de 50 % dejan el texto ilegible.
+  SOLO ORDENADOR. En movil esta seccion no se pinta (regla al principio de la
+  hoja de estilos). Pablo dio la portada de movil por buena y no se toca: alli
+  a perros y gatos se llega por la rejilla de categorias de siempre y por el
+  menu. El apilado a una columna se queda escrito por si algun dia se enciende
+  en movil, pero hoy no se ve.
 {%- endcomment -%}
 
 <div class="pcj pcj-caminos-seccion" id="pcj-{{ section.id }}">
@@ -73,6 +76,13 @@
 </div>
 
 {% stylesheet %}
+  /* Las dos tarjetas grandes son SOLO para ordenador. En movil la portada se
+     queda exactamente como estaba: Pablo la dio por buena y no se toca.
+     Con display:none y loading="lazy" las fotos ni se descargan en el movil. */
+  @media (max-width: 899px) {
+    .pcj-caminos-seccion { display: none; }
+  }
+
   .pcj-caminos-seccion .pcj-seccion { margin-bottom: 56px; }
 
   .pcj .pcj-caminos {

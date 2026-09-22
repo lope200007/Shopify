@@ -117,6 +117,12 @@
 {%- endif -%}
 
 {% stylesheet %}
+  /* La rejilla de categorias es SOLO para ordenador, por lo mismo: en movil la
+     pagina de coleccion se queda como estaba, con su listado de productos. */
+  @media (max-width: 899px) {
+    .pcj-rejilla-seccion { display: none; }
+  }
+
   .pcj-rejilla-seccion .pcj-seccion { margin-bottom: 48px; }
 
   .pcj .pcj-volver {

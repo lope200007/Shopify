@@ -331,3 +331,11 @@
   .pcj .pcj-pack:active{transform:none}
   .pcj .pcj-duda summary:active{opacity:1}
 }
+
+/* Tarjetas que solo valen en movil.
+   En ordenador, Perros y Gatos ya salen arriba en las dos tarjetas grandes;
+   repetirlas en la rejilla seria decir lo mismo dos veces. En movil no hay
+   tarjetas grandes (la seccion esta oculta), asi que ahi si se pintan. */
+@media (min-width: 900px){
+  .pcj .pcj-categoria.pcj-solo-movil{ display:none; }
+}
