@@ -23,18 +23,25 @@
   de una vez.
 {%- endcomment -%}
 
+{%- comment -%}
+  "break" no valdria para salir antes: en Liquid solo funciona dentro de un
+  for. Asi que se calcula una bandera y se envuelve el bloque en un if.
+
+  Un ajuste de tipo "collection" devuelve el OBJETO de la coleccion, no su
+  handle. Se saca el handle del objeto, y si llegara como texto (por ejemplo
+  si alguien edita el JSON a mano) se usa tal cual. Comprobado en el
+  navegador: la primera version comparaba mal y la rejilla salia vacia.
+{%- endcomment -%}
+
 {%- liquid
-  comment
-    "break" aqui no valdria: en Liquid solo funciona dentro de un for. Asi que
-    se calcula una bandera y se envuelve todo el bloque en un if.
-  endcomment
   assign mostrar = false
   assign padre = section.settings.padre
-  if padre != blank and collection != blank
-    assign col_padre = collections[padre]
-    if col_padre != blank and collection.handle == col_padre.handle
-      assign mostrar = true
-    endif
+  assign padre_handle = padre.handle
+  if padre_handle == blank
+    assign padre_handle = padre
+  endif
+  if collection != blank and padre_handle != blank and collection.handle == padre_handle
+    assign mostrar = true
   endif
 -%}
 
