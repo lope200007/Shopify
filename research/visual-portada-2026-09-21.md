@@ -1309,3 +1309,22 @@ dormido en una cama redonda.
 - En el tema borrador quedan `collection.perros.json` y `collection.gatos.json`
   del primer intento. No los usa nadie y la API no deja borrar ficheros de
   tema; se quitan desde el panel cuando toque.
+
+### Corrección: era solo para ordenador
+
+Pablo: *«sólo para ordenador, el móvil déjalo como está porque me gusta como
+quedó»*. Tenía razón y yo se lo había cambiado sin decirlo: le había metido
+las dos tarjetas grandes arriba y le había quitado Perros y Gatos de la
+rejilla de categorías.
+
+- Las dos tarjetas grandes y la rejilla por animal se ocultan **por debajo de
+  900 px**. Con `display:none` y `loading="lazy"`, esas fotos **ni se
+  descargan** en el móvil: no pesa más que antes.
+- Perros y Gatos **vuelven** a la rejilla de la portada, en su sitio, con un
+  ajuste nuevo «solo móvil»: en ordenador no se pintan, porque allí ya salen
+  arriba en las tarjetas grandes.
+
+Comprobado con capturas a 390 px y a 1440 px: el móvil arranca por el titular
+de siempre y su página de colección va directa al listado; el ordenador tiene
+las dos tarjetas y la rejilla «Compra por categoría» empieza en Comederos, sin
+repetir Perros y Gatos.
