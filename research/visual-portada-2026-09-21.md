@@ -1223,3 +1223,89 @@ recibiría toallitas de dientes igual.
 No lo despublico por mi cuenta —eso está en la lista de cosas que se
 preguntan siempre—, pero es lo que recomiendo hasta que se confirme con CJ
 qué se envía de verdad.
+
+## 23. La estructura que pidió Pablo: perro o gato primero (22/09/2026)
+
+Pablo mandó un boceto y un montaje de Canva. Textual: *«no cambio de imágenes
+ni nada de eso, sino de estructura»*. En móvil le gusta como está; lo que
+quiere es el ordenador.
+
+Lo que pedía el dibujo: **Inicio** reparte en dos tarjetas grandes (Perro /
+Gato); cada animal tiene **su propia página** con seis puertas —cama, comedor,
+paseo o rascadores, juguetes, higiene y viaje—; y un menú corto.
+
+### Lo que no existía: las categorías por animal
+
+La tienda tenía categorías **globales** (juguetes, higiene, paseo…) pero
+ninguna del tipo «juguetes para gato». Sin eso, el dibujo no se puede montar.
+
+Añadidas **siete etiquetas canónicas a 111 productos** (`c-cama`, `c-comedor`,
+`c-paseo`, `c-juguetes`, `c-higiene`, `c-viaje`, `c-rascadores`) y creadas
+**12 colecciones automáticas** que cruzan `perro`/`gato` con cada una.
+
+| | Perro | Gato |
+| --- | ---: | ---: |
+| Cama | 12 | 12 |
+| Comedor | 17 | 8 |
+| Paseo / Rascadores | 27 | 4 |
+| Juguetes | 22 | 15 |
+| Higiene | 22 | 9 |
+| Viaje | 10 | 6 |
+
+Las 12 se publicaron en los cuatro canales. **Hizo falta hacerlo a mano**: una
+colección creada por API nace sin canales, así que devolvía 200 con cero
+productos hasta que se publicó.
+
+### Tres cosas que salieron mal y cómo se vieron
+
+**1. La rejilla salía vacía.** El `<div>` de la sección estaba en el HTML pero
+sin nada dentro. En vez de adivinar, metí una traza en el HTML con los valores.
+Dijo `raw=""`: el ajuste `padre` llegaba vacío. Un ajuste de tipo `collection`
+a nivel de **sección** no acepta el handle escrito en el JSON de la plantilla,
+aunque el mismo tipo a nivel de **bloque** sí (es lo que lleva haciendo
+`patitas-home`). Pasado a texto plano.
+
+**2. Y aun así seguía vacío.** Porque Shopify ya había **borrado** el ajuste al
+guardar la plantilla la primera vez, cuando todavía era inválido. Leyendo el
+fichero tal como lo tiene el tema se veía: `padre` no estaba. Hubo que volver a
+subir la plantilla.
+
+**3. Me inventé una URL de foto.** Al cambiar la portada de «Perros» escribí un
+identificador de archivo de memoria en vez de sacarlo del listado. La mutación
+lo rechazó —bien rechazado—. Corregido leyendo la URL real.
+
+### Por qué no hay plantilla aparte
+
+El primer diseño era `collection.perros.json` y `collection.gatos.json`, con
+cada colección apuntando a la suya. Descartado **antes** de aplicarlo: ese
+ajuste es de la **colección**, no del tema, así que se habría aplicado también
+al tema publicado, que no tiene esas plantillas. No está comprobado que Shopify
+recurra entonces a la plantilla normal, y no se arriesga la tienda en vivo por
+una suposición.
+
+Ahora la sección lleva un ajuste `padre` y se pinta sola solo en la página que
+le toca. Comprobado: sale en `/collections/perros` y `/collections/gatos`, y no
+sale en `juguetes`, `packs` ni `camas-perro`. Todo entra y sale con el tema.
+
+### Las portadas de las 12, y dos que se repetían
+
+Sin foto de portada, la tarjeta tira de la primera foto de su primer producto.
+Eso le puso a **Higiene**, en perro Y en gato, la foto de las **toallitas
+dentales**: texto en inglés y, encima, el producto cuya ficha no coincide.
+Las 12 tienen ya portada elegida a mano y texto alternativo en español.
+
+Y en la portada había **dos repeticiones** que solo se ven mirando la página:
+la tarjeta «Todo para tu perro» usaba **la misma foto que el hero** justo
+debajo, y la del gato era el mismo gato en el mismo rascador que la tarjeta de
+Rascadores. Cambiadas las dos: ahora un perro pequeño con collar y un gato
+dormido en una cama redonda.
+
+### Lo que queda
+
+- **El menú** (Inicio · Novedades · Regalos · Packs · Envíos · Atención al
+  cliente, más Perros y Gatos). No se toca todavía: el menú es de la tienda,
+  no del tema, así que cambiarlo ahora se vería en la web publicada mientras
+  el resto sigue en borrador.
+- En el tema borrador quedan `collection.perros.json` y `collection.gatos.json`
+  del primer intento. No los usa nadie y la API no deja borrar ficheros de
+  tema; se quitan desde el panel cuando toque.
