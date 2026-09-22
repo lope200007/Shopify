@@ -27,25 +27,21 @@
   "break" no valdria para salir antes: en Liquid solo funciona dentro de un
   for. Asi que se calcula una bandera y se envuelve el bloque en un if.
 
-  Un ajuste de tipo "collection" devuelve el OBJETO de la coleccion, no su
-  handle. Se saca el handle del objeto, y si llegara como texto (por ejemplo
-  si alguien edita el JSON a mano) se usa tal cual. Comprobado en el
-  navegador: la primera version comparaba mal y la rejilla salia vacia.
+  POR QUE "padre" ES TEXTO Y NO UN AJUSTE DE COLECCION: probado en el
+  navegador con una traza. Un ajuste de tipo "collection" a nivel de SECCION
+  llegaba vacio al escribir el handle en el JSON de la plantilla, aunque el
+  mismo tipo a nivel de BLOQUE si lo acepta (es lo que hace patitas-home).
+  Con texto plano no hay ambiguedad: aqui se guarda el handle y se compara.
 {%- endcomment -%}
 
 {%- liquid
   assign mostrar = false
-  assign padre = section.settings.padre
-  assign padre_handle = padre.handle
-  if padre_handle == blank
-    assign padre_handle = padre
-  endif
+  assign padre_handle = section.settings.padre | strip
   if collection != blank and padre_handle != blank and collection.handle == padre_handle
     assign mostrar = true
   endif
 -%}
 
-<!-- pcjdbg raw="{{ section.settings.padre }}" tipo_handle="{{ section.settings.padre.handle }}" padre_handle="{{ padre_handle }}" col="{{ collection.handle }}" mostrar="{{ mostrar }}" bloques="{{ section.blocks.size }}" -->
 {%- if mostrar -%}
 <div class="pcj pcj-rejilla-seccion" id="pcj-{{ section.id }}">
   <div class="pcj-wrap">
@@ -224,7 +220,7 @@
   "name": "Rejilla de categorias",
   "tag": "section",
   "settings": [
-    { "type": "collection", "id": "padre", "label": "Se muestra solo en esta coleccion", "info": "La rejilla se pinta unicamente en la pagina de esta coleccion. En el resto no sale nada." },
+    { "type": "text", "id": "padre", "label": "Se muestra solo en esta coleccion", "info": "Escribe el identificador de la coleccion, por ejemplo: perros. La rejilla se pinta unicamente en esa pagina; en el resto no sale nada." },
     { "type": "text", "id": "antetitulo", "label": "Antetitulo" },
     { "type": "text", "id": "titulo", "label": "Titulo" },
     { "type": "textarea", "id": "entradilla", "label": "Entradilla" },
