@@ -1146,3 +1146,80 @@ Repasados **los 127 productos activos**: solo dos tenían el orden mal.
 | Saco de dormir cueva | S, M, L, XS | XS, S, M, L |
 
 Comprobado en la ficha después del cambio: el desplegable ya viene en **S**.
+
+## 22. Las fotos de portada: 12 cambiadas, 1 que se queda y 1 que para todo
+
+Al día siguiente de publicar. El OCR del día anterior había marcado 14
+productos cuya primera foto —la que sale en la rejilla— llevaba texto en
+inglés incrustado.
+
+### Lo primero: el detector automático no servía para decidir
+
+Hice que el OCR eligiera solo la primera foto limpia de cada producto, y
+luego **miré las candidatas una por una**. Se equivocaba en la mitad:
+
+- En el bálsamo proponía la foto 2, que sigue llevando «PAW BALM» y
+  «BEFORE / AFTER».
+- En el coche teledirigido proponía la foto 2, con «Smart cat teaser, fun
+  all day long» escrito encima.
+- En el pijama fino daba la foto 1 por limpia. Es la que pone **«Pet
+  Pajamas»**: el filtro pedía dos palabras inglesas de cuatro letras o más,
+  y «pet» tiene tres.
+
+Así que monté hojas de contacto con **las 106 fotos** de los 14 productos y
+las revisé de una en una. El OCR sirvió para reducir 127 productos a 14;
+para elegir la foto, no.
+
+### Los 12 cambios
+
+| Producto | Antes | Ahora |
+| --- | --- | --- |
+| Bálsamo de almohadillas | «PRODUCT FEATURES» | foto 5 · el bote real |
+| Cepillo con spray | «Remove lint / Clean / Massage» | foto 4 |
+| Coche teledirigido | «Human-pet interaction» | foto 4 · gato persiguiéndolo |
+| Comedero con tapa | «Smart feeding with lid opening» | foto 8 · medidas |
+| Comedero elevado | «304 Stainless Steel Pet food bowl» | foto 6 |
+| Correa extensible | «Little Whale Traction Rope 5m» | foto 4 · los tres colores |
+| Cuerda con ventosa | «Powerful Suction Cup» | foto 5 |
+| Fuente de agua | «Circulating water…» | foto 5 · con el agua en marcha |
+| Hamaca colgante | «CAT CAGE DOUBLE SIDED HAMMOCK» | foto 4 · gato dentro |
+| Hierba gatera | «Hydroponic Cat Grass Box» | foto 5 |
+| Pijama fino | «Pet Pajamas» | foto 3 |
+| Zanahoria mordedor | «Nylon + rubber chew-resistant» | foto 4 |
+
+Antes de tocar nada comprobé, uno a uno, que el identificador de la foto
+elegida en Shopify correspondía al fichero que yo había mirado. Los 12
+coincidían. Después de aplicarlo, volví a leer la tienda pública y a pasar
+el OCR por las nuevas portadas: **las 12 salen limpias**.
+
+### La que se queda como está
+
+**Calendario de adviento.** Sus cuatro fotos enseñan la caja, y la caja
+lleva «24-Days Christmas Countdown Calendar Cats Toys» impreso. Eso no es
+un rótulo de catálogo: es el envase real del producto. Taparlo sería
+menos honesto, no más. Y la foto actual —el gato, el abeto, los juguetes
+en fila— es la mejor de las cuatro.
+
+La diferencia que importa: **texto puesto encima por el proveedor para
+vender, fuera; texto que está impreso en el producto, dentro.**
+
+### La que para todo
+
+**«Toallitas de dedo para los ojos»** no se ha tocado, y no por las fotos.
+
+La ficha habla de lágrima seca, del pliegue del ojo, de perros de pelo
+claro, y avisa de que «no es un colirio». Sus **seis** fotos, todas, dicen
+otra cosa:
+
+> FRESHWIPES **DENTAL** WIPES · GENTLE **DENTAL** CLEANING ·
+> «Helps reduce plaque, freshen breath» · «Easy Finger Sleeve»
+
+Es un producto **dental**. La ficha describe uno de **ojos**.
+
+Cambiarle la foto de portada habría tapado el problema en vez de
+enseñarlo: quedaría una ficha de ojos con una foto neutra y el cliente
+recibiría toallitas de dientes igual.
+
+No lo despublico por mi cuenta —eso está en la lista de cosas que se
+preguntan siempre—, pero es lo que recomiendo hasta que se confirme con CJ
+qué se envía de verdad.
