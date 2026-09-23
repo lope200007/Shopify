@@ -29,7 +29,13 @@
     "instagram",
     "facebook"
    ],
-   "revisado": "2026-09-23"
+   "revisado": "2026-09-23",
+   "publicado": {
+    "instagram": "https://www.instagram.com/p/Ddo6ldQANTj/",
+    "facebook": "https://www.facebook.com/122114446545466144/posts/122114532759466144",
+    "cuando": "2026-09-23T20:07+02:00",
+    "nota": "publicado a mano como prueba del carrusel"
+   }
   },
   {
    "fecha": "2026-09-24T18:00",
