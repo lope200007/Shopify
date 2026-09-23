@@ -16,6 +16,7 @@
 > | Pedidos | **0**. Y es lo esperable: ver el diagnóstico de tráfico |
 > | Proveedor | CJ, vía `CJ_MCP_TOKEN` en `.env` y `scripts/cj/cj.js` (**no** `cj-client.js`) |
 > | Envío real | 5 a 11 días a España, medido. La cifra vieja de «20-30 días» era falsa |
+> | Logo | `assets/marca/logo-oficial.jpg` (huella de lana). Se usa tal cual, sin retocar: ver `assets/marca/LEEME.md` |
 >
 > **Lee esto antes de tocar nada:**
 >
