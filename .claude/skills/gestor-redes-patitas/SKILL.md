@@ -465,8 +465,14 @@ de Meta, que es gratis y no tiene ese tope.
 
 - **Programa:** `scripts/redes/meta_publicar.py publicacion.json`, con la
   imagen, el texto de Instagram, el texto de Facebook y las redes.
+- **Cola:** `contenido/redes/cola-meta.json`. La publica `scripts/redes/meta_cola.py`.
+  - Solo sale lo que tiene «revisado».
+  - Solo sale lo que ha llegado a su hora con menos de 3 h de retraso; lo que se pasa se marca «caducada».
+  - Lo publicado se apunta con sus enlaces.
+  - Los vídeos salen como reels. Probado el 23-09 sin publicar: Instagram deja el vídeo listo y Facebook lo sube; la prueba se borró.
 - **La clave:**
   - la lee de la variable de entorno `META_PAGE_TOKEN`;
+  - nunca se saca del historial de la conversación: el modo automático lo bloquea, y con razón;
   - nunca va en un archivo, en git ni en el chat, y el programa no la imprime;
   - si falta, el programa para y lo dice.
 - **Probado:** el pack de invierno se publicó el 23-09 en
