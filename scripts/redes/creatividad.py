@@ -16,6 +16,8 @@ datos.json:
 Para un pack, en vez de "foto" se puede pasar "fotos": una lista de tres
 [ruta, rótulo]. Se montan juntas (una grande a la izquierda y dos a la
 derecha), cada una con su rótulo, para que se vea TODO lo que lleva el pack.
+Con "grande_arriba": true, la primera va arriba a todo lo ancho y las otras
+dos debajo (para una primera foto apaisada).
 Una portada de pack con una sola pieza engaña (pasó el 23-09-2026).
 
 Formato 1080 × 1350 (4:5): el que mejor ocupa la pantalla en Instagram y
@@ -80,14 +82,24 @@ def rotulo(d, x, y, texto):
     d.text((x + 16, y + 9), texto, font=fuente, fill=VERDE)
 
 
-def collage(lienzo, fotos):
-    """Una foto grande a la izquierda y dos apiladas a la derecha."""
+def collage(lienzo, fotos, grande_arriba=False):
+    """Una foto grande a la izquierda y dos apiladas a la derecha.
+
+    Con grande_arriba, la grande ocupa todo el ancho arriba y las otras dos van
+    debajo, una al lado de otra: para una foto apaisada que al recortarla en
+    vertical perdería lo importante (el saco cueva con el perro y el gato)."""
     d = ImageDraw.Draw(lienzo)
     hueco = 8
     mitad = (ANCHO - hueco) // 2
-    alto_peq = (ALTO_FOTO - hueco) // 2
-    sitios = [(0, 0, mitad, ALTO_FOTO), (mitad + hueco, 0, ANCHO - mitad - hueco, alto_peq),
-              (mitad + hueco, alto_peq + hueco, ANCHO - mitad - hueco, ALTO_FOTO - alto_peq - hueco)]
+    if grande_arriba:
+        alto_grande = 500
+        abajo = alto_grande + hueco
+        sitios = [(0, 0, ANCHO, alto_grande), (0, abajo, mitad, ALTO_FOTO - abajo),
+                  (mitad + hueco, abajo, ANCHO - mitad - hueco, ALTO_FOTO - abajo)]
+    else:
+        alto_peq = (ALTO_FOTO - hueco) // 2
+        sitios = [(0, 0, mitad, ALTO_FOTO), (mitad + hueco, 0, ANCHO - mitad - hueco, alto_peq),
+                  (mitad + hueco, alto_peq + hueco, ANCHO - mitad - hueco, ALTO_FOTO - alto_peq - hueco)]
     for (ruta, texto), (x, y, w, h) in zip(fotos, sitios):
         lienzo.paste(recortar_cubriendo(Image.open(ruta).convert("RGB"), w, h), (x, y))
         rotulo(d, x + 20, y + h - 66, texto)
@@ -96,7 +108,7 @@ def collage(lienzo, fotos):
 def montar(datos, salida):
     lienzo = Image.new("RGB", (ANCHO, ALTO), CREMA)
     if datos.get("fotos"):
-        collage(lienzo, datos["fotos"])
+        collage(lienzo, datos["fotos"], datos.get("grande_arriba", False))
     else:
         foto = Image.open(datos["foto"]).convert("RGB")
         lienzo.paste(recortar_cubriendo(foto, ANCHO, ALTO_FOTO), (0, 0))
