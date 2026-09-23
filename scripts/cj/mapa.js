@@ -596,6 +596,17 @@ const packs = {
   'PACK-COMER-DESPACIO': ['CJMY191848-3C', 'CJFT303204901AZ', 'CJYD196025-ROJ'],
   'PACK-CACHORRO': ['CJGY00115-74-AZU', 'CJGY00196-NEG', 'CJWJ01315-25-VER'],
   'PACK-COCHE': ['CJ-BARCOCHE-NEG', 'CJGY200603-NEG', 'CJGX134691101AZ'],
+  // Añadidos el 23/09/2026: estaban publicados sin mapa y no se podían servir.
+  // Colores = los que salen en las fotos de cada pack (comprobados en CJ por vid).
+  // gato recién llegado: rascador 35 cm, hierba gatera amarilla, pez
+  'PACK-GATO-LLEGADA': ['PTC-RASCCART-02', 'PTC-HIERBA-04', 'PTC-PEZMOVIL-01'],
+  // gato en invierno: hamaca de radiador blanca, saco cueva gris carbón M, manta gris oscuro 40x50
+  'PACK-GATO-INVIERNO': ['PTC-HAMRADIADOR-01', 'PTC-SACOCUEVA-13', 'PTC-MANTATER-04'],
+  // todo el paseo, una variante por talla del arnés: arnés rojo, botella gris, portabolsas beige
+  'PACK-PASEO-S': ['PTC-CONJARN-03', 'PTC-BOT3EN1-03', 'PTC-PORTABOL-01'],
+  'PACK-PASEO-M': ['PTC-CONJARN-06', 'PTC-BOT3EN1-03', 'PTC-PORTABOL-01'],
+  'PACK-PASEO-L': ['PTC-CONJARN-09', 'PTC-BOT3EN1-03', 'PTC-PORTABOL-01'],
+  'PACK-PASEO-XL': ['PTC-CONJARN-12', 'PTC-BOT3EN1-03', 'PTC-PORTABOL-01'],
 };
 
 /** Una pieza suelta, venga del volcado de CJ o declarada a mano. */
