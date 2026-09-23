@@ -156,7 +156,11 @@ noviembre sobre abrigos llega tarde.
 ## Antes de publicar nada
 
 Esto es una acción irreversible: una vez publicado, lo ha visto gente.
-**Se enseña el borrador y se espera confirmación.** Cada vez.
+
+**Cambio del 23-09-2026:** Pablo pidió que las publicaciones sigan saliendo
+solas en sus redes conectadas. Ya no se espera su confirmación una a una.
+A cambio, cada publicación pasa la revisión de la «Quinta parte» (al final)
+antes de salir, sin excepciones.
 
 ## Manuales complementarios
 
@@ -277,13 +281,11 @@ rinde casi la mitad: no se gasta un vídeo bueno en sábado.
 1. `getBrandSettings` para confirmar la marca y la zona horaria.
 2. `getBestTimeToPostByNetwork` si han pasado semanas desde la última consulta:
    los datos cambian con la audiencia.
-3. `createScheduledPostForReview` para dejarlo **pendiente de aprobación**, no
-   publicado. Pablo lo revisa y lo suelta.
+3. `createScheduledPost`. La cuenta es gratuita y no admite la versión «para
+   revisión». Desde el 23-09 Pablo autorizó que salgan solas, siempre después de
+   la revisión de la «Quinta parte».
 4. `getScheduledPosts` para ver qué hay en cola y no duplicar.
 5. `getAnalyticsDataByMetrics` cada lunes: qué funcionó la semana pasada.
-
-**Se usa siempre la versión "para revisión".** Publicar directo sin que Pablo
-lo vea es una acción irreversible, y de esas no se hacen solas.
 
 ## Qué se revisa cada lunes
 
@@ -357,3 +359,67 @@ para mientras la cuenta de marca arranca.
 Instagram no convierte en enlace el texto del pie de foto. Se pone igual, pero
 el que funciona es **el de la biografía**, que hay que ir cambiando al producto
 que se esté promocionando esa semana. En Facebook sí es clicable.
+
+La solución automática (desde el 23-09-2026): en la biografía de Instagram va
+**un enlace fijo a `patitascalidas.com/collections/visto-en-redes`**. La rutina
+de los lunes cambia los productos de esa colección cada semana, así que la
+biografía no se toca nunca más. Poner ese enlace en la biografía lo hace Pablo
+una vez, desde la aplicación de Instagram.
+
+---
+
+# Quinta parte: publicación automática (23-09-2026)
+
+Pablo pidió que las publicaciones sigan saliendo solas en TikTok, Instagram y
+Facebook. Lo mantiene la rutina **«Redes semanal»**, que se ejecuta los lunes a
+las 9:00 de Madrid.
+
+## Lo que se encontró al montarla
+
+- **Los 110 posts en cola iban solo a TikTok.** Instagram y Facebook estaban
+  conectados y no recibían nada, y eso que Instagram es de donde llegan casi
+  todas las visitas reales.
+- **La cola se acaba el 25 de noviembre.** Las 10:00 están vacías desde el 8.
+- **82 de 92 posts (23-sep a 7-nov) llevan foto, no vídeo.** Muchas son del
+  proveedor y traen texto en inglés, marca del fabricante o frases de revista
+  de fondo. Ejemplos vistos:
+  - comedero con sensor: «SMART FEEDER»;
+  - bálsamo: «PAW BALM», en todas sus fotos;
+  - cama cueva: «Gradient Pink and White»;
+  - pijama fino: «Pet Pajamas»;
+  - mono acolchado: marca «DADAGOU».
+- Dos posts enlazaban a productos que CJ no podía mandar a España: la bola, ya
+  resuelta, y el comedero rotativo, cambiado por el pack de invierno. Uno citaba
+  el precio viejo de la mochila.
+
+## Revisión obligatoria de cada post antes de que salga
+
+1. La ficha enlazada está publicada (`onlineStoreUrl` no nulo) y CJ la puede
+   mandar a España.
+2. El precio del texto es el precio de hoy en Shopify («desde» = el más barato).
+3. **La imagen se mira a tamaño real.** El OCR (tesseract) NO basta: el 23-09
+   no leyó «PAW BALM» en letras enormes. Fotos: descargar y abrir. Vídeos:
+   cuatro fotogramas con `cv2` (Python) y mirarlos.
+4. Fuera: texto en otro idioma, marca del proveedor, marca de IA. Si la foto
+   parece hecha por ordenador y no se sabe de dónde salió, no va a Instagram
+   (Instagram obliga a declararlo).
+5. Si la foto falla: cambiarla por una limpia de la ficha. Si no hay ninguna
+   limpia, cambiar el producto del post.
+
+## Formato por red
+
+- **TikTok:** foto o vídeo. `tiktokData.title` obligatorio. `autoAddMusic`:
+  `true` con foto y `false` con vídeo.
+- **Instagram:**
+  - vídeo → `instagramData.type: REEL`;
+  - foto → `POST`;
+  - el texto puede llevar el enlace, pero lo que funciona es la biografía.
+- **Facebook:**
+  - vídeo → `facebookData.type: REEL`, con `title`;
+  - foto → `POST`;
+  - aquí el enlace sí se puede pulsar.
+- Instagram y Facebook se añaden **al post existente** (mismo texto y medio)
+  con `updateScheduledPost`, poniendo las tres redes en `providers`. Probado el
+  23-09: sale PENDING en las tres.
+- Mínimo **una** publicación al día en Instagram y Facebook: la mejor revisada
+  de ese día, mejor si es vídeo.
