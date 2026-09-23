@@ -22,3 +22,10 @@ Comprobar que no ha cambiado:
 23-09-2026. También se usa **tal cual**, sin retocar. Es la que va en la cabecera
 de la web y en el icono de la pestaña, porque a 32-44 px el texto
 «patitascalidas.com» del logo completo no se lee; el nombre ya va escrito al lado.
+
+## Copia para el fondo de la portada
+
+`huella-fondo-web.png` es una **copia** de `logo-huella.jpg` sin el fondo verde
+(recortado por color desde los bordes, sin tocar la huella), para ponerla grande
+y medio transparente detrás del titular de la portada, como pidió Pablo el
+23-09-2026. El original sigue igual.
