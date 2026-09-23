@@ -13,6 +13,11 @@ datos.json:
   "nota": "Envío gratis · 14 días para devolver"
 }
 
+Para un pack, en vez de "foto" se puede pasar "fotos": una lista de tres
+[ruta, rótulo]. Se montan juntas (una grande a la izquierda y dos a la
+derecha), cada una con su rótulo, para que se vea TODO lo que lleva el pack.
+Una portada de pack con una sola pieza engaña (pasó el 23-09-2026).
+
 Formato 1080 × 1350 (4:5): el que mejor ocupa la pantalla en Instagram y
 Facebook, y TikTok lo acepta como foto. Colores y letra de la web y de los
 vídeos, para que todo se vea de la misma marca.
@@ -68,10 +73,33 @@ def partir(texto, fuente, ancho_max, dibujo):
     return lineas
 
 
+def rotulo(d, x, y, texto):
+    fuente = letra(NEGRITA, 26)
+    ancho = d.textlength(texto, font=fuente) + 32
+    d.rounded_rectangle((x, y, x + ancho, y + 46), radius=23, fill=CREMA)
+    d.text((x + 16, y + 9), texto, font=fuente, fill=VERDE)
+
+
+def collage(lienzo, fotos):
+    """Una foto grande a la izquierda y dos apiladas a la derecha."""
+    d = ImageDraw.Draw(lienzo)
+    hueco = 8
+    mitad = (ANCHO - hueco) // 2
+    alto_peq = (ALTO_FOTO - hueco) // 2
+    sitios = [(0, 0, mitad, ALTO_FOTO), (mitad + hueco, 0, ANCHO - mitad - hueco, alto_peq),
+              (mitad + hueco, alto_peq + hueco, ANCHO - mitad - hueco, ALTO_FOTO - alto_peq - hueco)]
+    for (ruta, texto), (x, y, w, h) in zip(fotos, sitios):
+        lienzo.paste(recortar_cubriendo(Image.open(ruta).convert("RGB"), w, h), (x, y))
+        rotulo(d, x + 20, y + h - 66, texto)
+
+
 def montar(datos, salida):
     lienzo = Image.new("RGB", (ANCHO, ALTO), CREMA)
-    foto = Image.open(datos["foto"]).convert("RGB")
-    lienzo.paste(recortar_cubriendo(foto, ANCHO, ALTO_FOTO), (0, 0))
+    if datos.get("fotos"):
+        collage(lienzo, datos["fotos"])
+    else:
+        foto = Image.open(datos["foto"]).convert("RGB")
+        lienzo.paste(recortar_cubriendo(foto, ANCHO, ALTO_FOTO), (0, 0))
     d = ImageDraw.Draw(lienzo)
     margen = 64
 
