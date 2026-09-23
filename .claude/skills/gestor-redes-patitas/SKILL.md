@@ -455,3 +455,30 @@ Pablo pidió varias publicaciones al día, siempre a la misma hora, y que se vea
   No se anuncian hasta que Pablo decida.
 - **Comprobados contra CJ el 23-09:** hamaca de radiador, saco cueva y manta
   autocalentable, es decir, las tres piezas del pack de invierno.
+
+# Sexta parte: Instagram y Facebook sin Metricool (23-09-2026, noche)
+
+La prueba de las 14:20 falló en las tres redes: **Metricool gratis solo publica
+20 posts al mes**, y septiembre ya estaba gastado. Deja programar sin límite; el
+tope salta al publicar. Por eso Instagram y Facebook se publican ahora directamente con la API
+de Meta, que es gratis y no tiene ese tope.
+
+- **Programa:** `scripts/redes/meta_publicar.py publicacion.json`, con la
+  imagen, el texto de Instagram, el texto de Facebook y las redes.
+- **La clave:**
+  - la lee de la variable de entorno `META_PAGE_TOKEN`;
+  - nunca va en un archivo, en git ni en el chat, y el programa no la imprime;
+  - si falta, el programa para y lo dice.
+- **Probado:** el pack de invierno se publicó el 23-09 en
+  instagram.com/p/DdoYW0Hl1Kf y en la página de Facebook.
+- **Instagram no deja programar por API.** Algo tiene que ejecutar el programa
+  a la hora de publicar, por ejemplo una rutina diaria.
+- **Reparto:**
+  - Instagram y Facebook: por la API de Meta;
+  - TikTok: por Metricool, solo las 20 mejores del mes.
+- **Datos:**
+  - página de Facebook `1249959148207574`;
+  - Instagram `17841433600204625` (@patitascalidas_);
+  - app de Meta con los permisos pages_show_list, pages_read_engagement,
+    pages_manage_posts, instagram_basic e instagram_content_publish.
+- La revisión obligatoria de la quinta parte vale igual aquí.
