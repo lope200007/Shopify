@@ -488,3 +488,18 @@ de Meta, que es gratis y no tiene ese tope.
   - app de Meta con los permisos pages_show_list, pages_read_engagement,
     pages_manage_posts, instagram_basic e instagram_content_publish.
 - La revisión obligatoria de la quinta parte vale igual aquí.
+
+## Estado final (23-09-2026, noche): todo automático
+
+- **Instagram y Facebook:** la rutina «Cola Meta Patitascalidas (10/13/18 Madrid)»
+  (`trig_019FpxTUDW26Xa4fedsy1hvA`) abre una sesión nueva a las 8, 9, 11, 12, 16 y
+  17 UTC. Solo trabaja si en Madrid son las 10, las 13 o las 18, así sirve con
+  horario de verano y de invierno. Lanza `meta_cola.py` y sube la cola a main.
+- **Rellenar la cola:** lo hace la rutina de los lunes (`trig_01MP5c5My6aXGnx6ZmT2v7J9`),
+  siempre con 7 días por delante y con la revisión obligatoria.
+- **TikTok:** Metricool, con 20 publicaciones al mes como máximo.
+- **Clave de Meta:** está en la variable de entorno `META_PAGE_TOKEN` del entorno
+  «Shopify». No caduca, pero Meta pide usar la app al menos cada 90 días (el acceso
+  a datos vence el 22-12-2026 si no se usa, y cada uso lo renueva).
+- **Borrar en Facebook:** se borra la foto (`attachments{target{id}}`), no el id de
+  la publicación. Con las páginas nuevas, lo segundo da el error #200.
