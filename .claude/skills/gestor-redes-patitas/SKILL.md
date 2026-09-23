@@ -423,3 +423,35 @@ las 9:00 de Madrid.
   23-09: sale PENDING en las tres.
 - Mínimo **una** publicación al día en Instagram y Facebook: la mejor revisada
   de ese día, mejor si es vídeo.
+
+## Horario fijo e imagen de marca (23-09-2026, tarde)
+
+Pablo pidió varias publicaciones al día, siempre a la misma hora, y que se vean
+«como un negocio que vende».
+
+- **Horario:** 10:00, 13:00 y 18:00, todos los días. Las 13:00 son siempre una
+  imagen de marca en las tres redes.
+- **Plantilla:** `scripts/redes/creatividad.py`.
+  - Formato 1080×1350, con la foto arriba y el panel crema abajo.
+  - El panel lleva:
+    - etiqueta en teja;
+    - titular en negrita;
+    - subtítulo;
+    - un dato comprobable;
+    - el precio en una píldora verde;
+    - la nota «Envío gratis desde 39 € · 14 días para devolver»;
+    - el dominio.
+  - Colores de la web: crema `#fbf7f1`, verde `#1f4a37`, teja `#a94f1e`,
+    texto `#23261f`.
+  - Las imágenes se guardan en `assets/redes/AAAA-MM/` y Metricool las toma
+    de `raw.githubusercontent.com` (el repositorio es público; comprobar 200).
+- **Primera publicación hecha así:** pack gato invierno, 23-09 a las 14:20,
+  prueba en las tres redes.
+- **Comprobar que la ficha es el producto de CJ.** Antes de anunciar nada, se
+  cruzan tres cosas: nombre y categoría en CJ, fotos de CJ y texto de la ficha.
+  El 23-09 salieron dos que no coinciden:
+  - el «abrigo de invierno» es en CJ un pijama de raso («Pet Pajamas»);
+  - la «mochila transportín ventilada» es en CJ un bolso bandolera acolchado.
+  No se anuncian hasta que Pablo decida.
+- **Comprobados contra CJ el 23-09:** hamaca de radiador, saco cueva y manta
+  autocalentable, es decir, las tres piezas del pack de invierno.
