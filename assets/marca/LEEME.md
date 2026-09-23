@@ -15,3 +15,10 @@ huella de lana color crema, con un corazón cosido, sobre fondo verde, y
 Comprobar que no ha cambiado:
 
     sha256sum assets/marca/logo-oficial.jpg
+
+## Versión solo huella
+
+`logo-huella.jpg` es la huella sin el texto, recortada por Pablo y mandada el
+23-09-2026. También se usa **tal cual**, sin retocar. Es la que va en la cabecera
+de la web y en el icono de la pestaña, porque a 32-44 px el texto
+«patitascalidas.com» del logo completo no se lee; el nombre ya va escrito al lado.
