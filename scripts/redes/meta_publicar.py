@@ -12,6 +12,7 @@ publicacion.json:
 {
   "imagen": "https://raw.githubusercontent.com/.../algo.jpg",   # pública, JPG
   "video": "https://.../algo.mp4",   # en vez de imagen: sale como reel
+  "carrusel": ["https://.../1.jpg", "https://.../2.jpg"],   # en vez de imagen: 2-10 fotos
   "titulo_video": "...",             # opcional, solo Facebook
   "texto_instagram": "...",   # el enlace no se puede pulsar: "Enlace en la bio"
   "texto_facebook": "...",    # aquí sí: https://patitascalidas.com/products/...
@@ -70,10 +71,17 @@ def publicar(p):
         sys.exit("Falta META_PAGE_TOKEN en los ajustes del entorno.")
     clave = clave_de_pagina(clave)
     video = p.get("video")
+    carrusel = p.get("carrusel")
     resultado = {}
 
     if "instagram" in p.get("redes", []):
-        if video:
+        if carrusel:
+            hijos = [llamar(INSTAGRAM + "/media", clave, "POST", image_url=u, is_carousel_item="true") for u in carrusel]
+            fallo = [h.get("ERROR") for h in hijos if "id" not in h]
+            c = {"ERROR": fallo[0]} if fallo else llamar(
+                INSTAGRAM + "/media", clave, "POST", media_type="CAROUSEL",
+                children=",".join(h["id"] for h in hijos), caption=p["texto_instagram"])
+        elif video:
             c = llamar(INSTAGRAM + "/media", clave, "POST", media_type="REELS", video_url=video,
                        caption=p["texto_instagram"], share_to_feed="true")
         else:
@@ -89,7 +97,17 @@ def publicar(p):
                 resultado["instagram"] = "ERROR al publicar (%s): %s" % (estado, pub.get("ERROR"))
 
     if "facebook" in p.get("redes", []):
-        if video:
+        if carrusel:
+            fotos = [llamar(PAGINA + "/photos", clave, "POST", url=u, published="false") for u in carrusel]
+            fallo = [f.get("ERROR") for f in fotos if "id" not in f]
+            if fallo:
+                resultado["facebook"] = "ERROR: %s" % fallo[0]
+            else:
+                adjuntos = {"attached_media[%d]" % i: json.dumps({"media_fbid": f["id"]}) for i, f in enumerate(fotos)}
+                f = llamar(PAGINA + "/feed", clave, "POST", message=p["texto_facebook"], **adjuntos)
+                resultado["facebook"] = (llamar(f["id"], clave, fields="permalink_url").get("permalink_url")
+                                         if "id" in f else "ERROR: %s" % f.get("ERROR"))
+        elif video:
             f = llamar(PAGINA + "/videos", clave, "POST", file_url=video, description=p["texto_facebook"],
                        title=p.get("titulo_video", ""), published="true")
             if "id" in f:
