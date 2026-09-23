@@ -88,7 +88,7 @@ Envío gratis a partir de 39 €. Los cinco packs y cualquier pedido de dos prod
 
 | Producto | Enlace | Precio |
 | --- | --- | --- |
-| Albornoz de secado | `patitascalidas.com/products/albornoz-de-secado-para-perro` | 16,90-25,90 € |
+| Albornoz de secado | `patitascalidas.com/products/albornoz-de-secado-para-perro` | 16,90-24,90 € |
 | Capucha con orejeras | `patitascalidas.com/products/capucha-orejeras-perro` | 24,90 € |
 | Limpiapatas eléctrico | `patitascalidas.com/products/limpiapatas-electrico-perro` | 39,90 € |
 | Manopla de baño y secado | `patitascalidas.com/products/manopla-de-bano-y-secado` | 16,90 € |

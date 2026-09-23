@@ -169,6 +169,27 @@ El tráfico humano de verdad era **72 sesiones de móvil desde España**.
 - Un descuento por debajo del 10 % **no mueve a nadie**: el 5 % sobre 19,90 €
   es un euro. El `Pet07` del 5 % estuvo activo tres días con cero usos.
 
+### Método de precios (23/09/2026, `research/metodo-precios-2026-09-23.md`)
+
+- **Cada producto tiene un papel.**
+  - *Gancho*: igual o más barato que Amazon; es lo que se anuncia.
+  - *Complemento*: Amazon lo vende más barato; no se baja ni se anuncia solo,
+    sirve para pasar de 39 €.
+  - *Pack*: no se puede comparar y paga un solo envío.
+- **Medido el 22/09 contra los más vendidos de Amazon.es:** los artículos
+  pequeños idénticos salen entre 1,6 y 4,2 veces más caros. No se pueden
+  igualar: solo el envío desde China cuesta 4-5 €.
+- **El envío gratis es el descuento.** No sumarle un porcentaje: Shopify mira
+  los 39 € después del descuento y vuelve a cobrar el envío.
+- **Escalones ,90 justo debajo del número redondo:**
+  - 9,90 · 14,90 · 19,90 · 24,90 · 29,90 · 34,90 · 39,90;
+  - nunca 20,90 ni 25,90.
+- **Entre 32 y 39 €, mejor 39,90 € con envío gratis.** A 32,90 € el cliente
+  paga lo mismo y tú ganas lo mismo; a 34,90 € el cliente paga 1,99 € menos y
+  tú ganas 1,61 € menos.
+- **Antes de cambiar el precio de una pieza, mira si va en un pack.** Los packs
+  dicen "Ahorras X €" en el título, en el texto y en el precio de referencia.
+
 ---
 
 ## 6. Canales: lo que funciona y lo que no
