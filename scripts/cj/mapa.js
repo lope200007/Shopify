@@ -105,7 +105,11 @@ const manual = {
   'PTC-ALFLAM-01': '2084198472767287297', 'PTC-ALFLAM-02': '2084198472767287298', 'PTC-ALFLAM-03': '2084198472767287301',
   'PTC-ALFLAM-04': '2084198472767287302',
   // bola-dispensadora-de-premios
-  'PTC-BOLAPRE-01': '2060273902021038082', 'PTC-BOLAPRE-02': '2060273902021038083',
+  // 23-09-2026: los vid antiguos (2060273902021038082/083) solo tenian stock en
+  // el almacen de EE. UU. y CJ no los mandaba a Espana. Mismo modelo de otro
+  // proveedor de CJ (pid 1753982835490304000) con stock en China: 01 = Red,
+  // 02 = "Lake Blue" (el verde azulado de la foto de la tienda).
+  'PTC-BOLAPRE-01': '1753982835691630592', 'PTC-BOLAPRE-02': '1753982835599355904',
   // manopla-de-bano-y-secado
   'PTC-MANOPLA-01': '1467402060050862080',
   // albornoz-de-secado-para-perro
