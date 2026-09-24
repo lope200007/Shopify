@@ -285,3 +285,14 @@ enlace.
 - El pedido **#1001 sigue en CJ**, `orderStatus: CREATED`, sin pagar
   (`paymentDate: null`, importe sin calcular, sin teléfono ni transporte).
   Es el de su hermano, ya reembolsado: **hay que cancelarlo en CJ**, no pagarlo.
+
+---
+
+# Corrección (24 sept 2026): la recarga del monedero NO admite tarjeta ni PayPal
+
+Captura de Pablo en `cjdropshipping.com/mine/wallet`: para **recargar** solo salen
+**WorldFirst, Payoneer y transferencia bancaria (mínimo 2.000)**. Lo de arriba («con
+tarjeta o PayPal los mínimos son mucho menores») era falso para la recarga en esta
+cuenta. Los nueve métodos de la documentación de CJ son para **pagar pedidos**, no
+para recargar. Queda por comprobar en su cuenta qué métodos salen al pagar un pedido
+(«Unpaid» → «Pay»). Mientras tanto: sin recarga, cada pedido se paga por separado.
