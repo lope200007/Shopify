@@ -23,9 +23,11 @@ Comprobar que no ha cambiado:
 de la web y en el icono de la pestaña, porque a 32-44 px el texto
 «patitascalidas.com» del logo completo no se lee; el nombre ya va escrito al lado.
 
-## Copia para el fondo de la portada
+## Fondo de la portada
 
-`huella-fondo-web.png` es una **copia** de `logo-huella.jpg` sin el fondo verde
-(recortado por color desde los bordes, sin tocar la huella), para ponerla grande
-y medio transparente detrás del titular de la portada, como pidió Pablo el
-23-09-2026. El original sigue igual.
+`fondo-portada.jpg` es la huella sobre fondo beige que hizo Pablo (704 × 1524),
+mandada el 24-09-2026 para ir detrás del titular de la portada. Se usa **tal
+cual**, sin degradar ni recortar.
+
+(Antes hubo una copia recortada por mí, sin el fondo verde. A Pablo no le gustó
+—bordes sucios— y se quitó. Las imágenes de marca no se recortan ni retocan aquí.)
