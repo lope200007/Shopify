@@ -332,10 +332,14 @@
   .pcj .pcj-duda summary:active{opacity:1}
 }
 
-/* Tarjetas que solo valen en movil.
-   En ordenador, Perros y Gatos ya salen arriba en las dos tarjetas grandes;
-   repetirlas en la rejilla seria decir lo mismo dos veces. En movil no hay
-   tarjetas grandes (la seccion esta oculta), asi que ahi si se pintan. */
-@media (min-width: 900px){
-  .pcj .pcj-categoria.pcj-solo-movil{ display:none; }
+/* ---------- Huella de lana de fondo en la cabecera ----------
+   Imagen de Pablo (24-09-2026): la huella sobre beige, puesta TAL CUAL detras
+   del titular, sin degradar ni recortar (assets/marca/fondo-portada.jpg en el
+   repositorio). Su beige (#f5ede2) es casi el mismo que el de la tarjeta, asi
+   que no se nota el borde. Va en un ::before con z-index -1 dentro de un
+   contexto aislado: por debajo del texto y los botones. */
+.pcj .pcj-hero-texto{position:relative;isolation:isolate}
+.pcj .pcj-hero-texto::before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:#f5ede2 url("https://cdn.shopify.com/s/files/1/1047/3475/3116/files/patitascalidas-fondo-portada.jpg?v=1790234524") center/cover no-repeat;
 }
