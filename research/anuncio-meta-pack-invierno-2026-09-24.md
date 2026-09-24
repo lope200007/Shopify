@@ -65,3 +65,15 @@ Botón: Comprar
 - 60 € con clics y 0 carritos → parar y revisar ficha o precio.
 - Carritos baratos y alguna venta → optimizar por compra y subir 10-15 % cada 48 h
   mientras cada venta cueste menos de ~20 €.
+
+## Estado comprobado a las 11:00 del 24-09
+- **Píxel instalado y funcionando:** `1858409395124273`, «Shopify: g5d031ir …'s pixel» (lo creó
+  la app de Shopify a las 10:44). Ya recibe visitas. En el anuncio, el conjunto de datos
+  se llama así, no «Patitascalidas».
+- **Productos en Meta:** 136 de 136 activos están en el canal «Facebook & Instagram»
+  (`Publication/371869319516`). **Ojo: `autoPublish` está apagado**: cada producto nuevo hay
+  que publicarlo también en ese canal (son 5 canales ahora, no 4).
+- **Cuenta de anuncios:** sigue con **3,53 € pendientes** (estado 3). Sin pagar eso no sale nada.
+- El píxel **no aparece asignado** a la cuenta de anuncios `act_381307905740791` desde la API
+  (la clave no tiene permiso de negocio para verlo todo). Si al crear el anuncio no sale el
+  conjunto de datos, asignarlo en el Administrador de eventos.

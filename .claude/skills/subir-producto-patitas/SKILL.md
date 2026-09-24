@@ -21,7 +21,9 @@ porque el producto no estaba vinculado. La ficha estaba perfecta.
 - shopId de CJ: `2609031958293531800`
 - Transporte por defecto: `CJPacket Eub` · CN → ES
 - Canales que debe tener todo producto: **Tienda online, Shop, TikTok,
-  Google & YouTube** (los 4)
+  Google & YouTube, Facebook & Instagram** (los 5). Facebook & Instagram
+  (`gid://shopify/Publication/371869319516`) no publica solo: hay que añadirlo
+  a mano en cada producto nuevo.
 
 ## Los 9 pasos
 
@@ -62,11 +64,11 @@ Si el margen no llega a ~8 €, no compensa.
 - Categoría estándar de Shopify (no es lo mismo que la colección): alimenta
   impuestos y los feeds de Google y Meta.
 
-### 5. Publicar en los 4 canales
+### 5. Publicar en los 5 canales
 
 `status: ACTIVE` **no basta**. Si `onlineStoreUrl` es `null`, el producto no
 está publicado aunque figure activo. Hay que comprobar
-`resourcePublicationsV2` y ver los 4 canales en `true`.
+`resourcePublicationsV2` y ver los 5 canales en `true`.
 
 ### 6. Meterlo en su colección
 

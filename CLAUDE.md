@@ -777,6 +777,11 @@ IDs de publicación de esta tienda:
 - Tienda online: `gid://shopify/Publication/365626753372`
 - Shop: `gid://shopify/Publication/365626786140`
 - Point of Sale: `gid://shopify/Publication/365626818908`
+- TikTok: `gid://shopify/Publication/369532469596`
+- Google & YouTube: `gid://shopify/Publication/370321752412`
+- Facebook & Instagram: `gid://shopify/Publication/371869319516` (sin publicación automática: cada producto nuevo hay que añadirlo a mano)
+
+Todo producto activo va en Tienda online, Shop, TikTok, Google & YouTube y Facebook & Instagram (5). Point of Sale no hace falta.
 
 Ubicación de inventario: `gid://shopify/Location/120876466524` ("Sucursal de la tienda")
 
