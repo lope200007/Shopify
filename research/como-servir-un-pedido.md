@@ -296,3 +296,19 @@ tarjeta o PayPal los mínimos son mucho menores») era falso para la recarga en 
 cuenta. Los nueve métodos de la documentación de CJ son para **pagar pedidos**, no
 para recargar. Queda por comprobar en su cuenta qué métodos salen al pagar un pedido
 («Unpaid» → «Pay»). Mientras tanto: sin recarga, cada pedido se paga por separado.
+
+## Comprobado en la cuenta de Pablo (24 sept 2026): pagar un pedido SÍ admite tarjeta y PayPal
+
+Captura de Pablo en la pantalla de pago de un pedido de CJ («Pedidos» → pedido en
+espera de pago → «Vuelva a comprobar» / «Pagar» → confirmación → «Entregar»):
+métodos **WorldFirst, CJ wallet, PayPal Checkout y Pay with Card** (y «Más»).
+
+**Decisión: no se recarga el monedero.** Cada venta:
+1. Claude crea el pedido en CJ por la API (`payType 1`) con la dirección exacta del
+   cliente, el `vid` de `mapa.js` y el porte más barato.
+2. Pablo lo paga en CJ con **tarjeta o PayPal** (solo ese pedido).
+3. Claude recoge el número de seguimiento y marca el pedido servido en Shopify, que
+   manda el correo al cliente.
+
+Si el pedido lleva unos días sin pagar, CJ libera la reserva de stock y el botón pasa
+a «Vuelva a comprobar»: se pulsa, vuelve a mirar existencias y deja pagar.
