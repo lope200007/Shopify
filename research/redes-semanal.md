@@ -4,6 +4,36 @@ Lo rellena la rutina «Redes semanal» cada lunes. Una entrada por semana, la m�
 reciente arriba. Solo cuentan las visitas reales (móvil y España); las de
 ordenador desde EE. UU. son robots y nuestras propias pruebas.
 
+## Semana del 21 al 27-09-2026 (revisado el 28-09)
+
+| Origen | Visitas | Con carrito | Llegan a pagar | Compras |
+|---|---:|---:|---:|---:|
+| Directo | 219 | 4 | 2 | 0 |
+| Bing | 10 | 0 | 0 | 0 |
+| Instagram | 8 | 0 | 0 | 0 |
+| Facebook | 3 | 0 | 0 | 0 |
+
+- Ventas reales: 0. Los carritos de «directo» incluyen nuestras pruebas del
+  seguimiento de Meta (24-09, del pack de invierno, desde el móvil de Pablo y
+  desde el navegador de pruebas). Casi todo lo «directo» son revisiones nuestras.
+- **Instagram y Facebook no publican desde el 24-09.** En la cola de Meta no hay
+  nada marcado como publicado después de la prueba del carrusel (23-09), y desde
+  el 28-09 la API de Meta contesta «API access blocked» a cualquier consulta con
+  la clave de la app. Hasta que Pablo lo resuelva en developers.facebook.com no
+  se rellena la cola de Meta: se quedaría sin salir.
+- **TikTok (Metricool gratis, 20 al mes):** octubre tenía 61 programadas (dos
+  diarias) y el cupo se habría gastado el día 10. Se dejan 20 repartidas por el
+  mes, a las 18:00: pack de invierno (1-10, con la imagen de las tres piezas y
+  solo en TikTok), jersey de punto, chubasquero, manta autocalentable, cama
+  dónut, sudadera polar, fuente de gato, túnel de gato, botas, bálsamo, collar
+  AirTag, alfombrilla atrapa-arena, correa antitirones, hamaca de jaula, chapa,
+  comedero elevado, hierba gatera, secador cepillo, coche de gato y bicho
+  eléctrico. Las otras 42 de octubre y las 5 que quedaban de septiembre (ya sin
+  cupo) están en borrador, no borradas. La manta y el pack llevaban también
+  Instagram y Facebook en Metricool; se han dejado solo en TikTok.
+- «Visto en redes»: pack de invierno (primero), jersey de punto, chubasquero,
+  manta autocalentable, cama dónut, sudadera polar, fuente y túnel de gato.
+
 ## Punto de partida — 23-09-2026 (últimos 30 días)
 
 | Origen → página de entrada | Visitas | Con carrito |
