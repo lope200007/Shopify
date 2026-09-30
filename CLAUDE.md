@@ -1,5 +1,14 @@
 # Shopify AI Agent — Guía para Claude Code
 
+**Antes de nada, la guía general**, con lo aprendido que vale para cualquier
+tienda: método, verificación, márgenes, fotos, proveedor, anuncios y seguridad.
+Se carga aquí:
+
+@.claude/skills/oficio-tienda-online/SKILL.md
+
+El registro completo de errores, con fechas y casos, está en el repositorio
+`lope200007/libre`: `.claude/memory/errores-aprendidos.md`.
+
 > ## ⇢ EMPIEZA AQUÍ — estado a 8 de septiembre de 2026
 >
 > **El proyecto vivo no es el agente de webhooks: es la tienda
