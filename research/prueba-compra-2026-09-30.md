@@ -47,6 +47,21 @@ solo tener un euro de ganancia nada más, pero ver que todo sale bien».
   pedido en CJ se comprueba que pide **7,37 $** antes de pasarle el enlace a
   Pablo.
 
+## Estado (30-09-2026, 17:58)
+
+- Precio de prueba bajado a **0,50 €** de ganancia a petición de Pablo:
+  descuento 17,53 €, rascador a 2,37 €, total 9,36 €.
+- Tienda **#1003**: 9,36 € cobrado al momento (`SALE`, ya no «Autorizado»).
+- CJ **SD2609301457370648900**: pidió **7,38 $** (2,70 + 4,09 CJPacket Eub +
+  0,57 IVA + 0,02 de tasa). Lo calculado era 7,37 $: 1 centavo de diferencia
+  por la tasa de gestión. Pablo lo pagó a las 15:55 (hora de CJ). Estado
+  `UNSHIPPED`, aún sin seguimiento.
+- Intento 1 cerrado: #1002 cancelado en Shopify con devolución de 6,99 + 1,22 €
+  (pendiente de que la procese el banco); pedido CJ del #1002 borrado (TRASH).
+- Queda: seguimiento de CJ → marcar enviado en Shopify; comisión real de
+  Shopify del #1003; ingreso en la cuenta de la tienda. Revisión programada
+  para el 01-10.
+
 ## Cuando entre el pedido
 
 1. Comprobar en Shopify: total 9,97 €, estado «Pagado» (no «Autorizado»).
