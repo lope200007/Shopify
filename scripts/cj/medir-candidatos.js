@@ -33,13 +33,14 @@ const margen = (pvp, costeUsd, porte) => pvp / 1.21 - costeUsd * USD - porte - (
     if (!imgs.length) imgs = d.productImageSet || [];
 
     let r;
-    try { r = await cj.portes({ startCountryCode: 'CN', endCountryCode: 'ES', products: [{ quantity: 1, vid: pesada.vid }] }); }
+    // Ordenado por lo que CJ cobra de verdad (totalPostageFee), no por el precio base.
+    try { r = await cj.transportes({ startCountryCode: 'CN', endCountryCode: 'ES', products: [{ quantity: 1, vid: pesada.vid }] }); }
     catch (e) { console.log(`! ${c.clave.padEnd(18)} porte: ${String(e.message).replace(/^CJ [^:]+: /, '').slice(0, 42)}`); await dormir(1700); continue; }
 
-    const ok = (r || []).filter((x) => x.logisticPrice != null).sort((a, b) => a.logisticPrice - b.logisticPrice);
+    const ok = r || [];
     if (!ok.length) { console.log(`! ${c.clave.padEnd(18)} SIN TRANSPORTE A ESPANA`); await dormir(1700); continue; }
 
-    const porte = ok[0].logisticPrice * USD;
+    const porte = ok[0].porteReal * USD;
     const coste = +cara.variantSellPrice;
     const m = margen(c.pvp, coste, porte);
 

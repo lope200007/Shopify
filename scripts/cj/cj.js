@@ -38,10 +38,40 @@ async function pedir(ruta, query, cuerpo) {
   return j.data;
 }
 
+/**
+ * LO QUE CJ COBRA DE VERDAD POR EL ENVIO, EN DOLARES.
+ *
+ * freightCalculate devuelve dos precios y el que parece obvio es el malo:
+ *   logisticPrice   -> precio base del transporte, SIN impuestos ni despacho
+ *   totalPostageFee -> lo que CJ cobra en el pedido (base + taxesFee +
+ *                      clearanceOperationFee...)
+ * Pedido de prueba #1002 (30-09-2026), rodillo quitapelos: YunExpress daba
+ * 5,00 de base y cobro 8,50; CJPacket Eub daba 5,50 y 5,50. Elegir y sumar
+ * por logisticPrice escogio el transporte caro y dejo la venta en perdidas.
+ * Si algun dia CJ no manda totalPostageFee, se cae al precio base.
+ */
+function porteReal(o) {
+  const total = Number(o && o.totalPostageFee);
+  if (Number.isFinite(total) && total > 0) return total;
+  return Number(o && o.logisticPrice);
+}
+
+/** Opciones de envio validas, de la mas barata a la mas cara EN TOTAL. */
+async function transportes(c) {
+  const r = await pedir('/logistic/freightCalculate', null, c);
+  return (r || [])
+    .filter((o) => Number.isFinite(porteReal(o)))
+    .map((o) => ({ ...o, porteReal: porteReal(o) }))
+    .sort((a, b) => a.porteReal - b.porteReal);
+}
+
 module.exports = {
   buscar: (q) => pedir('/product/list', q),
   detalle: (q) => pedir('/product/query', q),
   stock: (vid) => pedir('/product/stock/queryByVid', { vid }),
+  // Respuesta cruda de CJ. Para precios, usar transportes() o porteReal().
   portes: (c) => pedir('/logistic/freightCalculate', null, c),
+  transportes,
+  porteReal,
   pedir,
 };

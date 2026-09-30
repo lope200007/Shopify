@@ -229,7 +229,10 @@ async function transporteMasBarato(
   productos: Array<{ vid: string; quantity: number }>,
   codigoPais: string
 ): Promise<{ nombre: string; precio: number; plazo: string }> {
-  const opciones = await cj.portes({
+  // Ordenadas por lo que CJ cobra de verdad (totalPostageFee), no por el
+  // precio base: con el base se eligio YunExpress en el #1002 y costo 8,50
+  // en vez de 5,50. Ver porteReal() en cj.js.
+  const opciones = await cj.transportes({
     startCountryCode: PAIS_ORIGEN,
     endCountryCode: codigoPais,
     products: productos.map((p) => ({ vid: p.vid, quantity: p.quantity })),
@@ -242,11 +245,8 @@ async function transporteMasBarato(
     );
   }
 
-  const mejor = opciones
-    .map((o: any) => ({ nombre: o.logisticName, precio: Number(o.logisticPrice), plazo: o.logisticAging }))
-    .sort((a: any, b: any) => a.precio - b.precio)[0];
-
-  return mejor;
+  const o = opciones[0];
+  return { nombre: o.logisticName, precio: o.porteReal, plazo: o.logisticAging };
 }
 
 /**

@@ -11,11 +11,12 @@ const CANDIDATOS = [
 (async () => {
   for (const [nombre, vid] of CANDIDATOS) {
     let r;
-    try { r = await cj.portes({ startCountryCode: 'CN', endCountryCode: 'ES', products: [{ quantity: 1, vid }] }); }
+    // Precio que CJ cobra de verdad (totalPostageFee), no el base.
+    try { r = await cj.transportes({ startCountryCode: 'CN', endCountryCode: 'ES', products: [{ quantity: 1, vid }] }); }
     catch (e) { console.log(nombre + '  ERROR ' + e.message); continue; }
     console.log('## ' + nombre);
-    for (const o of (r || []).filter(x => x.logisticPrice != null).sort((a,b) => a.logisticPrice - b.logisticPrice).slice(0, 5)) {
-      console.log('   ' + o.logisticName.padEnd(28) + (o.logisticPrice * USD).toFixed(2).padStart(6) + ' EUR   ' + o.logisticAging + ' dias');
+    for (const o of (r || []).slice(0, 5)) {
+      console.log('   ' + o.logisticName.padEnd(28) + (o.porteReal * USD).toFixed(2).padStart(6) + ' EUR   ' + o.logisticAging + ' dias');
     }
     console.log('');
   }
