@@ -89,6 +89,14 @@ su sección, sin nombres de productos ni datos privados.
 
 - **Antes de restar un coste, averiguar qué incluye.** El coste apuntado ya
   llevaba el envío del proveedor, y restarlo otra vez daba márgenes falsos.
+- **El envío del proveedor se calcula con lo que cobra de verdad, impuestos y
+  aduana incluidos, no con su precio base.** El transporte más barato se elige
+  también por ese total. Un pedido de prueba cobró 8,50 $ de envío cuando el
+  presupuesto base decía 5 $, y otro transporte cobraba 5,50 $ en total. La
+  venta pasó de ganar a perder.
+- **Antes de anunciar, un pedido de prueba real de punta a punta**: cobro,
+  paso al proveedor y lo que el proveedor cobra. Es la única forma de ver
+  estas diferencias.
 - **Antes de copiar una cifra, mirar en qué moneda la imprime el script.** Una
   vez se pasaron a euros costes que ya estaban en euros.
 - **Comprobar una fila entera:** precio sin IVA − coste − envío − comisión tiene
