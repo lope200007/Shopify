@@ -1,116 +1,156 @@
-# Producto para la primera prueba de anuncios (50 €) — 30-09-2026
+# Producto para la primera prueba de anuncios (50 €): estudio de mercado en internet — 30-09-2026
 
 Pablo: «Lo que tenemos que elegir es el producto ganador de nuestra tienda, pero
-minuciosamente: está en juego que la gente compre, tiempo y dinero». Presupuesto:
-50 € en Meta cuando cobre la nómina.
+minuciosamente». Luego pidió que el estudio se hiciera en internet, no con las
+visitas de la tienda, porque aún no hay publicidad. La primera versión de este
+archivo usaba datos de la tienda y está en el historial de git.
 
-## Elegido: Pack el gato en invierno (66,90 €), con la hamaca de radiador de gancho
+Todo lo de abajo se leyó el 30-09-2026 salvo donde se indica otra fecha.
 
-## Datos medidos hoy
+## Fuentes
 
-### Visitas reales (móvil, España, últimos 60 días): 121
+| Fuente | Qué se sacó | Cómo |
+|---|---|---|
+| Amazon.es, «Los más vendidos» | 24 listas de 30 productos: 12 categorías de accesorios de perro y gato, 5 subcategorías de camas y hamacas de gato, 7 de camas, mantas y ropa de perro | `curl` con navegador de escritorio, 4 s entre páginas |
+| Amazon.es, «Últimas novedades» | Las mismas 12 subcategorías finas | ídem |
+| Amazon.es, búsqueda | «hamaca radiador gato», «saco dormir gato», «manta autocalentable gato» | ídem |
+| Zooplus, Tiendanimal, Kiwoko, Miscota | Precio de la hamaca de radiador | Parallel Search (resultados del 30-09) |
+| Biblioteca de anuncios de Meta, España, anuncios activos | Quién anuncia qué | Parallel Search. La herramienta puede devolver una copia guardada; la fecha anotada abajo es la que ella da. Se confirma con los enlaces directos |
+| Google (autocompletar, España) | Qué escribe la gente | `suggestqueries.google.com` |
+| Volúmenes de Google | `research/tendencias-2026-09-09.md`, `gatos-2026-09-10.md`, `invierno-2026-09-14.md` | Guardados en septiembre. Hoy no hay volúmenes nuevos (ver abajo) |
+| Nuestros precios y costes | 135 fichas activas | API de Shopify |
 
-| Página de entrada | Visitas | Carritos | Llegan a pagar |
-|---|---:|---:|---:|
-| Portada (directo) | 48 | 2 | 1 |
-| Portada (Instagram) | 46 | 0 | 0 |
-| **Rascador de pared (Instagram)** | **5** | **2** | **1** |
-| Cama sofá (Instagram) | 5 | 0 | 0 |
-| Saco cueva (Instagram) | 4 | 0 | 0 |
-| Resto | 13 | 0 | 0 |
+No se pudo:
+- Google Trends devolvió 429.
+- OpenRush no tiene créditos.
+- «Productos del momento» de Amazon sale vacío sin un navegador real.
 
-El resto de visitas (583 de ordenador desde EE. UU.) son robots y nuestras pruebas.
+No se recargó nada.
 
-### Ganancia real por venta
+## Lo más importante: en casi todo, Amazon es más barato que nosotros
 
-Fórmula: (precio + envío que paga el cliente) / 1,21 − coste de CJ con su envío −
-comisión de cobro (≈1,9 % + 0,25 €). Por debajo de 39 € el cliente paga 6,99 € de
-envío; desde 39 €, gratis.
+Un cliente que ve nuestro anuncio y busca el producto en Google lo encuentra más
+barato y con entrega en 1-2 días. Nosotros tardamos de 8 a 15 días. Por debajo
+de 39 € le sumamos 6,99 € de envío.
 
-| Producto | Paga el cliente | Ganancia |
-|---|---:|---:|
-| **Pack gato invierno** | 66,90 € | **29,61 €** |
-| Cama cueva invierno 50 cm | 41,89 € | 23,58 € (descartada, ver abajo) |
-| Botas de invierno | 29,89 € | 19,43 € |
-| Mono de cuatro patas | 31,89 € | 18,25 € |
-| Fuente de gato | 36,89 € | 17,30 € |
-| Saco cueva M | 36,89 € | 17,10 € |
-| Hamaca de radiador | 36,89 € | 16,35 € |
-| Manta autocalentable S | 26,89 € | 16,24 € |
-| Rascador de pared | 26,89 € | 14,20 € |
+| Producto | Nosotros, con envío | Lo más barato encontrado en España (30-09) |
+|---|---:|---|
+| Hamaca de radiador | 36,89 € | Zooplus «Yumi» 12,49 € (74 opiniones, 4,4); Amazon Trixie 17,89 €; Tiendanimal Leeby 16,99 € (10,19 € en oferta) |
+| Saco cueva | 36,89 € | Amazon Mobiclinic 16,11 €; otros de 11,13 a 31,48 € |
+| Manta autocalentable S | 26,89 € | Amazon lionto 13,88 €; las 4 más vendidas de «Lechos» de gato, de 14,99 a 19,99 € |
+| Hamaca de ventana 54×30 | 31,89 € | Amazon EDAGNY 54×30 24,64 € (#3 de «camas de ventana»); Dracarys 23,99 € |
+| Cama dónut 40 cm | 29,89 € | Amazon Bedsure 19,60 € (#1 de camas de gato, 3.904 opiniones) |
+| Chubasquero | 26,89 € | Amazon #1 23,99 € (12.278 opiniones); BPS 14,99 € |
+| Botas (juego de 4) | 29,89 € | Amazon 18,99 € (1.868 opiniones); Trixie 16,52 € |
+| Fuente de gato | 36,89 € | Amazon 16,24-26,59 € |
 
-### CJ (consultado hoy por la API)
+Consecuencia: el anuncio no puede presentar el producto como «barato». Tiene que
+vender algo que Amazon no ofrece así: el conjunto, la comodidad y la imagen.
 
-| Producto | Tiendas que lo venden | Existencias | Envío a España |
-|---|---:|---|---|
-| Hamaca de radiador | 706 | China 40.000 | 8-15 días |
-| Saco cueva | 430 | China 30.000 | 8-15 días |
-| Manta autocalentable | 5 | China 6.053 | 8-15 días |
-| Rascador de pared | 5 | China 7.784 | **4-9 días** |
-| Cama cueva invierno | 23 | China 9.436 | 8-15 días |
-| Mono 4 patas | 35 | China 14.981 | 8-15 días |
-| Botas | 6 | China 5.735 | 4-9 días |
-| Fuente de gato | 40 | China 9.017 | 8-15 días |
+## Qué se vende en España en esta época (Amazon.es, 30-09)
 
-Ninguno tiene vídeo en CJ. Nombres y fotos de CJ cruzados con la ficha: coinciden
-todos menos la cama cueva.
+- **Gato, camas.** La manta autocalentable ocupa los puestos 1 a 4 de «Lechos»:
+  - XIAPIA, 253 opiniones;
+  - Wdmiya, 126;
+  - Nobleza, 388;
+  - Petace, 1.691.
 
-## Descartados y por qué
+  PiuPet, con 5.080 opiniones, es la #9. Las camas cueva o iglú también venden: la Bedsure es la #2 de camas, con 1.156 opiniones.
+- **Hamacas de radiador.** Están en las novedades de «camas de ventana»: B0H3P299N1 a 20,99 € y JYQOQH a 25,99 €. Entran vendedores nuevos, y eso indica temporada.
+- **Hamaca de ventana.** Es la categoría fina con más opiniones: EDAGNY #1 a 34,99 € (763 opiniones, 4,6).
+- **Perro, invierno.** El chubasquero #1 tiene 12.278 opiniones y los abrigos #1 a #5 entre 1.199 y 9.653.
+- **Tendencia nueva.** En las novedades de sudaderas de perro, 11 de los 12 primeros puestos son sudaderas de persona con bolsillo para llevar al perro o al gato. Casi no tienen opiniones todavía (de 0 a 2), así que es una tendencia que empieza, sin ventas probadas. No la tenemos. Queda apuntada.
 
-- **Cama cueva de invierno:** la ficha dice «redonda con techo», pero las 14 fotos
-  de CJ son una cama dónut sin techo. La foto principal lleva texto en inglés. No
-  se anuncia. Hay que quitarla de la venta o reescribirla (decide Pablo).
-- **Rascador de pared:** la única ficha con carritos reales (2 de 5 visitas desde
-  Instagram), y la que llega antes (4-9 días). Pero deja 14,20 € y el cliente
-  paga 6,99 € de envío: con 50 € harían falta 4 ventas para no perder. Queda como
-  **segunda prueba** si el pack no funciona.
-- **Botas y mono:** buena ganancia, pero dependen de la talla. En frío, la duda
-  de la talla frena la compra y trae devoluciones.
-- **Manta sola:** barata y buena, pero una manta en foto no llama la atención. Va
-  dentro del pack.
-- **Hamaca sola:** el cliente paga 36,89 € con el envío, lo mismo que la Trixie en
-  Amazon (33 € con envío gratis). No es mejor oferta. Sirve de imagen de gancho,
-  pero la venta es el pack.
+## Qué se anuncia en Meta en España
 
-## Por qué el pack
+Anuncios activos. Entre paréntesis, la fecha que da la herramienta: puede ser de una copia guardada, no de hoy. Una incoherencia lo confirma: la página de «cama para gatos» dice 06-08 y muestra un anuncio que empezó el 22-09.
 
-1. **Una sola venta paga más de la mitad de la prueba** (29,61 € de 50 €). Ningún
-   otro producto se acerca.
-2. **Envío gratis:** a 66,90 € no hay sorpresa en la caja. En los demás, el
-   cliente descubre 6,99 € al pagar.
-3. **Temporada:** octubre a febrero. Hay que anunciar ya para llegar a Navidad
-   (entrega en 8-15 días).
-4. **Nadie vende el trío junto:** no se puede comparar en Amazon por precio.
-5. **Se entiende en un segundo:** un gato dormido colgado del radiador. Las
-   imágenes están hechas y aprobadas por Pablo (collage de las tres piezas, en
-   4:5, 9:16 y 1:1).
-6. **Sin tallas que dudar:** hamaca de talla única, saco M y manta S, fijos.
-7. **Existencias de sobra en China** de las tres piezas, y el pedido a CJ ya está
-   dado de alta en `mapa.js`.
+- «hamaca radiador gato» (28-09): **ningún anuncio**.
+- «manta autocalentable» (28-09): **ningún anuncio**.
+- «hamaca gato» (21-07): unos 8 anuncios, todos de árboles rascadores con cama y hamaca.
+  - Jupplies: desde el 09-07, con −50 %, pago contra reembolso y envío en 24 h.
+  - KUNA HOM: desde el 28-05.
 
-Riesgos: el precio es alto para alguien que no nos conoce; no hay vídeo propio; y
-la hamaca la venden 706 tiendas, aunque eso también demuestra que se vende.
+  Que sigan meses con el mismo anuncio indica que les compensa. Pero es un mueble grande que envían desde España: no lo podemos igualar desde China.
+- «cama para gatos» (06-08): «Top ventas España» anuncia una lima de uñas para gato a 29,99 € con envío gratis. Empezó el 22-09 y lleva 2 anuncios.
+- «chubasquero perro» (30-06): unos 8 anuncios, de marcas españolas.
+  - candyPet: desde el 05-02, para galgos.
+  - Tqel.
+  - My Pug & Co.
+
+Conclusión: en las tres piezas del pack de gato **no hay nadie anunciándose en Meta en España**. En chubasqueros y árboles rascadores, sí.
+
+## Qué escribe la gente en Google (autocompletar, 30-09)
+
+- «hamaca radiador» → «hamaca radiador gato».
+- «manta autocalentable» → «manta autocalentable perro», «… gatos», «… para mascotas».
+- «cama gato» → «cama gato ventana» y «cama gato pared» en los tres primeros puestos.
+- «sudadera con bolsillo para» → «… perro», «… gatos», «… mascota», «… meter gato».
+
+El autocompletar dice qué se busca, no cuánto. Volúmenes guardados en septiembre: «cama gato», 2.400 al mes; «abrigo para perros», 880 en septiembre y 2.900 en noviembre.
+
+## Decisión
+
+### El producto: Pack el gato en invierno, pero bajando su precio
+
+Por qué sigue siendo el mejor, con datos de fuera:
+
+1. Sus tres piezas **se venden ahora** en Amazon.es. La manta ocupa los puestos 1 a 4 de su categoría, y las hamacas de radiador entran en novedades.
+2. **Nadie las anuncia en Meta en España** (según la copia del 28-09; hay que confirmarlo con el enlace directo). Hay sitio libre.
+3. **Nadie las vende juntas.** El que lo quiere todo tiene que comprar tres cosas en tres sitios.
+4. **Da más ganancia por venta que ningún otro:** 29,61 € a 66,90 €. Cada venta cubre más de media prueba.
+5. **Sin tallas que dudar, y envío gratis** porque pasa de 39 €.
+
+**El problema:** en Amazon, las tres piezas más baratas suman 47,88 €:
+- hamaca Trixie, 17,89 €;
+- saco Mobiclinic, 16,11 €;
+- manta lionto, 13,88 €.
+
+Nuestro pack cuesta 66,90 €: **19,02 € más**. Con marcas medias (lionto 27,09 + lionto cueva 25,58 + Petace 19,99) suman 72,66 €, y ahí nosotros estamos por debajo. Quien compara con lo más barato nos deja; quien compara con lo bueno, no.
+
+**Propuesta: bajar el pack a 54,90 € mientras dure la prueba.** Queda 7 € por encima de lo más barato de Amazon, y 17,76 € por debajo de las marcas medias.
+
+| Precio del pack | Ganancia por venta | Ventas para pagar los 50 € |
+|---:|---:|---:|
+| 66,90 € (hoy) | 29,61 € | 1,7 |
+| 59,90 € | 23,96 € | 2,1 |
+| **54,90 €** | **19,92 €** | **2,5** |
+| 49,90 € | 15,88 € | 3,1 |
+
+Ganancia = precio / 1,21 − coste de CJ con envío (24,16 €) − cobro (1,9 % + 0,25 €). Lo decide Pablo.
+
+**Otros riesgos que no se pueden quitar:**
+- La entrega tarda de 8 a 15 días. Hay que decirlo en el anuncio y en la ficha: hoy, 30-09, llega de sobra antes del frío fuerte y de Navidad.
+- Las piezas sueltas están caras frente al mercado. La hamaca de radiador cuesta 29,90 € aquí y 12,49 € en Zooplus. Si alguien entra en la hamaca desde el pack, lo ve. Hay que revisarlo aparte.
+
+### Segunda prueba, si el pack no vende: chubasquero de cuatro patas
+
+- Es la categoría con más opiniones de ropa de perro (12.278 en el #1).
+- Octubre es época de lluvia.
+- Hay marcas españolas anunciándolo en Meta desde febrero: el canal funciona para este producto.
+- Deja 14,59 € por venta, contando los 6,99 € de envío que paga el cliente.
+- En contra: tiene tallas y Amazon lo vende a 23,99 €.
+
+### Descartados, con el dato
+
+| Producto | Motivo |
+|---|---|
+| Manta autocalentable sola | Amazon 13,88-19,99 €; nosotros 26,89 €. A 14,90 € dejaría 12,20 €, pero es poco para pagar anuncios. Va dentro del pack. |
+| Hamaca de radiador sola | 36,89 € frente a 12,49 € en Zooplus. |
+| Hamaca de ventana | 31,89 € frente a 23,99-24,64 € en Amazon por el mismo tamaño. |
+| Lima de uñas | Un competidor ya la anuncia a 29,99 € con envío gratis; la nuestra sale a 36,89 €. |
+| Árbol rascador | Es lo que más se anuncia, pero pesa mucho y lo envían desde España en 24 h. |
+| Sudadera con bolsillo para mascota | Tendencia que empieza, sin ventas probadas todavía. Pendiente de mirar en CJ. |
+| Cama cueva de invierno | La ficha no coincide con el producto de CJ (ver `redes-semanal.md`). |
 
 ## La prueba de 50 €
 
-- **Antes de encender:** pagar los 3,53 €, que Meta reactive la cuenta y unir el
-  píxel a la cuenta de anuncios (sin esto, Meta no puede buscar a quien añade al
-  carrito).
-- **Campaña:** Ventas, optimizada para «añadir al carrito». Todo en un solo
-  conjunto de anuncios: con 50 €, repartir entre productos no deja datos útiles
-  de ninguno.
-- **Público:** España peninsular y Baleares (donde enviamos), de 25 a 65 años,
-  Advantage+ sin intereses.
-- **Presupuesto:** 10 €/día durante 5 días.
-- **Anuncios (3), todos a la ficha del pack:** collage de las tres piezas; hamaca
-  sola con «tu gato ya ha elegido su sitio: encima del radiador»; versión 9:16
-  para historias y reels.
-- **Cómo leerlo:**
-  - A los 20 €, si casi nadie hace clic (menos de 1 de cada 100 que lo ven): falla
-    la imagen, no el producto. Se cambia la imagen.
-  - A los 50 €, con clics pero sin carritos: falla la ficha o el precio.
-  - Con carritos pero sin compras: falla la caja (envío, pago, confianza).
-  - Con 1 venta o más: se repite con la siguiente nómina y más presupuesto.
-- **Expectativa honesta:** 50 € dan para unas 60-150 visitas. Con 1-2 compras por
-  cada 100 visitas, lo normal es 0, 1 o 2 ventas. La prueba sirve sobre todo para
-  saber qué imagen y qué producto enganchan.
+Sin cambios respecto a la versión anterior:
+- 10 €/día durante 5 días.
+- Campaña de ventas optimizada para «añadir al carrito».
+- Un solo conjunto de anuncios con tres creatividades, todas hacia la ficha del pack.
+
+Añadido tras el estudio:
+- El texto del anuncio no presume de precio.
+- Presume de lo que nadie más ofrece: «las tres cosas que tu gato necesita este invierno, en un solo pedido y con envío gratis».
+- El plazo de entrega va dicho claramente.
