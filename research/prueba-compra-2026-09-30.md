@@ -58,6 +58,10 @@ solo tener un euro de ganancia nada más, pero ver que todo sale bien».
   `UNSHIPPED`, aún sin seguimiento.
 - Intento 1 cerrado: #1002 cancelado en Shopify con devolución de 6,99 + 1,22 €
   (pendiente de que la procese el banco); pedido CJ del #1002 borrado (TRASH).
+- 30-09, 18:20: CJ ya ha asignado seguimiento **LZ476709507CN** (CJPacket Eub),
+  pero el pedido sigue `UNSHIPPED` (aún no ha salido). Se marca como enviado en
+  Shopify cuando CJ lo pase a enviado, para no mandar al cliente un «enviado»
+  de un paquete que no ha salido.
 - Queda: seguimiento de CJ → marcar enviado en Shopify; comisión real de
   Shopify del #1003; ingreso en la cuenta de la tienda. Revisión programada
   para el 01-10.
