@@ -62,6 +62,15 @@ solo tener un euro de ganancia nada más, pero ver que todo sale bien».
   pero el pedido sigue `UNSHIPPED` (aún no ha salido). Se marca como enviado en
   Shopify cuando CJ lo pase a enviado, para no mandar al cliente un «enviado»
   de un paquete que no ha salido.
+- El #1003 se pagó por **PayPal** (pasarela `paypal`, no Shopify Payments), según
+  el recibo del pedido: bruto 9,36 €, comisión PayPal **0,62 €**, neto **8,74 €**,
+  abonado al momento en la cuenta PayPal conectada a la tienda. No pasa por los
+  ingresos de Shopify a la Caja Rural (esa cuenta recibe solo los pagos con
+  tarjeta / Apple Pay / Google Pay / Shop Pay).
+- Ganancia real: 8,74 − 6,79 (7,38 $ × 0,92) − 1,62 IVA ≈ **0,33 €** (≈ 0,62 € si
+  el banco cambió a precio BCE). Lección: PayPal cuesta más que Shopify Payments
+  (0,62 € frente a ~0,45 € en este importe); los márgenes deben calcularse con la
+  comisión más cara de las dos.
 - Queda: seguimiento de CJ → marcar enviado en Shopify; comisión real de
   Shopify del #1003; ingreso en la cuenta de la tienda. Revisión programada
   para el 01-10.
