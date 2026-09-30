@@ -52,6 +52,19 @@ su sección, sin nombres de productos ni datos privados.
 
 ## 2. Verificar: no dar por hecho lo que no se ha comprobado
 
+**Antes de actuar, buscar cómo puede salir mal.** Pablo, el 30-09-2026: «antes
+de hacer este tipo de cosas tienes que analizar que no salgan mal, porque si
+no me estás generando un problema en vez de ayudarme». Antes de todo lo que toca
+dinero, precios, costes, pedidos, cobros o lo que ve el cliente:
+
+1. **Saber de dónde sale cada número:** el campo exacto y si es el que se cobra
+   de verdad (base o total, con o sin impuestos, con o sin envío).
+2. **Escribir al menos dos formas concretas en que podría salir mal** y
+   comprobar cada una.
+3. **Probar con el caso más pequeño y real posible** y comparar lo calculado
+   con lo que pasó. Si no cuadra, parar antes de aplicarlo a todo.
+4. **Lo no comprobado se dice que no está comprobado.**
+
 - **Tres pasos y en este orden:** simulación → ejecutar → volver a leer el
   resultado. Si un script nuevo no tiene modo de prueba, se le pone.
 - **Lo que contesta un sistema externo no es una prueba.** Un proveedor llegó a
