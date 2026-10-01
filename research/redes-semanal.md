@@ -4,6 +4,19 @@ Lo rellena la rutina «Redes semanal» cada lunes. Una entrada por semana, la m�
 reciente arriba. Solo cuentan las visitas reales (móvil y España); las de
 ordenador desde EE. UU. son robots y nuestras propias pruebas.
 
+## Revisión del 01-10-2026 (a petición de Pablo)
+
+- **TikTok (Metricool):** octubre bien repartido. Activas del 1 al 20: 1, 2, 4,
+  5, 7, 8, 10, 11, 13, 14, 16, 17, 19 y 20 a las 18:00; el resto en borrador.
+  La primera, hoy a las 18:00 (pack de invierno). Sin comprobar todavía: si el
+  cupo gratuito de 20 se renueva el día 1 o el 10 (la cuenta se dio de alta el
+  10-09). Se mira hoy a las 18:20 con el estado de esa publicación.
+- **Instagram y Facebook:** no sale nada desde el 23-09. La API de Meta sigue
+  contestando «API access blocked» (comprobado hoy) y las 11 de la cola ya
+  están caducadas. La rutina «Cola Meta» se dispara bien, pero no tiene nada
+  que publicar. Hasta que Pablo desbloquee la app en developers.facebook.com
+  no se rellena la cola.
+
 ## Semana del 21 al 27-09-2026 (revisado el 28-09)
 
 | Origen | Visitas | Con carrito | Llegan a pagar | Compras |
