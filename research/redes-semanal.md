@@ -10,7 +10,7 @@ ordenador desde EE. UU. son robots y nuestras propias pruebas.
   5, 7, 8, 10, 11, 13, 14, 16, 17, 19 y 20 a las 18:00; el resto en borrador.
   La primera, hoy a las 18:00 (pack de invierno). Sin comprobar todavía: si el
   cupo gratuito de 20 se renueva el día 1 o el 10 (la cuenta se dio de alta el
-  10-09). Se mira hoy a las 18:20 con el estado de esa publicación.
+  10-09). **Comprobado a las 18:20: salió (PUBLISHED, https://www.tiktok.com/@patitascalidas/video/7691730491522731286). El cupo se renueva el día 1 de cada mes.**
 - **Instagram y Facebook:** no sale nada desde el 23-09. La API de Meta sigue
   contestando «API access blocked» (comprobado hoy) y las 11 de la cola ya
   están caducadas. La rutina «Cola Meta» se dispara bien, pero no tiene nada
