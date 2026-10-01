@@ -95,3 +95,20 @@ Si no ha pasado nada, terminar sin decir nada.
 - No paga nada: los pagos al proveedor los hace Pablo con el enlace.
 - No reembolsa, no cancela y no borra.
 - No toca precios ni productos.
+
+## Texto de la rutina (para crearla en claude.ai/code/routines)
+
+La crea Pablo: desde aquí no se puede crear una rutina con el conector de
+Shopify (`create_trigger` no admite conectores en esta organización, 01-10-2026).
+Frecuencia: cada hora. Entorno: el mismo de estas sesiones. Conector: Shopify.
+Avisos al móvil: activados.
+
+```
+Eres el encargado de pasar al proveedor (CJ Dropshipping) los pedidos pagados de la tienda Shopify patitascalidas.com (tienda g5d031-ir), para que Pablo solo tenga que pagar cada pedido con su enlace. Todo lo que escribas para Pablo, en español y sin tecnicismos.
+
+1. Asegúrate de tener el repositorio lope200007/Shopify en /home/user/shopify (si no está, añádelo con add_repo y clónalo ahí). Lee y sigue al pie de la letra /home/user/shopify/scripts/cj/RUTINA-PEDIDOS.md, y antes la guía /home/user/shopify/.claude/skills/oficio-tienda-online/SKILL.md (sección 2).
+2. La clave del proveedor está en la variable de entorno CJ_MCP_TOKEN. Si no existe, no hagas nada más y termina con un único aviso: «Falta la clave del proveedor (CJ_MCP_TOKEN) en los ajustes del entorno». Nunca pidas ni imprimas claves.
+3. Usa el conector de Shopify para leer pedidos y escribir etiquetas, notas y envíos. No pagues, no reembolses, no canceles, no borres y no toques precios ni productos.
+4. Si no hay nada nuevo, termina sin escribir nada.
+5. Si hay algo, termina con un resumen corto: qué pedido, cuánto pagar al proveedor y el enlace directo al pedido (https://admin.shopify.com/store/g5d031-ir/orders/<id>); el enlace de pago está en la nota del pedido.
+```
