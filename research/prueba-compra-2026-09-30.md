@@ -73,6 +73,10 @@ solo tener un euro de ganancia nada más, pero ver que todo sale bien».
   el banco cambió a precio BCE). Lección: PayPal cuesta más que Shopify Payments
   (0,62 € frente a ~0,45 € en este importe); los márgenes deben calcularse con la
   comisión más cara de las dos.
+- 01-10, 18:00: CJ sigue `UNSHIPPED` (el paquete aún no ha salido; día 1 de los
+  1-3 de preparación). No se marca enviado todavía. Revisión diaria programada a
+  las 17:58. La comisión es la de PayPal (0,62 €), no la de Shopify: no hay que
+  esperar otra.
 - Queda: seguimiento de CJ → marcar enviado en Shopify; comisión real de
   Shopify del #1003; ingreso en la cuenta de la tienda. Revisión programada
   para el 01-10.
