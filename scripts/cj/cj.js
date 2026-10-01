@@ -13,10 +13,20 @@ const path = require('path');
 
 const BASE = 'https://developers.cjdropshipping.com/api2.0/v1';
 
+/**
+ * La clave se lee primero de la variable de entorno CJ_MCP_TOKEN (ajustes del
+ * entorno en la nube: sobrevive a que el contenedor se reinicie y la usan las
+ * tareas automaticas) y, si no esta, del .env local.
+ */
 function token() {
-  const env = fs.readFileSync(path.join(__dirname, '..', '..', '.env'), 'utf8');
-  const t = (env.match(/^CJ_MCP_TOKEN=(.*)$/m) || [])[1];
-  if (!t) throw new Error('Falta CJ_MCP_TOKEN en .env');
+  let t = process.env.CJ_MCP_TOKEN;
+  if (!t) {
+    try {
+      const env = fs.readFileSync(path.join(__dirname, '..', '..', '.env'), 'utf8');
+      t = (env.match(/^CJ_MCP_TOKEN=(.*)$/m) || [])[1];
+    } catch (e) { /* sin .env */ }
+  }
+  if (!t) throw new Error('Falta CJ_MCP_TOKEN (variable de entorno o .env)');
   return t.trim().split(':').slice(1).join(':');
 }
 
