@@ -93,6 +93,14 @@ dinero, precios, costes, pedidos, cobros o lo que ve el cliente:
 - **Un «no encontrado» de una herramienta no prueba que no exista.** Un OCR
   vacío no es una foto limpia, y un buscador que falla no es un mercado vacío.
   Se comprueba de otra forma antes de concluir.
+- **Un campo que no sale en la respuesta de una API no es un dato que falte.**
+  Primero se mira si la API devuelve ese campo (si la clave existe) y después
+  el dato en su origen (Shopify). 05-10-2026: se dijo que al pedido #1003 le
+  faltaba el código postal porque `getOrderDetail` de CJ no lo devuelve; el
+  pedido lo tenía y se abrió una reclamación a CJ sin motivo.
+- **Antes de alarmar por un pedido, mirar si es de prueba:** `discountCodes`,
+  etiquetas y nota. 05-10-2026: un «margen de 0,36 €» era la compra de prueba
+  de Pablo con el código PRUEBA-2RCLKQ.
 - **Antes de dar un fallo por bueno, se mira el caso concreto.** El rastreo
   marcó como errores cosas que no lo eran: texto en una plantilla oculta,
   palabras españolas tomadas por inglés y límites de peticiones tomados por
@@ -198,6 +206,22 @@ dinero, precios, costes, pedidos, cobros o lo que ve el cliente:
   leen las instrucciones y los scripts del proyecto.
 - **Para buscar en un catálogo grande, mejor por categoría que por texto.** Hay
   que respetar su límite de peticiones y reintentar esperando cada vez más.
+- **Cualquier consulta sobre un pedido empieza leyendo
+  `scripts/cj/RUTINA-PEDIDOS.md` y `scripts/cj/servir-pedido.js`**, aunque la
+  sesión se haya abierto en otro repositorio. Ahí está cómo se crean los
+  pedidos en CJ, qué datos se exigen y cómo se marcan los envíos. No se
+  investiga desde cero.
+- **Una rutina «que crea Pablo» no existe hasta que sale en `list_triggers`.**
+  05-10-2026: la rutina horaria de pedidos nunca se creó y el #1003 estuvo 5
+  días sin marcarse como enviado. En cada repaso de pedidos se comprueba que la
+  rutina existe y que su última ejecución fue bien; si no, es lo primero que se
+  le dice a Pablo.
+- **«SHIPPED» en CJ no es que el paquete haya salido.** CJ lo pone al crear la
+  etiqueta; el #1003 pasó 5 días con solo «Label created». No se promete fecha
+  de salida a nadie, y el plazo que se anuncia al cliente cuenta también los
+  días de almacén (se miden con la etiqueta `cj-entregado` de la rutina).
+- **No se dan enlaces directos a pantallas del proveedor que no se han
+  comprobado.** Se da la entrada al panel y los pasos.
 - **Saldo del proveedor ≠ pago de un pedido.** Pueden admitir métodos distintos.
   Lo que Pablo verá en una pantalla que no he comprobado se dice como «debería
   salir», y se pide una captura.
