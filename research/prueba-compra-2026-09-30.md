@@ -81,6 +81,15 @@ solo tener un euro de ganancia nada más, pero ver que todo sale bien».
   Shopify del #1003; ingreso en la cuenta de la tienda. Revisión programada
   para el 01-10.
 
+## Estado (05-10-2026)
+
+- CJ: pedido SD2609301457370648900 en `SHIPPED`, seguimiento LZ476709507CN
+  (CJPacket Eub). El 03-10 17TRACK aún decía «No encontrado» (número
+  temporal).
+- Shopify: #1003 marcado como enviado con ese seguimiento; el correo de envío
+  salió a Víctor (evento del pedido, 05-10 07:05 UTC). Etiqueta `cj-enviado`.
+- #1002: reembolsado.
+
 ## Cuando entre el pedido
 
 1. Comprobar en Shopify: total 9,97 €, estado «Pagado» (no «Autorizado»).

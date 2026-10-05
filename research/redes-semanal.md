@@ -4,6 +4,41 @@ Lo rellena la rutina «Redes semanal» cada lunes. Una entrada por semana, la m�
 reciente arriba. Solo cuentan las visitas reales (móvil y España); las de
 ordenador desde EE. UU. son robots y nuestras propias pruebas.
 
+## Semana del 28-09 al 04-10-2026 (revisado el 05-10)
+
+| Origen | Visitas | Con carrito | Llegan a pagar | Compras |
+|---|---:|---:|---:|---:|
+| Directo | 70 | 3 | 3 | 2 |
+| Instagram (a la portada) | 1 | 0 | 0 | 0 |
+| Google | 1 | 0 | 0 | 0 |
+| Otros (odiasearch) | 1 | 0 | 0 | 0 |
+| TikTok | 0 | 0 | 0 | 0 |
+
+- Fuente: analítica de Shopify (`sessions` por `referrer_source`), 05-10.
+- Ventas reales: 0. Las 2 compras «directas» son nuestras pruebas: #1002
+  (anulada y reembolsada) y #1003 (prueba del rascador, pagada por Víctor).
+- TikTok publicó el 1, el 2 y el 4 de octubre (PUBLISHED en Metricool) y no
+  trajo ninguna visita a la tienda. Instagram y Facebook siguen sin publicar:
+  la clave de Meta no está en este entorno y el 01-10 la API seguía
+  bloqueada. La cola de Meta no se rellena hasta que Pablo la desbloquee.
+- Corregido en TikTok para esta semana (las dos fotos se revisaron a tamaño
+  real; estaban activas desde el 28-09 sin esa revisión):
+  - 08-10 sudadera con forro polar: la foto enseñaba la sudadera **roja** y la
+    tienda solo vende la negra (CJ: «Black», todas las tallas). Imagen nueva
+    de marca con la foto negra.
+  - 10-10 fuente de gato: la foto llevaba texto en inglés («Circulating
+    water…»). Imagen nueva de marca con la foto limpia del modelo negro.
+  - Imágenes en `assets/redes/2026-10/`, comprobadas con 200.
+- Activas esta semana en TikTok (18:00): 05 manta autocalentable, 07 cama
+  dónut, 08 sudadera, 10 fuente, 11 túnel de gato. Las cinco: ficha
+  publicada, precio del texto = precio de Shopify hoy, y CJ las manda a
+  España desde China (19-20 transportes, stock de sobra).
+- «Visto en redes» ya tenía los 8 de esta semana y la anterior, con el pack
+  primero: no se ha tocado.
+- Aviso para Pablo: la ficha de la sudadera enseña cinco colores (rosa, gris,
+  rojo, negro, amarillo) y solo se vende la negra. No se ha cambiado (la
+  rutina no toca fichas).
+
 ## Revisión del 01-10-2026 (a petición de Pablo)
 
 - **TikTok (Metricool):** octubre bien repartido. Activas del 1 al 20: 1, 2, 4,
