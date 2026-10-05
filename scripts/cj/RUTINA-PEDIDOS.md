@@ -82,10 +82,25 @@ Variables: `{ "f": { "lineItemsByFulfillmentOrder": [{ "fulfillmentOrderId": "<i
 4. Si `UNPAID` lleva más de 24 h desde que se creó: recordar a Pablo que tiene
    un pedido sin pagar en el proveedor (con el enlace de la nota).
 
+### 3 bis. Pedidos con `cj-enviado` y sin `cj-entregado`: vigilar que lleguen
+
+1. Mirar el seguimiento: `cj.pedir('/logistic/trackInfo', { trackNumber })`.
+2. Si `trackingStatus` dice entregado (o la última ruta lo dice): etiqueta
+   `cj-entregado` y añadir a la nota
+   `ENTREGADO <fecha> — <días desde la compra> días desde la compra (<transporte>)`.
+   Así se va sabiendo el plazo real de cada transporte.
+3. Si lleva 7 días o más marcado como enviado y la ruta sigue solo con
+   «Label created» (ningún escaneo de verdad): etiqueta `cj-atascado` y avisar a
+   Pablo una sola vez (si ya tiene la etiqueta, no repetir el aviso), con el
+   texto para reclamar a CJ: pedido CJ, seguimiento y fecha de la etiqueta.
+4. OJO: el detalle de pedido de CJ (`getOrderDetail`) NO devuelve el código
+   postal. Que no salga no significa que falte: `servir-pedido.js` no crea el
+   pedido sin código postal (05-10-2026: se pidió a CJ un CP que ya tenía).
+
 ### 4. Avisar a Pablo
 
-Solo si ha pasado algo: un enlace nuevo para pagar, un pedido enviado, un error
-o un pedido sin pagar desde hace más de 24 h. Un mensaje corto en español con
+Solo si ha pasado algo: un enlace nuevo para pagar, un pedido enviado, un
+pedido entregado o atascado, un error o un pedido sin pagar desde hace más de 24 h. Un mensaje corto en español con
 el número de pedido, el importe y el enlace directo al pedido:
 `https://admin.shopify.com/store/g5d031-ir/orders/<id numérico>`.
 Si no ha pasado nada, terminar sin decir nada.
