@@ -252,8 +252,11 @@ dinero, precios, costes, pedidos, cobros o lo que ve el cliente:
   puede arreglar: se arregla.
 - **Las imágenes de marca de Pablo (logo, fondos) no se recortan ni se
   retocan.** Si hace falta otra versión, se le pide a él.
-- **La imagen de un pack enseña TODAS sus piezas.** Pregunta de control: sin el
-  texto, ¿la imagen dice lo que compra el cliente?
+- **La imagen de un pack enseña TODAS sus piezas, y SOLO esas.** Pregunta de
+  control: sin el texto, ¿la imagen dice lo que compra el cliente? Una foto con
+  dos sacos de colores distintos, cuando el pack lleva uno, también engaña. Y la
+  pieza que da nombre al producto tiene que reconocerse: una hamaca de radiador
+  recortada hasta que no se ve el radiador parece un cojín.
 - **Las fotos descargadas se guardan como `.jpg` o `.png`.** Con otra extensión,
   el lector no las muestra.
 
@@ -262,6 +265,15 @@ dinero, precios, costes, pedidos, cobros o lo que ve el cliente:
 - **Primero se anuncia un producto que lleve a su propia ficha.** El
   reimpacto con el catálogo viene después. Se empieza con presupuesto bajo y
   un solo conjunto de anuncios con varias creatividades.
+- **El producto que se anuncia es la cara de la tienda** (Pablo: «está en juego
+  que la gente entre y compre»). Antes de encender el anuncio, su ficha se
+  revisa como un cliente que llega desde el móvil:
+  - la primera foto de la ficha es la misma idea que la del anuncio;
+  - el carrito suma lo que dice el anuncio;
+  - el envío a una dirección real sale como se promete, y las zonas a las que
+    no se envía quedan fuera también en el anuncio;
+  - el código de descuento que se anuncia en la web funciona, y se recalcula
+    la ganancia con él puesto, porque casi todos lo usarán.
 - **El píxel de Meta no se prueba con un navegador automático:** descarta esas
   visitas. Se prueba con una acción real desde el móvil, o con «Probar eventos»,
   y las estadísticas se miran horas después.
