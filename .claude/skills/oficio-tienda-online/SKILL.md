@@ -309,9 +309,12 @@ dinero, precios, costes, pedidos, cobros o lo que ve el cliente:
   la tienda: costes, márgenes, proveedor, planes de anuncios y cuatro números de
   una tarjeta a la vista. Nunca se guardan ahí claves, datos de clientes ni de
   pago, ni códigos de descuento que sigan activos. Lo que la ley obliga a
-  publicar (nombre, NIF y domicilio en el aviso legal) ya es público. La
-  recomendación es pasarlo a privado, pero antes se da acceso a las herramientas
-  que lo usan (la aplicación de Claude en GitHub): si no, dejan de poder leerlo.
+  publicar (nombre, NIF y domicilio en el aviso legal) ya es público.
+  **La visibilidad la decide el dueño.** Pablo prefirió dejarlo público para no
+  perder el acceso de Claude («si no es necesario ponerlo privado no lo hagas»,
+  09-10-2026); lo imprescindible es que dentro no haya nada peligroso. Si un día
+  se pasa a privado, antes se da acceso a las herramientas que lo usan (la
+  aplicación de Claude en GitHub): si no, dejan de poder leerlo.
 
 ## 9. Herramientas: trampas técnicas
 
