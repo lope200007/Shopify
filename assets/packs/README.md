@@ -12,3 +12,11 @@ Arriba la foto de ambiente, abajo las otras dos piezas.
 incrustado. Se descartaron varias por eso: la hierba gatera tenía nueve de
 diez fotos con rótulos («Hydroponic Cat Grass Box»), y la del conjunto de
 arnés y correa llevaba la medida impresa y salía cortada.
+
+**09-10-2026, pack el gato en invierno:** `pack-gato-invierno.jpg` se rehízo.
+La versión anterior enseñaba la hamaca tan recortada que no se veía el
+radiador, y la foto de ambiente del saco traía dos sacos (gris y marrón)
+cuando el pack lleva uno gris. Ahora: arriba la manta con el gato; abajo la
+hamaca colgada del radiador y el saco gris solo (`saco-gris-carbon-pack.jpg`,
+que también va en la ficha). Regla: la foto de un pack enseña sus piezas y
+**solo** sus piezas, en el color que se envía.

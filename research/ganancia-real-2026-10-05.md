@@ -90,3 +90,41 @@ Precios de venta del 30-09; se toma la talla o variante que menos deja.
 Productos analizados: 142. Con alguna variante por debajo de 8 € en el peor caso: 75. En pérdidas: 0.
 
 Sin calcular: envíos fuera de España. La tienda vende a 40 países (UE 8,99 €, resto 12,99 €) y estos costes son de China → España.
+
+## Cambios aplicados el 05-10-2026 (comprobados otra vez el 09-10)
+
+Esta sección se escribió el 05-10 pero no llegó a guardarse; se rehace el 09-10
+con cada dato vuelto a leer en la tienda.
+
+**Precios subidos** (los que no llegaban a 8 € de ganancia y aguantaban subida):
+
+| SKU | Producto | Precio nuevo |
+|---|---|---:|
+| PTC-MANTAIMP-04 | Manta impermeable para sofá y cama, talla «Cama» | 49,90 € |
+| PTC-FUNDACOCHE-01 a 03 | Funda de asiento trasero para perro (los 3 modelos) | 44,90 € |
+| PTC-RAMPAARENERO-01 a 03 | Escalera para arenero con rejilla (los 3 colores) | 44,90 € |
+| PACK-BANO-LLUVIA | Pack baño y lluvia («Ahorras 9,80 €»; por separado 54,70 €) | 44,90 € |
+
+**Envíos:** desde el 05-10 la tienda solo envía a España peninsular y Baleares
+(6,99 €, gratis desde 39 €). Se quitaron las zonas «UE» (8,99 €) e
+«Internacional» (12,99 €), así que la última línea de arriba ya no vale.
+
+- Comprobado el 09-10 con la API pública de la tienda (`cartCreate` con dirección):
+  - Madrid y Palma: «Envío gratis».
+  - Canarias, Francia, Portugal y Alemania: ninguna opción.
+- Por encima de 39 € sale también «Estándar 6,99 €». Sobra y puede confundir. Pablo lo quita en
+  https://admin.shopify.com/store/g5d031-ir/settings/shipping (que «Estándar» valga
+  solo hasta 38,99 €).
+
+**En borrador** (no coinciden con lo que manda CJ, o CJ no puede servirlos):
+
+- Abrigo de invierno: las fotos de CJ son un pijama.
+- Cama cueva «con techo»: CJ manda una cama dónut sin techo.
+- Comedero rotativo: solo hay existencias en Reino Unido, sin ruta a España.
+
+Los tres siguen en `DRAFT` el 09-10.
+
+**Blog** (05-10; esto no se ha vuelto a mirar el 09-10):
+
+- Los artículos del arenero y de los plazos de entrega llevan los precios nuevos (44,90 €).
+- En «Mi gato tiene frío» se quitó el enlace a la cama cueva.
