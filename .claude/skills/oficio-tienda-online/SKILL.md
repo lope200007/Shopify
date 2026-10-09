@@ -304,6 +304,14 @@ dinero, precios, costes, pedidos, cobros o lo que ve el cliente:
 - **Nunca se debilita el detector de claves de git.** Si da una falsa alarma
   con código ajeno, se deja fuera esa pieza. En las notas se describe el texto
   sospechoso sin copiarlo.
+- **Antes de guardar notas del negocio en un repositorio, mirar si es público.**
+  Un repositorio público lo lee cualquiera, también su historial. Pasó con el de
+  la tienda: costes, márgenes, proveedor, planes de anuncios y cuatro números de
+  una tarjeta a la vista. Nunca se guardan ahí claves, datos de clientes ni de
+  pago, ni códigos de descuento que sigan activos. Lo que la ley obliga a
+  publicar (nombre, NIF y domicilio en el aviso legal) ya es público. La
+  recomendación es pasarlo a privado, pero antes se da acceso a las herramientas
+  que lo usan (la aplicación de Claude en GitHub): si no, dejan de poder leerlo.
 
 ## 9. Herramientas: trampas técnicas
 
