@@ -112,9 +112,15 @@ con cada dato vuelto a leer en la tienda.
 - Comprobado el 09-10 con la API pública de la tienda (`cartCreate` con dirección):
   - Madrid y Palma: «Envío gratis».
   - Canarias, Francia, Portugal y Alemania: ninguna opción.
-- Por encima de 39 € sale también «Estándar 6,99 €». Sobra y puede confundir. Pablo lo quita en
-  https://admin.shopify.com/store/g5d031-ir/settings/shipping (que «Estándar» valga
-  solo hasta 38,99 €).
+- **Arreglado el 10-10:** por encima de 39 € salía también «Estándar 6,99 €», que sobraba y
+  podía confundir. Ahora «Estándar» solo vale hasta 38,99 € (condición de precio en la
+  tarifa, con `deliveryProfileUpdate`). Comprobado con `cartCreate`, dirección de Madrid:
+  - 9,90 € y 29,70 €: solo «Estándar 6,99 €».
+  - 39,60 € y el pack (66,90 €): solo «Envío gratis».
+  - Con BIENVENIDA10, el carrito de 39,60 € pasa a «Estándar 6,99 €» (el descuento lo deja
+    en 35,64 €); el pack con el código (60,21 €) sigue con envío gratis.
+  - Se deshace quitando esa condición de la tarifa «Estándar» en
+    https://admin.shopify.com/store/g5d031-ir/settings/shipping
 
 **En borrador** (no coinciden con lo que manda CJ, o CJ no puede servirlos):
 
