@@ -4,6 +4,66 @@ Lo rellena la rutina «Redes semanal» cada lunes. Una entrada por semana, la m�
 reciente arriba. Solo cuentan las visitas reales (móvil y España); las de
 ordenador desde EE. UU. son robots y nuestras propias pruebas.
 
+## Semana del 05 al 11-10-2026 (revisado el 12-10)
+
+| Origen | Visitas | Con carrito | Llegan a pagar | Compras |
+|---|---:|---:|---:|---:|
+| Directo | 28 | 0 | 0 | 0 |
+| Instagram (a la portada) | 1 | 0 | 0 | 0 |
+| Facebook (a la portada) | 1 | 0 | 0 | 0 |
+| Web del proveedor | 1 | 0 | 0 | 0 |
+| TikTok | 0 | 0 | 0 | 0 |
+
+- Fuente: analítica de Shopify (`sessions` por `referrer_source` y `referrer_name`,
+  y por país y aparato), 12-10. De las 31 visitas, 25 son de ordenador desde
+  EE. UU. (robots y nuestras pruebas). El resto: 4 desde móviles en España
+  (2 directas, 1 desde la web del proveedor, 1 de redes), 1 desde Francia y 1 de
+  redes desde EE. UU.
+- Ventas reales: 0. Ningún carrito.
+- TikTok publicó el 5 (manta), el 7 (cama dónut), el 8 (sudadera) y el 10
+  (fuente), las cuatro PUBLISHED, y no trajo ninguna visita. La del 11 (túnel)
+  falló: la foto medía 1600 px y TikTok admite 1080 de ancho como mucho.
+- Instagram y Facebook siguen sin publicar: la API de Meta está bloqueada y no
+  hay `META_PAGE_TOKEN` en el entorno. La cola de Meta no se rellena hasta que
+  Pablo lo desbloquee. Las dos visitas de Instagram y Facebook entraron por la
+  portada y no por «Visto en redes»: hay que mirar el enlace de la biografía.
+- Corregido en TikTok (fotos miradas a tamaño real y medidas):
+  - Reducidas a 1080 px de ancho, en `assets/redes/2026-10/tiktok-*-1080.jpg`.
+    Dan 200 y Metricool las guardó a 1080.
+    - botas (13-10);
+    - collar AirTag (16-10); el texto ahora nombra también la talla L, de 42 a 60 cm;
+    - secador (26-10);
+    - túnel, que pasa al 14-10 a las 18:00.
+  - En borrador, porque la foto lleva texto en inglés y la marca de otra empresa
+    y la ficha no tiene ninguna foto limpia:
+    - bálsamo (14-10): «PRODUCT FEATURES» y la marca YEGBONG en la lata;
+    - correa antitirones (19-10): «Pet-specific leash», «3M reflective tape» y
+      una marca en la propia correa;
+    - comedero elevado (23-10): «304 Stainless Steel Pet food bowl» y la marca
+      AMEEKLION impresa en el soporte.
+  - **Error mío:** al reprogramar el túnel usé el número de la publicación del
+    pack de invierno (01-10). En Metricool, el registro del pack pasó a ser el
+    túnel del 14-10. El vídeo del pack sigue publicado en TikTok (comprobado con
+    `oembed`). Apuntado en `errores-aprendidos.md`.
+- Octubre en TikTok: 7 publicadas y 10 por salir (13, 14, 16, 17, 20, 22, 25,
+  26, 28 y 30), 17 de las 20 del plan gratuito.
+- Comprobado para las de esta semana (13 a 17):
+  - la ficha está publicada;
+  - el precio del texto es el de hoy en Shopify;
+  - el color de la foto es una variante que se vende;
+  - el proveedor las manda a España desde China (de 12 a 19 transportes;
+    existencias de 7.185 a 10.468).
+- Las de la semana que viene (20, 22, 25, 28 y 30) tienen fotos de 800 px, que
+  valen. Falta revisar lo que enseñan.
+- «Visto en redes», en este orden y comprobado en la web: pack, botas, túnel,
+  collar AirTag, alfombrilla, fuente, sudadera y manta.
+- Avisos para Pablo sobre las fichas (la rutina no las toca):
+  - La correa antitirones dice «con amortiguador elástico», pero ni sus fotos
+    ni el nombre en el proveedor («Anti-pull Walking Leash», 2 × 150 cm)
+    enseñan ningún amortiguador.
+  - El bálsamo y el comedero elevado llevan impresa la marca de otro
+    fabricante en todas sus fotos.
+
 ## Semana del 28-09 al 04-10-2026 (revisado el 05-10)
 
 | Origen | Visitas | Con carrito | Llegan a pagar | Compras |
