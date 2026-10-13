@@ -263,6 +263,23 @@ Sacado de su web, leída el 13-10, y de [El Referente](https://elreferente.es/st
    - la tarea automática de pedidos: sin crear.
 11. **Almacenes del proveedor:** de los 140 productos de la web, los 132 sueltos tienen stock solo en China; tres tienen además unas pocas unidades en EE. UU., que no sirven para España. Los 8 packs están bien conectados con el proveedor (3 piezas cada uno). Sí se pueden servir todos, pero ninguno sale de Europa. En CJ, el almacén de Alemania tiene poco de mascotas (26 resultados para «dog», 36 para «cat» y 44 para «pet»): camas, árboles rascadores, muebles de arenero y barreras, de 37 a 216 $. El de España apenas tiene nada de mascotas, y en Francia, Italia y Polonia no salió ninguno. Comprobado el 13-10 con la API de CJ (`stock` y `/product/listV2` con `countryCode`).
 
+### Arreglado de paso el 13-10
+
+- **Preguntas frecuentes:** solo península y Baleares (ver punto 4).
+- **Avisos automáticos de temporada:** los tres estaban desfasados.
+  - «Halloween OFF» (2-11) nombraba tres canales de venta, y los productos
+    están en cinco (Tienda online, Shop, TikTok, Google & YouTube y Facebook &
+    Instagram). Además usaba una orden que el conector tiene bloqueada. Ahora
+    pasa los productos a borrador, que los quita de los cinco a la vez, y trae
+    los enlaces directos para Pablo.
+  - «Navidad ON» (1-11) daba por hecho que los productos de Navidad estaban en
+    borrador, pero están a la venta desde el 16-09 y el 23-09, a propósito
+    (`research/tanda-2026-09-23.md`). Ahora solo comprueba que la colección se
+    publica sola ese día y añade «Navidad» al menú.
+  - «Navidad OFF» (8-1) solo apagaba 4 de los 7 productos de Navidad. Ahora
+    apaga 6 y pregunta a Pablo por la cama iglú de reno, que también se vende
+    como cama de invierno.
+
 ## 5. Qué nos falta y cómo lo incorporamos
 
 ### Fase 1: esta semana, gratis o casi
