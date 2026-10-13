@@ -4,7 +4,7 @@ Todo lo que hay que copiar y pegar al subir el vídeo a YouTube.
 
 | Archivo | Para qué |
 |---|---|
-| `episodio01.mp4` (te lo paso aparte; no se sube a git porque pesa) | El vídeo |
+| `Farolin-y-Galleta-ep01-la-luna.mp4` (25 MB, enviado por el chat el 13-10-2026; no está en git porque pesa. Se vuelve a generar con `estudio/LEEME.md`) | El vídeo |
 | `miniatura-ep01.jpg` | La miniatura (1920×1080, 200 KB) |
 | `subtitulos-es.srt` | Subtítulos en español |
 | `capitulos.txt` | Ya van dentro de la descripción |
