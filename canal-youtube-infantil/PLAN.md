@@ -1,307 +1,237 @@
-# Canal de YouTube infantil: aprender sin que se note
+# Farolín y Galleta: canal de YouTube infantil
 
-Plan escrito el 13-10-2026 siguiendo los seis pasos de las tarjetas de
-@alpacka.ai, adaptados a lo que pidió Pablo: **un canal sin rostro, para niños,
-que entretenga primero y enseñe por dentro, con mucho color.**
+**Un canal sin rostro, para niños de 4 a 8 años, que entretiene primero y
+enseña por dentro, con mucho color.**
 
-> **Supuestos que he tomado yo** (cámbialos y se rehace lo que dependa de ellos):
-> español de España, niños de **4 a 8 años**, unas **8 horas por semana**,
-> presupuesto **0-30 € al mes**, voz propia o voz sintética, animación 2D sencilla.
->
-> **Sin comprobar todavía:** las 30 ideas no están validadas con volúmenes de
-> búsqueda reales. Se puede hacer con vidIQ (gasta créditos, lo pregunto antes).
+Plan creado el 13-10-2026 a partir de los seis pasos de las tarjetas de
+@alpacka.ai y actualizado ese mismo día con datos reales, el primer episodio
+producido y lo aprendido al hacerlo.
 
----
+| | |
+|---|---|
+| Estado | **Episodio 1 terminado** (4:08). Falta que Pablo cree el canal (`GUIA-CREAR-CANAL.md`) y lo escuche entero |
+| Nombre | «Farolín y Galleta» (provisional: lo decide Pablo; se cambia en `estudio/src/marca.ts`) |
+| Investigación | `investigacion-2026-10-13.md` |
+| Episodio 1 | `episodios/ep01/` (ficha de publicación, subtítulos, miniatura) |
+| Estudio de producción | `estudio/` (cómo se usa: `estudio/LEEME.md`) |
 
-## 0. Tres reglas de YouTube que mandan sobre todo lo demás
-
-Comprobado el 13-10-2026 (fuentes al final).
-
-1. **El canal será «creado para niños».** Es obligatorio marcarlo así (ley COPPA,
-   acuerdo de YouTube con la FTC de 2019). Consecuencias: **sin comentarios, sin
-   campanita de notificaciones, sin guardar en listas** y **solo anuncios no
-   personalizados**, que pagan menos. Por eso los indicadores de la sección 6 no
-   usan comentarios: no los habrá.
-2. **«Contenido no auténtico».** YouTube no paga a canales de vídeos hechos en
-   serie con plantilla, todos iguales. Usar IA está permitido; repetir el mismo
-   vídeo cambiando cuatro palabras, no. Y la detección ya va **por canal
-   entero**: si cae, cae todo. Lo que protege es tener **personajes propios,
-   historia en cada vídeo y una voz con personalidad**.
-3. **Para cobrar** (Programa de Partners): según fuentes de 2026, en los países
-   con el umbral rebajado hacen falta 500 suscriptores, 3 subidas en 90 días y
-   3.000 horas vistas en un año (o 3 millones de vistas en Shorts). El umbral
-   exacto para España **no lo he podido confirmar**: se mira en YouTube Studio →
-   Ganar dinero.
-
-Y dos reglas propias, porque el público son niños:
-
-- **Ningún dato sin comprobar.** Un niño se cree lo que oye. Cada guion lleva
-  marcados los datos que hay que verificar antes de grabar.
-- **Nada de personajes ajenos** (Peppa, Bluey, Pokémon…): es infringir derechos
-  y el canal se cierra.
+> **Supuestos** (cámbialos y se rehace lo que dependa de ellos): español de
+> España, niños de 4 a 8 años, unas 8 horas por semana, 0-30 € al mes, voces
+> sintéticas de licencia libre.
 
 ---
 
-## 1. El tema: cinco opciones
+## 0. Reglas de YouTube que mandan sobre todo lo demás
 
-| # | Concepto | A favor | En contra |
-|---|---|---|---|
-| **A** | **El Mundo de Lumi** — una luciérnaga cuya luz cambia de color y su amigo Bruno, un osito torpe, resuelven un misterio en cada episodio. Para resolverlo hace falta contar, saber de animales, de ciencia o de emociones. | Personajes propios = canal auténtico y difícil de copiar. El color es parte de la historia (la luz de Lumi). Da para cientos de episodios. | Hay que mantener a los personajes iguales en cada vídeo: es lo más laborioso. |
-| B | Animales del mundo explicados como si fueran superhéroes | Mucha búsqueda, muy visual | Mucha competencia y fácil caer en vídeos repetitivos |
-| C | Canciones educativas (colores, números, hábitos) | Se ven en bucle, enorme demanda | Hace falta música buena; competir con CoComelon y similares |
-| D | Experimentos de ciencia animados | Diferenciado, los padres lo valoran | Más guion y más datos que verificar por vídeo |
-| E | Cuentos con moraleja (emociones, compartir, miedo a la oscuridad) | Fácil de producir, muy recomendable por el algoritmo | Menos «gancho» de búsqueda; se busca poco por título |
+Comprobadas el 13-10-2026 en la ayuda oficial de YouTube (enlaces al final).
 
-**Recomendación: A**, y usar B, D y E como **tipos de episodio** dentro de él.
-Así el canal tiene una cara reconocible (Lumi) y el contenido varía. Es la
-mejor defensa contra la regla del contenido no auténtico.
+1. **El canal es «creado para niños».** Obligatorio por la ley COPPA. Eso
+   **quita**: comentarios, campanita, **tarjetas y pantallas finales**,
+   «guardar en lista», minirreproductor, reproducción automática en Inicio,
+   publicaciones de comunidad y anuncios personalizados (pagan menos).
+   - Por eso cada episodio anuncia la próxima aventura **de viva voz**, dentro
+     del propio vídeo: no hay pantalla final que lo haga.
+   - Los indicadores (sección 6) no usan comentarios: no los habrá.
+2. **«Contenido no auténtico».** YouTube no paga a canales de vídeos en serie
+   todos iguales, y lo detecta por canal entero. Protege tener personajes
+   propios, una historia distinta en cada vídeo y datos comprobados.
+3. **Aviso de IA:** solo es obligatorio en contenido **realista** (personas o
+   sucesos reales, escenas realistas). Unos dibujos animados no lo necesitan.
+   Aun así, la descripción dice «animación, voces y música creadas por ordenador».
+4. **Para cobrar** (Programa de Partners): según fuentes no oficiales de 2026,
+   500 suscriptores, 3 subidas en 90 días y 3.000 horas vistas en un año. El
+   umbral exacto para España **no está confirmado**: se mira en YouTube Studio
+   → Ganar dinero.
 
-### La fórmula de «enseñar sin que se note»
+Y tres reglas propias, porque el público son niños:
 
-Cada episodio sigue el mismo esqueleto, pero con historia distinta:
-
-1. **Problema** (0-15 s): algo pasa y hay que arreglarlo. *«¡La luna se está
-   rompiendo a trocitos!»*
-2. **Intento fallido y risa**: Bruno lo intenta mal. El niño ya sabe más que
-   Bruno, y eso le encanta.
-3. **La pista**: aquí va lo educativo, metido dentro de la aventura. Para abrir
-   la puerta hay que contar las estrellas; para seguir, saber qué come el erizo.
-4. **Pregunta al niño y pausa de 2 segundos**: *«¿De qué color se pone Lumi
-   cuando está contenta?»* El niño contesta a la pantalla.
-5. **Solución y celebración**, y un repaso de 10 segundos con lo aprendido.
-6. **Gancho al siguiente**: *«¿Y por qué las estrellas no se caen? ¡Lo
-   descubrimos en otra aventura!»*
-
-### Identidad visual
-
-- Paleta: amarillo luz `#FFD23F`, turquesa `#3BCEAC`, rosa `#EE4266`,
-  morado noche `#540D6E`, fondo cielo `#0EAD69` / `#87CEEB`.
-- Contornos gruesos, formas redondas, ojos grandes. Nada de parpadeos rápidos
-  ni destellos (hay niños fotosensibles, y estresa).
-- Texto en pantalla grande, pocas palabras: muchos no saben leer todavía.
+- **Ningún dato sin fuente.** Un niño se cree lo que oye. Los datos de cada
+  episodio van en su `guion.json`, con la fuente y la fecha.
+- **Nada que se pueda imitar con peligro.** El primer guion tenía a un osito
+  subiendo una escalera altísima con pegamento: se cambió por saltar con una red
+  de mariposas y caer en un montón de hojas.
+- **Nada de personajes ni música de otros.** Toda la música del canal es
+  original, compuesta por código (`estudio/musica/componer.py`).
 
 ---
 
-## 2. Treinta ideas de episodio
+## 1. El concepto
 
-*Formato: L = vídeo largo (6-8 min), S = Short (menos de 60 s). Miniatura:
-qué se ve.*
+**Farolín** (luciérnaga, chico): curioso y prudente. Su farolillo cambia de
+color con lo que siente: amarillo normal, **turquesa cuando «se le enciende una
+idea»**, azul si tiene miedo, rosa si está muy contento. Los niños aprenden a
+leerle la luz.
 
-| # | Título | Lo que se aprende sin decirlo | Curiosidad | Formato | Miniatura |
-|---|---|---|---|---|---|
-| 1 | ¡La luna se está rompiendo! | Fases de la luna | ¿Se rompe de verdad? | L | Lumi asustada mirando media luna |
-| 2 | Bruno no encuentra su color favorito | Colores primarios y mezclas | ¿Qué sale de azul + amarillo? | L | Bruno pintado de verde |
-| 3 | El erizo que no quería dormir | Animales que hibernan | ¿Por qué duerme todo el invierno? | L | Erizo con ojeras y gorro |
-| 4 | ¡Hay 10 estrellas escondidas! | Contar hasta 10 | ¿Las encuentras todas? | L | Cielo con estrellas medio ocultas |
-| 5 | ¿Por qué Lumi brilla? | Bioluminiscencia (sencilla) | Secreto de las luciérnagas | L | Lumi brillando en la noche |
-| 6 | La gota de agua viajera | Ciclo del agua | ¿Adónde va la lluvia? | L | Gota con mochila |
-| 7 | Bruno tiene miedo a la oscuridad | Emociones: el miedo | ¿Qué hay debajo de la cama? | L | Bruno con linterna temblando |
-| 8 | La semilla mágica | Cómo crece una planta | ¿Qué saldrá? | L | Semilla con signo de interrogación |
-| 9 | El misterio de las formas | Círculo, cuadrado, triángulo | ¿Qué forma abre la puerta? | L | Puerta con huecos de formas |
-| 10 | ¿Dónde viven los pingüinos? | Hábitats y polos | ¿Hace frío o calor? | L | Pingüino con bufanda |
-| 11 | La oruga que tenía prisa | Metamorfosis | ¿En qué se convertirá? | L | Oruga dentro de capullo |
-| 12 | Bruno se enfada | Emociones: el enfado | ¿Cómo se calma un oso? | L | Bruno rojo de enfado |
-| 13 | El arcoíris perdido | Orden de los colores | ¿Qué color falta? | L | Arcoíris con hueco |
-| 14 | ¿Por qué el mar es salado? | Ríos y mar (sencillo) | Bruno prueba el agua | L | Bruno con cara de asco |
-| 15 | La carrera de los planetas | Sistema solar | ¿Cuál es el más grande? | L | Planetas en línea de salida |
-| 16 | Lumi y los sonidos del bosque | Sonidos de animales | ¿Quién hace ese ruido? | L | Bosque oscuro con ojos |
-| 17 | La torta de cumpleaños de Bruno | Compartir y fracciones (mitad) | ¿Hay para todos? | L | Tarta con muchas manos |
-| 18 | ¿Por qué tenemos que dormir? | Hábitos de sueño | Bruno no duerme y pasa algo | L | Bruno bostezando |
-| 19 | El volcán que estornuda | Volcanes | ¿Estornudan las montañas? | L | Volcán con pañuelo |
-| 20 | La abeja que perdió su casa | Polinización | ¿Para qué sirven las abejas? | L | Abeja triste con maleta |
-| 21 | Grande, mediano y pequeño | Tamaños y comparar | ¿Quién cabe en la cueva? | L | Tres osos en fila |
-| 22 | El dinosaurio del museo se despierta | Dinosaurios | ¿Qué comía? | L | Esqueleto con ojos abiertos |
-| 23 | Bruno aprende a pedir perdón | Emociones y amistad | ¿Le perdonarán? | L | Bruno con flor en la mano |
-| 24 | La estación que se equivocó | Las cuatro estaciones | ¿Nieve en verano? | L | Muñeco de nieve con gafas de sol |
-| 25 | ¿Cuántas patas tiene una araña? | Contar y animales | Más de las que crees | S | Araña con zapatillas |
-| 26 | Mezcla de colores en 30 segundos | Colores secundarios | ¿Qué sale? | S | Dos botes vertiéndose |
-| 27 | Adivina el animal por su sombra | Animales | ¿Quién es? | S | Sombra negra con «?» |
-| 28 | ¿Qué pesa más? | Peso y comparar | Pluma contra piedra | S | Balanza con Bruno |
-| 29 | El reto de contar hasta 20 con Lumi | Números | ¿Llegas al final? | S | Lumi con números brillando |
-| 30 | ¿Por qué el cielo es azul? | Luz y color (muy sencillo) | Pregunta que hacen todos los niños | L | Bruno mirando el cielo con lupa |
+**Galleta** (osita, chica): valiente e impulsiva. «¡Tengo un plan!», y saca
+algo de su bolso. Sus planes salen torcidos, pero es la que se atreve.
 
-Mezcla buscada: **unas 12 que se buscan** (planetas, dinosaurios, colores,
-números, luna, cielo azul), **unas 12 que recomienda el algoritmo**
-(emociones, misterios, Bruno metiéndose en líos) y **6 Shorts** que traen
-gente nueva al canal.
+**Doña Lechuza** (la sabia): no da respuestas, propone experimentos. Su frase:
+«Uuuh… ¡vamos a comprobarlo!». Enseña a comprobar las cosas.
+
+**Por qué este concepto** (datos en `investigacion-2026-10-13.md`):
+
+- Los dos grandes en español (Smile and Learn, 6,28 M de suscriptores, y Happy
+  Learning, 3,01 M) **explican con un narrador**. Ninguno cuenta una historia
+  con personajes que se resuelve aprendiendo. Ese es el hueco.
+- Canales pequeños con personajes despegan: Mighty Kids Adventures tiene 4.230
+  suscriptores y un episodio de dinosaurios con 2 millones de visualizaciones.
+
+### La fórmula de cada episodio
+
+1. **Problema** (0-15 s): pasa algo que hay que arreglar.
+2. **Plan torcido de Galleta**: el niño ya sabe más que ella, y le encanta.
+3. **Experimento de Doña Lechuza**: lo educativo va dentro de la aventura, y
+   **los personajes son parte del experimento** (en el episodio 1, Farolín hace
+   de Sol con su propia luz y Galleta hace de Tierra).
+4. **«¡Te toca a ti!»**: pregunta con cuenta atrás de 3 segundos para contestar
+   en voz alta.
+5. **Datos curiosos** y **repaso en tres tarjetas**.
+6. **Reto para casa** y **pregunta que engancha a la próxima aventura**.
+
+### Identidad
+
+- Tipografías: **Baloo 2** (títulos) y **Fredoka** (textos), licencia OFL.
+- Colores: luz amarilla `#FFD23F`, turquesa `#3BCEAC`, coral `#FF6B4A`,
+  noche `#140F3D`, caramelo `#C98A4B`, contorno `#2B2140`.
+- Contornos gruesos, formas redondas, ojos grandes. Nada de parpadeos rápidos ni
+  destellos (hay niños fotosensibles).
+- Rótulos de pocas palabras: muchos niños aún no leen.
 
 ---
 
-## 3. Guion completo: episodio 1, «¡La luna se está rompiendo!»
+## 2. Banco de ideas, con datos
 
-**Público:** 4-8 años · **Duración:** unos 6 minutos · **Lo que se aprende:**
-la luna no cambia de forma; la vemos distinta según cuánto la ilumina el Sol.
+Búsquedas al mes según vidIQ (13-10-2026). **España** = volumen dentro de España.
 
-| Tiempo | Voz | Lo que se ve | Texto en pantalla | Ritmo |
+| Prioridad | Episodio | Búsqueda que ataca | Al mes | Competencia |
 |---|---|---|---|---|
-| 0:00 | **Bruno:** ¡¡Luuumi!! ¡¡La luna se está rompiendo!! | Bruno corre en pijama, la luna llena se convierte en media luna | — | Muy rápido, música que se corta de golpe |
-| 0:06 | **Lumi:** ¿Rompiendo? ¡Vamos a mirar! | Lumi se enciende amarillo y salen volando | **¡A investigar!** | Golpe de música |
-| 0:15 | **Narrador:** Hoy, Lumi y Bruno van a descubrir un secreto del cielo. ¿Vienes? | Título del episodio con estrellas | Título | Pausa corta |
-| 0:25 | **Bruno:** ¡Ya sé! ¡Le pongo pegamento! | Bruno sube a una escalera altísima con un bote de pegamento y se cae en un charco | — | Comedia, sonido de «plof» |
-| 0:50 | **Lumi:** Bruno… la luna está muy, muy lejos. Más lejos que mil montañas. | Zoom hacia arriba: montañas, nubes, y la luna muy lejos | **muy lejos** | Lento, música suave |
-| 1:10 | **Lumi:** ¡Vamos a preguntarle a la Lechuza Sabia! | Vuelan por un bosque de colores hasta un árbol | — | Transición con barrido |
-| 1:25 | **Lechuza:** Uuuh… la luna no se rompe nunca. Os lo enseño con un truco. | Lechuza con gafas saca una linterna y una pelota | — | Calma |
-| 1:45 | **Lechuza:** La linterna es el Sol. La pelota es la luna. ¿Veis? Una mitad está iluminada y la otra a oscuras. | Linterna ilumina media pelota | **☀️ = Sol** · **⚪ = luna** | Lento, que se vea claro |
-| 2:15 | **Lechuza:** Ahora, Bruno, tú eres la Tierra. Quédate quieto y mira la pelota mientras yo la muevo a tu alrededor. | Bruno en el centro; la pelota gira a su alrededor | — | Pausa para que se entienda |
-| 2:40 | **Bruno:** ¡Ahora la veo entera! … ¡Ahora la mitad! … ¡Ahora casi nada! | La pelota pasa por luna llena, cuarto y nueva | **llena · media · nueva** | Una frase por posición, ritmo de juego |
-| 3:15 | **Lumi:** ¡La luna no se rompe! Lo que cambia es cuánto trozo iluminado podemos ver. | Lumi brilla turquesa (su color de «lo he entendido») | **¡No se rompe!** | Música de descubrimiento |
-| 3:35 | **Narrador:** Pregunta para ti: si la luna está entera y redonda, ¿cómo se llama? | Luna llena en grande | **¿…?** | **Pausa de 2 segundos** |
-| 3:40 | **Bruno:** ¡Luuuna llena! | Bruno salta | **LUNA LLENA** | Celebración |
-| 3:50 | **Lechuza:** Y para pasar de luna llena a luna nueva y volver a empezar, tarda casi un mes. | Calendario con lunas dibujadas | **casi 1 mes** | Calma |
-| 4:15 | **Bruno:** Entonces… ¿la luna no es de queso? | Bruno con un trozo de queso | — | Comedia |
-| 4:25 | **Lumi:** ¡Es de roca! Y unos astronautas fueron hasta allí y trajeron piedras. | Dibujo de astronauta saltando | **roca** | Asombro |
-| 4:50 | **Narrador:** Repasamos: el Sol ilumina la luna, la luna da vueltas a la Tierra y por eso la vemos cambiar. | Tres viñetas, una por idea | 3 iconos | Repaso rápido |
-| 5:20 | **Lumi:** Esta noche, mira por la ventana. ¿Qué luna hay hoy? | Niño de espaldas (sin cara) mirando por la ventana | **¿Qué luna hay hoy?** | Invitación |
-| 5:35 | **Bruno:** Lumi… ¿y por qué las estrellas no se caen? | Bruno mirando las estrellas, preocupado | — | Gancho |
-| 5:45 | **Lumi:** ¡Eso lo descubrimos en otra aventura! | Pantalla final con 2 vídeos sugeridos | — | Música de cierre |
+| ✅ hecho | ¡La luna se está rompiendo! | fases de la luna para niños | 5.029 | 29 (baja) |
+| 1 | ¿Quién hace ese ruido en el bosque? | sonidos de animales para niños | 18.805 (**+118 %**) | 57 |
+| 2 | El dinosaurio del museo se despierta | dinosaurios para niños / dinos | 52.889 / 34.138 (+100 %) | 54 / 61 |
+| 3 | ¿Por qué no se caen las estrellas? (ya anunciado al final del ep. 1) | sistema solar para niños | 6.618 | 49 |
+| 4 | Galleta se enfada | emociones niños | 5.369 | 25 (baja) |
+| 5 | ¿Cómo se llama este animal? | nombres de animales para niños | 5.101 | 30 (baja) |
+| 6 | El arcoíris perdido | colores para niños | 3.437 | 45 |
+| 7 | La gota de agua viajera | ciencias para niños | 4.946 | 45 |
+| 8 | Farolín tiene miedo a la oscuridad | las emociones para niños | 6.519 | 39 |
+| 9 | ¡Hay 10 estrellas escondidas! | (contar) | sin medir | — |
+| 10 | La oruga que tenía prisa | (metamorfosis) | sin medir | — |
 
-**Datos que hay que verificar antes de grabar:**
+Más ideas sin medir todavía: el erizo que no quería dormir (hibernación), la
+semilla mágica, el misterio de las formas, ¿dónde viven los pingüinos?, la
+carrera de los planetas, el cumpleaños de Galleta (compartir y mitades), ¿por
+qué tenemos que dormir?, el volcán que estornuda, la abeja que perdió su casa,
+grande-mediano-pequeño, Galleta aprende a pedir perdón, la estación que se
+equivocó, ¿por qué el cielo es azul?
 
-- [ ] Que el ciclo completo de fases dura unos 29,5 días («casi un mes»).
-- [ ] Que la Luna está hecha de roca y que las misiones Apolo trajeron
-      muestras (sí, pero se comprueba y se apunta la fuente).
-- [ ] Que la explicación de linterna-pelota no cae en el error típico de «la
-      sombra de la Tierra causa las fases» (eso es un eclipse, no las fases).
+**Lo que dicen los datos:** en España lo que más se busca para niños son
+**animales** (19.027 al mes, solo España) y **dinosaurios** (38.985). Las
+**canciones** son la categoría más grande (53.210), pero piden voz cantada.
+
+**Recopilaciones:** con 4 episodios, montar una de 20-30 minutos. Es el formato
+con más horas de visualización (los niños lo ven en la tele).
 
 ---
 
-## 4. Veinte títulos y miniaturas
+## 3. Guion
 
-Patrones que funcionan en canales infantiles grandes, sin copiar a ninguno:
-**una pregunta que se hace un niño**, **un personaje en apuros**, **un número
-concreto**, **un color dominante** y **una cara con emoción exagerada**. Lo
-prohibido: miniaturas que enseñen algo que no pasa en el vídeo.
+El del episodio 1 está en `estudio/src/episodios/ep01/guion.json` (62 frases,
+fuentes de la NASA incluidas). Cambios respecto al primer borrador:
 
-| # | Título | Miniatura |
+| Antes | Ahora | Por qué |
 |---|---|---|
-| 1 | ¡La luna se está rompiendo! 🌙 Lumi y Bruno | Bruno gritando, media luna, fondo morado |
-| 2 | ¿Por qué el cielo es azul? Lumi lo descubre | Lupa gigante sobre el cielo |
-| 3 | Bruno se pinta de verde 💚 ¡Aprende a mezclar colores! | Bruno verde y dos botes de pintura |
-| 4 | ¡Encuentra las 10 estrellas escondidas! ⭐ | Cielo con estrellas medio ocultas y un «10» enorme |
-| 5 | El erizo que NO quería dormir 🦔 | Erizo con ojeras |
-| 6 | ¿Adónde va la lluvia? El viaje de una gota 💧 | Gota con mochila en una nube |
-| 7 | Bruno tiene miedo a la oscuridad 🔦 | Bruno con linterna, fondo negro y ojos |
-| 8 | ¿Qué saldrá de esta semilla mágica? 🌱 | Semilla con brillo y signo de interrogación |
-| 9 | La puerta que solo se abre con FORMAS 🔺 | Puerta con huecos de colores |
-| 10 | ¿En qué se convierte esta oruga? 🐛 | Oruga dentro de un capullo brillante |
-| 11 | Bruno se ENFADA 😡 y Lumi le ayuda | Bruno rojo con humo en las orejas |
-| 12 | ¡El arcoíris ha perdido un color! 🌈 | Arcoíris con un hueco gris |
-| 13 | La carrera de los planetas 🪐 ¿Quién gana? | Planetas en línea de salida |
-| 14 | El dinosaurio del museo se DESPIERTA 🦖 | Esqueleto de dinosaurio con ojos abiertos |
-| 15 | ¿Qué sonido hace este animal? 🔊 Adivina con Lumi | Sombra de animal con «?» |
-| 16 | ¡Nieve en verano! La estación que se equivocó ☀️❄️ | Muñeco de nieve con gafas de sol |
-| 17 | ¿Hay tarta para todos? 🎂 El cumpleaños de Bruno | Tarta y muchas patitas alrededor |
-| 18 | El volcán que estornuda 🌋 | Volcán con pañuelo |
-| 19 | La abeja que perdió su casa 🐝 | Abeja con maleta y lágrima |
-| 20 | Bruno aprende a pedir perdón 💐 | Bruno con flor y cara de arrepentido |
-
-Reglas de miniatura: **un solo protagonista, máximo 3 palabras, un color de
-fondo dominante distinto en cada vídeo** (para que la fila del canal se vea
-como un arcoíris) y la cara de Lumi o Bruno siempre visible.
+| Lumi y Bruno | Farolín y Galleta | «El Mundo de Lumi» lo usan 8 canales |
+| Bruno sube una escalera con pegamento | Galleta salta con una red y cae en hojas | Un niño puede imitar lo de la escalera |
+| «Ayer estaba redonda» | «La semana pasada estaba redonda» | De luna llena a cuarto menguante pasan 7 días, no 1 |
+| La lechuza usa una linterna | **Farolín hace de Sol** con su luz | El personaje es parte del experimento |
+| «Más lejos que mil montañas» | «Cabrían 30 Tierras en fila» | Es el dato de la NASA, y se puede dibujar |
+| Pantalla final con 2 vídeos | Anuncio de la próxima aventura de viva voz | En contenido infantil no hay pantallas finales |
 
 ---
 
-## 5. Flujo de producción (8 h por semana)
+## 4. Títulos y miniaturas
 
-Objetivo realista: **1 vídeo largo y 2 Shorts por semana.** Los Shorts se
-sacan del largo, no se hacen aparte.
+Patrón de lo que funciona (sección 4 de la investigación): `TEMA para niños`
++ emoji + frase-gancho + nombre del canal. La miniatura enseña **algo que pasa
+en el vídeo**, una cara con emoción clara y como mucho dos o tres palabras, y
+deja libre la esquina de abajo a la derecha (ahí va la duración).
 
-| Paso | Tiempo | Qué se hace | Plantilla / lote / IA |
-|---|---|---|---|
-| Investigación | 30 min | Elegir tema del banco de ideas y comprobar los datos | **IA para buscar**, persona para verificar |
-| Guion | 1 h | Rellenar el esqueleto de 6 partes | **Plantilla** fija (sección 1) |
-| Voz | 45 min | Grabar o generar las voces | **Lote**: grabar 2 episodios seguidos |
-| Visuales | 2 h | Fondos y poses de personajes | **Biblioteca** de poses reutilizables de Lumi y Bruno; fondos nuevos con IA |
-| Edición | 2 h 30 | Montaje, música, texto en pantalla | **Plantilla** de proyecto con intro, transiciones y pantalla final |
-| Miniatura | 30 min | Una miniatura y una alternativa | **Plantilla** con huecos para personaje y fondo |
-| Publicación y Shorts | 30 min | Subir, marcar «creado para niños», sacar 2 Shorts | **Lista de comprobación** |
-| Análisis | 15 min | Apuntar 4 números (sección 6) | Hoja fija |
+Probarla siempre en pequeño: `out/marca/mini-168.png` es como se ve en el móvil.
 
-**Lo que no se automatiza nunca:** la historia de cada episodio, el humor de
-Bruno y la verificación de datos. Es lo que hace el canal auténtico ante
-YouTube y lo que hace que un padre lo deje puesto.
-
-**Lo que se puede delegar más adelante:** la edición (es la parte más larga).
-
-**Herramientas de bajo coste:** Canva o Adobe Express para personajes y
-miniaturas, CapCut o DaVinci Resolve (gratis) para editar, música sin
-derechos de la Biblioteca de audio de YouTube. Si se usa voz sintética, que
-sea la misma voz siempre para cada personaje.
-
----
-
-## 6. Sistema semanal repetible
-
-### El calendario
-
-| Día | Tarea | Tiempo |
+| Episodio | Título | Miniatura |
 |---|---|---|
-| Lunes | Mirar números de la semana pasada · elegir tema · guion | 1 h 45 |
-| Martes | Voces (2 episodios si se puede) | 45 min |
-| Miércoles | Visuales | 2 h |
-| Jueves | Edición | 2 h 30 |
-| Viernes | Miniatura · programar para el sábado por la mañana · Shorts | 1 h |
+| 1 | ¡La luna se está rompiendo! 🌙 Las fases de la luna para niños \| Farolín y Galleta | Media luna con el trozo «que falta» punteado, Galleta asombrada, «¿SE ROMPE?» |
+| 2 | ¿Quién hace ese ruido? 🔊 Sonidos de animales para niños \| Farolín y Galleta | Sombra de animal con «?», Farolín asustado (luz azul) |
+| 3 | ¡El dinosaurio se despierta! 🦖 Dinosaurios para niños \| Farolín y Galleta | Esqueleto con ojos abiertos, Galleta con la boca abierta |
+| 4 | ¿Por qué no se caen las estrellas? ⭐ El cielo para niños \| Farolín y Galleta | Estrella cayendo y Galleta con la red |
 
-Sábado y domingo por la mañana es cuando más ven los niños: se publica
-entonces.
+---
 
-### Los cuatro indicadores (no hay comentarios, así que se mide esto)
+## 5. Flujo de producción
 
-| Indicador | Dónde | Qué significa | Listón inicial |
+Todo se hace en `estudio/` con Claude. Pasos y tiempo de Pablo:
+
+| Paso | Quién | Tiempo de Pablo |
+|---|---|---|
+| Elegir tema del banco de ideas | Pablo | 5 min |
+| Guion (`guion.json`) con datos y fuentes | Claude, Pablo lo lee | 15 min |
+| Voces: `voces/generar_voces.py` (incluye la comprobación con Whisper) | Claude | 0 |
+| Escenas y animación (Remotion) | Claude | 0 |
+| Revisión de fotogramas y render | Claude | 0 |
+| **Ver el episodio entero con sonido** | **Pablo** | 10 min |
+| Subir con la ficha de publicación | Pablo | 10 min |
+
+**Lo que no se automatiza nunca:** la historia de cada episodio, el humor y la
+verificación de datos. Es lo que hace el canal auténtico.
+
+**Siguiente mejora de calidad:** que Pablo (o alguien contratado) grabe las
+voces. Las sintéticas se entienden (comprobado), pero una voz humana con
+ganas engancha más. El generador ya deja cada frase en su sitio: bastaría con
+sustituir los archivos.
+
+---
+
+## 6. Sistema semanal
+
+### Calendario (un episodio por semana)
+
+| Día | Qué | Tiempo de Pablo |
+|---|---|---|
+| Lunes | Mirar los números de la semana · elegir tema | 20 min |
+| Martes | Leer el guion y dar el visto bueno | 15 min |
+| Jueves | Ver el episodio terminado con sonido | 10 min |
+| Viernes | Programar la subida para el sábado por la mañana | 10 min |
+
+*La hora (fin de semana por la mañana) es una estimación: se ajusta con las
+estadísticas de las primeras semanas.*
+
+### Los cuatro indicadores
+
+| Indicador | Dónde | Qué significa | Listón inicial (estimado) |
 |---|---|---|---|
-| **Retención media** | Studio → Contenido → vídeo | Si el niño se queda | Más del 50 % en un vídeo de 6 min |
-| **Caída en los primeros 30 s** | Gráfico de retención | Si el gancho funciona | Que no se pierda más del 30 % |
-| **CTR de miniatura** | Studio → Alcance | Si la miniatura atrae | 4-8 % |
-| **Espectadores recurrentes** | Studio → Audiencia | Si vuelven por Lumi | Que suba mes a mes |
-
-*Los listones son estimaciones para empezar, no datos medidos. Se ajustan con
-los números propios a las 8 semanas.*
-
-### Banco de ideas
-
-Una hoja con cuatro columnas: **idea · tipo** (búsqueda / recomendación /
-Short) **· estado** (idea, guion, hecho) **· resultado** (retención y CTR).
-Cada lunes se añaden 3 ideas nuevas: las preguntas que hacen los niños de
-verdad («¿por qué…?») son la mejor fuente.
-
-### Pruebas que se pueden hacer (una cada vez)
-
-1. **Miniatura con Lumi frente a miniatura con Bruno.** YouTube Studio permite
-   probar varias miniaturas en el mismo vídeo.
-2. **Pregunta en el minuto 1 frente a minuto 3:** ¿sube la retención?
-3. **Vídeo de 4 min frente a 8 min** sobre temas parecidos.
-4. **Episodio de emociones frente a episodio de ciencia:** ¿cuál trae más
-   espectadores recurrentes?
+| Retención media | Studio → Contenido → vídeo | Si el niño se queda | Más del 50 % |
+| Caída en los primeros 30 s | Gráfico de retención | Si el gancho funciona | Menos del 30 % |
+| CTR de miniatura | Studio → Alcance | Si la miniatura atrae | 4-8 % |
+| Espectadores recurrentes | Studio → Audiencia | Si vuelven por Farolín y Galleta | Que suba mes a mes |
 
 ### Reglas para reforzar lo que funciona
 
-- Un vídeo que **dobla la retención media** del canal → se hace una
-  **continuación** en las 3 semanas siguientes.
-- Un tipo de episodio que gana **3 veces seguidas** → pasa a ser serie fija
-  (por ejemplo, «Los misterios de Bruno» cada dos semanas).
-- Un vídeo con CTR bajo pero buena retención → **se cambia la miniatura**, no el
-  vídeo.
-- Un vídeo con CTR alto y retención baja → la miniatura promete algo que el
-  vídeo no da: revisar el gancho.
-- **Cada 8 semanas**, revisión grande: qué tipo de episodio se queda y cuál se
-  deja.
+- Un vídeo que **dobla la retención media** → continuación en 3 semanas.
+- Un tipo de episodio que gana **3 veces seguidas** → serie fija.
+- CTR bajo y buena retención → **cambiar la miniatura**, no el vídeo.
+- CTR alto y retención baja → la miniatura promete algo que el vídeo no da:
+  revisar el gancho.
+- **Cada 8 semanas**, revisión grande.
 
 ---
 
-## Siguientes pasos
-
-1. Que Pablo confirme o cambie los supuestos del principio (edad, horas,
-   presupuesto, voz propia o sintética).
-2. Diseñar a Lumi y Bruno en 5 poses cada uno: es la base de todo.
-3. Validar las 30 ideas con datos de búsqueda (vidIQ, gasta créditos).
-4. Producir el episodio 1 con el guion de la sección 3.
-
 ## Fuentes (consultadas el 13-10-2026)
 
-- YouTube, protección de la privacidad de los niños: https://yt.be/help/f2N4
-- Cambios tras el acuerdo con la FTC: https://www.tubefilter.com/?p=140475
-- Política de contenido no auténtico: https://www.eweek.com/news/youtube-responds-to-ai-concerns/ ·
-  https://air.io/en/monetization/youtube-monetization-policy-changes-2026-a-complete-dated-timeline ·
-  https://vidiq.com/blog/post/youtube-ai-monetization/
-- Requisitos del Programa de Partners: https://vidiq.com/blog/post/monetize-youtube-guide/ ·
-  https://searchenginejournal.com/youtube-lowers-barriers-to-join-partner-program-in-more-countries/495220
+- Funciones que no tiene el contenido creado para niños: https://support.google.com/youtube/answer/9527654
+- Cuándo es «creado para niños»: https://support.google.com/youtube/answer/9528076
+- Aviso de contenido generado con IA: https://support.google.com/youtube/answer/14328491
+- Contenido no auténtico: https://air.io/en/monetization/youtube-monetization-policy-changes-2026-a-complete-dated-timeline
+- Programa de Partners (no oficial): https://vidiq.com/blog/post/monetize-youtube-guide/
+- Datos de la Luna (NASA): https://science.nasa.gov/moon/facts/ · https://science.nasa.gov/moon/moon-phases/
+- Licencia de Remotion (gratis para particulares y empresas de hasta 3 personas): https://www.remotion.dev/
+- Voces Kokoro-82M (Apache 2.0): https://huggingface.co/hexgrad/Kokoro-82M

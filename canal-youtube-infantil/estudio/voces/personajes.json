@@ -1,0 +1,37 @@
+{
+  "_nota": "Voces de Kokoro-82M (Apache 2.0). «mezcla» combina voces base; «semitonos» sube o baja el tono después; «formantes»: shifted = suena más pequeño, preserved = mismo timbre.",
+  "farolin": {
+    "mezcla": {
+      "ef_dora": 0.7,
+      "em_alex": 0.3
+    },
+    "velocidad": 1.06,
+    "semitonos": 7.5,
+    "formantes": "shifted"
+  },
+  "galleta": {
+    "mezcla": {
+      "ef_dora": 1.0
+    },
+    "velocidad": 1.04,
+    "semitonos": 2.0,
+    "formantes": "shifted"
+  },
+  "lechuza": {
+    "mezcla": {
+      "ef_dora": 0.75,
+      "em_santa": 0.25
+    },
+    "velocidad": 0.9,
+    "semitonos": -1.5,
+    "formantes": "preserved"
+  },
+  "narrador": {
+    "mezcla": {
+      "em_alex": 1.0
+    },
+    "velocidad": 0.95,
+    "semitonos": -1.0,
+    "formantes": "preserved"
+  }
+}

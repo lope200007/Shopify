@@ -1,0 +1,47 @@
+{
+  "_nota": "Segundos de acción sin diálogo al principio y al final de cada escena, y nombre de su capítulo en YouTube.",
+  "extra": {
+    "e01_gancho": {
+      "antes": 0.8,
+      "despues": 0.6
+    },
+    "e02_plan": {
+      "antes": 0.5,
+      "despues": 1.4
+    },
+    "e03_arbol": {
+      "antes": 1.2,
+      "despues": 0.9
+    },
+    "e04_experimento": {
+      "antes": 0.6,
+      "despues": 1.4
+    },
+    "e05_pregunta": {
+      "antes": 0.5,
+      "despues": 1.0
+    },
+    "e06_datos": {
+      "antes": 0.5,
+      "despues": 0.8
+    },
+    "e07_repaso": {
+      "antes": 0.5,
+      "despues": 1.2
+    },
+    "e08_final": {
+      "antes": 0.6,
+      "despues": 3.0
+    }
+  },
+  "capitulos": {
+    "e01_gancho": "¡La luna se está rompiendo!",
+    "e02_plan": "El plan de Galleta",
+    "e03_arbol": "La casa de Doña Lechuza",
+    "e04_experimento": "El experimento: Farolín es el Sol",
+    "e05_pregunta": "¡Te toca a ti!",
+    "e06_datos": "Datos curiosos de la luna",
+    "e07_repaso": "Repasamos",
+    "e08_final": "El reto de esta noche"
+  }
+}

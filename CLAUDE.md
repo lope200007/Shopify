@@ -49,6 +49,27 @@ El registro completo de errores, con fechas y casos, está en el repositorio
 > Lo que le toca al usuario está en la memoria persistente, entidad
 > *Pending User Actions*.
 
+## Subproyecto: canal de YouTube infantil «Farolín y Galleta» (desde 13-10-2026)
+
+Vive en `canal-youtube-infantil/` y no tiene relación con la tienda. Empieza por
+`canal-youtube-infantil/PLAN.md`; para producir episodios, `estudio/LEEME.md`.
+
+**Trampas que ya costaron tiempo:**
+
+- **Un nombre de personaje se comprueba antes de diseñar nada**, en YouTube y en
+  el registro de marcas (TMview responde por API). «El Mundo de Lumi» lo usaban
+  8 canales: es el nombre que una IA propone a todo el mundo.
+- **No puedo escuchar audio.** Cada voz se comprueba transcribiéndola con
+  Whisper (`voces/generar_voces.py` lo hace solo) y midiendo su tono. Así salió
+  que dos personajes tenían la misma voz y que un efecto tapaba una frase.
+- **En contenido «creado para niños» no hay pantallas finales, tarjetas,
+  comentarios ni campanita** (ayuda de YouTube, 13-10-2026). No planificar con ellos.
+- Los efectos de sonido del skill de Remotion son memes con derechos dudosos:
+  la música y los efectos del canal se sintetizan en `musica/componer.py`.
+- Renderizar en este contenedor exige
+  `--browser-executable=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`
+  (el Chromium normal ya no tiene el modo headless antiguo).
+
 ## Qué es este proyecto
 
 Automatización de una tienda Shopify con agentes de IA. Node.js + TypeScript + Express.
@@ -304,6 +325,7 @@ Búsquedas hechas sin resultado útil, no repetir:
 | Barrera | Buscado | Resultado |
 |---|---|---|
 | Agotar créditos de una API de pago | `api cost optimization caching`, `rate limit retry backoff` | Nada aplicable: los de "cost" son de tokens de LLM y los de "rate limit" van de implementar límites en tu propia API. Resuelto con `spending-credits-last` y `scripts/linkfox.ts`. |
+| Canal infantil de YouTube: voces, guion, miniaturas | `youtube`, `youtube script`, `remotion`, `kids content`, `children education`, `video editing ffmpeg`, `thumbnail`, `svg character animation`, `text to speech` (13-10-2026) | Instalados 4 (ver tabla de terceros), rechazados 4. Para voces no hay skill gratuito: se resolvió con Kokoro-82M + Whisper (`estudio/voces/`). |
 
 ```bash
 npx skills find "<tema>"          # 1. buscar
@@ -408,6 +430,10 @@ Instalados con `npx skills add`, viven en `.agents/skills/` y se enlazan desde
 | `impeccable` | `pbakaus/impeccable` | Dirección de arte y craft de interfaz. **Copia solo-markdown, sin el binario.** Ver abajo. |
 | `ui-ux-pro-max` | `nextlevelbuilder/ui-ux-pro-max-skill` | Base de datos de diseño consultable desde el terminal: 192 paletas por tipo de producto, 74 parejas de tipografías, 119 reglas de UX, 79 estilos. Python de biblioteca estándar, sin red. Ver abajo. |
 | `taste` | `senlindesign/taste-skill` | Desmonta el diseño de una web ajena y devuelve los valores exactos: colores, escala tipográfica, espaciados, radios. Y el **porqué** de cada elección, no solo el qué. Ver abajo. |
+| `remotion-best-practices` | `remotion-dev/skills` (oficial de Remotion) | Vídeo con React para el canal infantil (`canal-youtube-infantil/estudio/`). Licencia de Remotion gratis para particulares y empresas de hasta 3 personas (comprobado 13-10-2026). |
+| `disney-animation-rule-skill` | `vibe-motion/skills` | Los 12 principios de animación aplicados a código determinista (Remotion): anticipación, aplastar y estirar, asentamiento. |
+| `youtube-scriptwriting` | `cdeistopened/skill-stack` (MIT) | Ganchos y retención de guiones. Pensado para adultos: lo de «enfado/indignación» no se usa en el canal infantil. |
+| `kids-book-writer` | `jamesrochabrun/skills` (MIT) | Lenguaje por edades (2-9 años) y estructuras de cuento. |
 
 ### `taste`: lo que yo hacía a mano, hecho bien
 
@@ -610,6 +636,10 @@ No están instalados, y no por capricho:
 | `emilkowalski/skill@ask-sonner` | Guía de Sonner, librería de *toasts* de React. No usamos React. |
 | `emilkowalski/skill@pick-ui-library` | Catálogo de librerías de React (cmdk, dnd-kit, recharts…). Mismo motivo. |
 | `emilkowalski/skill@prototype` | Necesita servidor de desarrollo y React, y el nombre ya lo ocupa otro skill instalado. |
+| `evandempsey/agent-skills@childrens-show-creator` | Exige ElevenLabs (de pago) para voces y Gemini u OpenAI para dibujos, y un skill hermano que no viene. Sus reglas de seguridad infantil sí se leyeron (13-10-2026). |
+| `101-skills/superpowers@youtube-thumbnail-design` | Es publicidad del CLI `belt` de inference.sh, con registro. Lo útil (1280×720, prueba a 120 px, esquinas) ya está en `canal-youtube-infantil/estudio/LEEME.md`. |
+| `calesthio/openmontage@svg-character-animation` | 56 líneas sin nada que no cubran Remotion y Disney; el repositorio es AGPL. |
+| `heygen-com/hyperframes@hyperframes-animation` | Motor de vídeo alternativo a Remotion (11.700 líneas). Con uno basta. |
 
 Lección: **el número de instalaciones no mide calidad.** Los dos de dropshipping
 más instalados eran folletos publicitarios.
