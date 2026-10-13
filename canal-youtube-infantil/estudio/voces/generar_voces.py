@@ -87,6 +87,17 @@ def error_palabras(ref: str, hip: str) -> float:
     return d[len(r), len(h)] / len(r)
 
 
+def primera_mal(ref: str, hip: str) -> bool:
+    """¿Whisper entendió distinta la primera palabra? Es la que más importa
+    (el gancho de la frase) y un porcentaje global bajo la esconde."""
+    r, h = normalizar_palabras(ref), normalizar_palabras(hip)
+    return bool(r) and (not h or r[0] != h[0])
+
+
+def con_aviso(e: dict) -> bool:
+    return e.get("error", 0) > UMBRAL_ERROR or e.get("primera_mal", False)
+
+
 def cambiar_tono(audio: np.ndarray, semitonos: float, formantes: str) -> np.ndarray:
     if abs(semitonos) < 0.01:
         return audio
@@ -150,6 +161,7 @@ def main():
     ap.add_argument("--solo", nargs="*", default=None)
     ap.add_argument("--personaje", nargs="*", default=None, help="regenera solo las frases de estos personajes")
     ap.add_argument("--sin-whisper", action="store_true")
+    ap.add_argument("--revisar", action="store_true", help="solo vuelve a transcribir las voces que ya existen")
     args = ap.parse_args()
 
     guion_p = RAIZ / "src" / "episodios" / args.episodio / "guion.json"
@@ -189,6 +201,16 @@ def main():
                 hacer = lid in args.solo
             if args.personaje is not None:
                 hacer = p in args.personaje
+            if args.revisar:
+                hacer = False
+                if whisper is not None and lid in resultado["lineas"] and archivo.exists():
+                    audio_existente, _ = sf.read(archivo, dtype="float32")
+                    segs, _ = whisper.transcribe(audio_existente, language="es", beam_size=5)
+                    oido = " ".join(s.text.strip() for s in segs)
+                    e = resultado["lineas"][lid]
+                    e["whisper"], e["error"], e["primera_mal"] = oido, round(error_palabras(texto, oido), 2), primera_mal(texto, oido)
+                    if con_aviso(e):
+                        print(f"{lid} {p:9s} ⚠️ err={e['error']} primera_mal={e['primera_mal']}  «{texto}» → «{oido}»", flush=True)
             if hacer:
                 cfg = personajes[p]
                 audio, sr = kokoro.create(texto_para_voz(texto), voice=estilos[p], speed=cfg["velocidad"], lang="es")
@@ -208,11 +230,12 @@ def main():
                     oido = " ".join(s.text.strip() for s in segs)
                     entrada["whisper"] = oido
                     entrada["error"] = round(error_palabras(texto, oido), 2)
+                    entrada["primera_mal"] = primera_mal(texto, oido)
                 resultado["lineas"][lid] = entrada
-                aviso = " ⚠️" if entrada.get("error", 0) > UMBRAL_ERROR else ""
+                aviso = " ⚠️" if con_aviso(entrada) else ""
                 print(f"{lid} {p:9s} {entrada['duracion']:5.2f}s err={entrada.get('error', '-')}{aviso}  {texto}", flush=True)
             e = resultado["lineas"][lid]
-            filas_informe.append((lid, p, texto, e.get("whisper", ""), e.get("error", None), e["duracion"]))
+            filas_informe.append((lid, p, texto, e.get("whisper", ""), e.get("error", None), e["duracion"], con_aviso(e)))
 
     # El vídeo usa MP3 (unas 6 veces más ligero que WAV); el WAV no se sube a git.
     for lid, e in resultado["lineas"].items():
@@ -225,7 +248,7 @@ def main():
     salida_json.write_text(json.dumps(resultado, ensure_ascii=False), encoding="utf-8")
 
     total = sum(f[5] for f in filas_informe)
-    malas = [f for f in filas_informe if f[4] is not None and f[4] > UMBRAL_ERROR]
+    malas = [f for f in filas_informe if f[6]]
     lineas_md = [
         f"# Informe de voces · {args.episodio}",
         "",
@@ -234,13 +257,13 @@ def main():
         "No sustituye a escucharlas: dice si se entienden, no si suenan bien.",
         "",
         f"- Frases: {len(filas_informe)} · voz total: {total:.1f} s",
-        f"- Con más de {int(UMBRAL_ERROR * 100)} % de error: {len(malas)}",
+        f"- Con aviso (más de {int(UMBRAL_ERROR * 100)} % de error, o la primera palabra mal): {len(malas)}",
         "",
         "| Frase | Personaje | Error | Texto | Lo que entendió Whisper |",
         "|---|---|---|---|---|",
     ]
-    for lid, p, texto, oido, err, _ in filas_informe:
-        marca = " ⚠️" if err is not None and err > UMBRAL_ERROR else ""
+    for lid, p, texto, oido, err, _, aviso in filas_informe:
+        marca = " ⚠️" if aviso else ""
         lineas_md.append(f"| {lid} | {p} | {'' if err is None else f'{err:.2f}'}{marca} | {texto} | {oido} |")
     informe_p.write_text("\n".join(lineas_md) + "\n", encoding="utf-8")
     print(f"\nVoz total {total:.1f} s · {len(malas)} frases con aviso · informe en {informe_p.relative_to(RAIZ)}")

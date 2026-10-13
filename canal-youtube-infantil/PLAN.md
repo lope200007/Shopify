@@ -9,7 +9,7 @@ producido y lo aprendido al hacerlo.
 
 | | |
 |---|---|
-| Estado | **Episodio 1 terminado** (4:08). Falta que Pablo cree el canal (`GUIA-CREAR-CANAL.md`) y lo escuche entero |
+| Estado | **Episodio 1 terminado** (4:10, 1080p, −14 LUFS). Falta que Pablo cree el canal (`GUIA-CREAR-CANAL.md`) y lo escuche entero |
 | Nombre | «Farolín y Galleta» (provisional: lo decide Pablo; se cambia en `estudio/src/marca.ts`) |
 | Investigación | `investigacion-2026-10-13.md` |
 | Episodio 1 | `episodios/ep01/` (ficha de publicación, subtítulos, miniatura) |
@@ -156,7 +156,7 @@ Patrón de lo que funciona (sección 4 de la investigación): `TEMA para niños`
 en el vídeo**, una cara con emoción clara y como mucho dos o tres palabras, y
 deja libre la esquina de abajo a la derecha (ahí va la duración).
 
-Probarla siempre en pequeño: `out/marca/mini-168.png` es como se ve en el móvil.
+Probarla siempre en pequeño (168 px de ancho, como en el móvil): el estudio la saca con `convert Miniatura01.png -resize 168x94`.
 
 | Episodio | Título | Miniatura |
 |---|---|---|

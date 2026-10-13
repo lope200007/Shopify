@@ -3,245 +3,245 @@
 ¡Farolín! ¡Farolín! ¡Despierta!
 
 2
-00:00:02,867 --> 00:00:04,667
+00:00:02,867 --> 00:00:04,767
 ¿Mmm…? ¿Qué pasa, Galleta?
 
 3
-00:00:04,867 --> 00:00:06,800
+00:00:04,933 --> 00:00:06,867
 ¡Mira la luna! ¡Se está rompiendo!
 
 4
-00:00:06,933 --> 00:00:08,900
+00:00:07,033 --> 00:00:09,100
 ¡Es verdad! ¡Le falta un trozo!
 
 5
-00:00:09,100 --> 00:00:13,033
+00:00:09,267 --> 00:00:13,200
 La semana pasada estaba redonda, redonda… ¡y mira cómo está ahora!
 
 6
-00:00:13,233 --> 00:00:17,000
+00:00:13,367 --> 00:00:17,133
 ¡La luna se está rompiendo! Una aventura de Farolín y Galleta.
 
 7
-00:00:19,067 --> 00:00:20,667
+00:00:19,233 --> 00:00:20,833
 ¡Tranquilo! ¡Tengo un plan!
 
 8
-00:00:20,833 --> 00:00:23,267
+00:00:21,000 --> 00:00:23,600
 Uy… cuando dices eso, siempre pasa algo.
 
 9
-00:00:23,467 --> 00:00:25,867
+00:00:23,767 --> 00:00:26,167
 ¡Atrapo la luna con mi red y la arreglamos!
 
 10
-00:00:28,633 --> 00:00:30,300
+00:00:28,933 --> 00:00:30,600
 ¡Ay, Galleta! ¿Estás bien?
 
 11
-00:00:30,500 --> 00:00:33,533
+00:00:30,800 --> 00:00:33,833
 ¡Sí! Pero la luna está más alta que el árbol más alto.
 
 12
-00:00:33,700 --> 00:00:36,067
+00:00:34,000 --> 00:00:36,467
 Mucho más alta, Galleta. ¡Muchísimo!
 
 13
-00:00:36,233 --> 00:00:40,333
+00:00:36,667 --> 00:00:40,833
 ¡Ya sé! ¡Vamos a preguntarle a Doña Lechuza! Ella sabe mucho del cielo.
 
 14
-00:00:40,500 --> 00:00:41,233
+00:00:41,000 --> 00:00:41,733
 ¡Vamos!
 
 15
-00:00:44,600 --> 00:00:47,867
+00:00:45,100 --> 00:00:48,367
 ¡Doña Lechuza! ¡Doña Lechuza! ¡La luna se está rompiendo!
 
 16
-00:00:48,067 --> 00:00:51,400
+00:00:48,567 --> 00:00:51,900
 Uuuh… buenas noches, pequeños. ¿Rompiéndose, decís?
 
 17
-00:00:51,567 --> 00:00:55,267
+00:00:52,067 --> 00:00:55,933
 Sí. La semana pasada estaba redonda, y ahora le falta un trozo.
 
 18
-00:00:55,433 --> 00:00:59,933
+00:00:56,133 --> 00:01:00,633
 La luna no se rompe nunca. Pero no me creáis a mí… ¡Vamos a comprobarlo!
 
 19
-00:01:02,133 --> 00:01:07,600
+00:01:02,800 --> 00:01:08,267
 Primero, un secreto: la luna no tiene luz propia. No brilla sola, como tú, Farolín.
 
 20
-00:01:07,800 --> 00:01:09,733
+00:01:08,467 --> 00:01:10,400
 ¿No? ¿Y entonces por qué brilla?
 
 21
-00:01:09,900 --> 00:01:14,333
+00:01:10,567 --> 00:01:15,000
 A la luna la ilumina el Sol. Así que necesito un Sol pequeñito… ¡Tú!
 
 22
-00:01:14,500 --> 00:01:15,367
+00:01:15,167 --> 00:01:16,100
 ¿Quién, yo?
 
 23
-00:01:15,533 --> 00:01:19,333
+00:01:16,267 --> 00:01:20,067
 Ponte allí y enciende tu luz muy fuerte. Tú serás el Sol.
 
 24
-00:01:20,500 --> 00:01:22,400
+00:01:21,267 --> 00:01:23,267
 ¡Soy el Sol! ¡Mirad cuánto brillo!
 
 25
-00:01:22,567 --> 00:01:28,867
+00:01:23,433 --> 00:01:29,733
 Esta pelota será la luna. Y tú, Galleta, serás la Tierra. Quédate en el centro y mira siempre la pelota.
 
 26
-00:01:29,067 --> 00:01:30,433
+00:01:29,900 --> 00:01:31,267
 ¡Soy la Tierra! ¡Vale!
 
 27
-00:01:30,600 --> 00:01:32,833
+00:01:31,433 --> 00:01:33,667
 Ahora apago la lámpara… ¿Qué veis?
 
 28
-00:01:34,233 --> 00:01:37,500
+00:01:35,067 --> 00:01:38,533
 ¡La pelota tiene una mitad con luz y otra mitad a oscuras!
 
 29
-00:01:37,667 --> 00:01:42,533
+00:01:38,700 --> 00:01:43,567
 Exacto. A la luna le pasa igual: siempre tiene una mitad iluminada por el Sol.
 
 30
-00:01:42,733 --> 00:01:50,100
+00:01:43,767 --> 00:01:51,133
 Ahora voy a mover la pelota alrededor de Galleta, como la luna da vueltas alrededor de la Tierra. Galleta, dinos qué ves.
 
 31
-00:01:51,667 --> 00:01:53,867
+00:01:52,700 --> 00:01:54,900
 ¡La veo entera! ¡Redonda y llena de luz!
 
 32
-00:01:54,033 --> 00:01:55,700
+00:01:55,067 --> 00:01:56,733
 Esa es la luna llena.
 
 33
-00:01:57,267 --> 00:01:58,900
+00:01:58,300 --> 00:01:59,933
 ¡Ahora solo veo la mitad!
 
 34
-00:01:59,100 --> 00:02:03,633
+00:02:00,133 --> 00:02:04,667
 Eso es un cuarto de luna. Se está haciendo pequeñita: está menguante.
 
 35
-00:02:05,200 --> 00:02:07,400
+00:02:06,233 --> 00:02:08,433
 ¡Ahora casi no la veo! ¡Está a oscuras!
 
 36
-00:02:07,600 --> 00:02:14,967
+00:02:08,600 --> 00:02:15,967
 Esa es la luna nueva. La luna sigue ahí, pero su mitad con luz mira hacia el Sol. Desde la Tierra vemos la mitad oscura.
 
 37
-00:02:16,533 --> 00:02:19,000
+00:02:17,567 --> 00:02:20,033
 ¡Y vuelve a aparecer! ¡Cada vez más grande!
 
 38
-00:02:19,167 --> 00:02:21,833
+00:02:20,200 --> 00:02:22,867
 Cuando crece, decimos que está creciente.
 
 39
-00:02:22,033 --> 00:02:27,600
+00:02:23,033 --> 00:02:28,767
 ¡Se me ha encendido una idea! La luna no se rompe. Lo que cambia es cuánto trozo con luz podemos ver.
 
 40
-00:02:27,767 --> 00:02:29,233
+00:02:28,967 --> 00:02:30,433
 ¡Exacto, Farolín!
 
 41
-00:02:32,300 --> 00:02:36,733
+00:02:33,500 --> 00:02:37,933
 ¡Ahora te toca a ti! Si la luna se ve redonda y llena de luz… ¿cómo se llama?
 
 42
-00:02:39,933 --> 00:02:41,167
+00:02:41,133 --> 00:02:42,367
 ¡Es la luna llena!
 
 43
-00:02:41,333 --> 00:02:44,033
+00:02:42,533 --> 00:02:45,233
 ¡Muy bien! Y si casi no la vemos… ¿qué luna es?
 
 44
-00:02:47,233 --> 00:02:48,200
-¡Luna nueva!
+00:02:48,433 --> 00:02:49,733
+¡Es la luna nueva!
 
 45
-00:02:50,467 --> 00:02:54,300
+00:02:52,000 --> 00:02:55,833
 Doña Lechuza, ¿cuánto tarda la luna en pasar por todas sus formas?
 
 46
-00:02:54,500 --> 00:03:00,400
+00:02:56,033 --> 00:03:01,933
 Para pasar por todas y volver a empezar, tarda casi un mes: unos veintinueve días y medio.
 
 47
-00:03:00,600 --> 00:03:02,200
+00:03:02,133 --> 00:03:03,733
 ¿Y está muy, muy lejos?
 
 48
-00:03:02,367 --> 00:03:07,300
+00:03:03,900 --> 00:03:08,833
 Tan lejos que, entre la Tierra y la luna, cabrían treinta Tierras puestas en fila.
 
 49
-00:03:08,467 --> 00:03:10,733
+00:03:10,000 --> 00:03:12,333
 ¡Por eso tu red no llegaba, Galleta!
 
 50
-00:03:10,933 --> 00:03:13,967
+00:03:12,500 --> 00:03:15,533
 ¡Ja, ja, ja! ¡Necesito una red muchísimo más larga!
 
 51
-00:03:14,133 --> 00:03:15,900
+00:03:15,700 --> 00:03:17,467
 Oiga… ¿y la luna es de queso?
 
 52
-00:03:16,067 --> 00:03:23,667
-Uuuh, no. Es de roca. Hace muchos años, unos astronautas fueron hasta allí y trajeron piedras de la luna para estudiarlas.
+00:03:17,633 --> 00:03:25,767
+¡No, no, no! La luna es de roca. Hace muchos años, unos astronautas fueron hasta allí y trajeron piedras de la luna para estudiarlas.
 
 53
-00:03:23,833 --> 00:03:25,600
+00:03:25,967 --> 00:03:27,833
 ¡Piedras de la luna! ¡Qué pasada!
 
 54
-00:03:27,700 --> 00:03:30,267
+00:03:29,933 --> 00:03:32,500
 ¡Vamos a repasar lo que hemos aprendido!
 
 55
-00:03:30,867 --> 00:03:34,200
+00:03:33,100 --> 00:03:36,433
 Uno: la luna no tiene luz propia. La ilumina el Sol.
 
 56
-00:03:34,933 --> 00:03:37,800
+00:03:37,167 --> 00:03:40,033
 Dos: la luna da vueltas alrededor de la Tierra.
 
 57
-00:03:38,600 --> 00:03:43,033
+00:03:40,833 --> 00:03:45,267
 Tres: por eso la vemos llena, a medias o casi nada. ¡Pero nunca se rompe!
 
 58
-00:03:45,800 --> 00:03:49,367
+00:03:48,033 --> 00:03:51,733
 ¡Un reto! Esta noche, mira la luna por la ventana con un mayor.
 
 59
-00:03:49,533 --> 00:03:52,467
+00:03:51,900 --> 00:03:54,833
 ¿Está llena, a medias o casi no se ve? ¡Dibújala!
 
 60
-00:03:53,667 --> 00:03:56,500
+00:03:56,033 --> 00:03:58,867
 Oye, Farolín… ¿y por qué no se caen las estrellas?
 
 61
-00:03:56,667 --> 00:03:59,500
+00:03:59,033 --> 00:04:01,933
 Mmm… ¡Eso lo descubriremos en otra aventura!
 
 62
-00:04:00,300 --> 00:04:03,167
+00:04:02,700 --> 00:04:05,567
 ¡Farolín y Galleta! ¡Aprender es una aventura!

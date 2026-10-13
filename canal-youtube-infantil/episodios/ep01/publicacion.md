@@ -34,11 +34,11 @@ En este episodio aprendemos:
 0:00 ¡La luna se está rompiendo!
 0:18 El plan de Galleta
 0:43 La casa de Doña Lechuza
-1:01 El experimento: Farolín es el Sol
-2:31 ¡Te toca a ti!
-2:49 Datos curiosos de la luna
-3:27 Repasamos
-3:45 El reto de esta noche
+1:02 El experimento: Farolín es el Sol
+2:33 ¡Te toca a ti!
+2:51 Datos curiosos de la luna
+3:29 Repasamos
+3:47 El reto de esta noche
 
 Para madres, padres y profes: los datos del episodio están comprobados con la NASA.
 · Datos de la Luna: https://science.nasa.gov/moon/facts/
@@ -75,8 +75,14 @@ comprobado el 13-10-2026): comentarios, campanita, tarjetas, pantalla final y
 
 Yo **no puedo escuchar audio**. Lo que sí he comprobado:
 
-- Cada frase transcrita por Whisper: 62 de 62 se entienden (los 2 avisos que
-  quedan son de ortografía: «de cis» por «decís» y «ha, ha» por «ja, ja»).
+- Cada frase, transcrita por Whisper sola y dentro de la mezcla final: 59 de 62
+  sin aviso. Los 3 avisos que quedan son de ortografía, no de pronunciación
+  («de cis» por «decís», «ha, ha» por «ja, ja» y «2» por «Dos»).
+- Se reescribieron 10 frases que no se entendían bien y se rehicieron todas las
+  voces de Farolín y del narrador. La más importante: la frase clave «¡Se me ha
+  encendido una idea!» se oía «Te me ha…».
+- Sincronía: cada frase suena donde está su boca y su rótulo (desfase mediano
+  de unas centésimas, medido con Whisper sobre el vídeo final).
 - Los cuatro personajes tienen tonos distintos (Farolín 253 Hz, Galleta 198,
   Doña Lechuza 153, narrador 129) para que no se confundan.
 - Volumen final ajustado a −14 LUFS, el que usa YouTube.

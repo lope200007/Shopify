@@ -63,6 +63,13 @@ En el contenedor de Claude hay que indicar el navegador:
   entienden ni a Whisper ni a un niño. Con contexto, sí: «¿Quién, yo?».
 - **Cuidado con frases que suenan igual que otra:** «¡y mírala ahora!» se oye
   «y mira la hora». Whisper lo detecta; un humano escuchando deprisa, no.
+- **La primera palabra se comprueba aparte.** Un 5 % de error global escondía
+  que «¡Se me ha encendido una idea!», la frase clave, se oía «Te me ha…».
+  El generador avisa ahora si falla la primera palabra.
+- **Las voces muy agudas se comen la primera consonante** («Mucho» → «Ucho»).
+  A Farolín lo arregló hablar un poco más despacio (velocidad 0,98).
+- **Ningún efecto de sonido encima del arranque de una frase.** El «tilín» va
+  antes o después; la campanita de acierto, después de la respuesta.
 - **Medir el tono de cada personaje** tras tocar sus voces: Farolín y Galleta
   salieron al principio casi iguales (195 y 198 Hz) y nadie lo habría notado
   sin medirlo.
