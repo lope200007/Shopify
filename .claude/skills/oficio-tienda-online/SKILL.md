@@ -329,6 +329,13 @@ dinero, precios, costes, pedidos, cobros o lo que ve el cliente:
 - **Los campos de una API GraphQL se comprueban en su esquema** antes de pedirlos
   en un tipo nuevo. Un campo que no existe tumba la consulta entera. En APIs
   externas, si hay duda, se piden los campos de uno en uno.
+- **Antes de usar por primera vez una orden que cambia algo, se mira si el
+  conector tiene permiso.** La validación dice qué permisos pide la orden, pero
+  no si el conector los tiene. En Shopify lo dice
+  `currentAppInstallation { accessScopes { handle } }`. Si falta uno, no se
+  intenta: se le prepara al dueño el cambio exacto, lo más corto posible, con el
+  enlace directo. Por ejemplo, un conector puede cambiar páginas y no las
+  políticas legales.
 - **Las cadenas largas se generan desde un archivo con un script**, no se copian
   a mano. Esto vale para firmas, URLs firmadas y HTML largo; después se validan.
 - **Para leer webs sin pagar buscadores:**
@@ -342,4 +349,7 @@ dinero, precios, costes, pedidos, cobros o lo que ve el cliente:
   Si se acaba el saldo o el cupo, no se recarga: se avisa.
 - **Con la web de la tienda, pocas lecturas y espaciadas.** Lo guardado se
   comprueba por la API de administración. Para capturas: una página cada vez,
-  esperando a `load` y no a `networkidle`.
+  esperando a `load` y no a `networkidle`. El día que se hace un barrido grande
+  desde el mismo sitio, la web puede pedir una verificación antirrobots; para
+  comparar con un programa el texto guardado se usa entonces la API pública de
+  la tienda, que devuelve JSON.
