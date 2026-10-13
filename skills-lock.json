@@ -127,6 +127,12 @@
       "skillPath": "skills/engineering/diagnosing-bugs/SKILL.md",
       "computedHash": "37b5e9c624513551da790b52864dc8c84bff996a6d03a380cc6facdcc0a88354"
     },
+    "disney-animation-rule-skill": {
+      "source": "vibe-motion/skills",
+      "sourceType": "github",
+      "skillPath": "disney-animation-rule-skill/SKILL.md",
+      "computedHash": "963e97ed3e23705c3249acd9a124a1ee1a4fb7a7684c0a1bc0b1994517f2e3a2"
+    },
     "documentation-and-adrs": {
       "source": "addyosmani/agent-skills",
       "sourceType": "github",
@@ -290,6 +296,12 @@
       "skillPath": "skills/interview-me/SKILL.md",
       "computedHash": "efded91ac7f7626239b338ce8622afeb557151b86532b632f3c9eb5b2ff9048f"
     },
+    "kids-book-writer": {
+      "source": "jamesrochabrun/skills",
+      "sourceType": "github",
+      "skillPath": "skills/kids-book-writer/SKILL.md",
+      "computedHash": "1e6b9dc3903a10beaaef8c2435149073cb5633bcb0cb6040b21d10cbd803081e"
+    },
     "linkfox-dld-product-search": {
       "source": "linkfox-ai/linkfox-skills",
       "sourceType": "github",
@@ -355,6 +367,12 @@
       "sourceType": "github",
       "skillPath": "skills/engineering/prototype/SKILL.md",
       "computedHash": "d3fc74689bd993e39c44bfae510d014eecffbeec2922764b065377fd1327c0f6"
+    },
+    "remotion-best-practices": {
+      "source": "remotion-dev/skills",
+      "sourceType": "github",
+      "skillPath": "skills/remotion-best-practices/SKILL.md",
+      "computedHash": "5622d2809a04d655a2f89de7f480fcdd4eec827a417af6709a8e6e566784a48a"
     },
     "research": {
       "source": "mattpocock/skills",
@@ -576,6 +594,12 @@
       "sourceType": "github",
       "skillPath": "skills/in-progress/writing-shape/SKILL.md",
       "computedHash": "0d0ac1150c4d65f8370ad194fc097ee17855247f6e5943d05f075806980e7401"
+    },
+    "youtube-scriptwriting": {
+      "source": "cdeistopened/skill-stack",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/youtube-scriptwriting/SKILL.md",
+      "computedHash": "4fc5cb87a4214eb745603a4c6ed7c4381645c310b300e705dcdfc9f0e5c66064"
     }
   }
 }
