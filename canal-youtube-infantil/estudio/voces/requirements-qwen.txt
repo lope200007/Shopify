@@ -1,6 +1,0 @@
-# Entorno del motor Qwen3-TTS (Apache 2.0). Python 3.12.
-#   uv venv --python 3.12 ~/.venv-qwen
-#   uv pip install --python ~/.venv-qwen/bin/python torch torchaudio --index-url https://download.pytorch.org/whl/cpu
-#   uv pip install --python ~/.venv-qwen/bin/python -r voces/requirements-qwen.txt
-qwen-tts
-soundfile

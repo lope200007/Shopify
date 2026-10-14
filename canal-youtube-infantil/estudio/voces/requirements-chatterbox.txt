@@ -1,8 +1,0 @@
-# Entorno del motor Chatterbox multilingüe (MIT). Python 3.11.
-#   uv venv --python 3.11 ~/.venv-chatter
-#   uv pip install --python ~/.venv-chatter/bin/python torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
-#   uv pip install --python ~/.venv-chatter/bin/python -r voces/requirements-chatterbox.txt
-chatterbox-tts==0.1.7
-soundfile
-# su marca de agua (Perth) usa pkg_resources, que ya no viene con setuptools 81
-setuptools<81
