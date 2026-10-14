@@ -1,0 +1,52 @@
+{
+  "_nota": "Segundos de acción sin diálogo al principio y al final de cada escena, y nombre de su capítulo en YouTube.",
+  "extra": {
+    "e01_gancho": {
+      "antes": 2.4,
+      "despues": 0.6
+    },
+    "e02_pistas": {
+      "antes": 0.5,
+      "despues": 0.8
+    },
+    "e03_fosil": {
+      "antes": 1.8,
+      "despues": 0.6
+    },
+    "e04_tiranosaurio": {
+      "antes": 0.4,
+      "despues": 0.8
+    },
+    "e05_pregunta": {
+      "antes": 0.5,
+      "despues": 0.9
+    },
+    "e06_datos": {
+      "antes": 0.5,
+      "despues": 0.7
+    },
+    "e07_secreto": {
+      "antes": 0.4,
+      "despues": 1.2
+    },
+    "e08_repaso": {
+      "antes": 0.5,
+      "despues": 1.2
+    },
+    "e09_final": {
+      "antes": 0.6,
+      "despues": 3.0
+    }
+  },
+  "capitulos": {
+    "e01_gancho": "¡Una huella gigante!",
+    "e02_pistas": "Buscamos pistas",
+    "e03_fosil": "¿Cómo se forma un fósil?",
+    "e04_tiranosaurio": "Tan largo como un autobús",
+    "e05_pregunta": "¡Te toca a ti! Dientes de dinosaurio",
+    "e06_datos": "Datos curiosos de dinosaurios",
+    "e07_secreto": "El secreto de Doña Lechuza",
+    "e08_repaso": "Repasamos",
+    "e09_final": "El reto de hoy"
+  }
+}

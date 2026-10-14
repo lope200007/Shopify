@@ -49,7 +49,7 @@ export const CieloNoche: React.FC<{ arriba?: string; abajo?: string; estrellas?:
   );
 };
 
-const Arbol: React.FC<{ x: number; y: number; s: number; tono: string; tonoClaro: string; tronco?: string }> = ({
+export const Arbol: React.FC<{ x: number; y: number; s: number; tono: string; tonoClaro: string; tronco?: string }> = ({
   x,
   y,
   s,
@@ -68,7 +68,7 @@ const Arbol: React.FC<{ x: number; y: number; s: number; tono: string; tonoClaro
   </g>
 );
 
-const Seta: React.FC<{ x: number; y: number; s: number; brilla?: boolean }> = ({ x, y, s, brilla = true }) => {
+export const Seta: React.FC<{ x: number; y: number; s: number; brilla?: boolean }> = ({ x, y, s, brilla = true }) => {
   const frame = useCurrentFrame();
   const b = 0.6 + 0.4 * Math.sin(frame * 0.07 + x);
   return (
@@ -89,7 +89,7 @@ const Seta: React.FC<{ x: number; y: number; s: number; brilla?: boolean }> = ({
   );
 };
 
-const Mata: React.FC<{ x: number; y: number; s: number; tono: string }> = ({ x, y, s, tono }) => (
+export const Mata: React.FC<{ x: number; y: number; s: number; tono: string }> = ({ x, y, s, tono }) => (
   <g transform={`translate(${x} ${y}) scale(${s})`}>
     <circle cx={-34} cy={-26} r={34} fill={tono} stroke={C.contorno} strokeWidth={5} />
     <circle cx={30} cy={-28} r={36} fill={tono} stroke={C.contorno} strokeWidth={5} />

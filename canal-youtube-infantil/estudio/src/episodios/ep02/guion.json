@@ -1,0 +1,137 @@
+{
+  "id": "ep02",
+  "titulo": "¿De quién es esta huella gigante?",
+  "aprendizaje": "Un fósil es una huella o un hueso tan antiguo que se ha convertido en piedra. Tres dedos con garras y un rastro de dos patas cuentan que era un dinosaurio carnívoro, del grupo del tiranosaurio. Y las aves de hoy vienen de los dinosaurios.",
+  "fuentes": [
+    "Natural History Museum (Londres), Tyrannosaurus (consultado 13-10-2026): 12 m de largo, 60 dientes afilados, carnívoro, sobre 2 patas, vivió hace 68-66 millones de años. https://www.nhm.ac.uk/discover/dino-directory/tyrannosaurus.html",
+    "Natural History Museum (Londres), Brachiosaurus (consultado 13-10-2026): 22 m de largo, herbívoro, comía hojas de árboles altos y las tragaba sin masticar. https://www.nhm.ac.uk/discover/dino-directory/brachiosaurus.html",
+    "Natural History Museum (Londres), How dinosaurs evolved into birds (consultado 13-10-2026): las aves de hoy son dinosaurios vivos, con un vínculo directo con los terópodos (el grupo del T. rex); muchos terópodos tenían plumas. https://www.nhm.ac.uk/discover/how-dinosaurs-evolved-into-birds.html",
+    "National Geographic Kids (consultado 13-10-2026): los dientes del tiranosaurio eran del tamaño de plátanos. https://www.natgeokids.com/ie/fact/a-tyrannosaurus-teeth-were-the-size-of-bananas/",
+    "Braquiosaurio: dientes anchos con forma de cuchara (EBSCO Research Starters y Brachiosauridae, consultados 13-10-2026).",
+    "Fundación Dinópolis y estudios de icnitas de Teruel (consultados 13-10-2026): las huellas se forman en barro blando, se cubren de sedimento y se fosilizan; huellas de tres dedos largos con garras = terópodos (carnívoros bípedos).",
+    "Huellas en La Rioja (consultado 13-10-2026): unas 1.400 catalogadas solo en Enciso (ONCE, vía Xataka) y más de 10.000 en la comunidad (elDiario.es).",
+    "Luciérnaga fósil de unos 99 millones de años con su órgano luminoso, atrapada en ámbar (resina de árbol fosilizada) del Cretácico (Instituto de Geología y Paleontología de Nanjing, Academia China de Ciencias, 2024). https://english.nigpas.cas.cn/new/hs/rp/202409/t20240924_690419.html",
+    "Cómo sonaban: nadie lo sabe. Un estudio de la Universidad de Texas (revista Evolution, 2016) propone que algunos dinosaurios quizá hacían sonidos graves con la boca cerrada, como las palomas, en vez de rugir. Es una hipótesis, no un hecho (TIME, 2016). https://time.com/4402698/dinosaurs-coo-pigeon-roar/"
+  ],
+  "escenas": [
+    {
+      "id": "e01_gancho",
+      "lugar": "orilla del río al atardecer; suena «pum, pum»",
+      "lineas": [
+        { "id": "l001", "p": "farolin", "t": "¿Tú también has oído ese ruido? ¿Será… un dinosaurio?", "pausa": 1.2 },
+        { "id": "l002", "p": "galleta", "t": "¡Pum, pum! ¡Soy un dinosaurio gigante!" },
+        { "id": "l003", "p": "farolin", "t": "¡Ay, Galleta! ¡Qué susto me has dado!" },
+        { "id": "l004", "p": "galleta", "t": "¡Perdona, Farolín, era un juego! Pero ven… ¡mira lo que he encontrado junto al río!", "pausa": 0.8 },
+        { "id": "l005", "p": "farolin", "t": "¡Una huella gigante! ¡Es más grande que tu cabeza!" },
+        { "id": "l006", "p": "narrador", "t": "¿De quién será esta huella gigante? ¡Descúbrelo con Farolín y Galleta! Y quédate hasta el final: Doña Lechuza nos contará un secreto increíble.", "pausa": 0.8 }
+      ]
+    },
+    {
+      "id": "e02_pistas",
+      "lugar": "la roca con la huella; marcador de pistas 0/3",
+      "lineas": [
+        { "id": "l007", "p": "galleta", "t": "¡Tengo un plan! Pongo mi pata al lado y comparamos.", "pausa": 1.0 },
+        { "id": "l008", "p": "galleta", "t": "Mi huella es chiquitita… ¡y esta es enorme!" },
+        { "id": "l009", "p": "farolin", "t": "Vamos a buscar pistas, como los detectives. Primera pista: ¿cuántos dedos tiene? ¡Cuéntalos conmigo!", "pausa": 0.6 },
+        { "id": "l010", "p": "farolin", "t": "Uno… dos… ¡y tres!", "pausa": 0.4 },
+        { "id": "l011", "p": "galleta", "t": "¡Tres dedos! ¡Ya tenemos la primera pista!" },
+        { "id": "l012", "p": "farolin", "t": "Y mira las puntas de los dedos: son afiladas, como garras." },
+        { "id": "l013", "p": "galleta", "t": "¡Tiene garras! ¡Segunda pista!", "pausa": 0.4 },
+        { "id": "l014", "p": "farolin", "t": "Necesitamos a alguien que sepa mucho. Las lechuzas se despiertan al atardecer… ¡justo ahora!" },
+        { "id": "l015", "p": "galleta", "t": "¡Doña Lechuza! ¡Venga a ver esto!", "pausa": 1.0 }
+      ]
+    },
+    {
+      "id": "e03_fosil",
+      "lugar": "llega Doña Lechuza volando; Farolín proyecta su luz en la roca",
+      "lineas": [
+        { "id": "l016", "p": "lechuza", "t": "¡Buenas tardes, pequeños! ¿Qué habéis encontrado?" },
+        { "id": "l017", "p": "galleta", "t": "¡Una huella gigante, con tres dedos… y con garras!" },
+        { "id": "l018", "p": "lechuza", "t": "¡Uuuh! ¡Es una huella fósil! Es tan antigua que se ha convertido en piedra." },
+        { "id": "l019", "p": "farolin", "t": "¿En piedra? ¿Y cómo pasa eso?" },
+        { "id": "l020", "p": "lechuza", "t": "Os lo enseño. Farolín, ilumina la roca con tu luz de las historias.", "pausa": 1.2 },
+        { "id": "l021", "p": "lechuza", "t": "Hace muchísimo tiempo, un dinosaurio pisó el barro blando junto a un río.", "pausa": 0.8 },
+        { "id": "l022", "p": "lechuza", "t": "El barro se secó. Luego, la arena lo fue tapando, poco a poco…", "pausa": 0.6 },
+        { "id": "l023", "p": "lechuza", "t": "Y, durante muchísimos años, todo se convirtió en piedra. ¡Eso es un fósil!", "pausa": 0.6 },
+        { "id": "l024", "p": "galleta", "t": "¡Es como dejar la pata en la plastilina… y esperar millones de años!" },
+        { "id": "l025", "p": "lechuza", "t": "¡Exacto, Galleta! Así se forma un fósil.", "pausa": 0.4 }
+      ]
+    },
+    {
+      "id": "e04_tiranosaurio",
+      "lugar": "el rastro de huellas; la proyección enseña al tiranosaurio, un autobús y un plátano",
+      "lineas": [
+        { "id": "l026", "p": "farolin", "t": "¿Y qué dinosaurio fue? ¡Nos falta la tercera pista!" },
+        { "id": "l027", "p": "lechuza", "t": "¡Vamos a comprobarlo! Mirad: las huellas van una detrás de otra, y no hay huellas de manos. ¿Sobre cuántas patas andaba?", "pausa": 2.8 },
+        { "id": "l028", "p": "galleta", "t": "¡Sobre dos patas, como yo! ¡Tercera pista!", "pausa": 0.8 },
+        { "id": "l029", "p": "lechuza", "t": "Tres dedos, garras afiladas y dos patas: era un dinosaurio que comía carne, del mismo grupo que el tiranosaurio." },
+        { "id": "l030", "p": "galleta", "t": "¿El grupo del tiranosaurio? ¡El famosísimo tiranosaurio!" },
+        { "id": "l031", "p": "lechuza", "t": "El más famoso de todos. El tiranosaurio era tan largo como un autobús.", "pausa": 0.6 },
+        { "id": "l032", "p": "farolin", "t": "¡Como un autobús entero!" },
+        { "id": "l033", "p": "lechuza", "t": "Y tenía unos sesenta dientes afilados… ¡algunos, tan grandes como plátanos!", "pausa": 0.4 },
+        { "id": "l034", "p": "galleta", "t": "¡Plátanos! ¡Qué hambre me ha entrado!" },
+        { "id": "l035", "p": "farolin", "t": "¡Vamos a rugir como un dinosaurio! ¿Rugís conmigo? A la de tres: uno, dos y… ¡tres!", "pausa": 2.4 },
+        { "id": "l036", "p": "galleta", "t": "En vez de un rugido… ¡me ha salido un hipo!", "pausa": 0.6 }
+      ]
+    },
+    {
+      "id": "e05_pregunta",
+      "lugar": "panel con dos dientes: afilados y como cucharitas",
+      "lineas": [
+        { "id": "l037", "p": "narrador", "t": "¡Te toca a ti! Mira estos dientes. Unos son afilados y otros parecen cucharitas. ¿Cuáles son para comer carne?", "pausa": 3.0 },
+        { "id": "l038", "p": "galleta", "t": "¡Los afilados, como los del tiranosaurio!" },
+        { "id": "l039", "p": "narrador", "t": "¡Muy bien! Los de cucharita eran del braquiosaurio, el de cuello largo, que comía hojas de árboles altísimos.", "pausa": 0.4 },
+        { "id": "l040", "p": "lechuza", "t": "Era casi tan largo como dos autobuses… ¡y se tragaba las hojas sin masticar!" },
+        { "id": "l041", "p": "galleta", "t": "¡Sin masticar! Mi abuela dice que hay que masticar bien.", "pausa": 0.6 }
+      ]
+    },
+    {
+      "id": "e06_datos",
+      "lugar": "la orilla; empieza a anochecer",
+      "lineas": [
+        { "id": "l042", "p": "galleta", "t": "Doña Lechuza, ¿alguien ha visto un tiranosaurio de verdad?" },
+        { "id": "l043", "p": "lechuza", "t": "Nadie. Vivieron millones de años antes de que hubiera personas. Solo conocemos sus huesos y sus huellas." },
+        { "id": "l044", "p": "galleta", "t": "Entonces… ¿nadie sabe cómo rugían?" },
+        { "id": "l045", "p": "lechuza", "t": "¡Nadie! A lo mejor ni siquiera rugían. Los científicos siguen investigando.", "pausa": 0.4 },
+        { "id": "l046", "p": "farolin", "t": "¿Y aquí, en España, hay huellas de dinosaurio de verdad?" },
+        { "id": "l047", "p": "lechuza", "t": "¡Muchísimas! En La Rioja hay miles de huellas de dinosaurio. ¡Se pueden ir a ver!", "pausa": 0.6 },
+        { "id": "l048", "p": "farolin", "t": "¿Sabéis qué? En la época de los dinosaurios ya había luciérnagas. ¡Se encontró una atrapada en resina de árbol, con su farolillo y todo!" },
+        { "id": "l049", "p": "galleta", "t": "¡Entonces las luciérnagas y los dinosaurios fueron vecinos!", "pausa": 0.6 }
+      ]
+    },
+    {
+      "id": "e07_secreto",
+      "lugar": "el secreto: la huella de una gallina junto a la del dinosaurio",
+      "lineas": [
+        { "id": "l050", "p": "narrador", "t": "Y ahora… ¡el secreto increíble de Doña Lechuza!", "pausa": 2.3 },
+        { "id": "l051", "p": "lechuza", "t": "Los dinosaurios grandes desaparecieron hace muchísimo tiempo. Pero algunos dinosaurios pequeños, con plumas, tuvieron hijos, y nietos, y bisnietos… y, poco a poco, se convirtieron en las aves.", "pausa": 0.4 },
+        { "id": "l052", "p": "galleta", "t": "¿Se convirtieron en aves? Entonces usted, Doña Lechuza, ¿es…?" },
+        { "id": "l053", "p": "lechuza", "t": "¡Uuuh! ¡Pariente de los dinosaurios! Las aves somos los dinosaurios de hoy." },
+        { "id": "l054", "p": "farolin", "t": "¡Doña Lechuza es una dinosauria!", "pausa": 0.6 },
+        { "id": "l055", "p": "lechuza", "t": "Mirad la huella de una gallina: tres dedos largos delante… ¡como la del dinosaurio!", "pausa": 0.8 }
+      ]
+    },
+    {
+      "id": "e08_repaso",
+      "lugar": "tres tarjetas",
+      "lineas": [
+        { "id": "l056", "p": "narrador", "t": "¡Vamos a repasar lo que hemos aprendido!", "pausa": 0.4 },
+        { "id": "l057", "p": "narrador", "t": "Uno: un fósil es una huella o un hueso tan antiguo que se ha convertido en piedra.", "pausa": 0.6 },
+        { "id": "l058", "p": "narrador", "t": "Dos: tres dedos, garras y dos patas. Era un dinosaurio que comía carne.", "pausa": 0.6 },
+        { "id": "l059", "p": "narrador", "t": "Tres: las aves vienen de los dinosaurios.", "pausa": 0.8 }
+      ]
+    },
+    {
+      "id": "e09_final",
+      "lugar": "anochece y salen las estrellas",
+      "lineas": [
+        { "id": "l060", "p": "narrador", "t": "¡Y ya sabes leer huellas como una paleontóloga o un paleontólogo: las personas que estudian los fósiles!", "pausa": 0.6 },
+        { "id": "l061", "p": "farolin", "t": "¡Un reto! Cuando veas una paloma o una gallina, mírale las patas con un mayor. ¿Cuántos dedos tiene delante?" },
+        { "id": "l062", "p": "galleta", "t": "¡Una pista: como el dinosaurio!", "pausa": 0.8 },
+        { "id": "l063", "p": "lechuza", "t": "¡Uuuh! Ya salen las estrellas. ¿Y sabéis por qué no se caen?" },
+        { "id": "l064", "p": "farolin", "t": "¡Eso lo descubriremos muy pronto!", "pausa": 0.6 },
+        { "id": "l065", "p": "narrador", "t": "¡Farolín y Galleta! ¡Aprender es una aventura!", "pausa": 2.0 }
+      ]
+    }
+  ]
+}

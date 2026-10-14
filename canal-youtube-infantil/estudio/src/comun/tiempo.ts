@@ -155,3 +155,40 @@ export const salto = (
 };
 
 export const seg = (s: number) => Math.round(s * FPS);
+
+// ------------------------------------------------------------------ palabras
+
+/** Momento de cada palabra de cada frase (voces/palabras.py), en fotogramas. */
+export type Palabras = Record<string, [string, number, number][]>;
+
+// Whisper escribe a veces los números con cifras («3») y otras con letras.
+const NUMEROS: Record<string, string> = { "1": "uno", "2": "dos", "3": "tres", "4": "cuatro", "5": "cinco", "60": "sesenta" };
+
+const normaliza = (s: string) => {
+  const limpia = s
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-zñ0-9]/g, "");
+  return NUMEROS[limpia] ?? limpia;
+};
+
+/**
+ * Fotograma (relativo a la escena) en que empieza una palabra de una frase.
+ * `n` elige la enésima vez que aparece. Si no la encuentra, avisa con un error
+ * en vez de colocar la animación en un sitio cualquiera.
+ */
+export const momentoPalabra = (escena: EscenaColocada, palabras: Palabras, id: string, buscada: string, n = 0, alFinal = false): number => {
+  const linea = escena.lineas[id];
+  const lista = palabras[id];
+  if (!linea || !lista) throw new Error(`No hay palabras para ${id}`);
+  const objetivo = normaliza(buscada);
+  let vista = 0;
+  for (const [p, ini, fin] of lista) {
+    if (normaliza(p).startsWith(objetivo)) {
+      if (vista === n) return linea.inicio + (alFinal ? fin : ini);
+      vista++;
+    }
+  }
+  throw new Error(`No encuentro «${buscada}» en ${id}`);
+};

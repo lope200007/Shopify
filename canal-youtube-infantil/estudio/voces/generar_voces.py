@@ -115,6 +115,18 @@ def cambiar_tono(audio: np.ndarray, semitonos: float, formantes: str) -> np.ndar
     return out
 
 
+def a_16k(audio: np.ndarray) -> np.ndarray:
+    """Whisper espera audio a 16 kHz. Si se le pasa a 24 kHz sin convertir,
+    lo «oye» 1,5 veces más lento y grave (y las marcas de tiempo salen mal)."""
+    with tempfile.TemporaryDirectory() as tmp:
+        ent, sal = Path(tmp) / "e.wav", Path(tmp) / "s.wav"
+        sf.write(ent, audio, SR)
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(ent), "-ar", "16000", "-ac", "1", str(sal)], check=True)
+        out, sr = sf.read(sal, dtype="float32")
+    assert sr == 16000
+    return out
+
+
 def recortar_y_nivelar(audio: np.ndarray) -> np.ndarray:
     # recorta silencios del principio y del final (umbral relativo)
     env = np.abs(audio)
@@ -205,7 +217,7 @@ def main():
                 hacer = False
                 if whisper is not None and lid in resultado["lineas"] and archivo.exists():
                     audio_existente, _ = sf.read(archivo, dtype="float32")
-                    segs, _ = whisper.transcribe(audio_existente, language="es", beam_size=5)
+                    segs, _ = whisper.transcribe(a_16k(audio_existente), language="es", beam_size=5)
                     oido = " ".join(s.text.strip() for s in segs)
                     e = resultado["lineas"][lid]
                     e["whisper"], e["error"], e["primera_mal"] = oido, round(error_palabras(texto, oido), 2), primera_mal(texto, oido)
@@ -226,7 +238,7 @@ def main():
                     "boca": envolvente_boca(audio),
                 }
                 if whisper is not None:
-                    segs, _ = whisper.transcribe(audio, language="es", beam_size=5)
+                    segs, _ = whisper.transcribe(a_16k(audio), language="es", beam_size=5)
                     oido = " ".join(s.text.strip() for s in segs)
                     entrada["whisper"] = oido
                     entrada["error"] = round(error_palabras(texto, oido), 2)

@@ -15,7 +15,20 @@ export const VocesEscena: React.FC<{ escena: EscenaColocada }> = ({ escena }) =>
   );
 };
 
-export type Efecto = "salto" | "plof" | "susurro" | "idea" | "acierto" | "magia" | "clic" | "pop";
+export type Efecto =
+  | "salto"
+  | "plof"
+  | "susurro"
+  | "idea"
+  | "acierto"
+  | "magia"
+  | "clic"
+  | "pop"
+  | "pum"
+  | "rugido"
+  | "hipo"
+  | "glup"
+  | "redoble";
 
 /** Un efecto de sonido en un fotograma de la escena. */
 export const Fx: React.FC<{ efecto: Efecto; en: number; volumen?: number }> = ({ efecto, en, volumen = 0.6 }) => {
@@ -28,12 +41,12 @@ export const Fx: React.FC<{ efecto: Efecto; en: number; volumen?: number }> = ({
  * alguien habla («ducking») para que la voz se entienda siempre.
  */
 export const MusicaEscena: React.FC<{
-  pista: "tema" | "noche" | "aventura" | "experimento" | "repaso";
+  pista: "tema" | "noche" | "aventura" | "experimento" | "repaso" | "misterio";
   escena: EscenaColocada;
   volumen?: number;
   desde?: number;
   hasta?: number;
-  ambiente?: boolean; // grillos de fondo
+  ambiente?: boolean | "grillos" | "rio"; // sonido de fondo: grillos (true) o río
 }> = ({ pista, escena, volumen = 0.22, desde = 0, hasta, ambiente = false }) => {
   const { fps } = useVideoConfig();
   const fin = hasta ?? escena.duracion;
@@ -66,14 +79,14 @@ export const MusicaEscena: React.FC<{
       />
       {ambiente ? (
         <Audio
-          name="grillos"
-          src={staticFile("efectos/grillos.mp3")}
+          name={ambiente === "rio" ? "río" : "grillos"}
+          src={staticFile(ambiente === "rio" ? "efectos/rio.mp3" : "efectos/grillos.mp3")}
           from={desde}
           durationInFrames={largo}
           loop
           premountFor={fps}
           volume={(f) =>
-            0.05 *
+            (ambiente === "rio" ? 0.07 : 0.05) *
             Math.min(
               interpolate(f, [0, 30], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
               interpolate(f, [largo - 30, largo], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),

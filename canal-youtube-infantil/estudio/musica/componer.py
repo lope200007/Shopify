@@ -420,6 +420,191 @@ def ef_grillos(dur=24.0):
     return fundido_bucle(reverb(pista, 0.4, 1.5), 1.0)
 
 
+# ---------------------------------------------------------------- episodio 2
+# Cada función nueva fija su propia semilla: así sale igual se genere sola
+# o con todo lo demás, y no cambia lo que ya existía.
+
+def semilla(n):
+    global rng
+    rng = np.random.default_rng(n)
+
+
+def filtro_banda(x, f, q):
+    """Resonador de paso banda (biquad) para dar forma de vocal."""
+    w = 2 * np.pi * f / SR
+    alfa = np.sin(w) / (2 * q)
+    b0, b2 = alfa, -alfa
+    a0, a1, a2 = 1 + alfa, -2 * np.cos(w), 1 - alfa
+    y = np.zeros_like(x)
+    x1 = x2 = y1 = y2 = 0.0
+    for i in range(len(x)):
+        yi = (b0 * x[i] + b2 * x2 - a1 * y1 - a2 * y2) / a0
+        x2, x1 = x1, x[i]
+        y2, y1 = y1, yi
+        y[i] = yi
+    return y
+
+
+def voz_sintetica(f0, formantes, ruido=0.0, aspereza=0.0):
+    """Fuente de pulsos (como unas cuerdas vocales) pasada por formantes."""
+    n = len(f0)
+    t = np.arange(n) / SR
+    fase = 2 * np.pi * np.cumsum(f0) / SR
+    fuente = sum(np.sin(k * fase) / k ** 1.1 for k in range(1, 30))
+    if aspereza:
+        fuente *= 1 + aspereza * np.sin(2 * np.pi * 31 * t + np.sin(2 * np.pi * 7 * t))
+    if ruido:
+        fuente = fuente + ruido * rng.normal(0, 1, n)
+    salida = sum(g * filtro_banda(fuente, f, q) for f, q, g in formantes)
+    return salida / (np.abs(salida).max() + 1e-9)
+
+
+def ef_pum():
+    """Pisotón de dinosaurio de juguete: redondo y blandito, nunca un susto."""
+    semilla(201)
+    n = int(0.9 * SR)
+    t = np.arange(n) / SR
+    golpe = np.sin(2 * np.pi * np.cumsum(70 * np.exp(-t * 6) + 42) / SR) * np.exp(-t * 7)
+    polvo = rng.normal(0, 1, n)
+    for _ in range(10):
+        polvo = 0.5 * (polvo + np.roll(polvo, 1))
+    polvo *= np.exp(-t * 9) * 0.35
+    s = golpe * np.clip(t / 0.006, 0, 1) + polvo
+    pista = np.column_stack([s, s])
+    return reverb(pista, 0.18, 0.8)
+
+
+def ef_rugido():
+    """Rugido de dinosaurio de dibujos: «¡raaaar!» agudo y simpático."""
+    semilla(202)
+    dur = 1.15
+    n = int(dur * SR)
+    t = np.arange(n) / SR
+    contorno = np.interp(t, [0, 0.12, 0.55, dur], [150, 205, 190, 120])
+    f0 = contorno * (1 + 0.035 * np.sin(2 * np.pi * 6.5 * t))
+    # «r» áspera al principio y vocal «a» abierta
+    voz = voz_sintetica(f0, [(780, 6, 1.0), (1250, 8, 0.7), (2600, 10, 0.25)], ruido=0.15, aspereza=0.55)
+    env = np.clip(t / 0.06, 0, 1) * np.clip((dur - t) / 0.35, 0, 1)
+    s = voz * env
+    pista = np.column_stack([s, s])
+    return reverb(pista, 0.22, 0.9)
+
+
+def ef_hipo():
+    """«¡Hip!»: un hipo cortito y gracioso."""
+    semilla(203)
+    dur = 0.22
+    n = int(dur * SR)
+    t = np.arange(n) / SR
+    f0 = np.interp(t, [0, 0.05, dur], [330, 560, 520])
+    voz = voz_sintetica(f0, [(320, 6, 1.0), (2300, 9, 0.6), (3000, 10, 0.3)], ruido=0.05)
+    env = np.clip(t / 0.008, 0, 1) * np.exp(-np.maximum(0, t - 0.05) * 22)
+    clic = np.zeros(n)
+    clic[: int(0.004 * SR)] = rng.normal(0, 0.12, int(0.004 * SR))
+    s = voz * env + clic
+    pista = np.zeros((int(0.6 * SR), 2))
+    mezclar_en(pista, s, 0.0)
+    return reverb(pista, 0.15, 0.6)
+
+
+def ef_glup():
+    """Un trago enorme («glup»): para el braquiosaurio que no masticaba."""
+    semilla(204)
+    pista = np.zeros((int(0.9 * SR), 2))
+    for k, (ini, f1, f2) in enumerate([(0.0, 520, 170), (0.18, 430, 130)]):
+        n = int(0.22 * SR)
+        t = np.arange(n) / SR
+        f = f2 + (f1 - f2) * np.exp(-t * 18)
+        s = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 14) * np.clip(t / 0.004, 0, 1)
+        mezclar_en(pista, s * (1.0 - 0.25 * k), ini)
+    return reverb(pista, 0.2, 0.7)
+
+
+def ef_redoble():
+    """Redoble suave que crece y termina en un «¡tachán!» de campanitas."""
+    semilla(205)
+    dur = 2.4
+    pista = np.zeros((int(dur * SR), 2))
+    golpes = np.arange(0.0, 1.45, 1 / 22)
+    for i, g in enumerate(golpes):
+        n = int(0.05 * SR)
+        t = np.arange(n) / SR
+        caja = rng.normal(0, 1, n)
+        caja = np.diff(caja, prepend=0) * 0.6 + caja * 0.4
+        caja *= np.exp(-t * 60) * (0.18 + 0.5 * (i / len(golpes)) ** 1.6)
+        mezclar_en(pista, caja, g, pan=(-0.15 if i % 2 else 0.15))
+    for k, nn in enumerate(["C6", "E6", "G6", "C7"]):
+        mezclar_en(pista, campanita(nota(m(nn)), 0.9, vol=0.45), 1.5 + k * 0.035, pan=-0.3 + k * 0.2)
+    mezclar_en(pista, bombo(0.6), 1.5)
+    return reverb(pista, 0.25, 1.0)
+
+
+def ef_rio(dur=20.0):
+    """Ambiente de orilla de río: agua que corre y algún burbujeo."""
+    semilla(206)
+    n = int(dur * SR)
+    t = np.arange(n) / SR
+    pista = np.zeros((n, 2))
+    for canal in range(2):
+        agua = rng.normal(0, 1, n)
+        for _ in range(4):
+            agua = 0.5 * (agua + np.roll(agua, 1))
+        lento = np.convolve(rng.normal(0, 1, n // 2000 + 2), np.ones(3) / 3, mode="same")
+        mod = 0.65 + 0.35 * np.interp(t, np.linspace(0, dur, len(lento)), lento / (np.abs(lento).max() + 1e-9))
+        pista[:, canal] = agua * mod * 0.25
+    for _ in range(int(dur * 3)):
+        ini = rng.uniform(0, dur - 0.2)
+        m_ = int(0.06 * SR)
+        tt = np.arange(m_) / SR
+        f = rng.uniform(500, 1100) * (1 + tt * 6)
+        burbuja = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-tt * 55) * 0.25
+        mezclar_en(pista, burbuja, ini, pan=rng.uniform(-0.7, 0.7))
+    return fundido_bucle(reverb(pista, 0.3, 1.2), 1.0)
+
+
+def misterio():
+    """Detectives de huellas: pizzicato de puntillas y bajo que camina. ~30 s."""
+    semilla(207)
+    bpm = 100
+    b = 60 / bpm
+    acordes = {"Am": ["A3", "C4", "E4"], "Dm": ["D4", "F4", "A4"], "E": ["E3", "G#3", "B3"], "F": ["F3", "A3", "C4"]}
+    raiz = {"Am": "A2", "Dm": "D2", "E": "E2", "F": "F2"}
+    prog = ["Am", "Dm", "E", "Am", "F", "Dm", "E", "E"]
+    dur = len(prog) * 4 * b + 1.2
+    pista = np.zeros((int(dur * SR), 2))
+    for i, a in enumerate(prog):
+        t0 = i * 4 * b
+        notas = acordes[a]
+        # pizzicato a contratiempo (de puntillas)
+        for k in range(4):
+            nn = notas[(k + i) % 3]
+            mezclar_en(pista, pulsada(nota(m(nn) + 12), 0.25, brillo=0.2, vol=0.3), t0 + k * b + b / 2, pan=(-0.3 if k % 2 else 0.3))
+        # bajo que camina
+        base = m(raiz[a])
+        for k, paso in enumerate([0, 7, 12, 7]):
+            mezclar_en(pista, marimba(nota(base + paso + 12), 0.45, vol=0.32), t0 + k * b, pan=-0.1)
+        mezclar_en(pista, maraca(vol=0.35), t0 + 1.5 * b, pan=0.5)
+        mezclar_en(pista, maraca(vol=0.35), t0 + 3.5 * b, pan=0.5)
+    # motivo «¿de quién será?»: sube y se queda en el aire
+    motivo = [("A5", 0, 0.5), ("C6", 0.5, 0.5), ("E6", 1, 0.5), ("G#5", 2, 1.5)]
+    for vuelta in (1, 5):
+        for nn, ini, d in motivo:
+            mezclar_en(pista, campanita(nota(m(nn)), d * b + 0.6, vol=0.16), vuelta * 4 * b + ini * b, pan=0.25)
+    pista = reverb(pista, 0.25, 1.4)
+    return fundido_bucle(pista, 1.0)
+
+
+EPISODIO2 = {
+    "misterio": (misterio, DIR_MUSICA / "misterio.mp3", 0.8),
+    "pum": (ef_pum, DIR_EFECTOS / "pum.mp3", 0.7),
+    "rugido": (ef_rugido, DIR_EFECTOS / "rugido.mp3", 0.6),
+    "hipo": (ef_hipo, DIR_EFECTOS / "hipo.mp3", 0.6),
+    "glup": (ef_glup, DIR_EFECTOS / "glup.mp3", 0.6),
+    "redoble": (ef_redoble, DIR_EFECTOS / "redoble.mp3", 0.6),
+    "rio": (ef_rio, DIR_EFECTOS / "rio.mp3", 0.5),
+}
+
+
 def main():
     print("Música:")
     guardar(tema_canal(), DIR_MUSICA / "tema.mp3")
@@ -437,7 +622,17 @@ def main():
     guardar(ef_clic(), DIR_EFECTOS / "clic.mp3", 0.5)
     guardar(ef_pop(), DIR_EFECTOS / "pop.mp3", 0.6)
     guardar(ef_grillos(), DIR_EFECTOS / "grillos.mp3", 0.5)
+    for funcion, ruta, pico in EPISODIO2.values():
+        guardar(funcion(), ruta, pico)
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+
+    if len(sys.argv) > 1:
+        # solo las piezas pedidas: python musica/componer.py pum rugido
+        for nombre in sys.argv[1:]:
+            funcion, ruta, pico = EPISODIO2[nombre]
+            guardar(funcion(), ruta, pico)
+    else:
+        main()
