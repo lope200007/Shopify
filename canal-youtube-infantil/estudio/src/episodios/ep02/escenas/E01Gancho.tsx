@@ -62,7 +62,7 @@ export const E01Gancho: React.FC<{ escena: EscenaColocada }> = ({ escena }) => {
   const brazosG = pose(frame, [
     [0, { a: 135, b: 135 }],
     [ini("l004"), { a: -40, b: -40 }],
-    [pal("l004", "pero"), POSES.señalarIzq],
+    [pal("l004", "pero"), POSES.señalar], // va volteada: «señalar» apunta a la izquierda, hacia la roca
     [pal("l004", "rio") + 10, POSES.reposo],
     [pal("l005", "mas"), { a: 14, b: -150 }],
     [fin("l005") + 6, POSES.reposo],
@@ -100,12 +100,17 @@ export const E01Gancho: React.FC<{ escena: EscenaColocada }> = ({ escena }) => {
     [ini("l006") - 10, 1],
     [ini("l006"), 0],
   ]);
-  const burbuja = clave(frame, [
-    [pal("l005", "mas") - 6, 0],
-    [pal("l005", "mas") + 6, 1],
-    [fin("l005") + 4, 1],
-    [ini("l006") - 4, 0],
-  ]);
+  const cierreLupa = Math.max(pal("l005", "mas") + 8, ini("l006") - 4);
+  const burbuja = Math.min(
+    clave(frame, [
+      [pal("l005", "mas") - 6, 0],
+      [pal("l005", "mas") + 6, 1],
+    ]),
+    clave(frame, [
+      [cierreLupa - 10, 1],
+      [cierreLupa, 0],
+    ]),
+  );
   const cabeza = clave(frame, [
     [pal("l005", "cabeza") - 4, 0],
     [pal("l005", "cabeza") + 8, 1],
@@ -138,7 +143,12 @@ export const E01Gancho: React.FC<{ escena: EscenaColocada }> = ({ escena }) => {
     <AbsoluteFill>
       <svg width={1920} height={1080} viewBox="0 0 1920 1080">
         <Orilla id="e01" camX={camX} conArbusto={false} brillo={brillo} />
-        {dentro ? galleta : null}
+        <defs>
+          <clipPath id="e01-escondida">
+            <rect x={0} y={0} width={1920} height={ARBUSTO.y - 30} />
+          </clipPath>
+        </defs>
+        {dentro ? <g clipPath="url(#e01-escondida)">{galleta}</g> : null}
         <Arbusto x={ARBUSTO.x - camX} y={ARBUSTO.y} s={1.05} sacudida={sacudida * 1.6} />
         {!dentro ? galleta : null}
         <Polvo x={gx} y={gy + 4} t={(frame - pal("l002", "pum")) / 14} />

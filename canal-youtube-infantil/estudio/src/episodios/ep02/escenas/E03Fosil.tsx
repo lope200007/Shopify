@@ -87,8 +87,17 @@ const HistoriaFosil: React.FC<{
         <g opacity={Math.min(1, (1 - altura) * 3)}>
           <ellipse cx={piePos.x} cy={piePos.y + 40} rx={120 * (1 - altura * 0.4)} ry={70 * (1 - altura * 0.4)} fill="#2B2140" opacity={0.3 * (1 - altura)} />
           <g transform={`translate(${piePos.x} ${piePos.y + 110 - altura * 60}) scale(${1 + altura * 0.8}) translate(${-piePos.x} ${-(piePos.y + 110)})`}>
-            <HuellaDino x={piePos.x} y={piePos.y + 110} escala={1.05} modo="icono" color="#6CC56F" id="e03-pie" />
-            <circle cx={piePos.x} cy={piePos.y + 60} r={58} fill="#57AD5E" stroke={C.contorno} strokeWidth={5} />
+            <HuellaDino x={piePos.x} y={piePos.y + 110} escala={1.12} modo="icono" color={C.contorno} id="e03-pie-borde" />
+            <HuellaDino x={piePos.x} y={piePos.y + 106} escala={1.05} modo="icono" color="#6CC56F" colorGarras="#FFF6DD" id="e03-pie" />
+            {[
+              [-34, -60],
+              [0, -120],
+              [36, -64],
+            ].map(([dx, dy], i) => (
+              <ellipse key={i} cx={piePos.x + dx} cy={piePos.y + 106 + dy} rx={9} ry={6} fill="#57AD5E" />
+            ))}
+            <circle cx={piePos.x} cy={piePos.y + 66} r={58} fill="#57AD5E" stroke={C.contorno} strokeWidth={5} />
+            <circle cx={piePos.x - 16} cy={piePos.y + 52} r={16} fill="#6CC56F" />
           </g>
         </g>
       ) : null}

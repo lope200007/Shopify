@@ -69,6 +69,18 @@ Vive en `canal-youtube-infantil/` y no tiene relación con la tienda. Empieza po
 - Renderizar en este contenedor exige
   `--browser-executable=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`
   (el Chromium normal ya no tiene el modo headless antiguo).
+- **Whisper espera audio a 16 kHz.** Si se le pasa un array a 24 kHz lo «oye»
+  1,5 veces más lento y grave, y las marcas de tiempo salen 1,5 veces largas.
+  Pasó hasta el 14-10-2026; `generar_voces.py` convierte ya con `a_16k()`.
+- **Pablo dijo que las voces sonaban «muy robóticas» (14-10-2026).** Era
+  Kokoro con el tono subido 7,5 semitonos para los niños. Ahora: voces
+  diseñadas con Qwen3-TTS (Apache 2.0) a partir de una descripción, sin clonar
+  a nadie real, y clonadas en cada frase. Ver «Las voces» en
+  `canal-youtube-infantil/estudio/LEEME.md`. El motor ocupa ~9 GB de RAM:
+  no lanzar dos a la vez.
+- Whisper escribe a veces distinto una palabra («Brachiosaurio»,
+  «Lechusa», «3» por «tres»): la sincronía por palabras compara por parecido,
+  no por igualdad exacta.
 
 ## Qué es este proyecto
 

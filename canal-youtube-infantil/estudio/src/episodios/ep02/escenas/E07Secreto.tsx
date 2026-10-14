@@ -173,6 +173,28 @@ export const E07Secreto: React.FC<{ escena: EscenaColocada }> = ({ escena }) => 
           ])}
           mirada={luz > 0.3 ? { x: 1, y: -1 } : frame >= ini("l055") ? { x: 1, y: 0.6 } : { x: 1, y: -0.4 }}
         />
+        <LuzHistorias x={CX} y={CY} r={R} visible={luz} desde={[1060 - 30, 470 + 51]} id="e07-luz" fondo="#FFF3D6">
+          <rect x={CX - R} y={CY + 120} width={2 * R} height={R} fill="#9BD27A" />
+          <g opacity={grandes}>
+            <Braquiosaurio x={CX + 40} y={CY + 150} escala={0.4} />
+            <Tiranosaurio x={CX - 170} y={CY + 150} escala={0.38} />
+          </g>
+          {GENERACIONES.map((ave, i) => {
+            const s = spring({ frame: frame - apareceGen[i], fps, config: { damping: 11, stiffness: 160 } });
+            if (frame < apareceGen[i]) return null;
+            const x = CX - 236 + i * 118;
+            return (
+              <g key={i}>
+                {i > 0 ? <path d={`M ${x - 76} ${CY + 40} l 26 0 m -10 -10 l 10 10 l -10 10`} stroke={C.contorno} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" opacity={s} /> : null}
+                <g transform={`translate(${x} ${CY + 130}) scale(${s}) translate(${-x} ${-(CY + 130)})`}>
+                  {i === 0 && plumas > 0.01 ? <circle cx={x} cy={CY + 60} r={70} fill={C.luzAmarilla} opacity={0.5 * plumas} /> : null}
+                  <DinoPlumas x={x} y={CY + 130} escala={0.48} ave={ave} color={colorGeneracion(ave)} colorClaro={mezclar("#FFE29A", "#FFD08A", ave)} />
+                </g>
+              </g>
+            );
+          })}
+        </LuzHistorias>
+        {/* Farolín va delante de su propia burbuja: si no, el borde le tapa media cara */}
         <Farolin
           x={1060}
           y={470}
@@ -201,27 +223,6 @@ export const E07Secreto: React.FC<{ escena: EscenaColocada }> = ({ escena }) => 
           mirada={luz > 0.05 ? { x: 0.8, y: -0.4 } : { x: 1, y: 0.4 }}
           idPrefijo="f-e07"
         />
-        <LuzHistorias x={CX} y={CY} r={R} visible={luz} desde={[1060 - 30, 470 + 51]} id="e07-luz" fondo="#FFF3D6">
-          <rect x={CX - R} y={CY + 120} width={2 * R} height={R} fill="#9BD27A" />
-          <g opacity={grandes}>
-            <Braquiosaurio x={CX + 40} y={CY + 150} escala={0.4} />
-            <Tiranosaurio x={CX - 170} y={CY + 150} escala={0.38} />
-          </g>
-          {GENERACIONES.map((ave, i) => {
-            const s = spring({ frame: frame - apareceGen[i], fps, config: { damping: 11, stiffness: 160 } });
-            if (frame < apareceGen[i]) return null;
-            const x = CX - 236 + i * 118;
-            return (
-              <g key={i}>
-                {i > 0 ? <path d={`M ${x - 76} ${CY + 40} l 26 0 m -10 -10 l 10 10 l -10 10`} stroke={C.contorno} strokeWidth={6} fill="none" strokeLinecap="round" strokeLinejoin="round" opacity={s} /> : null}
-                <g transform={`translate(${x} ${CY + 130}) scale(${s}) translate(${-x} ${-(CY + 130)})`}>
-                  {i === 0 && plumas > 0.01 ? <circle cx={x} cy={CY + 60} r={70} fill={C.luzAmarilla} opacity={0.5 * plumas} /> : null}
-                  <DinoPlumas x={x} y={CY + 130} escala={0.48} ave={ave} color={colorGeneracion(ave)} colorClaro={mezclar("#FFE29A", "#FFD08A", ave)} />
-                </g>
-              </g>
-            );
-          })}
-        </LuzHistorias>
         {/* la gallina pasa y deja sus huellas */}
         {frame >= ini("l055") - 30 ? (
           <g>

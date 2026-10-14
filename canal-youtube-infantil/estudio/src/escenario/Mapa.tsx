@@ -33,7 +33,9 @@ export const MapaEspana: React.FC<{
       {espana.peninsula.concat(espana.baleares).map((d, i) => (
         <path key={i} d={d} fill="#F7E3B5" stroke={C.contorno} strokeWidth={6 / e} strokeLinejoin="round" />
       ))}
-      <g transform={`translate(${-cw * eCan - 30} ${espana.alto - ch * eCan - 10}) scale(${eCan})`}>
+      {/* abajo a la izquierda, en el mar al sur de Portugal: fuera del recuadro del
+          mapa se salía del círculo de la burbuja y quedaba un trozo cortado */}
+      <g transform={`translate(30 ${espana.alto - ch * eCan - 10}) scale(${eCan})`}>
         <rect x={-30} y={-30} width={cw + 60} height={ch + 60} rx={20} fill="none" stroke={C.contorno} strokeWidth={5 / (e * eCan)} strokeDasharray="14 10" opacity={0.6} />
         {espana.canarias.map((d, i) => (
           <path key={i} d={d} fill="#F7E3B5" stroke={C.contorno} strokeWidth={6 / (e * eCan)} strokeLinejoin="round" />
@@ -46,9 +48,10 @@ export const MapaEspana: React.FC<{
             <HuellaDino key={i} x={px} y={py} escala={0.09} rot={rot} modo="icono" color="#8B5A2B" id={`mapa-h${i}`} />
           ))}
           <circle cx={rx} cy={ry} r={14} fill={C.luzRosa} stroke={C.contorno} strokeWidth={5} />
-          <g transform={`translate(${rx + 80} ${ry + 30})`}>
-            <rect x={-10} y={-44} width={230} height={60} rx={30} fill="#FFFFFF" stroke={C.contorno} strokeWidth={5} />
-            <text x={105} y={-3} textAnchor="middle" fontFamily={FUENTE_TEXTO} fontWeight={700} fontSize={40} fill={C.texto}>
+          {/* letra grande: dentro de la burbuja el mapa va al 44 % y a 40 se leía en miniatura */}
+          <g transform={`translate(${rx + 70} ${ry + 40})`}>
+            <rect x={-10} y={-70} width={360} height={92} rx={46} fill="#FFFFFF" stroke={C.contorno} strokeWidth={7} />
+            <text x={170} y={-6} textAnchor="middle" fontFamily={FUENTE_TEXTO} fontWeight={700} fontSize={64} fill={C.texto}>
               La Rioja
             </text>
           </g>

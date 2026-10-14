@@ -178,6 +178,18 @@ const normaliza = (s: string) => {
  * `n` elige la enésima vez que aparece. Si no la encuentra, avisa con un error
  * en vez de colocar la animación en un sitio cualquiera.
  */
+/** Parecido entre dos palabras (1 = iguales), por distancia de edición. */
+const parecido = (a: string, b: string): number => {
+  const d: number[][] = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
+  for (let j = 1; j <= b.length; j++) d[0][j] = j;
+  for (let i = 1; i <= a.length; i++) {
+    for (let j = 1; j <= b.length; j++) {
+      d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    }
+  }
+  return 1 - d[a.length][b.length] / Math.max(a.length, b.length, 1);
+};
+
 export const momentoPalabra = (escena: EscenaColocada, palabras: Palabras, id: string, buscada: string, n = 0, alFinal = false): number => {
   const linea = escena.lineas[id];
   const lista = palabras[id];
@@ -185,7 +197,11 @@ export const momentoPalabra = (escena: EscenaColocada, palabras: Palabras, id: s
   const objetivo = normaliza(buscada);
   let vista = 0;
   for (const [p, ini, fin] of lista) {
-    if (normaliza(p).startsWith(objetivo)) {
+    // Whisper a veces escribe distinto la misma palabra («Brachiosaurio»):
+    // vale si empieza igual o si se parece mucho
+    const oida = normaliza(p);
+    const umbral = objetivo.length >= 8 ? 0.75 : 0.8;
+    if (oida.startsWith(objetivo) || (objetivo.length >= 5 && parecido(oida, objetivo) >= umbral)) {
       if (vista === n) return linea.inicio + (alFinal ? fin : ini);
       vista++;
     }

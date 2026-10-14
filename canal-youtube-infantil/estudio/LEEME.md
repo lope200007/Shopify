@@ -6,8 +6,42 @@ comprobadas con Whisper y música compuesta por código. Nada depende de
 servicios de pago.
 
 **Licencias:** Remotion es gratis para particulares y empresas de hasta 3
-personas. Voces: Kokoro-82M (Apache 2.0). Tipografías Baloo 2 y Fredoka (OFL).
-Música y efectos: originales (`musica/componer.py`).
+personas. Voces: Qwen3-TTS (Apache 2.0); antes, Kokoro-82M (Apache 2.0).
+Tipografías Baloo 2 y Fredoka (OFL). Música y efectos: originales
+(`musica/componer.py`).
+
+## Las voces (desde el 14-10-2026)
+
+Pablo escuchó el episodio 1 y las voces le sonaron **muy robóticas**. Tenía
+razón: Kokoro tiene pocas voces en español y para los niños había que subirles
+mucho el tono, que es justo lo que deja ese sonido metálico.
+
+Ahora cada personaje tiene una **voz de referencia** (`voces/referencias/`),
+creada con Qwen3-TTS *VoiceDesign* a partir de una descripción escrita
+(«una niña de seis años, enérgica y juguetona…», en `voces/personajes.json`).
+**No es la voz de ninguna persona real.** Después, Qwen3-TTS *Base* clona esa
+referencia en cada frase, así el personaje suena igual en todos los episodios.
+
+| Motor | Licencia | Estado |
+|---|---|---|
+| Qwen3-TTS 1.7B (VoiceDesign + Base) | Apache 2.0 | **El que se usa.** Se entienden todas las frases de prueba |
+| Chatterbox multilingüe y su afinado de español de España | MIT | Probado: buenas voces adultas con acento de España, pero en las de niños Whisper no entendía frases enteras («¡Es bella! ¡Le fatón trozo!») |
+| Kokoro-82M | Apache 2.0 | El de la primera versión del episodio 1 |
+
+Los motores grandes van en entornos de Python aparte (no conviven con Kokoro):
+
+```bash
+uv venv --python 3.12 ~/.venv-qwen
+uv pip install --python ~/.venv-qwen/bin/python torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+uv pip install --python ~/.venv-qwen/bin/python -r voces/requirements-qwen.txt
+# (opcional) Chatterbox: voces/requirements-chatterbox.txt, con Python 3.11
+```
+
+En un ordenador sin tarjeta gráfica (4 núcleos) tarda unas 5-7 veces la
+duración del audio: un episodio de 4 minutos de voz, unos 30 minutos.
+
+**Si una frase sale mal:** se añade `"toma": 2` a esa frase en `guion.json` y
+se vuelve a lanzar el generador; solo rehace esa frase, con otra semilla.
 
 ## Producir un episodio
 
@@ -15,7 +49,8 @@ Música y efectos: originales (`musica/componer.py`).
 cd canal-youtube-infantil/estudio
 npm install                                   # una vez
 
-# 0. Entorno de Python para voces (una vez)
+# 0. Entornos de Python para voces (una vez): el de las herramientas (Whisper,
+#    Kokoro) y el del motor de voz (ver «Las voces», arriba)
 python3 -m venv ~/.venv-farolin && ~/.venv-farolin/bin/pip install -r voces/requirements.txt
 
 # 1. Guion: src/episodios/epNN/guion.json (frases, personaje, pausas, fuentes)
@@ -23,7 +58,8 @@ python3 -m venv ~/.venv-farolin && ~/.venv-farolin/bin/pip install -r voces/requ
 
 # 2. Voces: genera, mide y transcribe cada frase. Lee el informe al acabar.
 ~/.venv-farolin/bin/python voces/generar_voces.py epNN
-cat src/episodios/epNN/informe-voces.md      # frases con ⚠️ = reescribirlas
+cat src/episodios/epNN/informe-voces.md      # frases con ⚠️ = reescribirlas o «toma»: 2
+~/.venv-farolin/bin/python voces/palabras.py epNN   # momento de cada palabra (sincronía)
 
 # 3. Escenas: src/episodios/epNN/escenas/*.tsx y EpisodioNN.tsx; registrar en Root.tsx
 

@@ -7,9 +7,18 @@
     python voces/generar_voces.py ep01 --personaje farolin narrador
 
 Qué hace, por cada frase del guion (src/episodios/<ep>/guion.json):
-  1. La sintetiza con Kokoro-82M (licencia Apache 2.0, uso comercial permitido)
-     con la mezcla de voces de su personaje (voces/personajes.json).
-  2. Le cambia el tono con el filtro rubberband de ffmpeg.
+  1. La sintetiza con el motor de su personaje (voces/personajes.json):
+     - «qwen»: Qwen3-TTS (Apache 2.0) clonando la voz de referencia del
+       personaje (voces/referencias/), que se diseñó a partir de una
+       descripción: no es la voz de ninguna persona real. Es el motor actual.
+     - «chatterbox»: Chatterbox multilingüe (MIT), mismo sistema.
+     - «kokoro»: Kokoro-82M (Apache 2.0), el de los primeros episodios.
+     Los motores grandes corren en su propio entorno de Python
+     (voces/motores/, ver LEEME.md). Cada frase tiene su semilla: sale igual
+     cada vez; para otra versión de una frase, se pone "toma": 2 en el guion.
+  2. Si el personaje lo pide, le cambia el tono con el filtro rubberband de
+     ffmpeg (con las voces nuevas no hace falta: subir mucho el tono era lo
+     que las hacía sonar robóticas).
   3. Recorta silencios, iguala el volumen y la guarda en public/<ep>/voces/.
   4. Calcula la apertura de la boca fotograma a fotograma (30 fps).
   5. La transcribe con Whisper y compara con el texto: si no se entiende,
@@ -30,6 +39,7 @@ import sys
 import tempfile
 import unicodedata
 import urllib.request
+import zlib
 from pathlib import Path
 
 import numpy as np
@@ -127,20 +137,23 @@ def a_16k(audio: np.ndarray) -> np.ndarray:
     return out
 
 
-def recortar_y_nivelar(audio: np.ndarray) -> np.ndarray:
-    # recorta silencios del principio y del final (umbral relativo)
+def recortar_y_nivelar(audio: np.ndarray, fuerza: float = 0.7) -> np.ndarray:
+    # recorta silencios del principio y del final (umbral relativo), dejando
+    # un margen para no comerse una consonante suave del arranque («s», «h»)
     env = np.abs(audio)
-    umbral = max(1e-4, env.max() * 0.02)
+    umbral = max(1e-4, env.max() * 0.015)
     activos = np.where(env > umbral)[0]
     if len(activos):
-        audio = audio[max(0, activos[0] - int(0.01 * SR)): activos[-1] + int(0.03 * SR)]
+        audio = audio[max(0, activos[0] - int(0.04 * SR)): activos[-1] + int(0.05 * SR)]
     # nivel: RMS de las partes con voz → objetivo
     ventana = int(0.03 * SR)
     trozos = [audio[i:i + ventana] for i in range(0, len(audio) - ventana, ventana)]
     rms = np.array([np.sqrt(np.mean(t ** 2)) for t in trozos]) if trozos else np.array([np.sqrt(np.mean(audio ** 2))])
     voz = rms[rms > rms.max() * 0.2] if rms.max() > 0 else rms
     actual_db = 20 * np.log10(np.mean(voz) + 1e-9)
-    audio = audio * (10 ** ((OBJETIVO_RMS_DB - actual_db) / 20))
+    # nivelar del todo aplana la interpretación (un grito queda igual que un
+    # susurro, y eso suena robótico): se corrige el 70 % de la diferencia
+    audio = audio * (10 ** (fuerza * (OBJETIVO_RMS_DB - actual_db) / 20))
     pico = np.abs(audio).max()
     if pico > 0.89:  # -1 dBFS
         audio = audio * (0.89 / pico)
@@ -166,6 +179,50 @@ def envolvente_boca(audio: np.ndarray) -> list:
     return salida
 
 
+def semilla_de(lid: str, texto: str, toma: int) -> int:
+    return zlib.crc32(f"{lid}|{texto}|{toma}".encode("utf-8")) & 0x7FFFFFFF
+
+
+def leer_a_24k(ruta: Path) -> np.ndarray:
+    audio, sr = sf.read(ruta, dtype="float32")
+    if audio.ndim > 1:
+        audio = audio.mean(axis=1)
+    if sr != SR:
+        with tempfile.TemporaryDirectory() as tmp:
+            sal = Path(tmp) / "s.wav"
+            subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(ruta), "-ar", str(SR), "-ac", "1", str(sal)], check=True)
+            audio, _ = sf.read(sal, dtype="float32")
+    return audio
+
+
+def sintetizar_externo(motor: str, conf: dict, personajes: dict, frases: list, carpeta: Path) -> dict:
+    """Lanza un motor grande (Qwen3-TTS, Chatterbox) en su propio Python con
+    todas las frases de una vez (cargar el modelo es lo que más tarda)."""
+    python = os.path.expanduser(os.environ.get(f"FAROLIN_PY_{motor.upper()}", conf["python"]))
+    if not Path(python).exists():
+        raise SystemExit(f"Falta el entorno de Python del motor «{motor}» ({python}). Ver estudio/LEEME.md.")
+    usados = {f["personaje"] for f in frases}
+    trabajo = {
+        "modelo": conf["modelo"],
+        "hilos": conf.get("hilos", 4),
+        "personajes": {
+            n: {
+                "referencia": str(RAIZ / personajes[n]["referencia"]),
+                "ref_texto": personajes[n].get("ref_texto", ""),
+                "exageracion": personajes[n].get("exageracion", 0.5),
+            }
+            for n in usados
+        },
+        "frases": frases,
+        "salida": str(carpeta),
+    }
+    ruta = carpeta / "trabajo.json"
+    ruta.write_text(json.dumps(trabajo, ensure_ascii=False), encoding="utf-8")
+    print(f"Motor {motor}: {len(frases)} frases…", flush=True)
+    subprocess.run([python, str(RAIZ / conf["script"]), str(ruta)], check=True)
+    return {f["id"]: carpeta / f"{f['id']}.wav" for f in frases}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("episodio")
@@ -186,68 +243,111 @@ def main():
     personajes = json.loads((RAIZ / "voces" / "personajes.json").read_text(encoding="utf-8"))
     previo = json.loads(salida_json.read_text(encoding="utf-8")) if salida_json.exists() else {"lineas": {}}
 
-    descargar_modelos()
-    from kokoro_onnx import Kokoro
-    kokoro = Kokoro(str(MODELO), str(VOCES_BIN))
+    motores = personajes.get("_motores", {})
 
-    estilos = {}
-    for nombre, cfg in personajes.items():
-        if nombre.startswith("_"):
-            continue
-        total = sum(cfg["mezcla"].values())
-        estilos[nombre] = sum(kokoro.get_voice_style(v) * (w / total) for v, w in cfg["mezcla"].items())
+    def conf_de(p):
+        cfg = personajes[p]
+        motor = cfg.get("motor", "kokoro")
+        return motor, (cfg.get("kokoro", cfg) if motor == "kokoro" else cfg)
 
     whisper = None
     if not args.sin_whisper:
         from faster_whisper import WhisperModel
         whisper = WhisperModel("small", device="cpu", compute_type="int8", download_root=str(CACHE / "whisper"))
 
+    def comprobar(entrada, audio, texto):
+        if whisper is None:
+            return
+        segs, _ = whisper.transcribe(a_16k(audio), language="es", beam_size=5)
+        oido = " ".join(s.text.strip() for s in segs)
+        entrada["whisper"] = oido
+        entrada["error"] = round(error_palabras(texto, oido), 2)
+        entrada["primera_mal"] = primera_mal(texto, oido)
+
     resultado = {"episodio": args.episodio, "fps": FPS, "lineas": dict(previo.get("lineas", {}))}
-    filas_informe = []
-    for escena in guion["escenas"]:
-        for linea in escena["lineas"]:
-            lid, p, texto = linea["id"], linea["p"], linea["t"]
-            archivo = carpeta_audio / f"{lid}.wav"
-            hacer = args.forzar or not archivo.exists() or lid not in resultado["lineas"] or resultado["lineas"][lid].get("texto") != texto
-            if args.solo is not None:
-                hacer = lid in args.solo
-            if args.personaje is not None:
-                hacer = p in args.personaje
-            if args.revisar:
-                hacer = False
-                if whisper is not None and lid in resultado["lineas"] and archivo.exists():
-                    audio_existente, _ = sf.read(archivo, dtype="float32")
-                    segs, _ = whisper.transcribe(a_16k(audio_existente), language="es", beam_size=5)
-                    oido = " ".join(s.text.strip() for s in segs)
-                    e = resultado["lineas"][lid]
-                    e["whisper"], e["error"], e["primera_mal"] = oido, round(error_palabras(texto, oido), 2), primera_mal(texto, oido)
-                    if con_aviso(e):
-                        print(f"{lid} {p:9s} ⚠️ err={e['error']} primera_mal={e['primera_mal']}  «{texto}» → «{oido}»", flush=True)
-            if hacer:
-                cfg = personajes[p]
-                audio, sr = kokoro.create(texto_para_voz(texto), voice=estilos[p], speed=cfg["velocidad"], lang="es")
+    todas = [(linea, linea["id"], linea["p"], linea["t"], int(linea.get("toma", 1))) for escena in guion["escenas"] for linea in escena["lineas"]]
+
+    # 1. Qué frases hay que (re)hacer
+    pendientes = []
+    for linea, lid, p, texto, toma in todas:
+        archivo = carpeta_audio / f"{lid}.wav"
+        motor, _ = conf_de(p)
+        previa = resultado["lineas"].get(lid, {})
+        hacer = (
+            args.forzar
+            or not archivo.exists()
+            or not previa
+            or previa.get("texto") != texto
+            or previa.get("motor", "kokoro") != motor
+            or int(previa.get("toma", 1)) != toma
+        )
+        if args.solo is not None:
+            hacer = lid in args.solo
+        if args.personaje is not None:
+            hacer = p in args.personaje
+        if args.revisar:
+            hacer = False
+            if lid in resultado["lineas"] and archivo.exists():
+                audio_existente, _ = sf.read(archivo, dtype="float32")
+                e = resultado["lineas"][lid]
+                comprobar(e, audio_existente, texto)
+                if con_aviso(e):
+                    print(f"{lid} {p:9s} ⚠️ err={e['error']} primera_mal={e['primera_mal']}  «{texto}» → «{e['whisper']}»", flush=True)
+        if hacer:
+            pendientes.append((lid, p, texto, toma, motor))
+
+    # 2. Sintetizar: los motores grandes, todas sus frases de una vez
+    crudos = {}
+    with tempfile.TemporaryDirectory() as tmp:
+        por_motor = {}
+        for lid, p, texto, toma, motor in pendientes:
+            # el truco del yeísmo («ll» → «y») solo le hace falta a Kokoro: los
+            # motores nuevos leen el español escrito tal cual
+            dicho = texto_para_voz(texto) if motor == "kokoro" else texto
+            por_motor.setdefault(motor, []).append({"id": lid, "personaje": p, "texto": dicho, "semilla": semilla_de(lid, texto, toma)})
+        for motor, frases in por_motor.items():
+            if motor == "kokoro":
+                continue
+            carpeta = Path(tmp) / motor
+            carpeta.mkdir()
+            for lid, ruta in sintetizar_externo(motor, motores[motor], personajes, frases, carpeta).items():
+                crudos[lid] = leer_a_24k(ruta)
+        if "kokoro" in por_motor:
+            descargar_modelos()
+            from kokoro_onnx import Kokoro
+            kokoro = Kokoro(str(MODELO), str(VOCES_BIN))
+            for f in por_motor["kokoro"]:
+                _, cfg = conf_de(f["personaje"])
+                total = sum(cfg["mezcla"].values())
+                estilo = sum(kokoro.get_voice_style(v) * (w / total) for v, w in cfg["mezcla"].items())
+                audio, sr = kokoro.create(f["texto"], voice=estilo, speed=cfg["velocidad"], lang="es")
                 assert sr == SR, f"frecuencia inesperada {sr}"
-                audio = cambiar_tono(audio.astype(np.float32), cfg["semitonos"], cfg["formantes"])
-                audio = recortar_y_nivelar(audio)
-                sf.write(archivo, audio, SR, subtype="PCM_16")
-                entrada = {
-                    "personaje": p,
-                    "texto": texto,
-                    "archivo": f"{args.episodio}/voces/{lid}.wav",
-                    "duracion": round(len(audio) / SR, 3),
-                    "boca": envolvente_boca(audio),
-                }
-                if whisper is not None:
-                    segs, _ = whisper.transcribe(a_16k(audio), language="es", beam_size=5)
-                    oido = " ".join(s.text.strip() for s in segs)
-                    entrada["whisper"] = oido
-                    entrada["error"] = round(error_palabras(texto, oido), 2)
-                    entrada["primera_mal"] = primera_mal(texto, oido)
-                resultado["lineas"][lid] = entrada
-                aviso = " ⚠️" if con_aviso(entrada) else ""
-                print(f"{lid} {p:9s} {entrada['duracion']:5.2f}s err={entrada.get('error', '-')}{aviso}  {texto}", flush=True)
-            e = resultado["lineas"][lid]
-            filas_informe.append((lid, p, texto, e.get("whisper", ""), e.get("error", None), e["duracion"], con_aviso(e)))
+                crudos[f["id"]] = audio.astype(np.float32)
+
+    # 3. Tratar cada frase: tono (si se pide), silencios, volumen, boca y Whisper
+    for lid, p, texto, toma, motor in pendientes:
+        _, cfg = conf_de(p)
+        audio = cambiar_tono(crudos[lid], float(cfg.get("semitonos", 0)), cfg.get("formantes", "preserved"))
+        audio = recortar_y_nivelar(audio)
+        sf.write(carpeta_audio / f"{lid}.wav", audio, SR, subtype="PCM_16")
+        entrada = {
+            "personaje": p,
+            "texto": texto,
+            "motor": motor,
+            "toma": toma,
+            "archivo": f"{args.episodio}/voces/{lid}.wav",
+            "duracion": round(len(audio) / SR, 3),
+            "boca": envolvente_boca(audio),
+        }
+        comprobar(entrada, audio, texto)
+        resultado["lineas"][lid] = entrada
+        aviso = " ⚠️" if con_aviso(entrada) else ""
+        print(f"{lid} {p:9s} {entrada['duracion']:5.2f}s err={entrada.get('error', '-')}{aviso}  {texto}", flush=True)
+
+    filas_informe = []
+    for linea, lid, p, texto, toma in todas:
+        e = resultado["lineas"][lid]
+        filas_informe.append((lid, p, texto, e.get("whisper", ""), e.get("error", None), e["duracion"], con_aviso(e)))
 
     # El vídeo usa MP3 (unas 6 veces más ligero que WAV); el WAV no se sube a git.
     for lid, e in resultado["lineas"].items():

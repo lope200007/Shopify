@@ -7,7 +7,7 @@ import { Iris, Rotulo } from "../../../comun/Rotulos";
 import { CuentaAtras, LuzHistorias, MarcadorPistas } from "../../../comun/Juego";
 import { HuellaDino } from "../../../escenario/Huellas";
 import { Autobus, DienteAfilado, Etiqueta, Onomatopeya, Platano } from "../../../escenario/Cosas";
-import { Tiranosaurio } from "../../../escenario/Dinos";
+import { Braquiosaurio, Tiranosaurio } from "../../../escenario/Dinos";
 import { Farolin } from "../../../personajes/Farolin";
 import { Galleta } from "../../../personajes/Galleta";
 import { Lechuza } from "../../../personajes/Lechuza";
@@ -34,18 +34,18 @@ const Rastro: React.FC<{ frame: number; linea: number; manos: number; tacha: num
   if (soloOpciones) return <Opciones opciones={opciones} elegida={elegida} />;
   return (
     <g>
-      <rect x={0} y={0} width={1920} height={1080} fill="#E5CFA4" />
-      {Array.from({ length: 60 }, (_, i) => (
-        <circle key={i} cx={(i * 211) % 1920} cy={(i * 137) % 1080} r={3 + (i % 3) * 2} fill="#C9A86E" opacity={0.5} />
+      <rect x={0} y={0} width={2400} height={1080} fill="#E5CFA4" />
+      {Array.from({ length: 75 }, (_, i) => (
+        <circle key={i} cx={(i * 211) % 2400} cy={(i * 137) % 1080} r={3 + (i % 3) * 2} fill="#C9A86E" opacity={0.5} />
       ))}
-      <path d="M 0 250 Q 500 230 960 270 Q 1500 300 1920 250 L 1920 0 L 0 0 Z" fill="#4FB3E8" />
+      <path d="M 0 250 Q 500 230 960 270 Q 1500 300 1920 250 Q 2200 230 2400 250 L 2400 0 L 0 0 Z" fill="#4FB3E8" />
       {[0, 1, 2, 3, 4].map((i) => (
         <path key={i} d={`M ${200 + i * 380 + ((frame * 1.2) % 380)} ${150 + (i % 2) * 40} q 30 -10 60 0`} stroke="#FFFFFF" strokeWidth={6} fill="none" strokeLinecap="round" opacity={0.6} />
       ))}
-      <path d="M 0 250 Q 500 230 960 270 Q 1500 300 1920 250" stroke={C.contorno} strokeWidth={6} fill="none" />
+      <path d="M 0 250 Q 500 230 960 270 Q 1500 300 1920 250 Q 2200 230 2400 250" stroke={C.contorno} strokeWidth={6} fill="none" />
       {/* línea del camino: una detrás de otra */}
       <path
-        d={`M ${huellas.map((h) => `${h.x} ${h.y}`).join(" L ")}`}
+        d={`M ${huellas.map((h) => `${h.x + 95} ${h.y + 100}`).join(" L ")}`}
         stroke={C.luzRosa}
         strokeWidth={10}
         fill="none"
@@ -82,29 +82,29 @@ const Rastro: React.FC<{ frame: number; linea: number; manos: number; tacha: num
   );
 };
 
-/** ¿Sobre cuántas patas andaba? Dos carteles: 2 o 4. */
+/** ¿Sobre cuántas patas andaba? Dos carteles: uno de dos patas y otro de cuatro. */
 const Opciones: React.FC<{ opciones: number; elegida: number }> = ({ opciones, elegida }) => {
   if (opciones <= 0.01) return null;
   return (
-        <g opacity={opciones}>
-          {[
-            [700, 2],
-            [1220, 4],
-          ].map(([x, n], i) => {
-            const bien = i === 0 && elegida > 0;
-            return (
-              <g key={i} transform={`translate(${x} 950) scale(${bien ? 1 + 0.1 * elegida : 1})`}>
-                <rect x={-150} y={-90} width={300} height={140} rx={36} fill={bien ? C.luzTurquesa : "#FFFFFF"} stroke={C.contorno} strokeWidth={6} />
-                {Array.from({ length: n }, (_, k) => (
-                  <path key={k} d={`M ${-30 * (n - 1) / 2 + k * 30 - 60} -60 l 0 70 l 18 0`} stroke={C.contorno} strokeWidth={12} strokeLinecap="round" fill="none" />
-                ))}
-                <text x={70} y={22} textAnchor="middle" fontFamily={FUENTE_TITULO} fontWeight={800} fontSize={86} fill={C.texto}>
-                  {n}
-                </text>
-              </g>
-            );
-          })}
-        </g>
+    <g opacity={opciones}>
+      {[0, 1].map((i) => {
+        const bien = i === 0 && elegida > 0;
+        const x = i === 0 ? 690 : 1230;
+        return (
+          <g key={i} transform={`translate(${x} 930) scale(${bien ? 1 + 0.1 * elegida : 1})`}>
+            <rect x={-200} y={-150} width={400} height={200} rx={40} fill={bien ? C.luzTurquesa : "#FFFFFF"} stroke={C.contorno} strokeWidth={6} />
+            {i === 0 ? (
+              <Tiranosaurio x={-70} y={30} escala={0.22} silueta="#5A4A3C" />
+            ) : (
+              <Braquiosaurio x={-60} y={30} escala={0.19} silueta="#5A4A3C" />
+            )}
+            <text x={130} y={22} textAnchor="middle" fontFamily={FUENTE_TITULO} fontWeight={800} fontSize={110} fill={C.texto}>
+              {i === 0 ? 2 : 4}
+            </text>
+          </g>
+        );
+      })}
+    </g>
   );
 };
 
@@ -117,7 +117,12 @@ export const E04Tiranosaurio: React.FC<{ escena: EscenaColocada }> = ({ escena }
   const habla = quienHabla(escena, frame);
 
   // tramos
-  const tRastro = panel(frame, pal("l027", "mirad") - 4, ini("l028") - 6);
+  const tRastro = panel(frame, pal("l027", "mirad") - 4, pal("l028", "como") - 2);
+  // Galleta contesta «¡sobre dos patas!» y se ilumina el cartel bueno
+  const elegida = clave(frame, [
+    [pal("l028", "dos") - 2, 0],
+    [pal("l028", "dos") + 6, 1],
+  ]);
   const tBus = panel(frame, ini("l031") - 6, ini("l033") - 4);
   const tDientes = panel(frame, ini("l033") - 4, fin("l034") + 6);
   const enOrilla = 1 - Math.max(tRastro, tBus, tDientes);
@@ -220,10 +225,10 @@ export const E04Tiranosaurio: React.FC<{ escena: EscenaColocada }> = ({ escena }
           />
           <Galleta
             x={clave(frame, [
-              [ini("l028"), 330],
-              [pal("l028", "yo") + 4, 430],
+              [pal("l028", "como") - 2, 330],
+              [pal("l028", "pista") + 4, 430],
             ])}
-            y={1000 + sHipo1.dy + sHipo2.dy - (frame > ini("l028") && frame < pal("l028", "yo") + 4 ? Math.abs(Math.sin(frame * 0.5)) * 18 : 0)}
+            y={1000 + sHipo1.dy + sHipo2.dy - (frame > pal("l028", "como") - 2 && frame < pal("l028", "pista") + 4 ? Math.abs(Math.sin(frame * 0.5)) * 18 : 0)}
             escala={0.95}
             expresion={exprG}
             habla={enRugido ? 0.9 : bocaDe(escena, "galleta", frame)}
@@ -308,7 +313,7 @@ export const E04Tiranosaurio: React.FC<{ escena: EscenaColocada }> = ({ escena }
             <g transform={`translate(${-camRastro} 0)`}>
               <Rastro frame={frame} linea={linea} manos={manos} tacha={tacha} opciones={0} elegida={0} />
             </g>
-            <Rastro frame={frame} linea={0} manos={0} tacha={0} opciones={opciones} elegida={0} soloOpciones />
+            <Rastro frame={frame} linea={0} manos={0} tacha={0} opciones={opciones} elegida={elegida} soloOpciones />
             <CuentaAtras desde={cuenta[0]} hasta={cuenta[1]} x={960} y={520} r={110} />
           </g>
         ) : null}
@@ -385,9 +390,13 @@ export const E04Tiranosaurio: React.FC<{ escena: EscenaColocada }> = ({ escena }
                       <Platano x={100} y={0} escala={1.05} rot={-75} />
                     </g>
                   </g>
-                  <text x={330} y={760} textAnchor="middle" fontFamily={FUENTE_TEXTO} fontWeight={700} fontSize={50} fill={C.texto} opacity={b}>
-                    ¡como un plátano!
-                  </text>
+                  {/* con fondo: sin él, la cola del tiranosaurio cruzaba las letras */}
+                  <g opacity={b}>
+                    <rect x={100} y={705} width={460} height={78} rx={39} fill="#FFFFFF" stroke={C.contorno} strokeWidth={5} />
+                    <text x={330} y={760} textAnchor="middle" fontFamily={FUENTE_TEXTO} fontWeight={700} fontSize={50} fill={C.texto}>
+                      ¡como un plátano!
+                    </text>
+                  </g>
                 </g>
               );
             })()}

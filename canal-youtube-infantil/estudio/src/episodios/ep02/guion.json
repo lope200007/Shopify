@@ -34,9 +34,9 @@
         { "id": "l008", "p": "galleta", "t": "Mi huella es chiquitita… ¡y esta es enorme!" },
         { "id": "l009", "p": "farolin", "t": "Vamos a buscar pistas, como los detectives. Primera pista: ¿cuántos dedos tiene? ¡Cuéntalos conmigo!", "pausa": 0.6 },
         { "id": "l010", "p": "farolin", "t": "Uno… dos… ¡y tres!", "pausa": 0.4 },
-        { "id": "l011", "p": "galleta", "t": "¡Tres dedos! ¡Ya tenemos la primera pista!" },
+        { "id": "l011", "p": "galleta", "t": "¡Tres dedos! ¡Ya tenemos la primera pista!", "toma": 2 },
         { "id": "l012", "p": "farolin", "t": "Y mira las puntas de los dedos: son afiladas, como garras." },
-        { "id": "l013", "p": "galleta", "t": "¡Tiene garras! ¡Segunda pista!", "pausa": 0.4 },
+        { "id": "l013", "p": "galleta", "t": "¡Tiene garras! ¡Segunda pista!", "pausa": 0.4, "toma": 2 },
         { "id": "l014", "p": "farolin", "t": "Necesitamos a alguien que sepa mucho. Las lechuzas se despiertan al atardecer… ¡justo ahora!" },
         { "id": "l015", "p": "galleta", "t": "¡Doña Lechuza! ¡Venga a ver esto!", "pausa": 1.0 }
       ]
@@ -65,11 +65,11 @@
         { "id": "l027", "p": "lechuza", "t": "¡Vamos a comprobarlo! Mirad: las huellas van una detrás de otra, y no hay huellas de manos. ¿Sobre cuántas patas andaba?", "pausa": 2.8 },
         { "id": "l028", "p": "galleta", "t": "¡Sobre dos patas, como yo! ¡Tercera pista!", "pausa": 0.8 },
         { "id": "l029", "p": "lechuza", "t": "Tres dedos, garras afiladas y dos patas: era un dinosaurio que comía carne, del mismo grupo que el tiranosaurio." },
-        { "id": "l030", "p": "galleta", "t": "¿El grupo del tiranosaurio? ¡El famosísimo tiranosaurio!" },
+        { "id": "l030", "p": "galleta", "t": "¿El grupo del tiranosaurio? ¡El famosísimo tiranosaurio!", "toma": 2 },
         { "id": "l031", "p": "lechuza", "t": "El más famoso de todos. El tiranosaurio era tan largo como un autobús.", "pausa": 0.6 },
         { "id": "l032", "p": "farolin", "t": "¡Como un autobús entero!" },
         { "id": "l033", "p": "lechuza", "t": "Y tenía unos sesenta dientes afilados… ¡algunos, tan grandes como plátanos!", "pausa": 0.4 },
-        { "id": "l034", "p": "galleta", "t": "¡Plátanos! ¡Qué hambre me ha entrado!" },
+        { "id": "l034", "p": "galleta", "t": "¡Plátanos! ¡Qué hambre me ha entrado!", "toma": 2 },
         { "id": "l035", "p": "farolin", "t": "¡Vamos a rugir como un dinosaurio! ¿Rugís conmigo? A la de tres: uno, dos y… ¡tres!", "pausa": 2.4 },
         { "id": "l036", "p": "galleta", "t": "En vez de un rugido… ¡me ha salido un hipo!", "pausa": 0.6 }
       ]
@@ -89,7 +89,7 @@
       "id": "e06_datos",
       "lugar": "la orilla; empieza a anochecer",
       "lineas": [
-        { "id": "l042", "p": "galleta", "t": "Doña Lechuza, ¿alguien ha visto un tiranosaurio de verdad?" },
+        { "id": "l042", "p": "galleta", "t": "Doña Lechuza, ¿alguien ha visto un tiranosaurio de verdad?", "toma": 2 },
         { "id": "l043", "p": "lechuza", "t": "Nadie. Vivieron millones de años antes de que hubiera personas. Solo conocemos sus huesos y sus huellas." },
         { "id": "l044", "p": "galleta", "t": "Entonces… ¿nadie sabe cómo rugían?" },
         { "id": "l045", "p": "lechuza", "t": "¡Nadie! A lo mejor ni siquiera rugían. Los científicos siguen investigando.", "pausa": 0.4 },
@@ -107,7 +107,7 @@
         { "id": "l051", "p": "lechuza", "t": "Los dinosaurios grandes desaparecieron hace muchísimo tiempo. Pero algunos dinosaurios pequeños, con plumas, tuvieron hijos, y nietos, y bisnietos… y, poco a poco, se convirtieron en las aves.", "pausa": 0.4 },
         { "id": "l052", "p": "galleta", "t": "¿Se convirtieron en aves? Entonces usted, Doña Lechuza, ¿es…?" },
         { "id": "l053", "p": "lechuza", "t": "¡Uuuh! ¡Pariente de los dinosaurios! Las aves somos los dinosaurios de hoy." },
-        { "id": "l054", "p": "farolin", "t": "¡Doña Lechuza es una dinosauria!", "pausa": 0.6 },
+        { "id": "l054", "p": "farolin", "t": "¡Doña Lechuza es una dinosauria!", "pausa": 0.6, "toma": 2 },
         { "id": "l055", "p": "lechuza", "t": "Mirad la huella de una gallina: tres dedos largos delante… ¡como la del dinosaurio!", "pausa": 0.8 }
       ]
     },
@@ -129,7 +129,7 @@
         { "id": "l061", "p": "farolin", "t": "¡Un reto! Cuando veas una paloma o una gallina, mírale las patas con un mayor. ¿Cuántos dedos tiene delante?" },
         { "id": "l062", "p": "galleta", "t": "¡Una pista: como el dinosaurio!", "pausa": 0.8 },
         { "id": "l063", "p": "lechuza", "t": "¡Uuuh! Ya salen las estrellas. ¿Y sabéis por qué no se caen?" },
-        { "id": "l064", "p": "farolin", "t": "¡Eso lo descubriremos muy pronto!", "pausa": 0.6 },
+        { "id": "l064", "p": "farolin", "t": "¡Lo descubriremos muy pronto!", "pausa": 0.6 },
         { "id": "l065", "p": "narrador", "t": "¡Farolín y Galleta! ¡Aprender es una aventura!", "pausa": 2.0 }
       ]
     }

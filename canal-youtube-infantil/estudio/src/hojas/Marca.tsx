@@ -8,6 +8,7 @@ import { Galleta } from "../personajes/Galleta";
 import { Lechuza } from "../personajes/Lechuza";
 import { POSES } from "../personajes/cara";
 import { Logo } from "../comun/Rotulos";
+import { HuellaDino } from "../escenario/Huellas";
 
 cargarFuentes();
 
@@ -28,6 +29,40 @@ export const Miniatura01: React.FC = () => (
       <g transform="translate(40 0)">
         {["¿SE", "ROMPE?"].map((t, i) => (
           <text key={t} x={0} y={150 + i * 135} fontFamily={FUENTE_TITULO} fontWeight={800} fontSize={142} fill={C.luzAmarilla} stroke={C.contorno} strokeWidth={18} paintOrder="stroke" strokeLinejoin="round">
+            {t}
+          </text>
+        ))}
+      </g>
+    </svg>
+  </AbsoluteFill>
+);
+
+/**
+ * Miniatura del episodio 2 (1280×720, al 150 %). Contraste de tamaño: la
+ * huella gigante y Galleta pequeñita a su lado, con cara de sorpresa. Es lo
+ * que pasa en el vídeo (la encuentran junto al río). Tres palabras y la
+ * esquina de abajo a la derecha libre para la duración.
+ */
+export const Miniatura02: React.FC = () => (
+  <AbsoluteFill>
+    <svg width={1280} height={720} viewBox="0 0 1280 720">
+      <defs>
+        <radialGradient id="mini2-luz" cx="62%" cy="45%" r="60%">
+          <stop offset="0%" stopColor="#FFE9B0" />
+          <stop offset="55%" stopColor="#E9C994" />
+          <stop offset="100%" stopColor="#C9A06A" />
+        </radialGradient>
+      </defs>
+      <rect width={1280} height={720} fill="url(#mini2-luz)" />
+      {Array.from({ length: 40 }, (_, i) => (
+        <circle key={i} cx={(i * 211) % 1280} cy={(i * 137) % 720} r={3 + (i % 3) * 2} fill="#B8935F" opacity={0.45} />
+      ))}
+      <HuellaDino x={860} y={650} escala={2.2} fondo="#E9C994" id="mini2-huella" />
+      <Galleta x={500} y={705} escala={0.78} expresion="sorprendido" brazos={POSES.manosCara} mirada={{ x: 1, y: -0.6 }} parpadea={false} />
+      <Farolin x={1110} y={210} escala={0.72} expresion="sorprendido" luz="amarilla" brillo={1.3} mirada={{ x: -0.8, y: 0.8 }} voltear parpadea={false} idPrefijo="mini2-f" />
+      <g transform="translate(36 0)">
+        {["¿DE QUIÉN", "ES?"].map((t, i) => (
+          <text key={t} x={0} y={140 + i * 128} fontFamily={FUENTE_TITULO} fontWeight={800} fontSize={124} fill={C.luzAmarilla} stroke={C.contorno} strokeWidth={17} paintOrder="stroke" strokeLinejoin="round">
             {t}
           </text>
         ))}

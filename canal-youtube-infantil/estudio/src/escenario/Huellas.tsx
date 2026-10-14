@@ -40,6 +40,7 @@ export type HuellaProps = {
   dedos?: [number, number, number]; // brillo de cada dedo (0..1) para contarlos
   garras?: number; // brillo de las garras (0..1)
   color?: string; // color del icono
+  colorGarras?: string; // garras de otro color (un pie de verdad, no una huella)
   id: string;
   opacidad?: number;
 };
@@ -55,6 +56,7 @@ export const HuellaDino: React.FC<HuellaProps> = ({
   dedos = [0, 0, 0],
   garras = 0,
   color = C.contorno,
+  colorGarras,
   id,
   opacidad = 1,
 }) => {
@@ -98,9 +100,9 @@ export const HuellaDino: React.FC<HuellaProps> = ({
           key={`g${i}`}
           d={g}
           transform={tr || undefined}
-          fill={garras > 0.01 ? mezclarColor("#5A4A3C", "#FF7EB6", garras) : modo === "icono" ? color : "#5A4A3C"}
-          stroke={garras > 0.01 ? "#FFFFFF" : "none"}
-          strokeWidth={garras * 4}
+          fill={colorGarras ?? (garras > 0.01 ? mezclarColor("#5A4A3C", "#FF7EB6", garras) : modo === "icono" ? color : "#5A4A3C")}
+          stroke={colorGarras ? C.contorno : garras > 0.01 ? "#FFFFFF" : "none"}
+          strokeWidth={colorGarras ? 3 : garras * 4}
         />
       ))}
     </g>

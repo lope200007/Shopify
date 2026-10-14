@@ -13,15 +13,26 @@ import { COLOR_ROCA, usePalabra } from "../mundo";
 const Tarjeta: React.FC<{ x: number; n: number; titulo: string; visible: number; children: React.ReactNode }> = ({ x, n, titulo, visible, children }) => (
   <g transform={`translate(${x} 560) scale(${visible}) rotate(${(1 - visible) * -8})`} opacity={Math.min(1, visible * 1.5)}>
     <rect x={-270} y={-300} width={540} height={600} rx={44} fill="#FFFFFF" stroke={C.contorno} strokeWidth={7} />
+    <defs>
+      <clipPath id={`rep-marco-${n}`}>
+        <rect x={-240} y={-270} width={480} height={380} rx={30} />
+      </clipPath>
+    </defs>
     <rect x={-240} y={-270} width={480} height={380} rx={30} fill="#FFE9C2" />
-    <g transform="translate(0 -80)">{children}</g>
+    {/* el dibujo no se sale del marco aunque una cola sea larga */}
+    <g clipPath={`url(#rep-marco-${n})`}>
+      <g transform="translate(0 -80)">{children}</g>
+    </g>
     <circle cx={-250} cy={-280} r={50} fill={C.luzAmarilla} stroke={C.contorno} strokeWidth={6} />
     <text x={-250} y={-262} textAnchor="middle" fontFamily={FUENTE_TITULO} fontWeight={800} fontSize={60} fill={C.texto}>
       {n}
     </text>
-    <text x={0} y={200} textAnchor="middle" fontFamily={FUENTE_TEXTO} fontWeight={700} fontSize={44} fill={C.texto}>
-      {titulo}
-    </text>
+    {/* «\n» parte el título: en una línea, «Las aves vienen de los dinosaurios» se salía de la tarjeta */}
+    {titulo.split("\n").map((linea, i, todas) => (
+      <text key={i} x={0} y={200 + (i - (todas.length - 1) / 2) * 50} textAnchor="middle" fontFamily={FUENTE_TEXTO} fontWeight={700} fontSize={44} fill={C.texto}>
+        {linea}
+      </text>
+    ))}
   </g>
 );
 
@@ -53,8 +64,8 @@ export const E08Repaso: React.FC<{ escena: EscenaColocada }> = ({ escena }) => {
           <Tiranosaurio x={10} y={110} escala={0.42} paso={frame >= pal("l058", "dos") ? frame * 0.2 : undefined} />
           <HuellaDino x={-150} y={-60} escala={0.35} modo="icono" color="#8B5A2B" id="rep-icono" />
         </Tarjeta>
-        <Tarjeta x={1570} n={3} titulo="Las aves vienen de los dinosaurios" visible={ap("l059")}>
-          <DinoPlumas x={-110} y={120} escala={0.62} ave={0} color="#6CC56F" colorClaro="#FFE29A" />
+        <Tarjeta x={1570} n={3} titulo={"Las aves vienen\nde los dinosaurios"} visible={ap("l059")}>
+          <DinoPlumas x={-85} y={120} escala={0.55} ave={0} color="#6CC56F" colorClaro="#FFE29A" />
           <path d="M -10 0 L 30 0 M 18 -14 L 32 0 L 18 14" stroke={C.contorno} strokeWidth={8} fill="none" strokeLinecap="round" strokeLinejoin="round" />
           <Lechuza x={130} y={140} escala={0.55} expresion="contento" />
         </Tarjeta>

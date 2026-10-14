@@ -1,8 +1,9 @@
 import React from "react";
 import { Composition, Folder, Still } from "remotion";
 import { HojaPersonajes } from "./hojas/HojaPersonajes";
-import { Avatar, Banner, Miniatura01 } from "./hojas/Marca";
+import { Avatar, Banner, Miniatura01, Miniatura02 } from "./hojas/Marca";
 import { Episodio01, LINEA_TIEMPO as EP01 } from "./episodios/ep01/Episodio01";
+import { Episodio02, LINEA_TIEMPO as EP02 } from "./episodios/ep02/Episodio02";
 import { PruebaDinos, PruebaLuz, PruebaRio } from "./hojas/PruebasEp02";
 
 export const RemotionRoot: React.FC = () => {
@@ -10,6 +11,7 @@ export const RemotionRoot: React.FC = () => {
     <>
       <Folder name="Episodios">
         <Composition id="Episodio01" component={Episodio01} durationInFrames={EP01.total} fps={30} width={1920} height={1080} />
+        <Composition id="Episodio02" component={Episodio02} durationInFrames={EP02.total} fps={30} width={1920} height={1080} />
       </Folder>
       <Folder name="Marca">
         <Still id="HojaPersonajes" component={HojaPersonajes} width={1920} height={1080} />
@@ -24,6 +26,7 @@ export const RemotionRoot: React.FC = () => {
       </Folder>
       <Folder name="Miniaturas">
         <Still id="Miniatura01" component={Miniatura01} width={1280} height={720} />
+        <Still id="Miniatura02" component={Miniatura02} width={1280} height={720} />
       </Folder>
     </>
   );

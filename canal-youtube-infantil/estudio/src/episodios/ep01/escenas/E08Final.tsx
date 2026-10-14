@@ -71,7 +71,7 @@ export const E08Final: React.FC<{ escena: EscenaColocada }> = ({ escena }) => {
         />
         <Rotulo texto="¡Reto!" x={1240} y={300} desde={ini("l058") - 8} hasta={fin("l058") + 10} fondo={C.luzRosa} tam={84} />
         <DibujoCeras visible={dibujo} />
-        <Rotulo texto="Próxima aventura" x={1400} y={520} desde={ini("l061") + 20} hasta={ini("l062") - 6} fondo={C.luzTurquesa} tam={58} />
+        <Rotulo texto="Muy pronto" x={1400} y={520} desde={ini("l061") + 20} hasta={ini("l062") - 6} fondo={C.luzTurquesa} tam={58} />
         {/* cierre */}
         <g opacity={final}>
           <rect x={0} y={0} width={1920} height={1080} fill="#140F3D" opacity={0.6} />
@@ -80,7 +80,7 @@ export const E08Final: React.FC<{ escena: EscenaColocada }> = ({ escena }) => {
             ¡Aprender es una aventura!
           </text>
           <text x={960} y={800} textAnchor="middle" fontFamily={FUENTE_TEXTO} fontWeight={600} fontSize={42} fill="#FFFFFF">
-            Próxima aventura: ¿por qué no se caen las estrellas?
+            Muy pronto: ¿por qué no se caen las estrellas?
           </text>
         </g>
         <Iris duracion={escena.duracion} entrada={14} salida={24} />
