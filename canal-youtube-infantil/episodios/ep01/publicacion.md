@@ -12,11 +12,15 @@ Todo lo que hay que copiar y pegar al subir el vídeo a YouTube.
 ## Título (78 caracteres de 100)
 
 ```
-¡La luna se está rompiendo! 🌙 Las fases de la luna para niños | Farolín y Galleta
+¿La luna se está rompiendo? 🌙 Las fases de la luna para niños | Farolín y Galleta
 ```
 
 Lleva la búsqueda «fases de la luna para niños»: unas 5.000 búsquedas al mes y
 competencia baja (29 de 100), según vidIQ el 13-10-2026.
+
+Va en pregunta (cambiado el 14-10-2026, igual que el episodio 2): el vídeo la
+responde, y así el título no afirma algo falso. YouTube pide a los vídeos
+infantiles títulos que no exageren ni engañen.
 
 ## Descripción
 

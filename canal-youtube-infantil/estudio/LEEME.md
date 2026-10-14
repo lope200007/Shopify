@@ -43,6 +43,27 @@ duración del audio: un episodio de 4 minutos de voz, unos 30 minutos.
 **Si una frase sale mal:** se añade `"toma": 2` a esa frase en `guion.json` y
 se vuelve a lanzar el generador; solo rehace esa frase, con otra semilla.
 
+**Pulir un episodio (después de generar todas sus voces):**
+
+```bash
+~/.venv-farolin/bin/python voces/puntuar.py epNN                 # señala las frases flojas
+~/.venv-farolin/bin/python voces/elegir_tomas.py epNN 3 l010 l044 # prueba 3 tomas, deja la mejor
+~/.venv-farolin/bin/python voces/palabras.py epNN                 # rehace la sincronía
+```
+
+`puntuar.py` usa DNSMOS (Microsoft, MIT, sin conexión), que predice la nota
+que pondría una persona. **Cada frase se compara con su misma voz**: DNSMOS
+puntúa peor cualquier voz infantil, así que comparar a Galleta con el
+narrador no dice nada. Una frase muy por debajo de la mediana de su propio
+personaje suele tener un fallo (un arranque raro, una vocal estirada).
+`elegir_tomas.py` repite esas frases con otras semillas, puntúa cada toma
+(DNSMOS menos el error de Whisper: entenderse manda) y deja la mejor, con su
+número de toma apuntado en `guion.json`.
+
+Probado y descartado: subir los agudos a las voces de los niños (las nuevas
+tienen menos brillo que las de Kokoro). DNSMOS no mejoró con ninguno de tres
+ajustes, y sin poder escuchar no se añade un retoque que no demuestra nada.
+
 ## Producir un episodio
 
 ```bash

@@ -81,6 +81,15 @@ Vive en `canal-youtube-infantil/` y no tiene relación con la tienda. Empieza po
 - Whisper escribe a veces distinto una palabra («Brachiosaurio»,
   «Lechusa», «3» por «tres»): la sincronía por palabras compara por parecido,
   no por igualdad exacta.
+- **Cambiar de motor de voz no garantiza que todas las voces mejoren: se mide
+  antes de decirlo.** Con DNSMOS (calidad que predice una persona) las voces
+  adultas pasaron de 3,2 a 3,5 de 5 (episodio 2); las de los niños apenas
+  cambiaron (Farolín 2,66 → 2,69; Galleta 2,65 → 2,83). Y
+  DNSMOS puntúa peor **cualquier** voz infantil: se compara cada frase con su
+  misma voz (`voces/puntuar.py`), nunca un niño con un adulto.
+- **Un momento fijado como «ini(frase) + N fotogramas» se desplaza al cambiar
+  la voz**: la palabra que acompañaba llega antes o después. En el episodio 2 se
+  sincroniza por palabras (`palabras.json`); el 1 se hizo con fotogramas fijos.
 
 ## Qué es este proyecto
 

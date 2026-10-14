@@ -1,6 +1,6 @@
 {
   "id": "ep01",
-  "titulo": "¡La luna se está rompiendo!",
+  "titulo": "¿La luna se está rompiendo?",
   "aprendizaje": "La luna no se rompe ni cambia de forma: siempre tiene una mitad iluminada por el Sol y, según da vueltas alrededor de la Tierra, vemos más o menos parte de esa mitad.",
   "fuentes": [
     "NASA, Moon facts (consultado 13-10-2026): distancia media 384.400 km; cabrían 30 Tierras entre la Tierra y la Luna; superficie rocosa; los astronautas del Apolo trajeron 382 kg de rocas y suelo. https://science.nasa.gov/moon/facts/",
@@ -40,7 +40,7 @@
         {
           "id": "l006",
           "p": "narrador",
-          "t": "¡La luna se está rompiendo! Una aventura de Farolín y Galleta.",
+          "t": "¿De verdad se está rompiendo la luna? ¡Descúbrelo con Farolín y Galleta!",
           "pausa": 0.8
         }
       ]

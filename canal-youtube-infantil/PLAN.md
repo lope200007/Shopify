@@ -9,10 +9,11 @@ producido y lo aprendido al hacerlo.
 
 | | |
 |---|---|
-| Estado | **Episodio 1 terminado** (4:10, 1080p, −14 LUFS). Falta que Pablo cree el canal (`GUIA-CREAR-CANAL.md`) y lo escuche entero |
+| Estado | **Episodios 1 y 2 terminados**, con las voces nuevas (14-10-2026). Falta que Pablo cree el canal (`GUIA-CREAR-CANAL.md`) y los escuche enteros |
 | Nombre | «Farolín y Galleta» (provisional: lo decide Pablo; se cambia en `estudio/src/marca.ts`) |
 | Investigación | `investigacion-2026-10-13.md` |
 | Episodio 1 | `episodios/ep01/` (ficha de publicación, subtítulos, miniatura) |
+| Episodio 2 | `episodios/ep02/` (dinosaurios: ficha, subtítulos, miniatura) |
 | Estudio de producción | `estudio/` (cómo se usa: `estudio/LEEME.md`) |
 
 > **Supuestos** (cámbialos y se rehace lo que dependa de ellos): español de
@@ -105,9 +106,10 @@ Búsquedas al mes según vidIQ (13-10-2026). **España** = volumen dentro de Esp
 
 | Prioridad | Episodio | Búsqueda que ataca | Al mes | Competencia |
 |---|---|---|---|---|
-| ✅ hecho | ¡La luna se está rompiendo! | fases de la luna para niños | 5.029 | 29 (baja) |
+| ✅ hecho | ¿La luna se está rompiendo? | fases de la luna para niños | 5.029 | 29 (baja) |
+| ✅ hecho | ¿De quién es esta huella gigante? (dinosaurios) | dinosaurios para niños | 52.889 | 54 |
 | 1 | ¿Quién hace ese ruido en el bosque? | sonidos de animales para niños | 18.805 (**+118 %**) | 57 |
-| 2 | El dinosaurio del museo se despierta | dinosaurios para niños / dinos | 52.889 / 34.138 (+100 %) | 54 / 61 |
+| 2 | El dinosaurio del museo se despierta (segundo de dinosaurios: el tema que más se busca) | dinos | 34.138 (+100 %) | 61 |
 | 3 | ¿Por qué no se caen las estrellas? (ya anunciado al final del ep. 1) | sistema solar para niños | 6.618 | 49 |
 | 4 | Galleta se enfada | emociones niños | 5.369 | 25 (baja) |
 | 5 | ¿Cómo se llama este animal? | nombres de animales para niños | 5.101 | 30 (baja) |
@@ -160,10 +162,14 @@ Probarla siempre en pequeño (168 px de ancho, como en el móvil): el estudio la
 
 | Episodio | Título | Miniatura |
 |---|---|---|
-| 1 | ¡La luna se está rompiendo! 🌙 Las fases de la luna para niños \| Farolín y Galleta | Media luna con el trozo «que falta» punteado, Galleta asombrada, «¿SE ROMPE?» |
-| 2 | ¿Quién hace ese ruido? 🔊 Sonidos de animales para niños \| Farolín y Galleta | Sombra de animal con «?», Farolín asustado (luz azul) |
-| 3 | ¡El dinosaurio se despierta! 🦖 Dinosaurios para niños \| Farolín y Galleta | Esqueleto con ojos abiertos, Galleta con la boca abierta |
-| 4 | ¿Por qué no se caen las estrellas? ⭐ El cielo para niños \| Farolín y Galleta | Estrella cayendo y Galleta con la red |
+| 1 ✅ | ¿La luna se está rompiendo? 🌙 Las fases de la luna para niños \| Farolín y Galleta | Media luna con el trozo «que falta» punteado, Galleta asombrada, «¿SE ROMPE?» |
+| 2 ✅ | ¿De quién es esta huella gigante? 🦖 Dinosaurios para niños \| Farolín y Galleta | Huella gigante vista desde arriba, Galleta asombrada, «¿DE QUIÉN ES?» |
+| 3 | ¿Por qué no se caen las estrellas? ⭐ El cielo para niños \| Farolín y Galleta (anunciado al final de los episodios 1 y 2) | Estrella cayendo y Galleta con la red |
+| 4 | ¿Quién hace ese ruido? 🔊 Sonidos de animales para niños \| Farolín y Galleta | Sombra de animal con «?», Farolín asustado (luz azul) |
+
+**Títulos en pregunta** (desde el 14-10-2026): una pregunta que el vídeo
+responde. Así el título engancha sin afirmar algo falso, que es lo que YouTube
+pide a los vídeos infantiles.
 
 ---
 
@@ -184,10 +190,15 @@ Todo se hace en `estudio/` con Claude. Pasos y tiempo de Pablo:
 **Lo que no se automatiza nunca:** la historia de cada episodio, el humor y la
 verificación de datos. Es lo que hace el canal auténtico.
 
+**Voces (14-10-2026):** Pablo las encontró «muy robóticas». Era el tono subido
+a mano (hasta 7,5 semitonos) sobre una voz adulta de Kokoro. Ahora cada
+personaje tiene una voz **diseñada** con Qwen3-TTS a partir de una descripción
+(no se imita a nadie real) y se clona en cada frase, sin retoques de tono.
+Detalle y mediciones en `estudio/LEEME.md`.
+
 **Siguiente mejora de calidad:** que Pablo (o alguien contratado) grabe las
-voces. Las sintéticas se entienden (comprobado), pero una voz humana con
-ganas engancha más. El generador ya deja cada frase en su sitio: bastaría con
-sustituir los archivos.
+voces. Una voz humana con ganas engancha más que la mejor sintética. El
+generador ya deja cada frase en su sitio: bastaría con sustituir los archivos.
 
 ---
 
@@ -234,4 +245,6 @@ estadísticas de las primeras semanas.*
 - Programa de Partners (no oficial): https://vidiq.com/blog/post/monetize-youtube-guide/
 - Datos de la Luna (NASA): https://science.nasa.gov/moon/facts/ · https://science.nasa.gov/moon/moon-phases/
 - Licencia de Remotion (gratis para particulares y empresas de hasta 3 personas): https://www.remotion.dev/
-- Voces Kokoro-82M (Apache 2.0): https://huggingface.co/hexgrad/Kokoro-82M
+- Voces Kokoro-82M (Apache 2.0, las del primer montaje): https://huggingface.co/hexgrad/Kokoro-82M
+- Voces Qwen3-TTS (Apache 2.0, las actuales): https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign · https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-Base
+- Dinosaurios (Museo de Historia Natural de Londres): https://www.nhm.ac.uk/discover/dino-directory/tyrannosaurus.html · https://www.nhm.ac.uk/discover/how-dinosaurs-evolved-into-birds.html

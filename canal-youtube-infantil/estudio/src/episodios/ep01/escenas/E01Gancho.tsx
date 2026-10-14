@@ -127,12 +127,12 @@ export const E01Gancho: React.FC<{ escena: EscenaColocada }> = ({ escena }) => {
             mirada={subir > 200 ? { x: 0.3, y: -1 } : { x: -1, y: 0 }}
           />
         </g>
-        {/* título */}
+        {/* título: en pregunta, como en YouTube (lo que el vídeo responde, sin afirmar algo falso) */}
         <g opacity={titulo}>
           <rect x={0} y={0} width={1920} height={1080} fill="#140F3D" opacity={0.55} />
           <Logo x={960} y={430} escala={1.15 * (0.85 + 0.15 * titulo)} />
           <text x={960} y={720} textAnchor="middle" fontFamily={FUENTE_TITULO} fontWeight={800} fontSize={78} fill="#FFFFFF" stroke={C.contorno} strokeWidth={10} paintOrder="stroke">
-            ¡La luna se está rompiendo!
+            ¿La luna se está rompiendo?
           </text>
         </g>
         <Iris duracion={escena.duracion} entrada={12} salida={16} centro={[960, 600]} />

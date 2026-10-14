@@ -32,7 +32,15 @@ En este episodio aprendemos:
 
 👉 Reto para casa: cuando veáis una paloma o una gallina, miradle juntos las patas. ¿Cuántos dedos tiene delante?
 
-CAPITULOS
+0:00 ¡Una huella gigante!
+0:36 Buscamos pistas
+1:17 ¿Cómo se forma un fósil?
+2:10 Tan largo como un autobús
+3:15 ¡Te toca a ti! Dientes de dinosaurio
+3:49 Datos curiosos de dinosaurios
+4:37 El secreto de Doña Lechuza
+5:19 Repasamos
+5:41 El reto de hoy
 
 Para madres, padres y profes: los datos están comprobados con el Museo de Historia Natural de Londres, National Geographic Kids y estudios científicos (las fuentes, en el guion del episodio).
 · Tiranosaurio: https://www.nhm.ac.uk/discover/dino-directory/tyrannosaurus.html
@@ -42,7 +50,6 @@ Para madres, padres y profes: los datos están comprobados con el Museo de Histo
 Farolín y Galleta: dibujos animados para aprender jugando, para niños de 4 a 8 años. Animación, voces y música creadas por ordenador.
 ```
 
-(`CAPITULOS` se sustituye por el contenido de `capitulos.txt`.)
 
 ## Etiquetas
 
