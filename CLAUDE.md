@@ -312,6 +312,7 @@ Búsquedas hechas sin resultado útil, no repetir:
 |---|---|---|
 | Agotar créditos de una API de pago | `api cost optimization caching`, `rate limit retry backoff` | Nada aplicable: los de "cost" son de tokens de LLM y los de "rate limit" van de implementar límites en tu propia API. Resuelto con `spending-credits-last` y `scripts/linkfox.ts`. |
 | Canal infantil de YouTube: voces, guion, miniaturas | (13-10-2026) | Instalados 4 y rechazados 4. Todo eso se mudó con el canal a su repositorio privado (14-10-2026). |
+| Guion cómico para vídeo corto (humor, gancho, intriga) | `comedy script writing humor short video` (25-10-2026) | Nada aplicable: solo sale `inference-sh/ai-video-generation`, de pago. Cubierto con `copywriting-hooks` (ya instalado) más un estudio propio con fuentes primarias, que no vive en este repositorio por ser público. |
 | Vídeo explicativo con monigotes dibujados por código | `explainer video animation python ffmpeg` (20-10-2026) | Nada aplicable: los de `inference-sh` dependen de su servicio de pago, y `render-myth-vs-fact` (3 instalaciones) y un `manim` (1) no tienen uso que los avale. Resuelto con código propio (PIL + ffmpeg), que no vive en este repositorio por ser público. |
 
 ```bash
