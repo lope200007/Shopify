@@ -418,6 +418,24 @@ Instalados con `npx skills add`, viven en `.agents/skills/` y se enlazan desde
 | `impeccable` | `pbakaus/impeccable` | Dirección de arte y craft de interfaz. **Copia solo-markdown, sin el binario.** Ver abajo. |
 | `ui-ux-pro-max` | `nextlevelbuilder/ui-ux-pro-max-skill` | Base de datos de diseño consultable desde el terminal: 192 paletas por tipo de producto, 74 parejas de tipografías, 119 reglas de UX, 79 estilos. Python de biblioteca estándar, sin red. Ver abajo. |
 | `taste` | `senlindesign/taste-skill` | Desmonta el diseño de una web ajena y devuelve los valores exactos: colores, escala tipográfica, espaciados, radios. Y el **porqué** de cada elección, no solo el qué. Ver abajo. |
+| `token-saver-claude-code` | `otnc/skills_ai-agent-saving-tech` (MIT) | Gastar menos consumo sin perder calidad: leer solo lo necesario, salidas cortas, no lanzar subagentes sin motivo, y una auditoría de solo lectura (`scripts/audit.mjs`) de CLAUDE.md, MCP y ajustes. Datos de septiembre de 2026. Instalado el 23-11-2026 a petición de Pablo. Ver abajo. |
+
+### `token-saver-claude-code`: ahorrar consumo sin perder calidad
+
+Pablo pidió el 23-11-2026 «una skill que ahorre consumo». Búsqueda: `token usage reduce`,
+`context window efficiency`, `save tokens claude code`. Se bajaron cinco a cuarentena:
+
+| Skill | Veredicto |
+|---|---|
+| `otnc/skills_ai-agent-saving-tech@token-saver-claude-code` | **Instalado.** 86 líneas de método más referencias con fecha. Sin inyección, sin red, sin claves. Su único script (`audit.mjs`) importa solo `fs`, `os`, `path` y `url`, y solo lee. |
+| `denfry/claude-skills@token-efficiency` | Rechazado: su `install.py` mete ganchos en `~/.claude/settings.json`. Cambiar los ajustes de Claude es decisión de Pablo, y lo que aporta ya lo cubre el anterior. |
+| `dubibubii/usage-limit-reducer@usage-limit-reducer` | Rechazado: **obsoleto**, recomienda `claude-haiku-4-5`. |
+| `oimiragieo/agent-studio@context-compressor` | Rechazado: fragmento de un sistema mayor (trae ganchos y una copia de otro skill dentro). |
+| `redclawww/savethetokens@savethetokens` | No se pudo descargar. |
+
+**Lo que no se ha activado:** el propio skill propone añadir su bloque «Token discipline»
+(`assets/always-on.md`) a un CLAUDE.md. No se ha hecho: este CLAUDE.md ya es muy largo, y
+cada línea fija se paga en cada petición.
 
 ### `taste`: lo que yo hacía a mano, hecho bien
 
